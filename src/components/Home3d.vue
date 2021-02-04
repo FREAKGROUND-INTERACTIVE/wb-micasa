@@ -281,7 +281,7 @@ export default {
     init();
     animate();
   },
-  unmounted() {
+  beforeDestroy() {
     cancelAnimationFrame(this.animReq);
   },
   methods: {
