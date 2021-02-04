@@ -4,7 +4,7 @@ export const state = Vue.observable({ title: 'micasa' })
 
 export const mutations = {
     setTitle(newVal) {
-        console.log('Setting "title": ', newVal)
+        // console.log('Setting "title": ', newVal)
         state.title = newVal
     }
 }
