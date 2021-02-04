@@ -46,8 +46,6 @@ import { gsap } from "gsap";
 export default {
   props: {
     links: Array,
-    size: Number,
-    color: String,
   },
   data() {
     return {
@@ -57,27 +55,34 @@ export default {
   },
   mounted() {
     this.items = this.$el.querySelectorAll(".link__item");
-    this.setSize(this.items);
-    this.setColor(this.items);
+    this.ioAnim(true);
   },
   methods: {
-    setSize(items) {
-      items.forEach((elem, index) => {
-        gsap.to(elem, {
-          duration: 0.5,
-          width: "15px",
-          height: "15px",
-          delay: index * 0.5,
+    ioAnim(init, done) {
+      if (init) {
+        this.items.forEach((elem, index) => {
+          gsap.to(elem, {
+            duration: 0.5,
+            width: "15px",
+            height: "15px",
+            delay: index * 0.5,
+          });
         });
-      });
-    },
-    setColor(items) {
-      items.forEach((elem) => {
-        elem.style.borderColor = `#${this.color ? this.color : "fff"}`;
-        elem.style.borderColor = `#${this.color ? this.color : "fff"}`;
-        elem.style.borderColor = `#${this.color ? this.color : "fff"}`;
-        elem.style.borderColor = `#${this.color ? this.color : "fff"}`;
-      });
+      } else {
+        this.items.forEach((elem, index) => {
+          gsap.to(elem, {
+            duration: 0.5,
+            width: "0px",
+            height: "0px",
+            delay: index * 0.5,
+            onComplete: function() {
+              if (index == 2) {
+                done
+              }
+            }
+          });
+        });
+      }
     },
     setTitle(title, back) {
       let tOut;
@@ -96,18 +101,7 @@ export default {
       }
     },
     leave: function (done) {
-      this.exitAnimation(done);
-      console.log("Se fue");
-    },
-    exitAnimation() {
-      this.items.forEach((elem, index) => {
-        gsap.to(elem, {
-          duration: 0.5,
-          width: 0,
-          height: 0,
-          delay: index * 0.5,
-        });
-      });
+      this.ioAnim(false, done);
     },
   },
 };
