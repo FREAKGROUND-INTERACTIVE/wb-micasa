@@ -3,7 +3,10 @@
     <div class="home">
       <Home3d></Home3d>
       <div class="home__links">
-        <Links-list :links="['Agency', 'Studio', 'Powered-by-mi-casa']"></Links-list>
+        <Links-list
+          ref="linksList"
+          :links="['Agency', 'Studio', 'Powered-by-mi-casa']"
+        ></Links-list>
       </div>
     </div>
   </transition>
@@ -29,9 +32,9 @@ export default {
   },
   methods: {
     leave(el, done) {
-      console.log("leave home");
+      this.$refs.linksList.leave();
       gsap.to(el, {
-        duration: 1,
+        duration: 2,
         opacity: "0",
         onComplete: done,
       });
