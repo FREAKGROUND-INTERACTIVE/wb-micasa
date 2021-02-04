@@ -1,0 +1,30 @@
+//* CSS PREFIX MIXINS
+
+//* mixins SASS
+@mixin transition($property...) {
+    -webkit-transition: $property;
+    -moz-transition: $property;
+    -ms-transition: $property;
+    transition: $property;
+}
+
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -moz-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+@mixin transform-origin($property) {
+    -webkit-transform-origin: $property;
+    -moz-transform-origin: $property;
+    -ms-transform-origin: $property;
+    transform-origin: $property;
+}
+
+@mixin user-select($property) {
+    -webkit-user-select: $property;
+    -moz-user-select: $property;
+    -ms-user-select: $property;
+    user-select: $property;
+}

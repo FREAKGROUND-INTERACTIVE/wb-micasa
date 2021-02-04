@@ -1,0 +1,27 @@
+//* FONTS
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+// @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+
+//* SCSS PARTIALS
+@import './partials/resets';
+@import './partials/utils';
+
+//* VARIABLES
+
+$red: #ed572f;
+$yellow: #f9b200;
+$green: #94ea2f;
+$cyan: #2feac6;
+$blue: #4d73ef;
+$pink: #ea83cc;
+$dark: #4b4b4b;
+$light: white;
+
+
+body {
+  font-family: "Montserrat";
+  background-color: #dfdfdf;
+}

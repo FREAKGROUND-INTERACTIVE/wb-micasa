@@ -1,32 +1,42 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
+    <View-title :text="title"></View-title>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import { state, mutations } from "./state";
+import ViewTitle from "@/components/ViewTitle";
+export default {
+  components: {
+    ViewTitle,
+  },
+  computed: {
+    title() {
+      return state.title;
+    },
+  },
+  mounted() {
+    let path = window.location.pathname;
+    switch (path) {
+      case "/Agency":
+        mutations.setTitle("agency");
+        break;
+      case "/Studio":
+        mutations.setTitle("studio");
+        break;
+      case "/Powered-by-mi-casa":
+        mutations.setTitle("powered");
+        break;
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+      default:
+        break;
     }
-  }
-}
+  },
+};
+</script>
+
+<style lang="scss">
+@import "./assets/styles/setup";
 </style>
