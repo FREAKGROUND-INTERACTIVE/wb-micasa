@@ -4,9 +4,9 @@
       <div class="img-view__img-container">
         <img
           class="img-view__img"
-          width="660"
-          height="360"
-          src="https://picsum.photos/660/360"
+          width="500"
+          :height="height"
+          :src="'https://picsum.photos/300/'+height"
           alt="LoremPicsum"
           @load="imgLoaded"
         />
@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       imgContainer: null,
+      height: window.innerHeight
     };
   },
   mounted() {
@@ -58,9 +59,8 @@ export default {
     imgAnim() {
       gsap.to(this.imgContainer, {
         duration: 1,
-        width: 660,
+        height: '100vh',
         ease: "power2.out",
-        delay: 1,
       });
     },
     leave(done) {
@@ -83,22 +83,22 @@ export default {
 
 .img-view {
   position: absolute;
-  left: 50%;
-  top: 50%;
+  left: 10%;
+  top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  @include transform(translate(-50%, -50%));
+  // @include transform(translate(-50%, -50%));
   .img-view__img-container {
     position: relative;
-    width: 0;
-    height: 360px;
+    width: 500px;
+    height: 0vh;
     overflow: hidden;
     .img-view__img {
       position: absolute;
       top: 50%;
       left: 50%;
-      @include transform(translate(-50%, -50%) scale(1.6));
+      @include transform(translate(-50%, -50%) scale(1.3));
     }
   }
 }
