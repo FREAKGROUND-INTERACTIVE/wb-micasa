@@ -65,7 +65,7 @@ export default {
             duration: 0.5,
             width: "15px",
             height: "15px",
-            delay: index * 0.5,
+            delay: 0.5 + (index * 0.5),
           });
         });
       } else {
