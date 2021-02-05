@@ -27,14 +27,17 @@ export default {
     gsap.to(this.$el, {
       duration: 1,
       opacity: "1",
+      delay: 0.5,
+      onComplete: function () {
+        mutations.setTitle("micasa");
+      },
     });
-    mutations.setTitle("micasa");
   },
   methods: {
     leave(el, done) {
       this.$refs.linksList.leave();
       gsap.to(el, {
-        duration: 2,
+        duration: 1,
         opacity: "0",
         onComplete: done,
       });
