@@ -43,54 +43,72 @@ export default {
   },
   data() {
     return {
-      splitText: this.text.split(/\r?\n/),
-      textLines: null,
+      splitText: this.text.split(/\r?\n/), //* split text in lines
+      textLines: null, //* variable for text lines elements
     };
   },
   mounted() {
+    //* select text lines elements
     this.textLines = document.querySelectorAll(".paragraph__split-text");
-    this.textLines = Array.prototype.slice.call(this.textLines, 0);
-    this.initAnimation(1);
+    //* convert collection to array
+    this.textLines = [...this.textLines];
   },
   methods: {
     /**
-     ** INIT-ANIMATION FUNCTION
-     *? Function for animation when component is mounted
-     * @param time time for animation duration
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
      */
-    initAnimation(time) {
-      let initTl = gsap.timeline();
-      if (this.quote) {
-        initTl.from(".paragraph__quote", {
-          duration: time,
-          // delay: delay,
-          y: "100%",
-          ease: "power1.inOut",
-        });
-      }
+    initAnim(delay) {
+      //* duration time for animation elements
+      let time = 1;
 
-      initTl.from(".paragraph__title", {
-        duration: time,
-        // delay: delay,
-        y: "100%",
-        ease: "power1.inOut",
+      //* create timeLine
+      let initTl = gsap.timeline({
+        paused: "true",
+        delay: delay,
       });
 
-      if (this.subtitle) {
-        initTl.from(".paragraph__subtitle", {
+      //* quote animation
+      if (this.quote) {
+        initTl.to(".paragraph__quote", {
           duration: time,
-          // delay: delay,
-          y: "100%",
+          y: "0%",
           ease: "power1.inOut",
         });
       }
 
+      //* title animation
+      initTl.to(
+        ".paragraph__title",
+        {
+          duration: time,
+          y: "0%",
+          ease: "power1.inOut",
+        },
+        "<0.2"
+      );
+
+      //* subtitle animation
+      if (this.subtitle) {
+        initTl.to(
+          ".paragraph__subtitle",
+          {
+            duration: time,
+            y: "0%",
+            ease: "power1.inOut",
+          },
+          "<0.2"
+        );
+      }
+
+      //* text lines animation
       this.textLines.forEach((element) => {
-        initTl.from(
+        initTl.to(
           element,
           {
             duration: time,
-            y: "100%",
+            y: "0%",
             ease: "power1.inOut",
           },
           "<0.2"
@@ -99,33 +117,37 @@ export default {
 
       initTl.play();
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave(done) {
-      let endTl = gsap.timeline();
+      //* duration time for animation elements
       let time = 0.2;
+
+      //* text lines animation
       this.textLines.forEach((element) => {
-        endTl.to(
-          element,
-          {
-            duration: time,
-            y: "100%",
-            ease: "power1.inOut",
-          },
-          "<0.2"
-        );
+        gsap.to(element, {
+          duration: time,
+          y: "100%",
+          ease: "power1.inOut",
+        });
       });
 
+      //* subtitle animation
       if (this.subtitle) {
-        endTl.to(".paragraph__subtitle", {
+        gsap.to(".paragraph__subtitle", {
           duration: time,
-          // delay: delay,
           y: "100%",
           ease: "power1.inOut",
         });
       }
 
-      endTl.to(".paragraph__title", {
+      //* title animation
+      gsap.to(".paragraph__title", {
         duration: time,
-        // delay: delay,
         y: "100%",
         ease: "power1.inOut",
         onComplete: function () {
@@ -135,10 +157,10 @@ export default {
         },
       });
 
+      //* quote lines animation
       if (this.quote) {
-        endTl.to(".paragraph__quote", {
+        gsap.to(".paragraph__quote", {
           duration: time,
-          // delay: delay,
           y: "100%",
           ease: "power1.inOut",
           onComplete: done,
@@ -153,12 +175,6 @@ export default {
 @import "./../assets/styles/setup";
 
 .paragraph {
-  // position: absolute;
-  // left: 50%;
-  // top: 50%;
-
-  // @include transform(translate(-50%, -50%));
-
   .paragraph__quote-container,
   .paragraph__subtitle-container,
   .paragraph__title-container {
@@ -169,6 +185,7 @@ export default {
     font-family: $lora;
     font-size: 14px;
     font-weight: 400;
+    @include transform(translateY(-100%));
   }
 
   .paragraph__subtitle {
@@ -176,14 +193,18 @@ export default {
     font-size: 14px;
     font-weight: 400;
     margin-top: 0.5rem;
+    @include transform(translateY(-100%));
   }
 
-  .paragraph__title {
-    font-family: $lora;
-    font-size: 24px;
-    font-weight: 400;
-    color: $red;
+  .paragraph__title-container {
     margin-top: 0.5rem;
+    .paragraph__title {
+      font-family: $lora;
+      font-size: 24px;
+      font-weight: 400;
+      color: $red;
+      @include transform(translateY(-100%));
+    }
   }
 
   .paragraph__text {
@@ -194,6 +215,10 @@ export default {
 
     .paragraph__split-container {
       overflow: hidden;
+
+      .paragraph__split-text {
+        @include transform(translateY(-100%));
+      }
     }
   }
 
