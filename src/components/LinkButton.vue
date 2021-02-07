@@ -31,42 +31,77 @@ export default {
   },
   data() {
     return {
-      linkUrl: this.link,
-      text: "Next",
-      letters: null,
-      line: null,
+      linkUrl: this.link, //* link for router
+      text: "Next", //* text for button
+      letters: null, //* variable for character elements
+      line: null, //* variable for line element
     };
   },
   mounted() {
+    //* select characters
     this.letters = this.$el.querySelectorAll(".linkButton__text-letter");
+    //* select line
     this.line = this.$el.querySelector(".linkButton__line > div");
-    // this.initAnimation();
   },
   methods: {
-    initAnimation() {
-      console.log("init");
-      let animTl = gsap.timeline({delay: 1.2});
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim(delay) {
+      //* create timeLine
+      let animTl = gsap.timeline({ paused: "true", delay: delay });
+
+      //* animate characters
       this.letters.forEach((element) => {
-        console.log(element);
         animTl.to(
           element,
           {
             duration: 0.8,
             y: "0%",
-            // onComplete: function () {
-            //   console.log(index);
-            // },
           },
           "<0.2"
         );
       });
+
+      console.log("dur: ", animTl.duration());
+
       animTl.play();
 
+      //* animate line
       gsap.to(this.line, {
-        duration: 1,
+        duration: 1.6,
         width: 130,
         ease: "power2.out",
-        delay: 1.5,
+        delay: delay,
+        onComplete: function() {
+          document.querySelector(".linkButton").style.pointerEvents = "auto";
+        }
+      });
+    },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(el, done) {
+      document.querySelector(".linkButton").style.pointerEvents = "none"; //! esto no sirve y hay un error si se deja el mouse sobre el boton en el leave
+      //* animate characters
+      this.letters.forEach((element) => {
+        gsap.to(element, {
+          duration: 0.4,
+          y: "100%",
+        });
+      });
+
+      //* animate line
+      gsap.to(this.line, {
+        duration: 0.4,
+        width: 0,
+        ease: "power2.out",
+        onComplete: done
       });
     },
   },
@@ -77,15 +112,12 @@ export default {
 @import "./../assets/styles/setup";
 
 .linkButton {
-  position: absolute;
-  right: 5%;
-  bottom: 5%;
-  // @include transform(translate(-50%, -50%));
-
+  width: 200px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  pointer-events: none;
 
   .linkButton__line {
     margin-right: 1rem;
@@ -94,7 +126,7 @@ export default {
     div {
       width: 0;
       height: 1px;
-      background-color: #333;
+      background-color: $dark;
 
       @include transition(all 0.5s);
     }
@@ -105,25 +137,27 @@ export default {
     font-family: $mont;
     font-size: 14px;
     font-weight: 200;
+    color: $dark;
 
     .linkButton__text-letter {
       display: inline-block;
-      @include transition(all 0.3s);
+      @include transition(color 0.3s, padding-right 0.3s);
       @include transform(translateY(100%));
 
       &:hover {
-        &:nth-child(1) {
-          font-size: 17px;
-        }
+        color: $red;
+        font-weight: 400;
+        // &:nth-child(1) {
+        //   font-size: 17px;
+        // }
 
-        &:nth-child(2) {
-          font-size: 17px;
-          
-        }
+        // &:nth-child(2) {
+        //   font-size: 17px;
+        // }
 
-        &:nth-child(3) {
-          font-size: 17px;
-        }
+        // &:nth-child(3) {
+        //   font-size: 17px;
+        // }
       }
     }
   }

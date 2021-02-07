@@ -1,0 +1,123 @@
+<template>
+  <transition @leave="leave" :css="false">
+    <div class="font">
+      <template v-for="item in title">
+        <div class="font__phrase" :key="item">
+          <template v-for="char in item">
+            <div class="font__char" :key="char.id">
+              {{ char == " " ? "&nbsp;" : char }}
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </transition>
+</template>
+
+<script>
+import { gsap } from "gsap";
+
+export default {
+  props: {
+    text: String,
+  },
+  data() {
+    return {
+      title: this.text.split("\n"), //* split text in lines
+      chars: null, //* variable for character elements
+    };
+  },
+  mounted() {
+    //* select character elements
+    this.chars = this.$el.querySelectorAll(".font__char");
+    //* convert collection to array
+    this.chars = [...this.chars];
+  },
+  methods: {
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay 
+     */
+    initAnim(delay) {
+
+      //* create timeLine
+      let initTl = gsap.timeline({paused:"true", delay: delay});
+
+      this.chars.forEach((element) => {
+        initTl.to(element, {
+          y: 0,
+        }, '<0.1');
+      });
+
+      //* add mouseMove event listener to character elements
+      document.addEventListener("mousemove", (e) => {
+        this.chars.forEach((element, index) => {
+          setTimeout(() => {
+            this.weightAnimation(
+              element,
+              (e.clientX / window.innerWidth) * 900
+            );
+          }, 300 * index);
+        });
+      });
+
+      initTl.play();
+    },
+
+    /**
+     ** WEIGHT ANIMATION FUNCTION
+     *? Function for weight font animation
+     * @param elem element to animate
+     * @param weight weight value for animate
+     */
+    weightAnimation(elem, weight) {
+      gsap.to(elem, {
+        duration: 0.5,
+        fontSize: weight / 50 + 120 + "px",
+        onUpdate: function () {
+          elem.style.fontVariationSettings = "'wght' " + weight;
+        },
+      });
+    },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(done) {
+      this.chars.forEach((element) => {
+        gsap.to(element, {
+          duration: 0.4,
+          y: "100%",
+          onComplete: done,
+        });
+      });
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+@import "./../assets/styles/setup";
+
+.font {
+  pointer-events: none;
+  overflow: hidden;
+  .font__phrase {
+    display: flex;
+    justify-content: center;
+    .font__char {
+      font-family: $raleway;
+      font-weight: 900;
+      display: inline-block;
+      font-size: 8rem;
+      color: $red;
+      text-transform: uppercase;
+      font-variation-settings: "wght" 900;
+      @include transform(translateY(-100%));
+    }
+  }
+}
+</style>

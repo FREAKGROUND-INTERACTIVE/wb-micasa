@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 // @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap');
 
 
@@ -13,9 +13,14 @@
 
 //* VARIABLES
 
-$lora: 'Lora', serif;
-$fira: 'Fira Sans', sans-serif;
-$mont: 'Montserrat', sans-serif;
+$lora: 'Lora',
+serif;
+$fira: 'Fira Sans',
+sans-serif;
+$mont: 'Montserrat',
+sans-serif;
+$raleway: 'Raleway',
+sans-serif;
 
 $red: #ed572f;
 $yellow: #f9b200;
@@ -30,4 +35,24 @@ $light: white;
 body {
   font-family: "Montserrat";
   background-color: #dfdfdf;
+}
+
+.layout {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 1fr [col4] 5% [colEnd];
+  grid-template-rows: 10% [row2] 80% [row3] 10% [rowEnd];
+  grid-template-areas:
+    ". breadCrumb menu ."
+    ". content-1 content-2 ."
+    ". logo button .";
+}
+
+.link {
+  grid-area: button;
+  justify-self: right;
 }
