@@ -43,7 +43,7 @@ export default {
       let NewY = 1 - -1;
       let posY = ((e.clientY - 0) * NewY) / OldY + -1;
       // let posY = e.clientY / window.innerHeight;
-      const mFactor = 100;
+      const mFactor = 25;
 
       gsap.to(this.img, {
         duration: 1,
@@ -82,12 +82,12 @@ export default {
 @import "./../assets/styles/setup";
 
 .img-view {
-  position: absolute;
-  left: 10%;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // position: absolute;
+  // left: 10%;
+  // top: 0;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   // @include transform(translate(-50%, -50%));
   .img-view__img-container {
     position: relative;
