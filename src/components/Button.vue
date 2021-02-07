@@ -2,7 +2,7 @@
   <div class="button">
     <div class="button__title">
       <template v-for="letter in text">
-        <div class="button__title-letter" :key="letter">
+        <div class="button__title-letter" :key="letter.id">
           {{ letter == " " ? "&nbsp;" : letter }}
         </div>
       </template>
