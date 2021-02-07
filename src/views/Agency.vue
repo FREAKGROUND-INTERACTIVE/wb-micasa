@@ -52,6 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../assets/styles/setup";
 .agency {
   position: absolute;
   top: 0;
