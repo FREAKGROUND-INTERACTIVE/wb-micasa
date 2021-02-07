@@ -1,124 +1,99 @@
 <template>
-  <div class="font">
-    <template v-for="item in title">
-      <div class="font__phrase" :key="item">
-        <template v-for="char in item">
-          <div class="font__char" :key="char.id">
-            {{ char == " " ? "&nbsp;" : char }}
-          </div>
-        </template>
-      </div>
-    </template>
-  </div>
+  <transition @leave="leave" :css="false">
+    <div class="font">
+      <template v-for="item in title">
+        <div class="font__phrase" :key="item">
+          <template v-for="char in item">
+            <div class="font__char" :key="char.id">
+              {{ char == " " ? "&nbsp;" : char }}
+            </div>
+          </template>
+        </div>
+      </template>
+    </div>
+  </transition>
 </template>
 
 <script>
 import { gsap } from "gsap";
 
 export default {
+  props: {
+    text: String,
+  },
   data() {
     return {
-      title: "agency".split("\n"),
-      delay: 100, //* miliseconds
+      title: this.text.split("\n"), //* split text in lines
+      chars: null, //* variable for character elements
     };
   },
   mounted() {
-    const chars = this.$el.querySelectorAll(".font__char");
-    console.log("chars: ", this.title);
-    console.log("chars: ", chars);
-
-    // const divider = window.innerWidth / 9;
-    document.addEventListener("mousemove", (e) => {
-      // console.log("e: ", (e.clientX / window.innerWidth) * 900);
-      [...chars].forEach((element, index) => {
-        setTimeout(() => {
-          this.weightAnimation(element, (e.clientX / window.innerWidth) * 900);
-        }, this.delay * index);
-      });
-      // console.log(window.innerWidth, e);
-      // if (e.clientX <= divider) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 100);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider && e.clientX <= divider * 2) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 200);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 2 && e.clientX <= divider * 3) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 300);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 3 && e.clientX <= divider * 4) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 400);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 4 && e.clientX <= divider * 5) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 500);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 5 && e.clientX <= divider * 6) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 600);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 6 && e.clientX <= divider * 7) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 700);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 7 && e.clientX <= divider * 8) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 800);
-      //     }, this.delay * index);
-      //   });
-      // }
-      // if (e.clientX >= divider * 8) {
-      //   [...chars].forEach((element, index) => {
-      //     setTimeout(() => {
-      //       this.weightAnimation(element, 900);
-      //     }, this.delay * index);
-      //   });
-      // }
-    });
+    //* select character elements
+    this.chars = this.$el.querySelectorAll(".font__char");
+    //* convert collection to array
+    this.chars = [...this.chars];
   },
   methods: {
-    changeTitle() {},
-    weightAnimation(elem, weight) {
-      // elem.style.fontWeight = weight;
-      // elem.style.fontSize = weight / 50 + 120 + "px";
-      //   elem.style.color = (weight/100)
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay 
+     */
+    initAnim(delay) {
 
+      //* create timeLine
+      let initTl = gsap.timeline({paused:"true", delay: delay});
+
+      this.chars.forEach((element) => {
+        initTl.to(element, {
+          y: 0,
+        }, '<0.1');
+      });
+
+      //* add mouseMove event listener to character elements
+      document.addEventListener("mousemove", (e) => {
+        this.chars.forEach((element, index) => {
+          setTimeout(() => {
+            this.weightAnimation(
+              element,
+              (e.clientX / window.innerWidth) * 900
+            );
+          }, 300 * index);
+        });
+      });
+
+      initTl.play();
+    },
+
+    /**
+     ** WEIGHT ANIMATION FUNCTION
+     *? Function for weight font animation
+     * @param elem element to animate
+     * @param weight weight value for animate
+     */
+    weightAnimation(elem, weight) {
       gsap.to(elem, {
-        duration: 1,
-        color: "#ff0000",
+        duration: 0.5,
+        fontSize: weight / 50 + 120 + "px",
         onUpdate: function () {
           elem.style.fontVariationSettings = "'wght' " + weight;
-          // console.log("weight: ", elem.style.fontWeight);
         },
       });
     },
-    sizeAnimation(elem, index, size) {
-      elem.style.fontSize = size + 64 + "px";
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(done) {
+      this.chars.forEach((element) => {
+        gsap.to(element, {
+          duration: 0.4,
+          y: "100%",
+          onComplete: done,
+        });
+      });
     },
   },
 };
@@ -128,21 +103,20 @@ export default {
 @import "./../assets/styles/setup";
 
 .font {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // @include transform(translate(-50%, -50%));
+  pointer-events: none;
+  overflow: hidden;
   .font__phrase {
     display: flex;
     justify-content: center;
     .font__char {
       font-family: $raleway;
+      font-weight: 900;
       display: inline-block;
       font-size: 8rem;
       color: $red;
       text-transform: uppercase;
-      // font-variation-settings: "wght" 100;
-      @include transition(all 0.5s);
+      font-variation-settings: "wght" 900;
+      @include transform(translateY(-100%));
     }
   }
 }
