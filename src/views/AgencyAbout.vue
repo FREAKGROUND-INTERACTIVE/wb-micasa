@@ -2,10 +2,10 @@
   <transition @leave="leave" :css="false">
     <div class="agency-about">
       <div class="agency-about__img">
-        <Img-bg ref="imgViewTitle"></Img-bg>
+        <Img-bg ref="imgBg" @imgLoaded="initAnim"></Img-bg>
       </div>
       <div class="agency-about__title">
-        <Font-weight></Font-weight>
+        <Font-weight ref="fontWeight" :text="'agency'"></Font-weight>
       </div>
       <div class="agency-about__paragraph">
         <Paragraph
@@ -15,6 +15,9 @@
           :text="'Here at Mi Casa Studios we are more\nthan an agency. We are the home base\nfor a creative community that nurtures\nits menbers and provides fertile\nground for ideas to grow.'"
           :align="'left'"
         ></Paragraph>
+      </div>
+      <div class="agency-about__link">
+        <Link-button ref="LinkButton" :link="'/agency'"></Link-button>
       </div>
     </div>
   </transition>
@@ -26,11 +29,13 @@ import { gsap } from 'gsap';
 import ImgBg from "@/components/ImgBg";
 import FontWeight from "@/components/FontWeight";
 import Paragraph from "@/components/Paragraph";
+import LinkButton from "@/components/LinkButton";
 export default {
   components: {
     ImgBg,
     FontWeight,
     Paragraph,
+    LinkButton,
   },
   mounted() {
     setTimeout(() => {
@@ -38,8 +43,17 @@ export default {
     }, 1000);
   },
   methods: {
+    initAnim() {
+      this.$refs.paragraph.initAnim(1);
+      this.$refs.fontWeight.initAnim(0);
+      this.$refs.LinkButton.initAnim(4);
+    },
     leave(el, done) {
+      console.log("leave agency");
       this.$refs.paragraph.leave();
+      this.$refs.imgBg.leave();
+      this.$refs.fontWeight.leave();
+      this.$refs.LinkButton.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -53,15 +67,7 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/styles/setup";
 .agency-about {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 1fr [col4] 5% [colEnd];
-  grid-template-rows: 10% [row2] 80% [row3] 10% [rowEnd];
-  grid-template-areas:
-    ". breadCrumb menu ."
-    ". content-1 content-2 ."
-    ". logo button .";
+  @extend .layout;
 
   .agency-about__img {
     grid-area: breadCrumb;
@@ -80,6 +86,10 @@ export default {
     grid-area: content-2;
     justify-self: center;
     align-self: center;
+  }
+
+  .agency-about__link {
+    @extend .link;
   }
 }
 </style>
