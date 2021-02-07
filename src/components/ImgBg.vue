@@ -6,9 +6,10 @@
           class="img-view__img"
           width="500"
           :height="height"
-          :src="'https://picsum.photos/300/'+height"
+          :src="'https://picsum.photos/300/' + height"
           alt="LoremPicsum"
           @load="imgLoaded"
+          @error="imgDontLoaded"
         />
       </div>
     </div>
@@ -21,28 +22,33 @@ import gsap from "gsap";
 export default {
   data() {
     return {
-      imgContainer: null,
-      height: window.innerHeight
+      imgContainer: null, //* variable for image container
+      img: null, //* variable for image
+      height: window.innerHeight, //* window height
     };
   },
   mounted() {
+    //* select image container
     this.imgContainer = this.$el.querySelector(".img-view__img-container");
+    //* select image
     this.img = this.$el.querySelector(".img-view__img");
-    window.addEventListener("mousemove", this.mouseMovement);
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
   },
   methods: {
+    /**
+     ** MOUSE MOVEMENT FUNCTION
+     *? Function for image behavior on mouse movement
+     * @param e mouse movement event
+     */
     mouseMovement(e) {
       let OldX = window.innerWidth;
       let NewX = 1 - -1;
       let posX = ((e.clientX - 0) * NewX) / OldX + -1;
-      // let posX = e.clientX / window.innerWidth;
       let OldY = window.innerHeight;
       let NewY = 1 - -1;
       let posY = ((e.clientY - 0) * NewY) / OldY + -1;
-      // let posY = e.clientY / window.innerHeight;
       const mFactor = 25;
 
       gsap.to(this.img, {
@@ -52,22 +58,52 @@ export default {
         ease: "power2.out",
       });
     },
+
+    /**
+     ** IMG LOADED FUNCTION
+     *? Function for image init behavior trigger
+     */
     imgLoaded() {
-      console.log("img loaded");
-      this.imgAnim();
+      this.initAnim(0);
+      this.$emit("imgLoaded");
     },
-    imgAnim() {
+
+    /**
+     ** IMG dont LOADED FUNCTION
+     *? Function for image error load
+     */
+    imgDontLoaded() {
+      //! podriamos tener una imagen base para cuando las imagenes no carguen
+      this.initAnim(0);
+      this.$emit("imgLoaded");
+    },
+
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim(delay) {
       gsap.to(this.imgContainer, {
         duration: 1,
-        height: '100vh',
+        height: "100vh",
         ease: "power2.out",
+        delay: delay
       });
+      window.addEventListener("mousemove", this.mouseMovement);
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave(done) {
       window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 0.5,
-        width: 0,
+        height: 0,
+        y: "100vh",
         ease: "power2.out",
         onComplete: function () {
           done;
@@ -82,13 +118,6 @@ export default {
 @import "./../assets/styles/setup";
 
 .img-view {
-  // position: absolute;
-  // left: 10%;
-  // top: 0;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  // @include transform(translate(-50%, -50%));
   .img-view__img-container {
     position: relative;
     width: 500px;
