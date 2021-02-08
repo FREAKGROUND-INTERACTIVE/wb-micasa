@@ -17,6 +17,9 @@
       <div class="paragraph__subtitle-container" v-if="subtitle">
         <h3 class="paragraph__subtitle">{{ subtitle }}</h3>
       </div>
+      <div class="paragraph__subtitle-container" v-if="subtitle2">
+        <h3 class="paragraph__subtitle2">{{ subtitle2 }}</h3>
+      </div>
       <p class="paragraph__text">
         <template v-for="item in splitText">
           <div class="paragraph__split-container" :key="item">
@@ -38,8 +41,13 @@ export default {
     quote: String,
     title: String,
     subtitle: String,
+    subtitle2: String,
     text: String,
     align: String,
+    mountedAnim: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -52,6 +60,9 @@ export default {
     this.textLines = document.querySelectorAll(".paragraph__split-text");
     //* convert collection to array
     this.textLines = [...this.textLines];
+    if (this.mountedAnim)  {
+      this.initAnim(0);
+    }
   },
   methods: {
     /**
@@ -93,6 +104,19 @@ export default {
       if (this.subtitle) {
         initTl.to(
           ".paragraph__subtitle",
+          {
+            duration: time,
+            y: "0%",
+            ease: "power1.inOut",
+          },
+          "<0.2"
+        );
+      }
+
+      //* subtitle2 animation
+      if (this.subtitle2) {
+        initTl.to(
+          ".paragraph__subtitle2",
           {
             duration: time,
             y: "0%",
@@ -145,6 +169,15 @@ export default {
         });
       }
 
+      //* subtitle2 animation
+      if (this.subtitle2) {
+        gsap.to(".paragraph__subtitle2", {
+          duration: time,
+          y: "100%",
+          ease: "power1.inOut",
+        });
+      }
+
       //* title animation
       gsap.to(".paragraph__title", {
         duration: time,
@@ -188,16 +221,20 @@ export default {
     @include transform(translateY(-100%));
   }
 
-  .paragraph__subtitle {
-    font-family: $lora;
-    font-size: 14px;
-    font-weight: 400;
-    margin-top: 0.5rem;
-    @include transform(translateY(-100%));
+  .paragraph__subtitle-container {
+
+    .paragraph__subtitle,
+    .paragraph__subtitle2 {
+      font-family: $lora;
+      font-size: 14px;
+      font-weight: 400;
+      @include transform(translateY(-100%));
+    }
   }
 
   .paragraph__title-container {
-    margin-top: 0.5rem;
+    margin: 0.5rem 0;
+
     .paragraph__title {
       font-family: $lora;
       font-size: 24px;
