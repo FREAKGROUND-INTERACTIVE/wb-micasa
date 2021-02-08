@@ -65,8 +65,6 @@ export default {
         );
       });
 
-      console.log("dur: ", animTl.duration());
-
       animTl.play();
 
       //* animate line
