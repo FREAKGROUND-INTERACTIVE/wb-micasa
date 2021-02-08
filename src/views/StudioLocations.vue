@@ -15,7 +15,22 @@
           :align="'left'"
         ></Img-studio>
       </div>
-      <div class="locations__sites-brooklyn-slider" v-if="brooklyn">slider</div>
+      <div class="locations__sites-brooklyn-menu" v-show="brooklyn">
+        <div class="locations__sites-brooklyn-slider">
+          <splide :options="options">
+            <splide-slide>
+              <img src="https://picsum.photos/550/550" />
+            </splide-slide>
+            <splide-slide>
+              <img src="https://picsum.photos/550/550" />
+            </splide-slide>
+            <splide-slide>
+              <img src="https://picsum.photos/550/550" />
+            </splide-slide>
+          </splide>
+        </div>
+      </div>
+
       <div class="locations__sites-les" v-if="!brooklyn">
         <Img-studio
           @mouseenter.native="initLoading(false)"
@@ -47,7 +62,7 @@
           ></Paragraph>
         </div>
         <div class="locations__sites-brooklyn-button">
-          <Button></Button>
+          <Button :mountedAnim="true" :mountedDelay="2"></Button>
         </div>
       </div>
     </div>
@@ -55,7 +70,12 @@
 </template>
 
 <script>
+//* Third party libraries
 import gsap from "gsap";
+import { Splide, SplideSlide } from "@splidejs/vue-splide";
+import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+
+//* Local Components
 import BrandHeader from "@/components/BrandHeader";
 import Button from "@/components/Button";
 import ImgStudio from "@/components/ImgStudio";
@@ -70,6 +90,8 @@ export default {
     ImgStudio,
     Paragraph,
     CloseButton,
+    Splide,
+    SplideSlide,
   },
 
   data() {
@@ -84,6 +106,13 @@ export default {
         x: 0,
       },
       brooklyn: false,
+      options: {
+        rewind: true,
+        width: 550, //! Definir el tamaño respectivo de la imagen
+        perPage: 1,
+        speed: 1000,
+        drag: true,
+      },
     };
   },
   methods: {
@@ -124,7 +153,7 @@ export default {
           x: 0,
         });
       }
-    },
+    }
   },
 };
 </script>
@@ -156,9 +185,12 @@ export default {
     place-self: center;
   }
 
-  .locations__sites-brooklyn-slider {
+  .locations__sites-brooklyn-menu {
     grid-area: content-1;
     place-self: center;
+
+    .locations__sites-brooklyn-slider {
+    }
   }
 
   .locations__sites-brooklyn-content {
