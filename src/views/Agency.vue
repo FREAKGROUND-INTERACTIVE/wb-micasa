@@ -1,9 +1,12 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency">
-      <View-title-bg ref="viewTitleBg"></View-title-bg>
+      <View-title-bg ref="viewTitleBg" :mountedAnim="true" :mountedDelay="0.5"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
-      <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
+      
+      <div class="agency__link">
+        <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
+      </div>
     </div>
   </transition>
 </template>
@@ -21,11 +24,10 @@ export default {
     LinkButton,
   },
   mounted() {
-    console.log("title: ", state.title);
     if (state.title != "Agency") {
       mutations.setTitle("Agency");
     }
-    this.$refs.LinkButton.initAnimation();
+    this.$refs.LinkButton.initAnim(3);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
@@ -35,18 +37,19 @@ export default {
   },
   methods: {
     handleScroll(e) {
+      window.removeEventListener("wheel", this.handleScroll);
       console.log(e);
     },
     leave(el, done) {
-      console.log("leave agency");
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
+      this.$refs.LinkButton.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
-        onComplete: done
+        onComplete: done,
       });
-    }
+    },
   },
 };
 </script>
@@ -54,10 +57,9 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/styles/setup";
 .agency {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  @extend .layout;
+  .agency__link {
+    @extend .link;
+  }
 }
 </style>
