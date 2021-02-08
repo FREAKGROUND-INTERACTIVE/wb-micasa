@@ -17,7 +17,7 @@
         ></Paragraph>
       </div>
       <div class="agency-about__link">
-        <Link-button ref="LinkButton" :link="'/agency'"></Link-button>
+        <Link-button ref="LinkButton" :link="'/altering-agency'"></Link-button>
       </div>
     </div>
   </transition>
@@ -38,18 +38,46 @@ export default {
     LinkButton,
   },
   mounted() {
+    mutations.setTitle(" ");
     setTimeout(() => {
-      mutations.setTitle(" ");
-    }, 1000);
+      window.addEventListener("wheel", this.handleScroll);
+    }, 3000);
+  },
+  destroyed() {
+    window.removeEventListener("wheel", this.handleScroll);
   },
   methods: {
+    /**
+     ** SCROLL EVENT FUNCTION
+     *? Function for route behavior on wheel
+     * @param e mouse movement event
+     */
+    handleScroll(e) {
+      if (e.deltaY < 0) {
+        this.$router.push({ path: '/agency' })
+      }
+      if (e.deltaY > 0) {
+        this.$router.push({ path: '/altering-agency' })
+      }
+    },
+
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
     initAnim() {
       this.$refs.paragraph.initAnim(1);
       this.$refs.fontWeight.initAnim(0);
       this.$refs.LinkButton.initAnim(4);
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave(el, done) {
-      console.log("leave agency");
       this.$refs.paragraph.leave();
       this.$refs.imgBg.leave();
       this.$refs.fontWeight.leave();

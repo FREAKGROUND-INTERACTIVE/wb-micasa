@@ -1,7 +1,7 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency">
-      <View-title-bg ref="viewTitleBg"></View-title-bg>
+      <View-title-bg ref="viewTitleBg" :mountedAnim="true" :mountedDelay="0.5"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
       <div class="agency__link">
         <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
@@ -23,7 +23,6 @@ export default {
     LinkButton,
   },
   mounted() {
-    console.log("title: ", state.title);
     if (state.title != "Agency") {
       mutations.setTitle("Agency");
     }
@@ -36,13 +35,28 @@ export default {
     window.removeEventListener("wheel", this.handleScroll);
   },
   methods: {
+    /**
+     ** SCROLL EVENT FUNCTION
+     *? Function for route behavior on wheel
+     * @param e mouse movement event
+     */
     handleScroll(e) {
-      console.log(e);
+      // window.removeEventListener("wheel", this.handleScroll);
+      // console.log(e);
+      if (e.deltaY > 0) {
+        this.$router.push({ path: '/about-agency' })
+      }
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave(el, done) {
-      console.log("leave agency");
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
+      this.$refs.LinkButton.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,

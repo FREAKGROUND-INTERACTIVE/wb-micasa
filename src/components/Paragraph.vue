@@ -46,8 +46,12 @@ export default {
     align: String,
     mountedAnim: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -60,8 +64,9 @@ export default {
     this.textLines = document.querySelectorAll(".paragraph__split-text");
     //* convert collection to array
     this.textLines = [...this.textLines];
-    if (this.mountedAnim)  {
-      this.initAnim(0);
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
     }
   },
   methods: {

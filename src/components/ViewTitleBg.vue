@@ -1,12 +1,14 @@
 <template>
-  <div class="view-title-bg">
-    <div class="view-title-bg__up">
-      {{ title }}
+  <transition @leave="leave" :css="false">
+    <div class="view-title-bg">
+      <div class="view-title-bg__up">
+        {{ title }}
+      </div>
+      <div class="view-title-bg__down">
+        {{ title }}
+      </div>
     </div>
-    <div class="view-title-bg__down">
-      {{ title }}
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -14,10 +16,20 @@ import { state } from "./../state";
 import gsap from "gsap";
 
 export default {
+  props: {
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
-      titleUp: null,
-      titleDown: null,
+      titleUp: null, //* variable for up title
+      titleDown: null, //* variable for down title
     };
   },
   computed: {
@@ -26,64 +38,57 @@ export default {
     },
   },
   mounted() {
+    //* select up title
     this.titleUp = this.$el.querySelector(".view-title-bg__up");
+    //* select down title
     this.titleDown = this.$el.querySelector(".view-title-bg__down");
-    this.ioAnim(true);
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   methods: {
-    leave(done) {
-      this.ioAnim(false, done);
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim(delay) {
+      gsap.to(this.titleUp, {
+        duration: 1,
+        y: "-100%",
+        opacity: "1",
+        ease: "power4.out",
+        delay: delay,
+      });
+      gsap.to(this.titleDown, {
+        duration: 1,
+        y: "0%",
+        opacity: "1",
+        ease: "power4.out",
+        delay: delay,
+      });
     },
-    ioAnim(init, done) {
-      if (init) {
-        const tlUp = new gsap.timeline();
-        // tlUp.to(this.titleUp, {
-        //   duration: 0.5,
-        //   opacity: "1",
-        //   ease: "power4.out",
-        //   delay: 0.5,
-        // });
-        tlUp.to(this.titleUp, {
-          duration: 1,
-          y: "-100%",
-          opacity: "1",
-          ease: "power4.out",
-          delay: 0.5,
-        });
-        const tlDown = new gsap.timeline();
-        // tlDown.to(this.titleDown, {
-        //   duration: 0.5,
-        //   opacity: "1",
-        //   ease: "power4.out",
-        //   delay: 0.5,
-        // });
-        tlDown.to(this.titleDown, {
-          duration: 1,
-          y: "0%",
-          opacity: "1",
-          ease: "power4.out",
-          delay: 0.5,
-        });
-      } else {
-        const tlUp = new gsap.timeline();
-        tlUp.to(this.titleUp, {
-          duration: 0.5,
-          y: "0%",
-          opacity: "0",
-          ease: "power4.out",
-          delay: 0.5,
-        });
 
-        const tlDown = new gsap.timeline();
-        tlDown.to(this.titleDown, {
-          duration: 0.5,
-          y: "-100%",
-          opacity: "0",
-          ease: "power4.out",
-          delay: 0.5,
-          onComplete: done,
-        });
-      }
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(done) {
+      gsap.to(this.titleUp, {
+        duration: 0.5,
+        y: "-300%",
+        opacity: "0",
+        ease: "power4.out",
+      });
+      gsap.to(this.titleDown, {
+        duration: 0.5,
+        y: "200%",
+        opacity: "0",
+        ease: "power4.out",
+        onComplete: done,
+      });
     },
   },
 };

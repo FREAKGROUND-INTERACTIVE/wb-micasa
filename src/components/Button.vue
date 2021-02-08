@@ -23,6 +23,14 @@ export default {
       type: String,
       default: "Hello Baby!",
     },
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -33,11 +41,14 @@ export default {
   mounted() {
     this.line = this.$el.querySelector(".button__line");
     this.letters = this.$el.querySelectorAll(".button__title-letter");
-    this.initAnimation();
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   methods: {
-    initAnimation() {
-      let animTl = gsap.timeline({ delay: 0.2 });
+    initAnim(delay) {
+      let animTl = gsap.timeline({ delay: delay });
       this.letters.forEach((element) => {
         animTl.to(
           element,
@@ -100,7 +111,7 @@ export default {
       position: absolute;
       height: 3px;
       width: 0;
-      top: 0; 
+      top: 0;
       left: 0;
       background-color: #dfdfdf;
       @include transform(translateX(0px));

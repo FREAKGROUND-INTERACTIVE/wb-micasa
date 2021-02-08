@@ -23,6 +23,14 @@ import { gsap } from "gsap";
 export default {
   props: {
     link: String,
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   watch: {
     link: function (val) {
@@ -42,6 +50,10 @@ export default {
     this.letters = this.$el.querySelectorAll(".linkButton__text-letter");
     //* select line
     this.line = this.$el.querySelector(".linkButton__line > div");
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   methods: {
     /**
@@ -65,8 +77,6 @@ export default {
         );
       });
 
-      console.log("dur: ", animTl.duration());
-
       animTl.play();
 
       //* animate line
@@ -75,9 +85,9 @@ export default {
         width: 130,
         ease: "power2.out",
         delay: delay,
-        onComplete: function() {
+        onComplete: function () {
           document.querySelector(".linkButton").style.pointerEvents = "auto";
-        }
+        },
       });
     },
 
@@ -101,7 +111,7 @@ export default {
         duration: 0.4,
         width: 0,
         ease: "power2.out",
-        onComplete: done
+        onComplete: done,
       });
     },
   },
