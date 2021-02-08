@@ -40,6 +40,14 @@ export default {
     subtitle: String,
     text: String,
     align: String,
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -52,6 +60,10 @@ export default {
     this.textLines = document.querySelectorAll(".paragraph__split-text");
     //* convert collection to array
     this.textLines = [...this.textLines];
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   methods: {
     /**
