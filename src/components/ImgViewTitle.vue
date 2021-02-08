@@ -9,6 +9,7 @@
           src="https://picsum.photos/660/360"
           alt="LoremPicsum"
           @load="imgLoaded"
+          @error="imgDontLoaded"
         />
       </div>
     </div>
@@ -21,18 +22,25 @@ import gsap from "gsap";
 export default {
   data() {
     return {
-      imgContainer: null,
+      imgContainer: null, //* variable for image container
+      img: null, //* variable for image
     };
   },
   mounted() {
+    //* select image container
     this.imgContainer = this.$el.querySelector(".img-view__img-container");
+    //* select image
     this.img = this.$el.querySelector(".img-view__img");
-    window.addEventListener("mousemove", this.mouseMovement);
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
   },
   methods: {
+    /**
+     ** MOUSE MOVEMENT FUNCTION
+     *? Function for image behavior on mouse movement
+     * @param e mouse movement event
+     */
     mouseMovement(e) {
       let OldX = window.innerWidth;
       let NewX = 1 - -1;
@@ -51,23 +59,49 @@ export default {
         ease: "power2.out",
       });
     },
+
+    /**
+     ** IMG LOADED FUNCTION
+     *? Function for image init behavior trigger
+     */
     imgLoaded() {
-      console.log("img loaded");
       this.imgAnim();
     },
+
+    /**
+     ** IMG dont LOADED FUNCTION
+     *? Function for image error load
+     */
+    imgDontLoaded() {
+      //! podriamos tener una imagen base para cuando las imagenes no carguen
+      this.initAnim(0);
+    },
+
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
     imgAnim() {
       gsap.to(this.imgContainer, {
-        duration: 1,
+        duration: 0.5,
         width: 660,
         ease: "power2.out",
         delay: 1,
       });
+      window.addEventListener("mousemove", this.mouseMovement);
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave(done) {
       window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 0.5,
-        width: 0,
+        height: 0,
         ease: "power2.out",
         onComplete: function () {
           done;
