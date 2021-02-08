@@ -3,43 +3,50 @@
   <transition>
     <div class="locations">
       <div class="locations__line"></div>
-      <div class="locations__breadcrumb">
-        <Bread-crumb
-          :number="numberPage"
-          :title="titlePage"
-          :pages="[1, 2, 3, 4, 5, 6]"
-        ></Bread-crumb>
-      </div>
+      <div class="locations__breadcrumb"></div>
       <div class="locations__brandheader">
         <Brand-header :link="link"></Brand-header>
       </div>
-      <div class="locations__sites">
-        <div class="locations__sites-brooklyn">
-          <!-- <img
-            width="550"
-            height="550"
-            src="https://picsum.photos/550/550?random=1"
-            alt="Brooklyn"
-          /> -->
-          <Img-studio
-            @mouseenter.native="initLoading"
-            @mouseleave.native="backLoading"
-            :loading="loading.x"
-          ></Img-studio>
+      <div class="locations__sites-brooklyn" v-if="!brooklyn">
+        <Img-studio
+          @mouseenter.native="initLoading(true)"
+          @mouseleave.native="backLoading(true)"
+          :loading="loading.x"
+          :align="'left'"
+        ></Img-studio>
+      </div>
+      <div class="locations__sites-brooklyn-slider" v-if="brooklyn">slider</div>
+      <div class="locations__sites-les" v-if="!brooklyn">
+        <Img-studio
+          @mouseenter.native="initLoading(false)"
+          @mouseleave.native="backLoading(false)"
+          :loading="loading2.x"
+          :align="'right'"
+          ref="imgLes"
+        ></Img-studio>
+      </div>
+      <div
+        class="locations__sites-brooklyn-content"
+        v-show="brooklyn"
+        v-if="brooklyn"
+      >
+        <div
+          class="locations__sites-brooklyn-exit"
+          @click="brooklyn = !brooklyn"
+          v-if="brooklyn"
+        >
+          <Close-button ref="brooklynClose"></Close-button>
+        </div>
+        <div class="locations__sites-brooklyn-paragraph">
+          <Paragraph
+            :title="'Mi Casa Brooklyn'"
+            :subtitle="'318 Grand Street, Suite 1G'"
+            :subtitle2="'Brooklyn, NY 11211'"
+            :text="'Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.'"
+            :mountedAnim="true"
+          ></Paragraph>
         </div>
         <div class="locations__sites-brooklyn-button">
-          <Button></Button>
-        </div>
-        <div class="locations__sites-les">
-          <!-- <img
-            width="550"
-            height="550"
-            src="https://picsum.photos/550/550?random=2"
-            alt="Les"
-          /> -->
-          <Img-studio></Img-studio>
-        </div>
-        <div class="locations__sites-les-button">
           <Button></Button>
         </div>
       </div>
@@ -49,19 +56,22 @@
 
 <script>
 import gsap from "gsap";
-import BreadCrumb from "@/components/BreadCrumb";
 import BrandHeader from "@/components/BrandHeader";
 import Button from "@/components/Button";
 import ImgStudio from "@/components/ImgStudio";
+import Paragraph from "@/components/Paragraph";
+import CloseButton from "@/components/CloseButton";
 
 export default {
   name: "StudioLocations",
   components: {
-    BreadCrumb,
     BrandHeader,
     Button,
     ImgStudio,
+    Paragraph,
+    CloseButton,
   },
+
   data() {
     return {
       numberPage: "01",
@@ -70,21 +80,50 @@ export default {
       loading: {
         x: 0,
       },
+      loading2: {
+        x: 0,
+      },
+      brooklyn: false,
     };
   },
   methods: {
-    initLoading() {
-      console.log("animacion andando");
-      gsap.to(this.loading, {
-        duration: 5,
-        x: 100,
-      });
+    initLoading(first) {
+      let that = this;
+      if (first) {
+        gsap.to(this.loading, {
+          duration: 5,
+          x: 100,
+          onComplete: function () {
+            that.$refs.imgLes.leave();
+            setTimeout(() => {
+              that.brooklyn = true;
+            }, 500);
+            setTimeout(() => {
+              that.$refs.brooklynClose.initAnim(0);
+            }, 1500); //! Verify time for lower bandwidth
+          },
+        });
+      } else {
+        gsap.to(this.loading2, {
+          duration: 5,
+          x: 100,
+        });
+      }
     },
-    backLoading() {
-      gsap.to(this.loading, {
-        duration: 1,
-        x: 0,
-      });
+    backLoading(first) {
+      if (first) {
+        gsap.killTweensOf(this.loading);
+        gsap.to(this.loading, {
+          duration: 1,
+          x: 0,
+        });
+      } else {
+        gsap.killTweensOf(this.loading2);
+        gsap.to(this.loading2, {
+          duration: 1,
+          x: 0,
+        });
+      }
     },
   },
 };
@@ -94,76 +133,58 @@ export default {
 @import "./../assets/styles/setup";
 
 .locations {
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 10% 80% 10%;
+  @extend .layout;
 
   .locations__line {
-    grid-area: 1 / 1 / 4 / 2;
-    border-right: 1px solid $dark;
-    height: 100%;
+    grid-area: breadCrumb;
+    justify-self: right;
+    width: 1px;
+    background-color: $dark;
+    height: 100vh;
   }
 
   .locations__breadcrumb {
-    grid-area: 1 / 1;
-    display: flex;
-    flex-flow: row nowrap;
-    margin-left: 2rem;
+    grid-area: breadCrumb;
   }
 
   .locations__brandheader {
-    grid-area: 3 / 1 / 4 / 2;
-    display: flex;
-    flex-flow: row nowrap;
-    margin-left: 2rem;
+    grid-area: logo;
   }
 
-  .locations__sites {
-    grid-area: 2 / 1 / 3 / 3;
+  .locations__sites-brooklyn {
+    grid-area: content-1;
+    place-self: center;
+  }
+
+  .locations__sites-brooklyn-slider {
+    grid-area: content-1;
+    place-self: center;
+  }
+
+  .locations__sites-brooklyn-content {
+    grid-area: content-2;
+    place-self: center;
+    width: 100%;
+    height: 100%;
+
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 0.1fr;
-    grid-template-areas:
-      "brooklyn       les"
-      "brooklynButton lesButton";
 
-    .locations__sites-brooklyn {
-      grid-area: brooklyn;
+    .locations__sites-brooklyn-exit {
+      place-self: start end;
+    }
+
+    .locations__sites-brooklyn-paragraph {
       place-self: center;
-      // display: flex;
-      // justify-content: center;
-      // align-self: center;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
     }
 
     .locations__sites-brooklyn-button {
-      grid-area: brooklynButton;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-self: center;
+      place-self: start center;
     }
+  }
 
-    .locations__sites-les {
-      grid-area: les;
-      display: flex;
-      justify-content: center;
-      align-self: center;
-    }
-
-    .locations__sites-les-button {
-      grid-area: lesButton;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-self: center;
-    }
+  .locations__sites-les {
+    grid-area: content-2;
+    place-self: center;
   }
 }
 </style>
