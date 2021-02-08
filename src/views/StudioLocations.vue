@@ -15,23 +15,29 @@
       </div>
       <div class="locations__sites">
         <div class="locations__sites-brooklyn">
-          <img
+          <!-- <img
             width="550"
             height="550"
-            src="https://picsum.photos/1920/1080?random=1"
+            src="https://picsum.photos/550/550?random=1"
             alt="Brooklyn"
-          />
+          /> -->
+          <Img-studio
+            @mouseenter.native="initLoading"
+            @mouseleave.native="backLoading"
+            :loading="loading.x"
+          ></Img-studio>
         </div>
         <div class="locations__sites-brooklyn-button">
           <Button></Button>
         </div>
         <div class="locations__sites-les">
-          <img
+          <!-- <img
             width="550"
             height="550"
-            src="https://picsum.photos/1920/1080?random=2"
+            src="https://picsum.photos/550/550?random=2"
             alt="Les"
-          />
+          /> -->
+          <Img-studio></Img-studio>
         </div>
         <div class="locations__sites-les-button">
           <Button></Button>
@@ -42,9 +48,11 @@
 </template>
 
 <script>
+import gsap from "gsap";
 import BreadCrumb from "@/components/BreadCrumb";
 import BrandHeader from "@/components/BrandHeader";
 import Button from "@/components/Button";
+import ImgStudio from "@/components/ImgStudio";
 
 export default {
   name: "StudioLocations",
@@ -52,13 +60,32 @@ export default {
     BreadCrumb,
     BrandHeader,
     Button,
+    ImgStudio,
   },
   data() {
     return {
       numberPage: "01",
       titlePage: "Agency",
       link: "/",
+      loading: {
+        x: 0,
+      },
     };
+  },
+  methods: {
+    initLoading() {
+      console.log("animacion andando");
+      gsap.to(this.loading, {
+        duration: 5,
+        x: 100,
+      });
+    },
+    backLoading() {
+      gsap.to(this.loading, {
+        duration: 1,
+        x: 0,
+      });
+    },
   },
 };
 </script>
@@ -71,7 +98,7 @@ export default {
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 0.9fr 5fr 0.9fr;
+  grid-template-rows: 10% 80% 10%;
 
   .locations__line {
     grid-area: 1 / 1 / 4 / 2;
@@ -98,13 +125,21 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 0.1fr;
-    grid-template-areas: "brooklyn les" "brooklynButton lesButton";
+    grid-template-areas:
+      "brooklyn       les"
+      "brooklynButton lesButton";
 
     .locations__sites-brooklyn {
       grid-area: brooklyn;
-      display: flex;
-      justify-content: center;
-      align-self: center;
+      place-self: center;
+      // display: flex;
+      // justify-content: center;
+      // align-self: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .locations__sites-brooklyn-button {
