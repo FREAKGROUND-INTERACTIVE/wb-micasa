@@ -38,9 +38,7 @@ export default {
     LinkButton,
   },
   mounted() {
-    setTimeout(() => {
-      mutations.setTitle(" ");
-    }, 1000);
+    mutations.setTitle(" ");
   },
   methods: {
     initAnim() {
@@ -49,7 +47,6 @@ export default {
       this.$refs.LinkButton.initAnim(4);
     },
     leave(el, done) {
-      console.log("leave agency");
       this.$refs.paragraph.leave();
       this.$refs.imgBg.leave();
       this.$refs.fontWeight.leave();
