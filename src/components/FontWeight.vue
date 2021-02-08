@@ -33,6 +33,9 @@ export default {
     //* convert collection to array
     this.chars = [...this.chars];
   },
+  destroyed() {
+    window.removeEventListener("mousemove", this.mouseMovement);
+  },
   methods: {
     /**
      ** INIT ANIMATION FUNCTION
@@ -50,9 +53,19 @@ export default {
         }, '<0.1');
       });
 
+      initTl.play();
+
       //* add mouseMove event listener to character elements
-      document.addEventListener("mousemove", (e) => {
-        this.chars.forEach((element, index) => {
+      document.addEventListener("mousemove", this.mouseMovement);
+    },
+    
+    /**
+     ** MOUSE MOVEMENT FUNCTION
+     *? Function for image behavior on mouse movement
+     * @param e mouse movement event
+     */
+    mouseMovement(e) {
+      this.chars.forEach((element, index) => {
           setTimeout(() => {
             this.weightAnimation(
               element,
@@ -60,9 +73,6 @@ export default {
             );
           }, 300 * index);
         });
-      });
-
-      initTl.play();
     },
 
     /**
