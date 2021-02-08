@@ -3,7 +3,9 @@
     <div class="agency">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
-      <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
+      <div class="agency__link">
+        <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
+      </div>
     </div>
   </transition>
 </template>
@@ -25,7 +27,7 @@ export default {
     if (state.title != "Agency") {
       mutations.setTitle("Agency");
     }
-    this.$refs.LinkButton.initAnimation();
+    this.$refs.LinkButton.initAnim(3);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
@@ -44,9 +46,9 @@ export default {
       gsap.to(el, {
         duration: 1.5,
         y: 0,
-        onComplete: done
+        onComplete: done,
       });
-    }
+    },
   },
 };
 </script>
@@ -54,10 +56,9 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/styles/setup";
 .agency {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  @extend .layout;
+  .agency__link {
+    @extend .link;
+  }
 }
 </style>
