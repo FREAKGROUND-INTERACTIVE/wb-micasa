@@ -1,6 +1,6 @@
 <template>
   <div class="brandheader">
-    <router-link :to="link"><img width="60" height="60" src="https://picsum.photos/1920/1080" alt="BrandHeader"></router-link>
+    <router-link :to="link"><img width="60" height="60" src="https://picsum.photos/60/60" alt="BrandHeader"></router-link>
   </div>
 </template>
 
