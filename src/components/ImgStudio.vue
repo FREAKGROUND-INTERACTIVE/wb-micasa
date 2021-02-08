@@ -5,11 +5,16 @@
         <img
           class="img-view__img"
           width="500"
-          :height="height"
-          :src="'https://picsum.photos/300/'+height"
+          height="500"
+          :src="'https://picsum.photos/500/500'"
           alt="LoremPicsum"
           @load="imgLoaded"
         />
+        <div class="img-view__title" :class="align">
+          Mi<br />
+          Casa<br />
+          {{align == 'left' ? 'Brooklyn' : 'LES'}}
+        </div>
       </div>
       <div class="img-view__load"></div>
     </div>
@@ -23,19 +28,20 @@ export default {
   props: {
     loading: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
+    align: String,
   },
   watch: {
-    loading: function(val) {
+    loading: function (val) {
       console.log("loading cambiando");
-      this.$el.querySelector(".img-view__load").style.width = val + "%"; 
-    }
+      this.$el.querySelector(".img-view__load").style.width = val + "%";
+    },
   },
   data() {
     return {
       imgContainer: null,
-      height: window.innerHeight
+      height: window.innerHeight,
     };
   },
   mounted() {
@@ -72,7 +78,7 @@ export default {
     imgAnim() {
       gsap.to(this.imgContainer, {
         duration: 1,
-        height: '550px',
+        height: "550px",
         ease: "power2.out",
       });
     },
@@ -80,7 +86,7 @@ export default {
       window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 0.5,
-        width: 0,
+        height: 0,
         ease: "power2.out",
         onComplete: function () {
           done;
@@ -113,6 +119,27 @@ export default {
       top: 50%;
       left: 50%;
       @include transform(translate(-50%, -50%) scale(1.3));
+    }
+
+    .img-view__title {
+      position: absolute;
+
+      font-size: 6rem;
+      line-height: 0.8;
+      color: $light;
+      font-weight: 700;
+
+      &.right {
+        text-align: right;
+        bottom: 40px;
+        right: 20px;
+      }
+
+      &.left {
+        text-align: left;
+        bottom: 40px;
+        left: 20px;
+      }
     }
   }
 
