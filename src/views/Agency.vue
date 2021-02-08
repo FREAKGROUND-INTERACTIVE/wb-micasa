@@ -36,10 +36,24 @@ export default {
     window.removeEventListener("wheel", this.handleScroll);
   },
   methods: {
+    /**
+     ** SCROLL EVENT FUNCTION
+     *? Function for route behavior on wheel
+     * @param e mouse movement event
+     */
     handleScroll(e) {
-      window.removeEventListener("wheel", this.handleScroll);
-      console.log(e);
+      // window.removeEventListener("wheel", this.handleScroll);
+      // console.log(e);
+      if (e.deltaY > 0) {
+        this.$router.push({ path: '/about-agency' })
+      }
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave(el, done) {
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
