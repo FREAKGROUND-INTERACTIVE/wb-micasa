@@ -43,6 +43,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "agencyServices" */ '../views/AgencyServices.vue')
   },
   {
+    path: '/why-agency',
+    name: 'AgencyWhy',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "agencyServices" */ '../views/AgencyWhy.vue')
+  },
+  {
+    path: '/clients-agency',
+    name: 'AgencyClients',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "agencyServices" */ '../views/AgencyClients.vue')
+  },
+  {
     path: '/studio',
     name: 'Studio',
     // route level code-splitting
@@ -51,7 +67,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "studio" */ '../views/Studio.vue')
   },
   {
-    path: '/studio-02',
+    path: '/locations-studio',
     name: 'StudioLocations',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
