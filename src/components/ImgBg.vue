@@ -4,9 +4,8 @@
       <div class="img-view__img-container">
         <img
           class="img-view__img"
-          width="500"
           :height="height"
-          :src="'https://picsum.photos/300/' + height"
+          src="https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/ARTS1_fpiiaq.jpg"
           alt="LoremPicsum"
           @load="imgLoaded"
           @error="imgDontLoaded"
@@ -118,16 +117,18 @@ export default {
 @import "./../assets/styles/setup";
 
 .img-view {
+  width: 40vw;
   .img-view__img-container {
+    background: red;
     position: relative;
-    width: 500px;
+    width: 100%;
     height: 0vh;
     overflow: hidden;
     .img-view__img {
       position: absolute;
       top: 50%;
       left: 50%;
-      @include transform(translate(-50%, -50%) scale(1.3));
+      @include transform(translate(-50%, -50%) scale(1.5));
     }
   }
 }
