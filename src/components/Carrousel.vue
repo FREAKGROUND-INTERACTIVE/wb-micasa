@@ -30,7 +30,7 @@
 
 <script>
 //* Third party libraries
-// import gsap from "gsap";
+import gsap from "gsap";
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 export default {
@@ -50,6 +50,7 @@ export default {
   },
   data() {
     return {
+      container: null,
       options: {
         rewind: true,
         width: 550, //! Definir el tamaño respectivo de la imagen
@@ -72,7 +73,11 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
-      console.log("initAnim: ", delay);
+      gsap.to(this.$el, {
+          duration: 1,
+          height: '550px',
+          delay: delay
+      });
     },
 
     /**
@@ -88,4 +93,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.carrousel {
+  width: 550px;
+  height: 0;
+  overflow: hidden;
+}
 </style>
