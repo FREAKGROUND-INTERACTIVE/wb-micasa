@@ -7,6 +7,8 @@
       <div class="locations__brandheader">
         <Brand-header :link="link"></Brand-header>
       </div>
+
+      <!--* BROOKLYN -->
       <div class="locations__sites-brooklyn" v-if="!brooklyn">
         <Img-studio
           @mouseenter.native="initLoading(true)"
@@ -18,35 +20,14 @@
       </div>
       <div class="locations__sites-brooklyn-menu" v-show="brooklyn">
         <div class="locations__sites-brooklyn-slider">
-          <splide :options="options">
-            <splide-slide>
-              <img
-                src="https://res.cloudinary.com/nancloud/image/upload/v1606967826/urbina/imgs/02_tah2q3.png"
-                width="550"
-                height="550"
-              />
-            </splide-slide>
-            <splide-slide>
-              <img
-                src="https://res.cloudinary.com/nancloud/image/upload/v1606967826/urbina/imgs/02_tah2q3.png"
-                width="550"
-                height="550"
-              />
-            </splide-slide>
-            <splide-slide>
-              <img
-                src="https://res.cloudinary.com/nancloud/image/upload/v1606967826/urbina/imgs/02_tah2q3.png"
-                width="550"
-                height="550"
-              />
-            </splide-slide>
-          </splide>
+          <Carrousel></Carrousel>
         </div>
         <div class="locations__sites-brooklyn-button" @click="hood = !hood">
           <Button :mountedAnim="true" :mountedDelay="2"></Button>
         </div>
       </div>
 
+      <!--* LES -->
       <div class="locations__sites-les" v-if="!brooklyn">
         <Img-studio
           @mouseenter.native="initLoading(false)"
@@ -106,8 +87,6 @@
 <script>
 //* Third party libraries
 import gsap from "gsap";
-import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 //* Local Components
 import BrandHeader from "@/components/BrandHeader";
@@ -115,6 +94,7 @@ import Button from "@/components/Button";
 import ImgStudio from "@/components/ImgStudio";
 import Paragraph from "@/components/Paragraph";
 import CloseButton from "@/components/CloseButton";
+import Carrousel from "@/components/Carrousel";
 
 export default {
   name: "StudioLocations",
@@ -124,8 +104,7 @@ export default {
     ImgStudio,
     Paragraph,
     CloseButton,
-    Splide,
-    SplideSlide,
+    Carrousel
   },
 
   data() {
@@ -141,13 +120,6 @@ export default {
       },
       brooklyn: false,
       hood: false,
-      options: {
-        rewind: true,
-        width: 550, //! Definir el tamaño respectivo de la imagen
-        perPage: 1,
-        speed: 1000,
-        drag: true,
-      },
       line: null,
       initImg: 0,
     };
