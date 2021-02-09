@@ -1,8 +1,10 @@
 <template>
-  <div class="close-button">
-    <div></div>
-    <div></div>
-  </div>
+  <transition @leave="leave" :css="false">
+    <div class="close-button">
+      <div></div>
+      <div></div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -40,6 +42,20 @@ export default {
           duration: 1,
           width: "100%",
           delay: delay,
+        });
+      });
+    },
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(done) {
+      this.lines.forEach((element) => {
+        gsap.to(element, {
+          duration: 0.5,
+          width: "0%",
+          onComplete: done,
         });
       });
     },
