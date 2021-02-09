@@ -9,11 +9,12 @@
           :src="'https://res.cloudinary.com/nancloud/image/upload/v1610047956/mi-casa/transition1_n6zyqq.png'"
           alt="LoremPicsum"
           @load="imgLoaded"
+          @error="imgDontLoaded"
         />
         <div class="img-view__title" :class="align">
           Mi<br />
           Casa<br />
-          {{align == 'left' ? 'Brooklyn' : 'LES'}}
+          {{ align == "left" ? "Brooklyn" : "LES" }}
         </div>
       </div>
       <div class="img-view__load"></div>
@@ -31,6 +32,14 @@ export default {
       default: 0,
     },
     align: String,
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   watch: {
     loading: function (val) {
@@ -47,7 +56,11 @@ export default {
   mounted() {
     this.imgContainer = this.$el.querySelector(".img-view__img-container");
     this.img = this.$el.querySelector(".img-view__img");
-    window.addEventListener("mousemove", this.mouseMovement);
+
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
@@ -72,15 +85,20 @@ export default {
       });
     },
     imgLoaded() {
-      console.log("img loaded");
-      this.imgAnim();
-      this.$emit('imgLoaded');
+      this.initAnim(this.mountedDelay);
+      this.$emit("imgLoaded");
     },
-    imgAnim() {
+    imgDontLoaded() {
+      this.initAnim(this.mountedDelay);
+      this.$emit("imgLoaded");
+    },
+    initAnim(delay) {
+      window.addEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 1,
         height: "550px",
         ease: "power2.out",
+        delay: delay,
       });
     },
     leave(done) {
