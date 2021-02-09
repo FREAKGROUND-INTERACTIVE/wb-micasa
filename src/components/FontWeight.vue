@@ -40,17 +40,20 @@ export default {
     /**
      ** INIT ANIMATION FUNCTION
      *? Function for init animation
-     * @param delay time for timeLine delay 
+     * @param delay time for timeLine delay
      */
     initAnim(delay) {
-
       //* create timeLine
-      let initTl = gsap.timeline({paused:"true", delay: delay});
+      let initTl = gsap.timeline({ paused: "true", delay: delay });
 
       this.chars.forEach((element) => {
-        initTl.to(element, {
-          y: 0,
-        }, '<0.1');
+        initTl.to(
+          element,
+          {
+            y: 0,
+          },
+          "<0.1"
+        );
       });
 
       initTl.play();
@@ -58,7 +61,7 @@ export default {
       //* add mouseMove event listener to character elements
       document.addEventListener("mousemove", this.mouseMovement);
     },
-    
+
     /**
      ** MOUSE MOVEMENT FUNCTION
      *? Function for image behavior on mouse movement
@@ -66,13 +69,18 @@ export default {
      */
     mouseMovement(e) {
       this.chars.forEach((element, index) => {
-          setTimeout(() => {
-            this.weightAnimation(
-              element,
-              (e.clientX / window.innerWidth) * 900
-            );
-          }, 300 * index);
-        });
+        setTimeout(() => {
+          this.weightAnimation(
+            element,
+            (e.clientX / window.innerWidth) * 900,
+          );
+        }, 300 * index);
+        // this.weightAnimation(
+        //   element,
+        //   (e.clientX / window.innerWidth) * 900,
+        //   index
+        // );
+      });
     },
 
     /**
@@ -83,8 +91,8 @@ export default {
      */
     weightAnimation(elem, weight) {
       gsap.to(elem, {
-        duration: 0.5,
-        fontSize: weight / 50 + 120 + "px",
+        duration: 1,
+        // fontSize: weight / 30 + 220 + "px",
         onUpdate: function () {
           elem.style.fontVariationSettings = "'wght' " + weight;
         },
@@ -122,7 +130,7 @@ export default {
       font-family: $raleway;
       font-weight: 900;
       display: inline-block;
-      font-size: 8rem;
+      font-size: 12vw;
       color: $red;
       text-transform: uppercase;
       font-variation-settings: "wght" 900;
