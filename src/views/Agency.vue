@@ -41,7 +41,7 @@ export default {
      * @param e mouse movement event
      */
     handleScroll(e) {
-      // window.removeEventListener("wheel", this.handleScroll);
+      window.removeEventListener("wheel", this.handleScroll);
       // console.log(e);
       if (e.deltaY > 0) {
         this.$router.push({ path: '/about-agency' })
