@@ -8,23 +8,22 @@
         <Brand-header :link="link" :mountedAnim="true"></Brand-header>
       </div>
 
-      <!--* BROOKLYN -->
-      <div class="locations__sites-brooklyn" v-if="!brooklyn">
+      <!--* LEFT SIDE -->
+      <div class="locations__sites-brooklyn">
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
           @imgLoaded="initAnim(0)"
           :loading="loading.x"
           :align="'left'"
+          ref="imgBrooklyn"
         ></Img-studio>
       </div>
-      <div class="locations__sites-brooklyn-menu" v-show="brooklyn">
-        <div class="locations__sites-brooklyn-slider">
-          <Carrousel></Carrousel>
-        </div>
-        <div class="locations__sites-brooklyn-button" @click="hood = !hood">
-          <Button :mountedAnim="true" :mountedDelay="2"></Button>
-        </div>
+      <div class="locations__sites-brooklyn-menu">
+        <Menu-studio
+          ref="menuBrooklyn"
+          @clickButton="hoodBrooklyn = !hoodBrooklyn"
+        ></Menu-studio>
       </div>
 
       <!--* LES -->
@@ -38,13 +37,16 @@
           ref="imgLes"
         ></Img-studio>
       </div>
-      <div class="locations__sites-brooklyn-content" v-if="brooklyn && !hood">
-        <div
-          class="locations__sites-brooklyn-exit"
-          @click="brooklyn = !brooklyn"
-          v-if="brooklyn"
-        >
-          <Close-button ref="brooklynClose"></Close-button>
+      <div
+        class="locations__sites-brooklyn-content"
+        v-if="brooklyn && !hoodBrooklyn"
+      >
+        <div class="locations__sites-brooklyn-exit" @click="closeBrooklyn">
+          <Close-button
+            ref="brooklynClose"
+            :mountedAnim="true"
+            :mountedDelay="3"
+          ></Close-button>
         </div>
         <div class="locations__sites-brooklyn-paragraph">
           <Paragraph
@@ -59,7 +61,10 @@
           <Button :mountedAnim="true" :mountedDelay="2"></Button>
         </div>
       </div>
-      <div class="locations__sites-brooklyn-content2" v-if="brooklyn && hood">
+      <div
+        class="locations__sites-brooklyn-content2"
+        v-if="brooklyn && hoodBrooklyn"
+      >
         <div
           class="locations__sites-brooklyn-exit"
           @click="brooklyn = !brooklyn"
@@ -94,7 +99,7 @@ import Button from "@/components/Button";
 import ImgStudio from "@/components/ImgStudio";
 import Paragraph from "@/components/Paragraph";
 import CloseButton from "@/components/CloseButton";
-import Carrousel from "@/components/Carrousel";
+import MenuStudio from "@/components/MenuStudio";
 
 export default {
   name: "StudioLocations",
@@ -104,7 +109,7 @@ export default {
     ImgStudio,
     Paragraph,
     CloseButton,
-    Carrousel
+    MenuStudio,
   },
 
   data() {
@@ -119,7 +124,7 @@ export default {
         x: 0,
       },
       brooklyn: false,
-      hood: false,
+      hoodBrooklyn: false,
       line: null,
       initImg: 0,
     };
@@ -135,20 +140,31 @@ export default {
     window.removeEventListener("wheel", this.handleScroll);
   },
   methods: {
+    initAnim(delay) {
+      this.initImg += 1;
+      if (this.initImg == 2) {
+        gsap.to(this.line, {
+          duration: 1,
+          height: "100vh",
+          delay: delay,
+        });
+      }
+    },
     initLoading(first) {
       let that = this;
       if (first) {
         gsap.to(this.loading, {
-          duration: 5,
+          duration: 3,
           x: 100,
+          ease: "power4.easeOut",
           onComplete: function () {
+            that.loading.x = 0;
             that.$refs.imgLes.leave();
+            that.$refs.imgBrooklyn.leave();
+            that.$refs.menuBrooklyn.initAnim(0);
             setTimeout(() => {
               that.brooklyn = true;
             }, 500);
-            setTimeout(() => {
-              that.$refs.brooklynClose.initAnim(0);
-            }, 1500); //! Verify time for lower bandwidth
           },
         });
       } else {
@@ -164,6 +180,7 @@ export default {
         gsap.to(this.loading, {
           duration: 1,
           x: 0,
+          ease: "power4.easeIn",
         });
       } else {
         gsap.killTweensOf(this.loading2);
@@ -173,15 +190,10 @@ export default {
         });
       }
     },
-    initAnim(delay) {
-      this.initImg += 1;
-      if (this.initImg == 2) {
-        gsap.to(this.line, {
-          duration: 1,
-          height: "100vh",
-          delay: delay,
-        });
-      }
+    closeBrooklyn() {
+      this.brooklyn = false;
+      this.$refs.menuBrooklyn.leave();
+      this.$refs.imgBrooklyn.initAnim(0);
     },
 
     /**
@@ -224,21 +236,15 @@ export default {
   .locations__sites-brooklyn {
     grid-area: content-1;
     place-self: center;
+    width: 550px;
+    height: 550px;
   }
 
   .locations__sites-brooklyn-menu {
     grid-area: content-1;
     place-self: center;
-    display: grid;
-
-    .locations__sites-brooklyn-slider {
-    }
-
-    .locations__sites-brooklyn-button {
-      margin-top: 2rem;
-      width: fit-content;
-      place-self: end center;
-    }
+    width: 550px;
+    height: 550px;
   }
 
   .locations__sites-brooklyn-content,
@@ -266,6 +272,8 @@ export default {
   .locations__sites-les {
     grid-area: content-2;
     place-self: center;
+    width: 550px;
+    height: 550px;
   }
 }
 </style>
