@@ -20,6 +20,7 @@
       </div>
       <div class="agency-services__content-paragraph">
         <Services
+          :mountedAnim="true"
           :list="['Service 1', 'Service 2', 'Service 3', 'Service 4']"
         ></Services>
       </div>
