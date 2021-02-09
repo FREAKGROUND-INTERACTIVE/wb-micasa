@@ -5,7 +5,7 @@
       <div class="locations__line"></div>
       <div class="locations__breadcrumb"></div>
       <div class="locations__brandheader">
-        <Brand-header :link="link"></Brand-header>
+        <Brand-header :link="link" :mountedAnim="true"></Brand-header>
       </div>
 
       <!--* BROOKLYN -->
