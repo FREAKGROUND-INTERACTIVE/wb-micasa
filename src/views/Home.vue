@@ -5,6 +5,7 @@
       <div class="home__links">
         <Links-list
           ref="linksList"
+          :mountedAnim="true"
           :links="['Agency', 'Studio', 'Powered-by-mi-casa']"
         ></Links-list>
       </div>
