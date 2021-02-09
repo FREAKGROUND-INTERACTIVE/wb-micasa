@@ -7,6 +7,9 @@
       <div class="agency-about__title">
         <Font-weight ref="fontWeight" :text="'agency'"></Font-weight>
       </div>
+      <div class="agency-about__brandheader">
+        <Brand-header ref="BrandHeader" :link="link" :mountedAnim="true"></Brand-header>
+      </div>
       <div class="agency-about__paragraph">
         <Paragraph
           ref="paragraph"
@@ -30,18 +33,26 @@ import ImgBg from "@/components/ImgBg";
 import FontWeight from "@/components/FontWeight";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
+import BrandHeader from "@/components/BrandHeader";
 export default {
   components: {
     ImgBg,
     FontWeight,
     Paragraph,
     LinkButton,
+    BrandHeader
+  },
+  data() {
+    return {
+      link: "/",
+    }
   },
   mounted() {
     mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -84,6 +95,7 @@ export default {
       this.$refs.imgBg.leave();
       this.$refs.fontWeight.leave();
       this.$refs.LinkButton.leave();
+      this.$refs.BrandHeader.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -98,6 +110,10 @@ export default {
 @import "./../assets/styles/setup";
 .agency-about {
   @extend .layout;
+
+  .agency-about__brandheader {
+    grid-area: logo;
+  }
 
   .agency-about__img {
     grid-area: breadCrumb;
