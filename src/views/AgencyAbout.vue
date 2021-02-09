@@ -107,6 +107,7 @@ export default {
     justify-self: end;
     align-self: center;
     z-index: 1;
+    position: absolute;
     @include transform(translateX(10%));
   }
 
