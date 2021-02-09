@@ -19,6 +19,16 @@
 import gsap from "gsap";
 
 export default {
+  props: {
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
       imgContainer: null, //* variable for image container
@@ -31,6 +41,10 @@ export default {
     this.imgContainer = this.$el.querySelector(".img-view__img-container");
     //* select image
     this.img = this.$el.querySelector(".img-view__img");
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
@@ -63,7 +77,7 @@ export default {
      *? Function for image init behavior trigger
      */
     imgLoaded() {
-      this.initAnim(0);
+      this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
 
@@ -73,7 +87,7 @@ export default {
      */
     imgDontLoaded() {
       //! podriamos tener una imagen base para cuando las imagenes no carguen
-      this.initAnim(0);
+      this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
 
