@@ -1,17 +1,24 @@
 <template>
-  <div class="button">
-    <div class="button__title">
-      <template v-for="letter in text">
-        <div class="button__title-letter" :key="letter.id">
-          {{ letter == " " ? "&nbsp;" : letter }}
-        </div>
-      </template>
+  <transition @leave="leave" :css="false">
+    <div class="button">
+      <div class="button__title">
+        <template v-for="letter in text">
+          <div
+            class="button__title-letter"
+            :key="letter.id"
+            :class="{ space: letter == ' ' }"
+          >
+            {{ letter }}
+          </div>
+        </template>
+        <div class="button__title-letter x">+</div>
+      </div>
+      <div class="button__line-container">
+        <div class="button__line-bg"></div>
+        <div class="button__line"></div>
+      </div>
     </div>
-    <div class="button__line-container">
-      <div class="button__line-bg"></div>
-      <div class="button__line"></div>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -39,7 +46,7 @@ export default {
     };
   },
   mounted() {
-    this.line = this.$el.querySelector(".button__line");
+    this.line = this.$el.querySelector(".button__line-bg");
     this.letters = this.$el.querySelectorAll(".button__title-letter");
     //* initAnim function in mounted
     if (this.mountedAnim) {
@@ -47,7 +54,13 @@ export default {
     }
   },
   methods: {
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
     initAnim(delay) {
+      let that = this;
       let animTl = gsap.timeline({ delay: delay });
       this.letters.forEach((element) => {
         animTl.to(
@@ -59,8 +72,36 @@ export default {
           "<0.2"
         );
       });
-
+      animTl.to(
+        this.line,
+        {
+          duration: 1,
+          width: "100%",
+          onComplete: function () {
+            that.$el.style.pointerEvents = "all";
+          },
+        },
+        "<0"
+      );
       animTl.play();
+    },
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(done) {
+      this.letters.forEach((element) => {
+        gsap.to(element, {
+          duration: 0.5,
+          y: "100%",
+        });
+      });
+      gsap.to(this.line, {
+          duration: 0.5,
+          width: "0%",
+          onComplete: done,
+        });
     },
   },
 };
@@ -70,22 +111,30 @@ export default {
 @import "./../assets/styles/setup";
 
 .button {
+  pointer-events: none;
   .button__title {
     cursor: pointer;
     overflow: hidden;
 
-    &:after {
-      content: "+";
-      margin-left: 0.2rem;
-      display: inline-block;
-      @include transform(rotate(0deg));
+    // &:after {
+    //   content: "+";
+    //   margin-left: 0.2rem;
+    //   display: inline-block;
+    //   @include transform(rotate(0deg));
 
-      @include transition(all 1s ease-in);
-    }
+    //   @include transition(all 1s ease-in);
+    // }
 
     .button__title-letter {
       display: inline-block;
       @include transform(translateY(100%));
+      &.space {
+        margin-right: 0.3rem;
+      }
+      &.x {
+        margin-left: 0.2rem;
+        @include transition(all 0.5s);
+      }
     }
   }
 
@@ -100,7 +149,7 @@ export default {
 
     .button__line-bg {
       background-color: $dark;
-      width: 100%;
+      width: 0;
       height: 1px;
       position: absolute;
       top: 1px;
@@ -121,6 +170,13 @@ export default {
   }
 
   &:hover {
+    .button__title {
+      .button__title-letter {
+        &.x {
+          color: $red;
+        }
+      }
+    }
     .button__line {
       width: 100px;
       @include transform(translateX(150px));

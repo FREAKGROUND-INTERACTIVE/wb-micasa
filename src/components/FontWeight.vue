@@ -20,6 +20,14 @@ import { gsap } from "gsap";
 export default {
   props: {
     text: String,
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -32,6 +40,10 @@ export default {
     this.chars = this.$el.querySelectorAll(".font__char");
     //* convert collection to array
     this.chars = [...this.chars];
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
@@ -70,10 +82,7 @@ export default {
     mouseMovement(e) {
       this.chars.forEach((element, index) => {
         setTimeout(() => {
-          this.weightAnimation(
-            element,
-            (e.clientX / window.innerWidth) * 900,
-          );
+          this.weightAnimation(element, (e.clientX / window.innerWidth) * 900);
         }, 300 * index);
         // this.weightAnimation(
         //   element,
