@@ -1,33 +1,40 @@
 <template>
-  <div class="agency-services">
-    <div class="agency-services__button" @click="showServices = true">
-      <Button
-        :mountedAnim="true"
-        :mountedDelay="1"
-        :text="'See our Services'"
-      ></Button>
-    </div>
-    <div class="agency-services__link">
-      <Link-button
-        ref="LinkButton"
-        :mountedAnim="true"
-        :link="'/why-agency'"
-      ></Link-button>
-    </div>
-    <div class="agency-services__content" v-if="showServices">
-      <div class="agency-services__content-close" @click="showServices = false">
-        <Close-button :mountedAnim="true"></Close-button>
+  <transition @leave="leave" :css="false">
+    <div class="agency-services">
+      <div class="agency-services__button" @click="showServices = true">
+        <Button
+          ref="Button"
+          :mountedAnim="true"
+          :mountedDelay="0"
+          :text="'See our Services'"
+        ></Button>
       </div>
-      <div class="agency-services__content-paragraph">
-        <Services
-          :list="['Service 1', 'Service 2', 'Service 3', 'Service 4']"
-        ></Services>
+      <div class="agency-services__link">
+        <Link-button
+          ref="LinkButton"
+          :mountedAnim="true"
+          :link="'/why-agency'"
+        ></Link-button>
+      </div>
+      <div class="agency-services__content" v-if="showServices">
+        <div
+          class="agency-services__content-close"
+          @click="showServices = false"
+        >
+          <Close-button :mountedAnim="true"></Close-button>
+        </div>
+        <div class="agency-services__content-paragraph">
+          <Services
+            :list="['Service 1', 'Service 2', 'Service 3', 'Service 4']"
+          ></Services>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
+import { gsap } from "gsap";
 import { mutations } from "./../state";
 
 import Button from "@/components/Button";
@@ -70,6 +77,20 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: "/why-agency" });
       }
+    },
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(el, done) {
+      this.$refs.Button.leave();
+      this.$refs.LinkButton.leave();
+      gsap.to(el, {
+        duration: 1.5,
+        y: 0,
+        onComplete: done,
+      });
     },
   },
 };
