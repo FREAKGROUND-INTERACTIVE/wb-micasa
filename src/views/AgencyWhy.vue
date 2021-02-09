@@ -1,32 +1,36 @@
 <template>
-  <div class="agency-altering">
-    <div class="agency-altering__paragraph">
+  <div class="agency-why">
+    <div class="agency-why__paragraph">
       <Paragraph
         :mountedAnim="true"
         :mountedDelay="1"
-        :title="'Altering the constant'"
+        :title="'Why us?'"
         :text="'Lorem, ipsum dolor sit amet consectetur adipisicing elit.\nAutem, rerum. Repellat placeat veniam reiciendis\nsimilique eos delectus porro modi, quas excepturi nulla quidem\nesse doloribus maiores eaque ipsam quam inventore.'"
       ></Paragraph>
     </div>
-    <div class="agency-altering__link">
+    <div class="agency-why__link">
       <Link-button
         ref="LinkButton"
         :mountedAnim="true"
-        :link="'/services-agency'"
+        :link="'/clients-agency'"
       ></Link-button>
     </div>
   </div>
 </template>
 
 <script>
+import { mutations } from "./../state";
+
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
+
 export default {
   components: {
     Paragraph,
     LinkButton,
   },
   mounted() {
+    mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
@@ -43,10 +47,10 @@ export default {
     handleScroll(e) {
       window.removeEventListener("wheel", this.handleScroll);
       if (e.deltaY < 0) {
-        this.$router.push({ path: "/about-agency" });
+        this.$router.push({ path: "/services-agency" });
       }
       if (e.deltaY > 0) {
-        this.$router.push({ path: "/services-agency" });
+        this.$router.push({ path: "/clients-agency" });
       }
     },
   },
@@ -55,16 +59,16 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../assets/styles/setup";
-.agency-altering {
+.agency-why {
   @extend .layout;
 
-  .agency-altering__paragraph {
+  .agency-why__paragraph {
     grid-area: content-2;
     place-self: end center;
     margin-bottom: 4rem;
   }
 
-  .agency-altering__link {
+  .agency-why__link {
     @extend .link;
   }
 }

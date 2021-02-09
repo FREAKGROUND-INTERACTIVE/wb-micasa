@@ -4,9 +4,9 @@
       <div class="img-view__img-container">
         <img
           class="img-view__img"
-          width="500"
-          height="500"
-          :src="'https://picsum.photos/500/500'"
+          width="512"
+          height="512"
+          :src="'https://res.cloudinary.com/nancloud/image/upload/v1610047956/mi-casa/transition1_n6zyqq.png'"
           alt="LoremPicsum"
           @load="imgLoaded"
         />
@@ -74,6 +74,7 @@ export default {
     imgLoaded() {
       console.log("img loaded");
       this.imgAnim();
+      this.$emit('imgLoaded');
     },
     imgAnim() {
       gsap.to(this.imgContainer, {
@@ -108,7 +109,8 @@ export default {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  // @include transform(translate(-50%, -50%));
+  cursor: pointer;
+
   .img-view__img-container {
     position: relative;
     width: 550px;

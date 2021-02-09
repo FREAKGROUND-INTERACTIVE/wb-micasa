@@ -25,7 +25,7 @@
 
 <script>
 import { mutations } from "./../state";
-import { gsap } from 'gsap';
+import { gsap } from "gsap";
 import ImgBg from "@/components/ImgBg";
 import FontWeight from "@/components/FontWeight";
 import Paragraph from "@/components/Paragraph";
@@ -53,11 +53,13 @@ export default {
      * @param e mouse movement event
      */
     handleScroll(e) {
+      window.removeEventListener("wheel", this.handleScroll);
+      
       if (e.deltaY < 0) {
-        this.$router.push({ path: '/agency' })
+        this.$router.push({ path: "/agency" });
       }
       if (e.deltaY > 0) {
-        this.$router.push({ path: '/altering-agency' })
+        this.$router.push({ path: "/altering-agency" });
       }
     },
 
@@ -85,9 +87,9 @@ export default {
       gsap.to(el, {
         duration: 1.5,
         y: 0,
-        onComplete: done
+        onComplete: done,
       });
-    }
+    },
   },
 };
 </script>
