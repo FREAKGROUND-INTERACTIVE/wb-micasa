@@ -1,6 +1,6 @@
 <template>
   <div class="clientList">
-    <div v-for="client in list" :key="client">
+    <div v-for="client in list" :key="client.id">
       <img :src="client" alt="Clients" />
     </div>
   </div>
