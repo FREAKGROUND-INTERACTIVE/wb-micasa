@@ -46,6 +46,14 @@ import { gsap } from "gsap";
 export default {
   props: {
     links: Array,
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   data() {
     return {
@@ -55,35 +63,33 @@ export default {
   },
   mounted() {
     this.items = this.$el.querySelectorAll(".link__item");
-    this.ioAnim(true);
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
   },
   methods: {
-    ioAnim(init, done) {
-      if (init) {
-        this.items.forEach((elem, index) => {
-          gsap.to(elem, {
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim(delay) {
+      let initTl = new gsap.timeline({ paused: "true", delay: delay });
+      this.items.forEach((elem) => {
+        initTl.to(
+          elem,
+          {
             duration: 0.5,
             width: "15px",
             height: "15px",
-            delay: 0.5 + (index * 0.5),
-          });
-        });
-      } else {
-        this.items.forEach((elem, index) => {
-          gsap.to(elem, {
-            duration: 0.5,
-            width: "0px",
-            height: "0px",
-            delay: index * 0.5,
-            onComplete: function() {
-              if (index == 2) {
-                done
-              }
-            }
-          });
-        });
-      }
+          },
+          "<0.2"
+        );
+      });
+      initTl.play();
     },
+
     setTitle(title, back) {
       let tOut;
       if (back) {
@@ -100,8 +106,21 @@ export default {
         mutations.setTitle(title);
       }
     },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
     leave: function (done) {
-      this.ioAnim(false, done);
+      this.items.forEach((elem) => {
+        gsap.to(elem, {
+          duration: 0.5,
+          width: "0px",
+          height: "0px",
+          onComplete: done,
+        });
+      });
     },
   },
 };
