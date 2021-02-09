@@ -86,7 +86,11 @@ export default {
      * @param done it return the leave behavior end
      */
     leave(done) {
-      console.log("leave: ", done);
+      gsap.to(this.$el, {
+          duration: 0.5,
+          height: '0px',
+          onComplete: done,
+      });
     },
   },
 };
