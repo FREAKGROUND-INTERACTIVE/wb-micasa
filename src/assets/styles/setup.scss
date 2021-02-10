@@ -44,7 +44,7 @@ body {
   top: 0;
   left: 0;
   display: grid;
-  grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 1fr [col4] 5% [colEnd];
+  grid-template-columns: [colFirst] 2% [col2] 1fr [col3] 1fr [col4] 2% [colEnd];
   grid-template-rows: 10% [row2] 80% [row3] 10% [rowEnd];
   grid-template-areas:
     ". breadCrumb menu ."
@@ -55,4 +55,22 @@ body {
 .link {
   grid-area: button;
   justify-self: right;
+}
+
+.menu-layout {
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: #dfdfdf;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: [colFirst] 2% [col2] 1fr [col3] 1fr [col4] 1fr [col5] 2% [colEnd];
+  grid-template-rows: 10% [row2] 40% [row3] 40% [row4] 10% [rowEnd];
+  grid-template-areas:
+    ". . line button ."
+    ". info social . ."
+    ". info links links ."
+    ". . . . .";
 }
