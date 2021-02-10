@@ -97,16 +97,16 @@ export default {
       gsap.to(this.imgContainer, {
         duration: 1,
         height: "550px",
-        ease: "power2.out",
+        y: 0,
         delay: delay,
       });
     },
     leave(done) {
       window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
-        duration: 0.5,
+        duration: 1,
         height: 0,
-        ease: "power2.out",
+        y: 550,
         onComplete: function () {
           done;
         },
@@ -125,8 +125,8 @@ export default {
   // top: 0;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
   cursor: pointer;
 
   .img-view__img-container {

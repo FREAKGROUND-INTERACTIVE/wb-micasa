@@ -87,7 +87,7 @@ export default {
      */
     leave(done) {
       gsap.to(this.$el, {
-          duration: 0.5,
+          duration: 1,
           height: '0px',
           onComplete: done,
       });
