@@ -2,7 +2,7 @@
   <transition @leave="leave" :css="false">
     <div class="button">
       <div class="button__title">
-        <template v-for="letter in text">
+        <template v-for="letter in textData">
           <div
             class="button__title-letter"
             :key="letter.id"
@@ -26,10 +26,7 @@ import { gsap } from "gsap";
 
 export default {
   props: {
-    text: {
-      type: String,
-      default: "Hello Baby!",
-    },
+    text: String,
     mountedAnim: {
       type: Boolean,
       default: false,
@@ -39,8 +36,17 @@ export default {
       default: 0,
     },
   },
+  watch: {
+    text: function (val) {
+      this.leave();
+      setTimeout(() => {
+        this.textData = val;
+      }, 1000);
+    },
+  },
   data() {
     return {
+      textData: this.text,
       line: null,
       letters: null,
     };
@@ -52,6 +58,10 @@ export default {
     if (this.mountedAnim) {
       this.initAnim(this.mountedDelay);
     }
+  },
+  updated() {
+    this.letters = this.$el.querySelectorAll(".button__title-letter");
+    this.initAnim(0);
   },
   methods: {
     /**
@@ -98,10 +108,10 @@ export default {
         });
       });
       gsap.to(this.line, {
-          duration: 0.5,
-          width: "0%",
-          onComplete: done,
-        });
+        duration: 1,
+        width: "0%",
+        onComplete: done,
+      });
     },
   },
 };
