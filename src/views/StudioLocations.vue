@@ -1,15 +1,15 @@
 
 <template>
-  <transition>
+  <transition @leave="leave" :css="false">
     <div class="locations">
       <div class="locations__line"></div>
       <div class="locations__breadcrumb"></div>
       <div class="locations__brandheader">
-        <Brand-header :link="link" :mountedAnim="true"></Brand-header>
+        <Brand-header :link="'/'" :mountedAnim="true"></Brand-header>
       </div>
 
       <!--* LEFT SIDE -->
-      <div class="locations__sites-brooklyn">
+      <div class="locations__sites-brooklyn" v-if="!les">
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
@@ -22,11 +22,39 @@
       <div class="locations__sites-brooklyn-menu">
         <Menu-studio
           ref="menuBrooklyn"
+          :textButton="hoodBrooklyn ? 'Studio' : 'Neighborhood'"
           @clickButton="hoodBrooklyn = !hoodBrooklyn"
         ></Menu-studio>
       </div>
+      <div class="locations__sites-les-content" v-if="les">
+        <div class="locations__sites-les-exit" @click="closeLes">
+          <Close-button
+            ref="lesClose"
+            :mountedAnim="true"
+            :mountedDelay="3"
+          ></Close-button>
+        </div>
+        <div class="locations__sites-les-paragraph">
+          <Paragraph
+            :title="
+              hoodLes ? infoHoodLes.title : infoStudioLes.title
+            "
+            :subtitle="infoStudioLes.subtitle"
+            :subtitle2="infoStudioLes.subtitle2"
+            :text="infoStudioLes.text"
+            :mountedAnim="true"
+          ></Paragraph>
+        </div>
+        <div class="locations__sites-les-button">
+          <Button
+            :mountedAnim="true"
+            :mountedDelay="2"
+            :text="'Book Now'"
+          ></Button>
+        </div>
+      </div>
 
-      <!--* LES -->
+      <!--* RIGHT SIDE -->
       <div class="locations__sites-les" v-if="!brooklyn">
         <Img-studio
           @mouseenter.native="initLoading(false)"
@@ -37,10 +65,14 @@
           ref="imgLes"
         ></Img-studio>
       </div>
-      <div
-        class="locations__sites-brooklyn-content"
-        v-if="brooklyn && !hoodBrooklyn"
-      >
+      <div class="locations__sites-les-menu">
+        <Menu-studio
+          ref="menuLes"
+          :textButton="hoodLes ? 'Studio' : 'Neighborhood'"
+          @clickButton="hoodLes = !hoodLes"
+        ></Menu-studio>
+      </div>
+      <div class="locations__sites-brooklyn-content" v-if="brooklyn">
         <div class="locations__sites-brooklyn-exit" @click="closeBrooklyn">
           <Close-button
             ref="brooklynClose"
@@ -50,39 +82,21 @@
         </div>
         <div class="locations__sites-brooklyn-paragraph">
           <Paragraph
-            :title="'Mi Casa Brooklyn'"
-            :subtitle="'318 Grand Street, Suite 1G'"
-            :subtitle2="'Brooklyn, NY 11211'"
-            :text="'Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.'"
+            :title="
+              hoodBrooklyn ? infoHoodBrooklyn.title : infoStudioBrooklyn.title
+            "
+            :subtitle="infoStudioBrooklyn.subtitle"
+            :subtitle2="infoStudioBrooklyn.subtitle2"
+            :text="infoStudioBrooklyn.text"
             :mountedAnim="true"
           ></Paragraph>
         </div>
         <div class="locations__sites-brooklyn-button">
-          <Button :mountedAnim="true" :mountedDelay="2"></Button>
-        </div>
-      </div>
-      <div
-        class="locations__sites-brooklyn-content2"
-        v-if="brooklyn && hoodBrooklyn"
-      >
-        <div
-          class="locations__sites-brooklyn-exit"
-          @click="brooklyn = !brooklyn"
-          v-if="brooklyn"
-        >
-          <Close-button ref="brooklynClose"></Close-button>
-        </div>
-        <div class="locations__sites-brooklyn-paragraph">
-          <Paragraph
-            :title="'Williamsburg'"
-            :subtitle="'318 Grand Street, Suite 1G'"
-            :subtitle2="'Brooklyn, NY 11211'"
-            :text="'Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.'"
+          <Button
             :mountedAnim="true"
-          ></Paragraph>
-        </div>
-        <div class="locations__sites-brooklyn-button">
-          <Button :mountedAnim="true" :mountedDelay="2"></Button>
+            :mountedDelay="2"
+            :text="'Book Now'"
+          ></Button>
         </div>
       </div>
     </div>
@@ -114,9 +128,6 @@ export default {
 
   data() {
     return {
-      numberPage: "01",
-      titlePage: "Agency",
-      link: "/",
       loading: {
         x: 0,
       },
@@ -125,6 +136,36 @@ export default {
       },
       brooklyn: false,
       hoodBrooklyn: false,
+      infoStudioBrooklyn: {
+        title: "Mi Casa Brooklyn",
+        subtitle: "318 Grand Street, Suite 1G",
+        subtitle2: "Brooklyn, NY 11211",
+        text:
+          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+      },
+      infoHoodBrooklyn: {
+        title: "Williamsburg",
+        subtitle: "318 Grand Street, Suite 1G",
+        subtitle2: "Brooklyn, NY 11211",
+        text:
+          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+      },
+      les: false,
+      hoodLes: false,
+      infoStudioLes: {
+        title: "Mi Casa LES",
+        subtitle: "318 Grand Street, Suite 1G",
+        subtitle2: "Brooklyn, NY 11211",
+        text:
+          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+      },
+      infoHoodLes: {
+        title: "Flacosburg",
+        subtitle: "318 Grand Street, Suite 1G",
+        subtitle2: "Brooklyn, NY 11211",
+        text:
+          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+      },
       line: null,
       initImg: 0,
     };
@@ -164,13 +205,23 @@ export default {
             that.$refs.menuBrooklyn.initAnim(0);
             setTimeout(() => {
               that.brooklyn = true;
-            }, 500);
+            }, 1000);
           },
         });
       } else {
         gsap.to(this.loading2, {
-          duration: 5,
+          duration: 3,
           x: 100,
+          ease: "power4.easeOut",
+          onComplete: function () {
+            that.loading2.x = 0;
+            that.$refs.imgLes.leave();
+            that.$refs.imgBrooklyn.leave();
+            that.$refs.menuLes.initAnim(0);
+            setTimeout(() => {
+              that.les = true;
+            }, 1000);
+          },
         });
       }
     },
@@ -196,6 +247,12 @@ export default {
       this.$refs.imgBrooklyn.initAnim(0);
     },
 
+    closeLes() {
+      this.les = false;
+      this.$refs.menuLes.leave();
+      this.$refs.imgLes.initAnim(0);
+    },
+
     /**
      ** SCROLL EVENT FUNCTION
      *? Function for route behavior on wheel
@@ -207,6 +264,10 @@ export default {
         this.$router.push({ path: "/studio" });
       }
     },
+
+    leave(done) {
+      console.log(done);
+    }
   },
 };
 </script>
@@ -247,8 +308,7 @@ export default {
     height: 550px;
   }
 
-  .locations__sites-brooklyn-content,
-  .locations__sites-brooklyn-content2 {
+  .locations__sites-brooklyn-content {
     grid-area: content-2;
     place-self: center;
     width: 100%;
@@ -274,6 +334,34 @@ export default {
     place-self: center;
     width: 550px;
     height: 550px;
+  }
+
+  .locations__sites-les-menu {
+    grid-area: content-2;
+    place-self: center;
+    width: 550px;
+    height: 550px;
+  }
+
+  .locations__sites-les-content {
+    grid-area: content-1;
+    place-self: center;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    .locations__sites-les-exit {
+      place-self: start start;
+    }
+
+    .locations__sites-les-paragraph {
+      place-self: center;
+    }
+
+    .locations__sites-les-button {
+      place-self: start center;
+    }
   }
 }
 </style>
