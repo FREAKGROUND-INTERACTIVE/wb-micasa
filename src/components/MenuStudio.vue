@@ -2,25 +2,17 @@
   <transition @leave="leave" :css="false">
     <div class="menu-studio">
       <div class="menu-studio__slider">
-        <Carrousel
-          ref="carrousel"
-        ></Carrousel>
+        <Carrousel ref="carrousel"></Carrousel>
       </div>
-      <div
-        class="menu-studio__button"
-        @click="clickButton"
-      >
-        <Button
-          ref="button"
-          :text="'Neightborhood'"
-        ></Button>
+      <div class="menu-studio__button" @click="clickButton">
+        <Button ref="button" :text="textButtonData"></Button>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import { gsap } from 'gsap';
+import { gsap } from "gsap";
 import Carrousel from "@/components/Carrousel";
 import Button from "@/components/Button";
 
@@ -30,6 +22,7 @@ export default {
     Button,
   },
   props: {
+    textButton: String,
     mountedAnim: {
       type: Boolean,
       default: false,
@@ -38,6 +31,16 @@ export default {
       type: Number,
       default: 0,
     },
+  },
+  watch: {
+      textButton: function (val) {
+          this.textButtonData = val;
+      }
+  },
+  data() {
+    return {
+      textButtonData: this.textButton,
+    };
   },
   mounted() {
     //* initAnim function in mounted
@@ -57,16 +60,16 @@ export default {
     },
 
     clickButton() {
-        this.$emit('clickButton');
+      this.$emit("clickButton");
     },
 
     leave(el, done) {
       this.$refs.carrousel.leave();
       this.$refs.button.leave();
       gsap.to(el, {
-          duration: 1,
-          x: 0,
-          onComplete: done
+        duration: 1,
+        x: 0,
+        onComplete: done,
       });
     },
   },
@@ -77,13 +80,13 @@ export default {
 @import "./../assets/styles/setup";
 
 .menu-studio {
-    .menu-studio__button {
-        position: absolute;
-        width: fit-content;
-        margin-top: 2rem;
-        position: relative;
-        left: 50%;
-        @include transform(translateX(-50%));
-    }
+  .menu-studio__button {
+    position: absolute;
+    width: fit-content;
+    margin-top: 2rem;
+    position: relative;
+    left: 50%;
+    @include transform(translateX(-50%));
+  }
 }
 </style>
