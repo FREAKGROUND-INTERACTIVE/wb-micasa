@@ -12,7 +12,7 @@
         <div class="paragraph__quote">{{ quote }}</div>
       </div>
       <div class="paragraph__title-container">
-        <h2 class="paragraph__title">{{ title }}</h2>
+        <h2 class="paragraph__title">{{ titleData }}</h2>
       </div>
       <div class="paragraph__subtitle-container" v-if="subtitle">
         <h3 class="paragraph__subtitle">{{ subtitle }}</h3>
@@ -53,8 +53,18 @@ export default {
       default: 0,
     },
   },
+  watch: {
+    title: function (val) {
+      this.leave();
+      setTimeout(() => {
+        this.titleData = val;
+        this.initAnim(0);
+      }, 1000);
+    },
+  },
   data() {
     return {
+      titleData: this.title,
       splitText: this.text.split(/\r?\n/), //* split text in lines
       textLines: null, //* variable for text lines elements
     };
