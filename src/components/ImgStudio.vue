@@ -93,7 +93,7 @@ export default {
       this.$emit("imgLoaded");
     },
     initAnim(delay) {
-      window.addEventListener("mousemove", this.mouseMovement);
+      // window.addEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 1,
         height: "550px",
