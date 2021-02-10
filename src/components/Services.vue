@@ -72,7 +72,6 @@ export default {
         "<0.2"
       );
 
-      
       initTl.play();
     },
     /**
@@ -80,12 +79,38 @@ export default {
      *? Function for leave behavior
      * @param done it return the leave behavior end
      */
-    leave(done) {
-      gsap.to(this.listServices, {
-        duration: 1.5,
-        opacity: 0,
-        onComplete: done,
+    leave(done, delay) {
+      //* duration time for animation elements
+      let time = 1;
+
+      //* create timeLine
+      let initTl = gsap.timeline({
+        paused: "true",
+        delay: delay,
       });
+
+      initTl.to(
+        this.titleServices,
+        {
+          duration: time,
+          opacity: 0,
+          ease: "power1.inOut",
+        },
+        "<0.2"
+      );
+
+      initTl.to(
+        this.listServices,
+        {
+          duration: time,
+          opacity: 0,
+          ease: "power1.inOut",
+          onComplete: done,
+        },
+        "<0.2"
+      );
+
+      initTl.play();
     },
   },
 };
