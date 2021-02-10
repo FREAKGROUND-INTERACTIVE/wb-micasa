@@ -2,15 +2,18 @@
   <div id="app">
     <router-view />
     <View-title :text="title"></View-title>
+    <Menu></Menu>
   </div>
 </template>
 
 <script>
 import { state, mutations } from "./state";
 import ViewTitle from "@/components/ViewTitle";
+import Menu from "@/components/Menu";
 export default {
   components: {
     ViewTitle,
+    Menu
   },
   computed: {
     title() {
