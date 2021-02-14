@@ -164,7 +164,7 @@ export default {
      */
     leave(done) {
       //* duration time for animation elements
-      let time = 0.2;
+      let time = 1.5;
 
       //* text lines animation
       this.textLines.forEach((element) => {
@@ -233,7 +233,7 @@ export default {
     font-family: $lora;
     font-size: 14px;
     font-weight: 400;
-    @include transform(translateY(-100%));
+    @include transform(translateY(100%));
   }
 
   .paragraph__subtitle-container {
@@ -243,7 +243,7 @@ export default {
       font-family: $lora;
       font-size: 14px;
       font-weight: 400;
-      @include transform(translateY(-100%));
+      @include transform(translateY(100%));
     }
   }
 
@@ -255,7 +255,7 @@ export default {
       font-size: 24px;
       font-weight: 400;
       color: $red;
-      @include transform(translateY(-100%));
+      @include transform(translateY(100%));
     }
   }
 
@@ -263,13 +263,13 @@ export default {
     font-family: $fira;
     font-size: 16px;
     font-weight: 300;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
 
     .paragraph__split-container {
       overflow: hidden;
 
       .paragraph__split-text {
-        @include transform(translateY(-100%));
+        @include transform(translateY(100%));
       }
     }
   }
