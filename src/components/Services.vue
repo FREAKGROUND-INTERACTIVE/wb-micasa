@@ -122,9 +122,15 @@ export default {
 .services {
   .services__title {
     opacity: 0;
+    margin-bottom: 1rem;
     h2 {
+      font-family: $lora;
+      font-size: 24px;
+      font-weight: 400;
+      color: $red;
       text-align: center;
     }
+
   }
 
   .services__list {
