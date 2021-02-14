@@ -54,8 +54,8 @@ export default {
       container.appendChild(stats.dom);
 
       //* Init Scenes
-      const sceneA = new FXScene(12, 35, 0xdfdfdf, true);
-      const sceneB = new FXScene(12, 35, 0xdfdfdf, false);
+      const sceneA = new FXScene(11, 35, 0xdfdfdf, true);
+      const sceneB = new FXScene(11, 35, 0xdfdfdf, false);
 
       //* Imported OBJ variable
       let obj, obj2;
