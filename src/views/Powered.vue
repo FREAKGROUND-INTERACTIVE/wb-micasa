@@ -5,7 +5,13 @@
 </template>
 
 <script>
-    export default {
+    import { mutations } from '@/state';
+
+    export default { 
+        mounted() {
+            console.log('motantao');
+            mutations.setTitle(' ');
+        }
         
     }
 </script>
