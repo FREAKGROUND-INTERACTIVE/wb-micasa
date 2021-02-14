@@ -50,18 +50,25 @@ export default {
 <style lang="scss" scoped>
 @import "./../assets/styles/setup";
 .home {
-  position: absolute;
+  position: fixed;
   top: 0;
   opacity: 0;
   width: 100%;
   height: 100vh;
+  display: grid;
+  grid-template-columns: [colFirst] 4% [col2] 1fr [col3] 1fr [col4] 4% [colEnd];
+  grid-template-rows: [rowFirst] 6% [row2] 7% [row3] 74% [row4] 7% [row5] 6% [rowEnd];
+  grid-template-areas:
+    ".    .     .     ."
+    ". breadCrumb menu ."
+    ". content content ."
+    ". logo logo ."
+    ".    .     .     .";
 
   .home__links {
-    position: absolute;
-    width: 250px;
-    bottom: 17%;
-    left: 50%;
-    @include transform(translateX(-50%));
+    grid-area: content;
+    place-self: end center;
+    width: 200px;
   }
 }
 </style>
