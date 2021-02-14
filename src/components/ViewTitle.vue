@@ -51,14 +51,14 @@ export default {
   left: 50%;
   top: 50%;
   @include transform(translate(-50%, -50%));
-  height: 14vh;
+  height: 20vh;
   overflow: hidden;
   text-align: center;
   pointer-events: none;
 
   .view-title__new,
   .view-title__old {
-    font-size: 16vh;
+    font-size: 22vh;
     text-transform: uppercase;
     @include transform(translateY(-100%));
     line-height: 1;
