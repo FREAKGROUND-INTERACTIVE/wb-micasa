@@ -12,7 +12,7 @@
 
 <script>
 import { state, mutations } from "./../state";
-import gsap from "gsap";
+// import gsap from "gsap";
 import ImgViewTitle from "@/components/ImgViewTitle";
 import ViewTitleBg from "@/components/ViewTitleBg";
 import LinkButton from "@/components/LinkButton";
@@ -26,6 +26,7 @@ export default {
     if (state.title != "Agency") {
       mutations.setTitle("Agency");
     }
+
     this.$refs.LinkButton.initAnim(3);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
@@ -57,11 +58,10 @@ export default {
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
       this.$refs.LinkButton.leave();
-      gsap.to(el, {
-        duration: 1.5,
-        y: 0,
-        onComplete: done,
-      });
+      
+      setTimeout(() => {
+        done;
+      }, 1500);
     },
   },
 };
