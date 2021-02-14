@@ -83,6 +83,7 @@ export default {
     position: absolute;
     top: 50%;
     left: 50%;
+    @include transition(background-color 0.5s);
 
     &:first-child {
       @include transform(translate(-50%, -50%) rotate(45deg));
@@ -95,6 +96,10 @@ export default {
 
   &:hover {
     @include transform(rotate(180deg));
+
+    div {
+      background-color: $red;
+    }
   }
 }
 </style>
