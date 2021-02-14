@@ -55,15 +55,15 @@ export default {
      */
     initAnim(delay) {
       gsap.to(this.titleUp, {
-        duration: 1,
-        y: "-100%",
+        duration: 2,
+        y: "-85%",
         opacity: "1",
         ease: "power4.out",
         delay: delay,
       });
       gsap.to(this.titleDown, {
-        duration: 1,
-        y: "0%",
+        duration: 2,
+        y: "-15%",
         opacity: "1",
         ease: "power4.out",
         delay: delay,
@@ -77,16 +77,18 @@ export default {
      */
     leave(done) {
       gsap.to(this.titleUp, {
-        duration: 0.5,
-        y: "-300%",
+        duration: 1,
+        y: "-200%",
         opacity: "0",
         ease: "power4.out",
+        // delay: 1.5
       });
       gsap.to(this.titleDown, {
-        duration: 0.5,
-        y: "200%",
+        duration: 1,
+        y: "100%",
         opacity: "0",
         ease: "power4.out",
+        // delay: 1.5,
         onComplete: done,
       });
     },
@@ -102,14 +104,14 @@ export default {
   left: 50%;
   top: 50%;
   @include transform(translate(-50%, -50%));
-  height: 14vh;
+  height: 20vh;
   //   overflow: hidden;
   text-align: center;
   pointer-events: none;
 
   .view-title-bg__up,
   .view-title-bg__down {
-    font-size: 16vh;
+    font-size: 22vh;
     text-transform: uppercase;
     line-height: 1;
     color: white;
