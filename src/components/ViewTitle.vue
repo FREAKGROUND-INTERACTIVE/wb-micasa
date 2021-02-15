@@ -1,13 +1,27 @@
 <template>
   <div class="view-title">
-    <h1 class="view-title__new">
+    <h1
+      class="view-title__new"
+      :class="{
+        red: newTitle == 'Agency' && !home,
+        blue: newTitle == 'Studio' && !home,
+        green: newTitle == 'Powered' && !home,
+      }"
+    >
       <template v-for="letter in newTitle">
         <div class="view-title__new-letter" :key="letter.id">
           {{ letter == " " ? "&nbsp;" : letter }}
         </div>
       </template>
     </h1>
-    <h1 class="view-title__old">
+    <h1
+      class="view-title__old"
+      :class="{
+        red: newTitle == 'Agency' && !home,
+        blue: newTitle == 'Studio' && !home,
+        green: newTitle == 'Powered' && !home,
+      }"
+    >
       <template v-for="letter in title">
         <div class="view-title__old-letter" :key="letter.id">
           {{ letter == " " ? "&nbsp;" : letter }}
@@ -21,6 +35,7 @@
 export default {
   props: {
     text: String,
+    home: Boolean,
   },
   watch: {
     text: function (val) {
@@ -60,15 +75,30 @@ export default {
   .view-title__old {
     font-size: 22vh;
     text-transform: uppercase;
-    @include transform(translateY(-100%));
     line-height: 1;
     color: white;
     font-weight: 900;
     white-space: nowrap;
     padding: 0 1rem;
+    @include transform(translateY(-100%));
+    @include transition(color 0.5s 0.5s);
+
+
     .view-title__new-letter,
     .view-title__old-letter {
       display: inline-block;
+    }
+
+    &.red {
+      color: $red;
+    }
+
+    &.blue {
+      color: $cyan;
+    }
+
+    &.green {
+      color: $green;
     }
   }
 
