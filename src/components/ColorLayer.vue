@@ -195,37 +195,37 @@ export default {
 
     &.red {
       path:nth-of-type(1) {
-        fill: #eacec4;
+        fill: lighten($red, 20%);
       }
       path:nth-of-type(2) {
-        fill: #8b5b4c;
+        fill: lighten($red, 10%);
       }
       path:nth-of-type(3) {
-        fill: #6a342e;
+        fill: $red;
       }
     }
 
     &.green {
       path:nth-of-type(1) {
-        fill: #c9eac4;
+        fill: lighten($cyan, 20%);
       }
       path:nth-of-type(2) {
-        fill: #4c8b4c;
+        fill: lighten($cyan, 10%);
       }
       path:nth-of-type(3) {
-        fill: #2e6a30;
+        fill: $cyan;
       }
     }
 
     &.blue {
       path:nth-of-type(1) {
-        fill: #c4dbea;
+        fill: lighten($green, 20%);
       }
       path:nth-of-type(2) {
-        fill: #4c688b;
+        fill: lighten($green, 10%);
       }
       path:nth-of-type(3) {
-        fill: #2e496a;
+        fill: $green;
       }
     }
   }
