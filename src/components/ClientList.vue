@@ -21,7 +21,6 @@ export default {
   },
   mounted() {
     this.listClient = this.$el.querySelectorAll(".client-list__logo");
-    this.initAnim(0);
   },
   methods: {
     /**
@@ -60,11 +59,11 @@ export default {
         initTl.to(
           element,
           {
-            duration: 0.5,
+            duration: 0.1,
             opacity: 0,
             ease: "power2.in",
           },
-          "<0.1"
+          "<0.05"
         );
       });
 
