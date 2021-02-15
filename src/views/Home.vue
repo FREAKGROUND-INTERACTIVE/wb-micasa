@@ -131,15 +131,15 @@ export default {
   }
 
   &.agency {
-    background-color: #6a342e;
+    background-color: $red;
   }
 
   &.studio {
-    background-color: #2e6a30;
+    background-color: $cyan;
   }
 
   &.powered {
-    background-color: #2e496a;
+    background-color: $green;
   }
 }
 </style>
