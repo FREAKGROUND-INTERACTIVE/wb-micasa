@@ -85,9 +85,12 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim() {
-      this.$refs.paragraph.initAnim(0.5);
-      this.$refs.fontWeight.initAnim(0.9);
-      this.$refs.LinkButton.initAnim(4);
+      setTimeout(() => {
+        this.$refs.imgBg.initAnim(0);
+        this.$refs.paragraph.initAnim(0.5);
+        this.$refs.fontWeight.initAnim(0.9);
+        this.$refs.LinkButton.initAnim(3);
+      }, 1500);
     },
 
     /**
@@ -102,7 +105,7 @@ export default {
       this.$refs.LinkButton.leave();
       this.$refs.BrandHeader.leave();
       gsap.to(el, {
-        duration: 3,
+        duration: 1.5,
         y: 0,
         onComplete: done,
       });
