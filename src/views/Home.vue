@@ -1,5 +1,5 @@
 <template>
-  <transition @leave="leave" :css="false">
+  <transition @leave="leave" :css="false" mode="out-in">
     <div class="home">
       <Color-layer ref="colorLayer" :color="color"></Color-layer>
       <div class="home__3d">
@@ -9,7 +9,7 @@
         <Links-list
           ref="linksList"
           :mountedAnim="true"
-          :links="['Agency', 'Studio', 'Powered-by-mi-casa']"
+          :links="['Agency', 'Studio', 'Powered']"
         ></Links-list>
       </div>
     </div>
@@ -48,7 +48,7 @@ export default {
           this.playerStudio.play();
           this.playerPowered.stop();
           break;
-        case "powered":
+        case "Powered":
           this.playerAgency.stop();
           this.playerStudio.stop();
           this.playerPowered.play();
@@ -150,9 +150,7 @@ export default {
       );
     },
     leave(el, done) {
-      this.$el.classList.remove("agency");
-      this.$el.classList.remove("studio");
-      this.$el.classList.remove("powered");
+      this.$el.classList.add("white");
       this.$refs.home3d.leave();
       this.$refs.linksList.leave();
       this.$refs.colorLayer.leave();
@@ -196,6 +194,10 @@ export default {
     place-self: end center;
     width: 200px;
     z-index: 999999;
+  }
+
+  &.white {
+    background-color: rgba(#ffffff, 0);
   }
 }
 </style>
