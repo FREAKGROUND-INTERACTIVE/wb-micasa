@@ -37,7 +37,9 @@ export default {
     color: function (val) {
       switch (val) {
         case "Agency":
-          this.toneJs("C3");
+          this.playerAgency.play();
+          this.playerStudio.stop();
+          this.playerPowered.stop();
           setTimeout(() => {
             this.$el.classList.remove("studio");
             this.$el.classList.remove("powered");
@@ -45,7 +47,9 @@ export default {
           }, 1000);
           break;
         case "Studio":
-          this.toneJs("C4");
+          this.playerAgency.stop();
+          this.playerStudio.play();
+          this.playerPowered.stop();
           setTimeout(() => {
             this.$el.classList.remove("agency");
             this.$el.classList.remove("powered");
@@ -53,11 +57,13 @@ export default {
           }, 1000);
           break;
         case "powered":
-          this.toneJs("C5");
+          this.playerAgency.stop();
+          this.playerStudio.stop();
+          this.playerPowered.play();
           setTimeout(() => {
-          this.$el.classList.remove("agency");
-          this.$el.classList.remove("studio");
-          this.$el.classList.add("powered");
+            this.$el.classList.remove("agency");
+            this.$el.classList.remove("studio");
+            this.$el.classList.add("powered");
           }, 1000);
           break;
         default:
@@ -68,6 +74,9 @@ export default {
   data() {
     return {
       ready: false,
+      playerAgency: null,
+      playerStudio: null,
+      playerPowered: null,
     };
   },
   mounted() {
@@ -80,12 +89,73 @@ export default {
         mutations.setHome(true);
       },
     });
+
+    this.playerSetup();
   },
   methods: {
-    toneJs(note) {
-      const synth = new Tone.Synth().toDestination();
+    toneJs(val) {
 
-      synth.triggerAttackRelease(note, "8n");
+      switch (val) {
+        case "Agency":
+          if (this.playerStudio.state == "started") {
+            gsap.to(this.playerStudio.volume, {
+              duration: 1,
+              value: 0,
+              onComplete: function () {
+                this.playerStudio.stop();
+              },
+            });
+          }
+          this.playerAgency.start();
+          console.log("Agency suena");
+          break;
+        case "Studio":
+          this.playerStudio.start();
+          console.log("Studio suena");
+          break;
+        case "powered":
+          this.playerPowered.start();
+          console.log("powered suena");
+          break;
+        default:
+          break;
+      }
+    },
+    playerSetup() {
+      class Player {
+        constructor(sample) {
+          this.player = new Tone.Player(sample).toDestination();
+        }
+        play() {
+          this.player.loop = true;
+          this.player.start();
+          gsap.to(this.player.volume, {
+            duration: 4,
+            value: 0.7,
+          });
+        }
+        stop() {
+          let that = this;
+          gsap.to(this.player.volume, {
+            duration: 0.2,
+            value: 0,
+            onComplete: function () {
+              that.player.stop();
+            },
+          });
+        }
+        playing() {
+          if (this.player.state == "started") {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      }
+
+      this.playerAgency = new Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3");
+      this.playerStudio = new Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3");
+      this.playerPowered = new Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3");
     },
     leave(el, done) {
       this.$el.classList.remove("agency");
