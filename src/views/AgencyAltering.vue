@@ -1,31 +1,26 @@
 <template>
-<transition @leave="leave" :css="false">
-<div class="agency-altering">
-    <div class="agency-altering__paragraph">
-      <Paragraph
-      ref="paragraph"
-        :mountedAnim="true"
-        :mountedDelay="1"
-        :title="'Altering the constant'"
-        :text="'We make bold things with a purpose to create real change\nfor the internet and beyond that. In this technology driven\nworld that seems to move faster than the speed of light,\nonly the right narrative to the right people at the right time\nwill pierce through.'"
-      ></Paragraph>
+  <transition @leave="leave" :css="false">
+    <div class="agency-altering">
+      <div class="agency-altering__paragraph">
+        <Paragraph
+          ref="paragraph"
+          :title="'Altering the constant'"
+          :text="'We make bold things with a purpose to create real change\nfor the internet and beyond that. In this technology driven\nworld that seems to move faster than the speed of light,\nonly the right narrative to the right people at the right time\nwill pierce through.'"
+        ></Paragraph>
+      </div>
+      <div class="agency-altering__link">
+        <Link-button ref="LinkButton" :link="'/services-agency'"></Link-button>
+      </div>
     </div>
-    <div class="agency-altering__link">
-      <Link-button
-        ref="LinkButton"
-        :mountedAnim="true"
-        :link="'/services-agency'"
-      ></Link-button>
-    </div>
-  </div>
-</transition>
-  
+  </transition>
 </template>
 
 <script>
+import { gsap } from "gsap";
+import { mutations } from "./../state";
+
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
-import { gsap } from "gsap";
 
 export default {
   components: {
@@ -33,9 +28,11 @@ export default {
     LinkButton,
   },
   mounted() {
+    mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    this.initAnim(1500);
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -61,7 +58,11 @@ export default {
      *? Function for init animation
      * @param delay time for timeLine delay
      */
-    initAnim() {
+    initAnim(delay) {
+      setTimeout(() => {
+        this.$refs.paragraph.initAnim(1);
+        this.$refs.LinkButton.initAnim(3);
+      }, delay);
     },
 
     /**
@@ -73,7 +74,7 @@ export default {
       this.$refs.paragraph.leave();
       this.$refs.LinkButton.leave();
       gsap.to(el, {
-        duration: 2,
+        duration: 1.5,
         y: 0,
         onComplete: done,
       });
