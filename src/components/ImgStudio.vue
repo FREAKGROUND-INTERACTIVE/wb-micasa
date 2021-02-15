@@ -43,7 +43,7 @@ export default {
   },
   watch: {
     loading: function (val) {
-      console.log("loading cambiando");
+      // console.log("loading cambiando");
       this.$el.querySelector(".img-view__load").style.width = val + "%";
     },
   },
@@ -85,11 +85,11 @@ export default {
       });
     },
     imgLoaded() {
-      this.initAnim(this.mountedDelay);
+      // this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
     imgDontLoaded() {
-      this.initAnim(this.mountedDelay);
+      // this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
     initAnim(delay) {
