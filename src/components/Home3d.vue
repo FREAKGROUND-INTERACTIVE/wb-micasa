@@ -44,7 +44,8 @@ export default {
       container = document.getElementById("home3d");
 
       //* Init Renderer
-      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setClearColor(0xffffff, 0);
       renderer.setPixelRatio(window.devicePixelRatio);
       renderer.setSize(window.innerWidth, window.innerHeight);
       container.appendChild(renderer.domElement);
@@ -126,6 +127,7 @@ export default {
 
       //* Setup Scene
       this.scene = new THREE.Scene();
+      this.scene.background = null; //new THREE.Color(0xff0000);
 
       //* Init AmbientLight
       // this.scene.add(new THREE.AmbientLight(0x3e3e3e));
@@ -149,7 +151,7 @@ export default {
       const renderTargetParameters = {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
-        format: THREE.RGBFormat,
+        format: THREE.RGBAFormat,
       };
       this.fbo = new THREE.WebGLRenderTarget(
         window.innerWidth,
@@ -158,7 +160,7 @@ export default {
       );
 
       this.render = (delta, rtt) => {
-        renderer.setClearColor(this.clearColor);
+        // renderer.setClearColor(this.clearColor);
         // this.mesh.rotation.x = 45;
         if (rtt) {
           renderer.setRenderTarget(this.fbo);
@@ -202,6 +204,7 @@ export default {
 
     function Transition(sceneA, sceneB) {
       this.scene = new THREE.Scene();
+      this.scene.background = null;
       this.cameraOrtho = new THREE.OrthographicCamera(
         window.innerWidth / -2,
         window.innerWidth / 2,
@@ -292,12 +295,18 @@ export default {
         y: -(event.clientY / window.innerHeight) * -2,
       });
     },
+    leave() {
+      gsap.to(this.$el, {
+        duration: 0.5,
+        opacity: "0",
+      });
+    }
   },
 };
 </script>
 
 <style lang="scss" scoped>
-#home {
+#home3d {
   position: fixed;
   width: 100%;
   height: 100%;
