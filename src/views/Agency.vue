@@ -1,11 +1,7 @@
 <template>
-  <transition @leave="leave" :css="false">
+  <transition name="agency" @leave="leave" :css="false" mode="out-in">
     <div class="agency">
-      <View-title-bg
-        ref="viewTitleBg"
-        :mountedAnim="true"
-        :mountedDelay="0.5"
-      ></View-title-bg>
+      <View-title-bg ref="viewTitleBg"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
       <div class="agency__link">
         <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
@@ -27,14 +23,10 @@ export default {
     LinkButton,
   },
   mounted() {
-    if (state.title != "Agency") {
-      mutations.setTitle("Agency");
-    }
-
-    this.$refs.LinkButton.initAnim(3);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    this.initAnim(1500);
   },
   destroyed() {
     mutations.setTitle(" ");
@@ -55,6 +47,16 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: "/about-agency" });
       }
+    },
+
+    initAnim(delay) {
+      setTimeout(() => {
+        this.$refs.viewTitleBg.initAnim(0.5);
+        this.$refs.LinkButton.initAnim(3);
+        if (state.title != "Agency") {
+          mutations.setTitle("Agency");
+        }
+      }, delay);
     },
 
     /**
