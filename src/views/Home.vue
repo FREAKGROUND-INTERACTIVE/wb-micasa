@@ -2,7 +2,9 @@
   <transition @leave="leave" :css="false">
     <div class="home">
       <Color-layer ref="colorLayer" :color="color"></Color-layer>
-      <Home3d ref="home3d"></Home3d>
+      <div class="home__3d">
+        <Home3d ref="home3d"></Home3d>
+      </div>
       <div class="home__links">
         <Links-list
           ref="linksList"
@@ -40,31 +42,16 @@ export default {
           this.playerAgency.play();
           this.playerStudio.stop();
           this.playerPowered.stop();
-          setTimeout(() => {
-            this.$el.classList.remove("studio");
-            this.$el.classList.remove("powered");
-            this.$el.classList.add("agency");
-          }, 1000);
           break;
         case "Studio":
           this.playerAgency.stop();
           this.playerStudio.play();
           this.playerPowered.stop();
-          setTimeout(() => {
-            this.$el.classList.remove("agency");
-            this.$el.classList.remove("powered");
-            this.$el.classList.add("studio");
-          }, 1000);
           break;
         case "powered":
           this.playerAgency.stop();
           this.playerStudio.stop();
           this.playerPowered.play();
-          setTimeout(() => {
-            this.$el.classList.remove("agency");
-            this.$el.classList.remove("studio");
-            this.$el.classList.add("powered");
-          }, 1000);
           break;
         default:
           break;
@@ -94,7 +81,6 @@ export default {
   },
   methods: {
     toneJs(val) {
-
       switch (val) {
         case "Agency":
           if (this.playerStudio.state == "started") {
@@ -153,9 +139,15 @@ export default {
         }
       }
 
-      this.playerAgency = new Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3");
-      this.playerStudio = new Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3");
-      this.playerPowered = new Player("https://tonejs.github.io/audio/drum-samples/breakbeat.mp3");
+      this.playerAgency = new Player(
+        "https://tonejs.github.io/audio/drum-samples/breakbeat.mp3"
+      );
+      this.playerStudio = new Player(
+        "https://tonejs.github.io/audio/drum-samples/breakbeat.mp3"
+      );
+      this.playerPowered = new Player(
+        "https://tonejs.github.io/audio/drum-samples/breakbeat.mp3"
+      );
     },
     leave(el, done) {
       this.$el.classList.remove("agency");
@@ -194,22 +186,16 @@ export default {
     ". logo logo ."
     ".    .     .     .";
 
+  .home__3d {
+    position: fixed;
+    z-index: 999999;
+  }
+
   .home__links {
     grid-area: content;
     place-self: end center;
     width: 200px;
-  }
-
-  &.agency {
-    background-color: $red;
-  }
-
-  &.studio {
-    background-color: $cyan;
-  }
-
-  &.powered {
-    background-color: $green;
+    z-index: 999999;
   }
 }
 </style>
