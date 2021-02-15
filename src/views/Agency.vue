@@ -1,7 +1,11 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency">
-      <View-title-bg ref="viewTitleBg" :mountedAnim="true" :mountedDelay="0.5"></View-title-bg>
+      <View-title-bg
+        ref="viewTitleBg"
+        :mountedAnim="true"
+        :mountedDelay="0.5"
+      ></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
       <div class="agency__link">
         <Link-button ref="LinkButton" :link="'/about-agency'"></Link-button>
@@ -12,7 +16,7 @@
 
 <script>
 import { state, mutations } from "./../state";
-// import gsap from "gsap";
+import gsap from "gsap";
 import ImgViewTitle from "@/components/ImgViewTitle";
 import ViewTitleBg from "@/components/ViewTitleBg";
 import LinkButton from "@/components/LinkButton";
@@ -33,6 +37,7 @@ export default {
     }, 3000);
   },
   destroyed() {
+    mutations.setTitle(" ");
     window.removeEventListener("wheel", this.handleScroll);
   },
   methods: {
@@ -44,8 +49,11 @@ export default {
     handleScroll(e) {
       window.removeEventListener("wheel", this.handleScroll);
       // console.log(e);
+      if (e.deltaY < 0) {
+        this.$router.push({ path: "/" });
+      }
       if (e.deltaY > 0) {
-        this.$router.push({ path: '/about-agency' })
+        this.$router.push({ path: "/about-agency" });
       }
     },
 
@@ -58,10 +66,12 @@ export default {
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
       this.$refs.LinkButton.leave();
-      
-      setTimeout(() => {
-        done;
-      }, 1500);
+
+      gsap.to(el, {
+        duration: 1.5,
+        y: 0,
+        onComplete: done,
+      });
     },
   },
 };
