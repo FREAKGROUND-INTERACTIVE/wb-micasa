@@ -40,7 +40,7 @@ export default {
   },
   watch: {
     color: function (val, oldVal) {
-      console.log("inHome: ", mutations.getHome());
+      // console.log("inHome: ", mutations.getHome());
       if (val != oldVal && val != "micasa" && mutations.getHome()) {
         switch (val) {
           case "Agency":
