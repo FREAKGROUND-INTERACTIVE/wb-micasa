@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view />
+    <router-view :color="title"/>
     <View-title :text="title"></View-title>
     <Menu></Menu>
   </div>
@@ -13,7 +13,7 @@ import Menu from "@/components/Menu";
 export default {
   components: {
     ViewTitle,
-    Menu
+    Menu,
   },
   computed: {
     title() {
