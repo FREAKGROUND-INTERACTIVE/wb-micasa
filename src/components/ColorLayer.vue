@@ -49,7 +49,7 @@ export default {
           case "Studio":
             this.anim(2);
             break;
-          case "powered":
+          case "Powered":
             this.anim(3);
             break;
 
