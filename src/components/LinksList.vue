@@ -1,6 +1,15 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="link">
+      <!-- <template v-for="item in links">
+        <div
+          class="link__item"
+          :key="item"
+          @mouseover="setTitle(item.toString(), false)"
+          @mouseleave="setTitle('micasa', true)"
+          @click="$emit('clicked', item.toString())"
+        ></div>
+      </template> -->
       <router-link
         class="link__item"
         :to="links[0].toString()"
@@ -15,8 +24,8 @@
       ></router-link>
       <router-link
         class="link__item"
-        :to="links[2].toString()"
-        @mouseover.native="setTitle('powered', false)"
+        to="/powered-by-micasa"
+        @mouseover.native="setTitle('Powered', false)"
         @mouseleave.native="setTitle('micasa', true)"
       ></router-link>
       <!-- <template v-for="item in links">
