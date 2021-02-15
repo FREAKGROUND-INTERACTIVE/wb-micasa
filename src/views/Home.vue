@@ -17,6 +17,7 @@
 <script>
 import { mutations } from "./../state";
 import { gsap } from "gsap";
+import * as Tone from "tone";
 
 import ColorLayer from "@/components/ColorLayer";
 import Home3d from "@/components/Home3d";
@@ -34,29 +35,40 @@ export default {
   },
   watch: {
     color: function (val) {
-      setTimeout(() => {
-        switch (val) {
-          case "Agency":
+      switch (val) {
+        case "Agency":
+          this.toneJs("C3");
+          setTimeout(() => {
             this.$el.classList.remove("studio");
             this.$el.classList.remove("powered");
             this.$el.classList.add("agency");
-            break;
-          case "Studio":
+          }, 1000);
+          break;
+        case "Studio":
+          this.toneJs("C4");
+          setTimeout(() => {
             this.$el.classList.remove("agency");
             this.$el.classList.remove("powered");
             this.$el.classList.add("studio");
-            break;
-          case "powered":
-            this.$el.classList.remove("agency");
-            this.$el.classList.remove("studio");
-            this.$el.classList.add("powered");
-            break;
-
-          default:
-            break;
-        }
-      }, 1000);
+          }, 1000);
+          break;
+        case "powered":
+          this.toneJs("C5");
+          setTimeout(() => {
+          this.$el.classList.remove("agency");
+          this.$el.classList.remove("studio");
+          this.$el.classList.add("powered");
+          }, 1000);
+          break;
+        default:
+          break;
+      }
     },
+  },
+  data() {
+    return {
+      ready: false,
+    };
   },
   mounted() {
     gsap.to(this.$el, {
@@ -70,6 +82,11 @@ export default {
     });
   },
   methods: {
+    toneJs(note) {
+      const synth = new Tone.Synth().toDestination();
+
+      synth.triggerAttackRelease(note, "8n");
+    },
     leave(el, done) {
       this.$el.classList.remove("agency");
       this.$el.classList.remove("studio");
