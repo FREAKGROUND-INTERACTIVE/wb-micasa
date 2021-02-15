@@ -75,7 +75,7 @@ export default {
      *? Function for image init behavior trigger
      */
     imgLoaded() {
-      this.initAnim(this.mountedDelay);
+      // this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
 
