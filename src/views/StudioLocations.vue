@@ -13,7 +13,7 @@
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
-          @imgLoaded="initAnim(0)"
+          @imgLoaded="initAnim(150)"
           :loading="loading.x"
           :align="'left'"
           ref="imgBrooklyn"
@@ -36,9 +36,7 @@
         </div>
         <div class="locations__sites-les-paragraph">
           <Paragraph
-            :title="
-              hoodLes ? infoHoodLes.title : infoStudioLes.title
-            "
+            :title="hoodLes ? infoHoodLes.title : infoStudioLes.title"
             :subtitle="infoStudioLes.subtitle"
             :subtitle2="infoStudioLes.subtitle2"
             :text="infoStudioLes.text"
@@ -184,11 +182,15 @@ export default {
     initAnim(delay) {
       this.initImg += 1;
       if (this.initImg == 2) {
-        gsap.to(this.line, {
-          duration: 1,
-          height: "100vh",
-          delay: delay,
-        });
+        setTimeout(() => {
+          this.$refs.imgBrooklyn.initAnim(0);
+          this.$refs.imgLes.initAnim(0);
+          gsap.to(this.line, {
+            duration: 1,
+            height: "100vh",
+            delay: delay,
+          });
+        }, 1500);
       }
     },
     initLoading(first) {
@@ -267,7 +269,7 @@ export default {
 
     leave(done) {
       console.log(done);
-    }
+    },
   },
 };
 </script>
@@ -279,7 +281,7 @@ export default {
   @extend .layout;
 
   .locations__line {
-    grid-area: breadCrumb;
+    grid-area: 1 / 2 / 6 / -3;
     justify-self: right;
     width: 1px;
     background-color: $dark;
