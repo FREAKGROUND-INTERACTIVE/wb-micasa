@@ -1,7 +1,7 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="studio">
-      <View-title-bg ref="viewTitleBg" :mountedAnim="true" :mountedDelay="0.5"></View-title-bg>
+      <View-title-bg ref="viewTitleBg"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
       <div class="studio__link">
         <Link-button ref="LinkButton" :link="'/locations-studio'"></Link-button>
@@ -23,13 +23,10 @@ export default {
     LinkButton,
   },
   mounted() {
-    if (state.title != "Studio") {
-      mutations.setTitle("Studio");
-    }
-    this.$refs.LinkButton.initAnim(3);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    this.initAnim(1500);
   },
   destroyed() {
     mutations.setTitle(" ");
@@ -50,6 +47,16 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: '/locations-studio' })
       }
+    },
+
+    initAnim(delay) {
+      setTimeout(() => {
+        this.$refs.viewTitleBg.initAnim(0.5);
+        this.$refs.LinkButton.initAnim(3);
+        if (state.title != "Studio") {
+          mutations.setTitle("Studio");
+        }
+      }, delay);
     },
 
     /**
