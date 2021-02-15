@@ -62,12 +62,14 @@ export default {
         initTl.to(
           element,
           {
+            duration: 1.5,
             y: 0,
+            ease: "power2.out",
           },
-          "<0.1"
+        "<0.3"
         );
       });
-
+      
       initTl.play();
 
       //* add mouseMove event listener to character elements
@@ -114,13 +116,31 @@ export default {
      * @param done it return the leave behavior end
      */
     leave(done) {
+      // this.chars.forEach((element) => {
+      //   gsap.to(element, {
+      //     duration: 1,
+      //     y: "100%",
+      //     onComplete: done,
+      //   });
+      // });
+
+      //* create timeLine
+      let initTl = gsap.timeline({ paused: "true"});
+
       this.chars.forEach((element) => {
-        gsap.to(element, {
-          duration: 0.4,
-          y: "100%",
-          onComplete: done,
-        });
+        initTl.to(
+          element,
+          {
+            duration: 0.3,
+            y: "-100%",
+            ease: "power2.in",
+            onComplete: done,
+          },
+          "<0.2"
+        );
       });
+
+      initTl.play();
     },
   },
 };
@@ -136,14 +156,15 @@ export default {
     display: flex;
     justify-content: center;
     .font__char {
-      font-family: $raleway;
+      font-family: $oswald;
+      line-height: 1;
       font-weight: 900;
       display: inline-block;
-      font-size: 12vw;
+      font-size: 13vw;
       color: $red;
       text-transform: uppercase;
       font-variation-settings: "wght" 900;
-      @include transform(translateY(-100%));
+      @include transform(translateY(100%));
     }
   }
 }

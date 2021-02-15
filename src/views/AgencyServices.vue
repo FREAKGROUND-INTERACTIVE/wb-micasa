@@ -17,16 +17,47 @@
         ></Link-button>
       </div>
       <div class="agency-services__content" v-if="showServices">
-        <div
-          class="agency-services__content-close"
-          @click="showServices = false"
-        >
-          <Close-button :mountedAnim="true"></Close-button>
+        <div class="agency-services__content-close" @click="closeServices">
+          <Close-button ref="closeButton" :mountedAnim="true"></Close-button>
         </div>
         <div class="agency-services__content-paragraph">
           <Services
+            ref="services"
             :mountedAnim="true"
-            :list="['Service 1', 'Service 2', 'Service 3', 'Service 4']"
+            :list="[
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+              'Service 1',
+              'Service 2',
+              'Service 3',
+              'Service 4',
+            ]"
           ></Services>
         </div>
       </div>
@@ -65,6 +96,17 @@ export default {
     };
   },
   methods: {
+    closeServices() {
+      this.$refs.services.leave();
+      this.$refs.closeButton.leave();
+      this.$refs.Button.leave();
+
+      setTimeout(() => {
+        this.showServices = false;
+        this.$refs.Button.initAnim();
+      }, 2000);
+
+    },
     /**
      ** SCROLL EVENT FUNCTION
      *? Function for route behavior on wheel
@@ -78,6 +120,14 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: "/why-agency" });
       }
+    },
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim() {
+      this.$refs.Button.initAnim();
     },
     /**
      ** LEAVE FUCTION
@@ -104,23 +154,29 @@ export default {
   @extend .layout;
 
   .agency-services__button {
-    grid-area: 2 / 2 / 3 / 4;
+    grid-area: 3 / 2 / 4 / 4;
     place-self: end center;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
   }
 
   .agency-services__content {
     @extend .layout;
-    background-color: #dfdfdf;
+    background-color: $light;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
 
     .agency-services__content-close {
-      grid-area: 2 / 2 / 3 / 4;
-      place-self: start center;
+      grid-area: 3 / 2 / 4 / 4;
+      place-self: center;
+      margin-bottom: 2.5rem;
     }
 
     .agency-services__content-paragraph {
-      grid-area: 2 / 2 / 3 / 4;
+      grid-area: 3 / 2 / 4 / 4;
       place-self: center;
+      margin-bottom: 5rem;
     }
   }
 

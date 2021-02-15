@@ -25,17 +25,23 @@
               :text="'All Rights Reserved\nDeveloped by Freakground Interactive\n2021'"
             ></Paragraph>
           </div>
-
         </div>
-        <div class="menu__line">
-
-        </div>
+        <div class="menu__line"></div>
         <div class="menu__social"></div>
         <div class="menu__links">
           <Menu-title :text="'Home'" @click.native="goTo('/')"></Menu-title>
-          <Menu-title :text="'Agency'" @click.native="goTo('/Agency')"></Menu-title>
-          <Menu-title :text="'Studio'" @click.native="goTo('/Studio')"></Menu-title>
-          <Menu-title :text="'Powered by micasa'" @click.native="goTo('/Powered')"></Menu-title>
+          <Menu-title
+            :text="'Agency'"
+            @click.native="goTo('/Agency')"
+          ></Menu-title>
+          <Menu-title
+            :text="'Studio'"
+            @click.native="goTo('/Studio')"
+          ></Menu-title>
+          <Menu-title
+            :text="'Powered by micasa'"
+            @click.native="goTo('/Powered')"
+          ></Menu-title>
         </div>
       </div>
       <div class="menu__button" @click="showMenu">
@@ -90,23 +96,23 @@ export default {
           },
         });
       } else {
+        that.button.classList.add("close");
+        that.lines.forEach((element) => {
+          element.classList.add("close");
+        });
         gsap.to(this.content, {
           duration: 1,
           x: "0%",
           onComplete: function () {
             that.visible = true;
-            that.button.classList.add("close");
-            that.lines.forEach((element) => {
-              element.classList.add("close");
-            });
           },
         });
       }
     },
     goTo(url) {
       this.showMenu();
-      this.$router.push({path: url});
-    }
+      this.$router.push({ path: url });
+    },
   },
 };
 </script>
@@ -163,8 +169,8 @@ export default {
     z-index: 999;
     grid-area: button;
     position: fixed;
-    right: 2%;
-    top: 4%;
+    right: 4.3%;
+    top: 6%;
     height: 25px;
     width: 25px;
     cursor: pointer;
@@ -176,7 +182,7 @@ export default {
 
     div {
       background-color: $dark;
-      width: 30px;
+      width: 22px;
       height: 1px;
       position: absolute;
       top: 50%;
@@ -216,7 +222,13 @@ export default {
 
       &:not(.close) {
         div {
-          width: 45px;
+          &:first-child {
+            top: 7px;
+          }
+
+          &:last-child {
+            top: 21px;
+          }
         }
       }
     }

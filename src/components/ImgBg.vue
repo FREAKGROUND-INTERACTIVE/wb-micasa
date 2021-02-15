@@ -4,7 +4,6 @@
       <div class="img-view__img-container">
         <img
           class="img-view__img"
-          :height="height"
           src="https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/ARTS1_fpiiaq.jpg"
           alt="LoremPicsum"
           @load="imgLoaded"
@@ -17,7 +16,6 @@
 
 <script>
 import gsap from "gsap";
-
 export default {
   props: {
     mountedAnim: {
@@ -97,13 +95,26 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
-      gsap.to(this.imgContainer, {
-        duration: 1,
+      let initTl = new gsap.timeline({ paused: true, delay: delay });
+
+
+
+      initTl.to(this.imgContainer, {
+        duration: 2,
         height: "100vh",
-        ease: "power2.out",
-        delay: delay
+        ease: "power2.out"
       });
-      window.addEventListener("mousemove", this.mouseMovement);
+
+      initTl.to(this.img, {
+        duration: 2.5,
+        scale: 1,
+        ease: "power4.out"
+      },
+      ">-2"
+      );
+
+      initTl.play();
+      // window.addEventListener("mousemove", this.mouseMovement);
     },
 
     /**
@@ -114,10 +125,15 @@ export default {
     leave(done) {
       window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
-        duration: 0.5,
+        duration: 1.5,
         height: 0,
         y: "100vh",
-        ease: "power2.out",
+        ease: "power2.in"
+      });
+      gsap.to(this.img, {
+        duration: 1.5,
+        scale: 2,
+        ease: "power4.in",
         onComplete: function () {
           done;
         },
@@ -131,18 +147,20 @@ export default {
 @import "./../assets/styles/setup";
 
 .img-view {
-  width: 40vw;
+  grid-area: img;
+  width: 100%;
   .img-view__img-container {
-    background: red;
     position: relative;
     width: 100%;
     height: 0vh;
     overflow: hidden;
     .img-view__img {
       position: absolute;
-      top: 50%;
+      // width: 100%;
+      height: 100vh;
+      top: 0%;
       left: 50%;
-      @include transform(translate(-50%, -50%) scale(1.5));
+      @include transform(translate(-50%, 0%) scale(2));
     }
   }
 }

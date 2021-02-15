@@ -81,8 +81,8 @@ export default {
           elem,
           {
             duration: 0.5,
-            width: "15px",
-            height: "15px",
+            width: "17px",
+            height: "17px",
           },
           "<0.2"
         );
@@ -130,11 +130,8 @@ export default {
 @import "./../assets/styles/setup";
 
 .link {
-  //* for this vue
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  @include transform(translate(-50%, -50%));
+  // //* for this vue
+  position: relative;
   //* end for this vue
 
   width: 100%;
@@ -148,7 +145,7 @@ export default {
     border-radius: 50%;
     border: 1px solid #fff;
     //   margin: 0 2rem;
-    @include transition(all 0.6s ease-out);
+    @include transition(all 0.3s ease-out);
 
     cursor: pointer;
 

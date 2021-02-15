@@ -5,6 +5,8 @@
 // @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
 
 
 //* SCSS PARTIALS
@@ -21,8 +23,11 @@ $mont: 'Montserrat',
 sans-serif;
 $raleway: 'Raleway',
 sans-serif;
+$oswald: 'Oswald', sans-serif;
 
-$red: #ed572f;
+$commi: 'Commissioner', sans-serif;
+
+$red: #fd7b74;
 $yellow: #f9b200;
 $green: #94ea2f;
 $cyan: #2feac6;
@@ -31,10 +36,9 @@ $pink: #ea83cc;
 $dark: #4b4b4b;
 $light: white;
 
-
 body {
   font-family: "Montserrat";
-  background-color: #dfdfdf;
+  background-color: $light;
 }
 
 .layout {
@@ -44,12 +48,14 @@ body {
   top: 0;
   left: 0;
   display: grid;
-  grid-template-columns: [colFirst] 2% [col2] 1fr [col3] 1fr [col4] 2% [colEnd];
-  grid-template-rows: 10% [row2] 80% [row3] 10% [rowEnd];
+  grid-template-columns: [colFirst] 4% [col2] 1fr [col3] 1fr [col4] 4% [colEnd];
+  grid-template-rows: [rowFirst] 6% [row2] 4% [row3] 80% [row4] 4% [row5] 6% [rowEnd];
   grid-template-areas:
+    ".    .     .     ."
     ". breadCrumb menu ."
     ". content-1 content-2 ."
-    ". logo button .";
+    ". logo button ."
+    ".    .     .     .";
 }
 
 .link {
@@ -66,11 +72,13 @@ body {
   top: 0;
   left: 0;
   display: grid;
-  grid-template-columns: [colFirst] 2% [col2] 1fr [col3] 1fr [col4] 1fr [col5] 2% [colEnd];
-  grid-template-rows: 10% [row2] 40% [row3] 40% [row4] 10% [rowEnd];
+  grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 1fr [col4] 1fr [col5] 5% [colEnd];
+  grid-template-rows: [rowFirst] 5% [row2] 5% [row3] 40% [row4] 40% [row5] 5% [row6] 5% [rowEnd];
   grid-template-areas:
+    ". . . . ."
     ". . line button ."
     ". info social . ."
     ". info links links ."
+    ". . . . ."
     ". . . . .";
 }

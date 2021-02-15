@@ -6,7 +6,7 @@
           class="img-view__img"
           width="660"
           height="360"
-          src="https://picsum.photos/660/360"
+          src="https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg"
           alt="LoremPicsum"
           @load="imgLoaded"
           @error="imgDontLoaded"
@@ -64,7 +64,7 @@ export default {
       let NewY = 1 - -1;
       let posY = ((e.clientY - 0) * NewY) / OldY + -1;
       // let posY = e.clientY / window.innerHeight;
-      const mFactor = 100;
+      const mFactor = 60;
 
       gsap.to(this.img, {
         duration: 1,
@@ -98,7 +98,7 @@ export default {
      */
     imgAnim() {
       gsap.to(this.imgContainer, {
-        duration: 0.5,
+        duration: 1.5,
         width: 660,
         ease: "power2.out",
         delay: 1,
@@ -114,8 +114,8 @@ export default {
     leave(done) {
       window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
-        duration: 0.5,
-        height: 0,
+        duration: 1,
+        width: 0,
         ease: "power2.out",
         onComplete: function () {
           done;
@@ -146,7 +146,7 @@ export default {
       position: absolute;
       top: 50%;
       left: 50%;
-      @include transform(translate(-50%, -50%) scale(1.6));
+      @include transform(translate(-50%, -50%) scale(1.3));
     }
   }
 }

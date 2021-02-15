@@ -3,12 +3,16 @@
     <div class="agency-about">
       <div class="agency-about__img">
         <Img-bg ref="imgBg" @imgLoaded="initAnim"></Img-bg>
-      </div>
-      <div class="agency-about__title">
-        <Font-weight ref="fontWeight" :text="'agency'"></Font-weight>
+        <div class="agency-about__title">
+          <Font-weight ref="fontWeight" :text="'agency'"></Font-weight>
+        </div>
       </div>
       <div class="agency-about__brandheader">
-        <Brand-header ref="BrandHeader" :link="link" :mountedAnim="true"></Brand-header>
+        <Brand-header
+          ref="BrandHeader"
+          :link="link"
+          :mountedAnim="true"
+        ></Brand-header>
       </div>
       <div class="agency-about__paragraph">
         <Paragraph
@@ -40,19 +44,20 @@ export default {
     FontWeight,
     Paragraph,
     LinkButton,
-    BrandHeader
+    BrandHeader,
   },
   data() {
     return {
       link: "/",
-    }
+      numberPage: "01",
+      titlePage: "Agency",
+    };
   },
   mounted() {
     mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
-
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -65,7 +70,7 @@ export default {
      */
     handleScroll(e) {
       window.removeEventListener("wheel", this.handleScroll);
-      
+
       if (e.deltaY < 0) {
         this.$router.push({ path: "/agency" });
       }
@@ -80,8 +85,8 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim() {
-      this.$refs.paragraph.initAnim(1);
-      this.$refs.fontWeight.initAnim(0);
+      this.$refs.paragraph.initAnim(0.5);
+      this.$refs.fontWeight.initAnim(0.9);
       this.$refs.LinkButton.initAnim(4);
     },
 
@@ -97,7 +102,7 @@ export default {
       this.$refs.LinkButton.leave();
       this.$refs.BrandHeader.leave();
       gsap.to(el, {
-        duration: 1.5,
+        duration: 3,
         y: 0,
         onComplete: done,
       });
@@ -115,24 +120,33 @@ export default {
     grid-area: logo;
   }
 
-  .agency-about__img {
+  .agency-about__breadcrumb {
     grid-area: breadCrumb;
-    justify-self: end;
   }
 
-  .agency-about__title {
-    grid-area: content-1;
+  .agency-about__img {
+    grid-area: 1 / 2 / 6 / 3;
+    display: grid;
+    grid-template-columns: 1fr 74%;
+    grid-template-areas: ". img";
     justify-self: end;
-    align-self: center;
-    z-index: 1;
-    position: absolute;
-    @include transform(translateX(10%));
+    width: 100%;
+
+    .agency-about__title {
+      grid-area: img;
+      justify-self: center;
+      align-self: center;
+      z-index: 1;
+      // position: absolute;
+      // @include transform(translateX(10%));
+    }
   }
 
   .agency-about__paragraph {
     grid-area: content-2;
     justify-self: center;
     align-self: center;
+    margin-right: 5rem;
   }
 
   .agency-about__link {

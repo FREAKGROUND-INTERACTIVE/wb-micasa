@@ -1,26 +1,29 @@
 <template>
-  <div class="agency-why">
-    <div class="agency-why__paragraph">
-      <Paragraph
-        :mountedAnim="true"
-        :mountedDelay="1"
-        :title="'Why us?'"
-        :text="'Lorem, ipsum dolor sit amet consectetur adipisicing elit.\nAutem, rerum. Repellat placeat veniam reiciendis\nsimilique eos delectus porro modi, quas excepturi nulla quidem\nesse doloribus maiores eaque ipsam quam inventore.'"
-      ></Paragraph>
+  <transition @leave="leave" :css="false">
+    <div class="agency-why">
+      <div class="agency-why__paragraph">
+        <Paragraph
+          ref="paragraph"
+          :mountedAnim="true"
+          :mountedDelay="1"
+          :title="'Why us?'"
+          :text="'At the heart of our process is financial strategy. With a\ndeep understanding of our Gen Z consumer, we know how\nour message needs to resonate to create real change\nwithin a budget.'"
+        ></Paragraph>
+      </div>
+      <div class="agency-why__link">
+        <Link-button
+          ref="LinkButton"
+          :mountedAnim="true"
+          :link="'/clients-agency'"
+        ></Link-button>
+      </div>
     </div>
-    <div class="agency-why__link">
-      <Link-button
-        ref="LinkButton"
-        :mountedAnim="true"
-        :link="'/clients-agency'"
-      ></Link-button>
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script>
 import { mutations } from "./../state";
-
+import { gsap } from "gsap";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 
@@ -52,6 +55,30 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: "/clients-agency" });
       }
+    },
+
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim() {
+      this.$refs.LinkButton.initAnim(0);
+    },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(el, done) {
+      this.$refs.paragraph.leave();
+      this.$refs.LinkButton.leave();
+      gsap.to(el, {
+        duration: 3,
+        y: 0,
+        onComplete: done,
+      });
     },
   },
 };

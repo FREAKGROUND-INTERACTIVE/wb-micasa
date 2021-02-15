@@ -1,11 +1,13 @@
 <template>
-  <div class="agency-altering">
+<transition @leave="leave" :css="false">
+<div class="agency-altering">
     <div class="agency-altering__paragraph">
       <Paragraph
+      ref="paragraph"
         :mountedAnim="true"
         :mountedDelay="1"
         :title="'Altering the constant'"
-        :text="'Lorem, ipsum dolor sit amet consectetur adipisicing elit.\nAutem, rerum. Repellat placeat veniam reiciendis\nsimilique eos delectus porro modi, quas excepturi nulla quidem\nesse doloribus maiores eaque ipsam quam inventore.'"
+        :text="'We make bold things with a purpose to create real change\nfor the internet and beyond that. In this technology driven\nworld that seems to move faster than the speed of light,\nonly the right narrative to the right people at the right time\nwill pierce through.'"
       ></Paragraph>
     </div>
     <div class="agency-altering__link">
@@ -16,11 +18,15 @@
       ></Link-button>
     </div>
   </div>
+</transition>
+  
 </template>
 
 <script>
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
+import { gsap } from "gsap";
+
 export default {
   components: {
     Paragraph,
@@ -48,6 +54,29 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: "/services-agency" });
       }
+    },
+
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim() {
+    },
+
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(el, done) {
+      this.$refs.paragraph.leave();
+      this.$refs.LinkButton.leave();
+      gsap.to(el, {
+        duration: 2,
+        y: 0,
+        onComplete: done,
+      });
     },
   },
 };

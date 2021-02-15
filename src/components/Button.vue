@@ -136,6 +136,7 @@ export default {
     // }
 
     .button__title-letter {
+      font-size: 1.2rem;
       display: inline-block;
       @include transform(translateY(100%));
       &.space {
@@ -172,7 +173,7 @@ export default {
       width: 0;
       top: 0;
       left: 0;
-      background-color: #dfdfdf;
+      background-color: $light;
       @include transform(translateX(0px));
 
       @include transition(width 1s, transform 1s);
