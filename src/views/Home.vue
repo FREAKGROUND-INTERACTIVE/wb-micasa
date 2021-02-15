@@ -1,5 +1,5 @@
 <template>
-  <transition @leave="leave" :css="false" mode="out-in">
+  <transition name="home" @leave="leave" :css="false" mode="out-in">
     <div class="home">
       <Color-layer ref="colorLayer" :color="color"></Color-layer>
       <div class="home__3d">
