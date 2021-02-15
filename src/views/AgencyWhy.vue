@@ -4,8 +4,6 @@
       <div class="agency-why__paragraph">
         <Paragraph
           ref="paragraph"
-          :mountedAnim="true"
-          :mountedDelay="1"
           :title="'Why us?'"
           :text="'At the heart of our process is financial strategy. With a\ndeep understanding of our Gen Z consumer, we know how\nour message needs to resonate to create real change\nwithin a budget.'"
         ></Paragraph>
@@ -13,7 +11,6 @@
       <div class="agency-why__link">
         <Link-button
           ref="LinkButton"
-          :mountedAnim="true"
           :link="'/clients-agency'"
         ></Link-button>
       </div>
@@ -37,6 +34,7 @@ export default {
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    this.initAnim(1500);
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -62,8 +60,11 @@ export default {
      *? Function for init animation
      * @param delay time for timeLine delay
      */
-    initAnim() {
-      this.$refs.LinkButton.initAnim(0);
+    initAnim(delay) {
+      setTimeout(() => {
+        this.$refs.paragraph.initAnim(0);
+        this.$refs.LinkButton.initAnim(3);
+      }, delay);
     },
 
     /**
@@ -75,7 +76,7 @@ export default {
       this.$refs.paragraph.leave();
       this.$refs.LinkButton.leave();
       gsap.to(el, {
-        duration: 3,
+        duration: 1.5,
         y: 0,
         onComplete: done,
       });
