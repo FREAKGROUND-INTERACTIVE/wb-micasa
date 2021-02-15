@@ -6,8 +6,6 @@
           <Paragraph
             ref="paragraph"
             :class="'center'"
-            :mountedAnim="true"
-            :mountedDelay="1"
             :title="'Our Clients'"
             :text="'We are passionate about what we create and attract others like us. Ideal collaborators\nare agents who seek a fresh perspective. Together we disrupt the status quo.'"
           ></Paragraph>
@@ -17,11 +15,7 @@
         </div>
       </div>
       <div class="agency-clients__link">
-        <Link-button
-          ref="LinkButton"
-          :mountedAnim="true"
-          :link="'/Studio'"
-        ></Link-button>
+        <Link-button ref="LinkButton" :link="'/Studio'"></Link-button>
       </div>
     </div>
   </transition>
@@ -68,7 +62,7 @@ export default {
   },
   mounted() {
     mutations.setTitle(" ");
-    this.initAnim();
+    this.initAnim(1500);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
@@ -98,10 +92,12 @@ export default {
      *? Function for init animation
      * @param delay time for timeLine delay
      */
-    initAnim() {
-      this.$refs.paragraph.initAnim();
-      this.$refs.LinkButton.initAnim();
-      this.$refs.clientList.initAnim(5);
+    initAnim(delay) {
+      setTimeout(() => {
+        this.$refs.paragraph.initAnim(0);
+        this.$refs.clientList.initAnim(1);
+        this.$refs.LinkButton.initAnim(3);
+      }, delay);
     },
 
     /**
@@ -114,7 +110,7 @@ export default {
       this.$refs.LinkButton.leave();
       this.$refs.clientList.leave();
       gsap.to(el, {
-        duration: 3,
+        duration: 1.5,
         y: 0,
         onComplete: done,
       });
