@@ -55,15 +55,15 @@ export default {
       container.appendChild(stats.dom);
 
       //* Init Scenes
-      const sceneA = new FXScene(11, 35, 0xdfdfdf, true);
-      const sceneB = new FXScene(11, 35, 0xdfdfdf, false);
+      const sceneA = new FXScene(8, 35, 0xdfdfdf, true);
+      const sceneB = new FXScene(8, 35, 0xdfdfdf, false);
 
       //* Imported OBJ variable
-      let obj, obj2;
+      let obj,obj2;
 
       //* load a .OBJ resource from provided URL synchronously
       loader.load(
-        "https://res.cloudinary.com/nancloud/raw/upload/v1612211681/mi-casa/models/micasa_marco_xz72ok.obj",
+        "https://res.cloudinary.com/nancloud/raw/upload/v1613356369/mi-casa/models/marco_bowjih.obj",
         function (object) {
           obj2 = object;
           sceneA.addObj(obj2, true);
@@ -73,7 +73,7 @@ export default {
 
       //* load a .OBJ resource from provided URL synchronously
       loader.load(
-        "https://res.cloudinary.com/nancloud/raw/upload/v1612210946/mi-casa/models/micasa_collage_qu6pwi.obj",
+        "https://res.cloudinary.com/nancloud/raw/upload/v1613356527/mi-casa/models/landing_4_fjojwf.obj",
         function (object) {
           obj = object;
           sceneA.addObj(obj, false);
@@ -120,10 +120,11 @@ export default {
       this.camera = new THREE.PerspectiveCamera(
         fov,
         window.innerWidth / window.innerHeight,
-        0.1,
-        10000
+        6.4,
+        100
       );
       this.camera.position.z = cameraZ;
+      this.camera.position.y = 0.1;
 
       //* Setup Scene
       this.scene = new THREE.Scene();
@@ -193,9 +194,10 @@ export default {
           obj.children.forEach((mesh) => {
             mesh.material = sceneID
               ? new THREE.MeshNormalMaterial()
-              : new THREE.MeshPhongMaterial({ color: 0xffffff });
+              : new THREE.MeshDepthMaterial({ color: 0xffffff });
           });
           this.mesh = obj;
+          console.log("mesh: ", this.mesh);
           this.scene.add(this.mesh);
           this.mesh.position.y = 0.05;
         }
