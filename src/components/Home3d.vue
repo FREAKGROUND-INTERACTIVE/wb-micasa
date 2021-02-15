@@ -194,7 +194,7 @@ export default {
           obj.children.forEach((mesh) => {
             mesh.material = sceneID
               ? new THREE.MeshNormalMaterial()
-              : new THREE.MeshDepthMaterial({ color: 0xffffff });
+              : new THREE.MeshDepthMaterial({});
           });
           this.mesh = obj;
           console.log("mesh: ", this.mesh);
