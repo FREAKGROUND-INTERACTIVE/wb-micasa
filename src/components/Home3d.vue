@@ -197,7 +197,6 @@ export default {
               : new THREE.MeshDepthMaterial({});
           });
           this.mesh = obj;
-          console.log("mesh: ", this.mesh);
           this.scene.add(this.mesh);
           this.mesh.position.y = 0.05;
         }
