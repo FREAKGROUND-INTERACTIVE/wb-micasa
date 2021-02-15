@@ -4,17 +4,11 @@
       <div class="agency-services__button" @click="showServices = true">
         <Button
           ref="Button"
-          :mountedAnim="true"
-          :mountedDelay="0"
           :text="'See our Services'"
         ></Button>
       </div>
       <div class="agency-services__link">
-        <Link-button
-          ref="LinkButton"
-          :mountedAnim="true"
-          :link="'/why-agency'"
-        ></Link-button>
+        <Link-button ref="LinkButton" :link="'/why-agency'"></Link-button>
       </div>
       <div class="agency-services__content" v-if="showServices">
         <div class="agency-services__content-close" @click="closeServices">
@@ -86,6 +80,7 @@ export default {
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    this.initAnim(1500);
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -105,7 +100,6 @@ export default {
         this.showServices = false;
         this.$refs.Button.initAnim();
       }, 2000);
-
     },
     /**
      ** SCROLL EVENT FUNCTION
@@ -126,8 +120,11 @@ export default {
      *? Function for init animation
      * @param delay time for timeLine delay
      */
-    initAnim() {
-      this.$refs.Button.initAnim();
+    initAnim(delay) {
+      setTimeout(() => {
+        this.$refs.Button.initAnim(0);
+        this.$refs.LinkButton.initAnim(3);
+      }, delay);
     },
     /**
      ** LEAVE FUCTION
