@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view :color="title"/>
-    <View-title :text="title"></View-title>
+    <View-title :text="title" :home="home"></View-title>
     <Menu></Menu>
   </div>
 </template>
@@ -19,6 +19,9 @@ export default {
     title() {
       return state.title;
     },
+    home() {
+      return state.inHome;
+    }
   },
   mounted() {
     let path = window.location.pathname;
