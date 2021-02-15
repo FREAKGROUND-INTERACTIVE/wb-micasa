@@ -1,7 +1,25 @@
 <template>
   <div class="colors">
     <svg
-      class="shape-overlays"
+      class="shape-overlays red"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+    >
+      <path class="shape-overlays__path"></path>
+      <path class="shape-overlays__path"></path>
+      <path class="shape-overlays__path"></path>
+    </svg>
+    <svg
+      class="shape-overlays blue"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+    >
+      <path class="shape-overlays__path"></path>
+      <path class="shape-overlays__path"></path>
+      <path class="shape-overlays__path"></path>
+    </svg>
+    <svg
+      class="shape-overlays green"
       viewBox="0 0 100 100"
       preserveAspectRatio="none"
     >
@@ -14,7 +32,7 @@
 
 <script>
 import { ease } from "@/assets/utils/easings";
-import { mutations } from '@/state';
+import { mutations } from "@/state";
 
 export default {
   props: {
@@ -22,39 +40,38 @@ export default {
   },
   watch: {
     color: function (val, oldVal) {
-      console.log("inHome: ",mutations.getHome());
+      console.log("inHome: ", mutations.getHome());
       if (val != oldVal && val != "micasa" && mutations.getHome()) {
         switch (val) {
           case "Agency":
-            this.elmOverlay.classList.remove("green");
-            this.elmOverlay.classList.remove("blue");
-            this.elmOverlay.classList.add("red");
+            this.anim(1);
             break;
           case "Studio":
-            this.elmOverlay.classList.remove("blue");
-            this.elmOverlay.classList.remove("red");
-            this.elmOverlay.classList.add("green");
+            this.anim(2);
             break;
           case "powered":
-            this.elmOverlay.classList.remove("red");
-            this.elmOverlay.classList.remove("green");
-            this.elmOverlay.classList.add("blue");
+            this.anim(3);
             break;
 
           default:
             break;
         }
-        this.anim();
       }
     },
   },
   data() {
     return {
       elmOverlay: null,
-      overlay: null,
+      elmOverlay2: null,
+      elmOverlay3: null,
+      red: null,
+      cyan: null,
+      green: null,
+      index: 1,
     };
   },
   mounted() {
+    let that = this;
     class ShapeOverlays {
       constructor(elm) {
         this.elm = elm;
@@ -69,6 +86,7 @@ export default {
         this.isAnimating = false;
       }
       toggle() {
+        if (this.isAnimating) return;
         this.isAnimating = true;
         const range = Math.random() * Math.PI * 2;
         for (var i = 0; i < this.numPoints; i++) {
@@ -86,6 +104,8 @@ export default {
       open() {
         this.isOpened = true;
         this.elm.classList.add("is-opened");
+        this.elm.style.zIndex = (that.index).toString();
+        that.index += 1;
         this.timeStart = Date.now();
         this.renderLoop();
       }
@@ -159,19 +179,35 @@ export default {
       }
     }
 
-    this.elmOverlay = document.querySelector(".shape-overlays");
-    this.overlay = new ShapeOverlays(this.elmOverlay);
+    this.elmOverlay = document.querySelector(".red");
+    this.elmOverlay2 = document.querySelector(".blue");
+    this.elmOverlay3 = document.querySelector(".green");
+    this.red = new ShapeOverlays(this.elmOverlay);
+    this.blue = new ShapeOverlays(this.elmOverlay2);
+    this.green = new ShapeOverlays(this.elmOverlay3);
   },
   methods: {
-    anim() {
-      if (this.overlay.isAnimating) {
-        return false;
+    anim(value) {
+      switch (value) {
+        case 1:
+          this.red.toggle();
+          break;
+        case 2:
+          this.blue.toggle();
+          break;
+        case 3:
+          this.green.toggle();
+          break;
+
+        default:
+          break;
       }
-      this.overlay.toggle();
     },
     leave() {
-      this.overlay.close();
-    }
+      this.red.close();
+      this.blue.close();
+      this.green.close();
+    },
   },
 };
 </script>
@@ -190,7 +226,7 @@ export default {
     @include transform(rotate(180deg));
 
     path {
-      @include transition (fill 0.5s);
+      @include transition(fill 0.5s);
     }
 
     &.red {
@@ -205,7 +241,7 @@ export default {
       }
     }
 
-    &.green {
+    &.blue {
       path:nth-of-type(1) {
         fill: lighten($cyan, 20%);
       }
@@ -217,7 +253,7 @@ export default {
       }
     }
 
-    &.blue {
+    &.green {
       path:nth-of-type(1) {
         fill: lighten($green, 20%);
       }
