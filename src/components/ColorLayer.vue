@@ -104,16 +104,20 @@ export default {
       open() {
         this.isOpened = true;
         this.elm.classList.add("is-opened");
-        this.elm.style.zIndex = (that.index).toString();
+        this.elm.style.zIndex = that.index.toString();
         that.index += 1;
         this.timeStart = Date.now();
         this.renderLoop();
       }
       close() {
-        this.isOpened = false;
-        this.elm.classList.remove("is-opened");
-        this.timeStart = Date.now();
-        this.renderLoop();
+        if (this.elm.classList.contains("is-opened")) {
+          this.isOpened = false;
+          this.elm.classList.remove("is-opened");
+          this.timeStart = Date.now();
+          this.renderLoop();
+        }else {
+          return;
+        }
       }
       updatePath(time) {
         const points = [];
