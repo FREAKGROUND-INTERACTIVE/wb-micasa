@@ -39,19 +39,19 @@ export default {
     color: function (val) {
       switch (val) {
         case "Agency":
-          this.playerAgency.play();
+          // this.playerAgency.play();
           this.playerStudio.stop();
           this.playerPowered.stop();
           break;
         case "Studio":
           this.playerAgency.stop();
-          this.playerStudio.play();
+          // this.playerStudio.play();
           this.playerPowered.stop();
           break;
         case "Powered":
           this.playerAgency.stop();
           this.playerStudio.stop();
-          this.playerPowered.play();
+          // this.playerPowered.play();
           break;
         default:
           break;
@@ -64,9 +64,11 @@ export default {
       playerAgency: null,
       playerStudio: null,
       playerPowered: null,
+      playerLoop: null
     };
   },
   mounted() {
+
     gsap.to(this.$el, {
       duration: 1,
       opacity: "1",
@@ -138,6 +140,11 @@ export default {
           }
         }
       }
+
+      this.playerLoop = new Player(
+        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503543/20210215_MICASA/COMP/MICASA_LOOPBASE_w3t3lb.mp3"
+      );
+      // this.playerLoop.play();
 
       this.playerAgency = new Player(
         "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503545/20210215_MICASA/COMP/MICASA_AGENCY_afb3k0.mp3"
