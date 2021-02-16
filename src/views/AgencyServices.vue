@@ -1,11 +1,24 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-services">
+      <div class="agency-services__title">
+        <div class="agency-services__title-up">
+          <template v-for="letter in 'ONE HOME'">
+            <div :key="letter.id" :class="{ space: letter == ' ' }">
+              {{ letter }}
+            </div>
+          </template>
+        </div>
+        <div class="agency-services__title-down">
+          <template v-for="letter in 'MANY ROOMS'">
+            <div :key="letter.id" :class="{ space: letter == ' ' }">
+              {{ letter }}
+            </div>
+          </template>
+        </div>
+      </div>
       <div class="agency-services__button" @click="showServices = true">
-        <Button
-          ref="Button"
-          :text="'See our Services'"
-        ></Button>
+        <Button ref="Button" :text="'See our Services'"></Button>
       </div>
       <div class="agency-services__link">
         <Link-button ref="LinkButton" :link="'/why-agency'"></Link-button>
@@ -75,8 +88,21 @@ export default {
     Services,
     LinkButton,
   },
+  data() {
+    return {
+      lettersUp: null,
+      lettersDown: null,
+      showServices: false,
+    };
+  },
   mounted() {
     mutations.setTitle(" ");
+    this.lettersUp = this.$el.querySelectorAll(
+      ".agency-services__title-up > div"
+    );
+    this.lettersDown = this.$el.querySelectorAll(
+      ".agency-services__title-down > div"
+    );
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
@@ -84,11 +110,6 @@ export default {
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
-  },
-  data() {
-    return {
-      showServices: false,
-    };
   },
   methods: {
     closeServices() {
@@ -124,6 +145,33 @@ export default {
       setTimeout(() => {
         this.$refs.Button.initAnim(0);
         this.$refs.LinkButton.initAnim(3);
+        let tl = gsap.timeline({ paused: true });
+        let tl2 = gsap.timeline({ paused: true, delay: 1 });
+
+        this.lettersUp.forEach((element) => {
+          tl.to(
+            element,
+            {
+              duration: 0.5,
+              y: "0%",
+            },
+            "<0.2"
+          );
+        });
+
+        this.lettersDown.forEach((element) => {
+          tl2.to(
+            element,
+            {
+              duration: 0.5,
+              y: "0%",
+            },
+            "<0.2"
+          );
+        });
+
+        tl.play();
+        tl2.play();
       }, delay);
     },
     /**
@@ -134,6 +182,33 @@ export default {
     leave(el, done) {
       this.$refs.Button.leave();
       this.$refs.LinkButton.leave();
+      let tl = gsap.timeline({ paused: true });
+      let tl2 = gsap.timeline({ paused: true });
+
+      this.lettersUp.forEach((element) => {
+        tl.to(
+          element,
+          {
+            duration: 0.2,
+            y: "-100%",
+          },
+          "<0.1"
+        );
+      });
+
+      this.lettersDown.forEach((element) => {
+        tl2.to(
+          element,
+          {
+            duration: 0.2,
+            y: "100%",
+          },
+          "<0.1"
+        );
+      });
+
+      tl.play();
+      tl2.play();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -149,6 +224,47 @@ export default {
 
 .agency-services {
   @extend .layout;
+
+  .agency-services__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    font-family: $oswald;
+    @include transform(translate(-50%, -50%));
+
+    .agency-services__title-up {
+      overflow: hidden;
+      div {
+        display: inline-block;
+        font-size: 10vw;
+        font-weight: 900;
+        line-height: 1;
+        color: transparent;
+        -webkit-text-stroke: 1px $dark;
+        @include transform(translateY(100%));
+
+        &.space {
+          margin-left: 2rem;
+        }
+      }
+    }
+
+    .agency-services__title-down {
+      overflow: hidden;
+      div {
+        display: inline-block;
+        font-size: 7.5vw;
+        font-weight: 900;
+        line-height: 1;
+        color: $red;
+        @include transform(translateY(-100%));
+        &.space {
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
 
   .agency-services__button {
     grid-area: 3 / 2 / 4 / 4;
