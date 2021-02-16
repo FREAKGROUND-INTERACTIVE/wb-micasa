@@ -1,6 +1,7 @@
 <template>
   <transition @leave="leave" :css="true">
     <div class="altering">
+      <Altering3d ref="mask3d" :mask="true" :pos="mouseEvent"></Altering3d>
       <div class="altering__title">
         <div
           class="altering__title-letter"
@@ -12,6 +13,7 @@
       </div>
       <div class="altering__mask">
         <div class="altering__mask-content">
+          <Altering3d ref="back3d" :mask="false" :pos="mouseEvent"></Altering3d>
           <h3 class="altering__mask-content-title">THE CONSTANT</h3>
         </div>
       </div>
@@ -21,8 +23,12 @@
 
 <script>
 import { gsap } from "gsap";
+import Altering3d from "@/components/Altering3d";
 
 export default {
+  components: {
+    Altering3d,
+  },
   props: {
     mountedAnim: {
       type: Boolean,
@@ -38,6 +44,7 @@ export default {
       mask: null,
       content: null,
       letters: null,
+      mouseEvent: null,
     };
   },
   mounted() {
@@ -60,6 +67,7 @@ export default {
      * @param e mouse movement event
      */
     mouseMovement(e) {
+      this.mouseEvent = e;
       gsap.to(this.mask, {
         duration: 0.5,
         x: e.clientX - this.mask.offsetWidth / 2,
@@ -79,6 +87,8 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
+      this.$refs.mask3d.initAnim(1);
+      this.$refs.back3d.initAnim(1);
       let letterTl = new gsap.timeline({ paused: true, delay: delay });
       this.letters.forEach((element) => {
         letterTl.to(
@@ -99,6 +109,8 @@ export default {
     },
 
     leave(done) {
+      this.$refs.mask3d.leave();
+      this.$refs.back3d.leave();
       let letterTl = new gsap.timeline({ paused: true });
       this.letters.forEach((element) => {
         letterTl.to(
@@ -136,6 +148,7 @@ export default {
     top: 50%;
     left: 50%;
     overflow: hidden;
+    z-index: 1;
     @include transform(translate(-50%, -50%));
     .altering__title-letter {
       pointer-events: none;
@@ -156,6 +169,7 @@ export default {
     width: 0vw;
     height: 100vh;
     overflow: hidden;
+    z-index: 2;
 
     .altering__mask-content {
       position: absolute;
