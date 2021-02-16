@@ -6,7 +6,7 @@
           class="img-view__img"
           width="512"
           height="512"
-          :src="'https://res.cloudinary.com/nancloud/image/upload/v1610047956/mi-casa/transition1_n6zyqq.png'"
+          :src="imgBg"
           alt="LoremPicsum"
           @load="imgLoaded"
           @error="imgDontLoaded"
@@ -40,6 +40,7 @@ export default {
       type: Number,
       default: 0,
     },
+    img: String,
   },
   watch: {
     loading: function (val) {
@@ -51,6 +52,7 @@ export default {
     return {
       imgContainer: null,
       height: window.innerHeight,
+      imgBg: this.img
     };
   },
   mounted() {
