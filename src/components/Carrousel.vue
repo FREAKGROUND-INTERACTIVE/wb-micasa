@@ -4,21 +4,21 @@
       <splide :options="options">
         <splide-slide>
           <img
-            src="https://res.cloudinary.com/nancloud/image/upload/v1606967826/urbina/imgs/02_tah2q3.png"
+            src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
             width="550"
             height="550"
           />
         </splide-slide>
         <splide-slide>
           <img
-            src="https://res.cloudinary.com/nancloud/image/upload/v1606967826/urbina/imgs/02_tah2q3.png"
+            src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
             width="550"
             height="550"
           />
         </splide-slide>
         <splide-slide>
           <img
-            src="https://res.cloudinary.com/nancloud/image/upload/v1606967826/urbina/imgs/02_tah2q3.png"
+            src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
             width="550"
             height="550"
           />
