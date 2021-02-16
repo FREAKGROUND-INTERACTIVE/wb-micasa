@@ -1,6 +1,9 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-altering">
+      <div class="agency-altering__mask">
+        <Altering ref="altering"></Altering>
+      </div>
       <div class="agency-altering__paragraph">
         <Paragraph
           ref="paragraph"
@@ -19,11 +22,13 @@
 import { gsap } from "gsap";
 import { mutations } from "./../state";
 
+import Altering from '@/components/Altering';
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 
 export default {
   components: {
+    Altering,
     Paragraph,
     LinkButton,
   },
@@ -60,6 +65,7 @@ export default {
      */
     initAnim(delay) {
       setTimeout(() => {
+        this.$refs.altering.initAnim(0);
         this.$refs.paragraph.initAnim(1);
         this.$refs.LinkButton.initAnim(3);
       }, delay);
@@ -71,6 +77,7 @@ export default {
      * @param done it return the leave behavior end
      */
     leave(el, done) {
+      this.$refs.altering.leave();
       this.$refs.paragraph.leave();
       this.$refs.LinkButton.leave();
       gsap.to(el, {
