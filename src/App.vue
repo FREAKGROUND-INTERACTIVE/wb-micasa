@@ -3,7 +3,7 @@
     <router-view :color="title"/>
     <View-title :text="title" :home="home"></View-title>
     <Menu></Menu>
-    <Mouse :inHover="inHover"></Mouse>
+    <!-- <Mouse :inHover="inHover"></Mouse> -->
   </div>
 </template>
 
@@ -11,12 +11,12 @@
 import { state, mouse, mutations } from "./state";
 import ViewTitle from "@/components/ViewTitle";
 import Menu from "@/components/Menu";
-import Mouse from "@/components/Mouse";
+// import Mouse from "@/components/Mouse";
 export default {
   components: {
     ViewTitle,
     Menu,
-    Mouse,
+    // Mouse,
   },
   computed: {
     title() {
