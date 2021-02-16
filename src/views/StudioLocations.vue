@@ -16,6 +16,7 @@
           @imgLoaded="initAnim(150)"
           :loading="loading.x"
           :align="'left'"
+          :img="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg'"
           ref="imgBrooklyn"
         ></Img-studio>
       </div>
@@ -60,6 +61,7 @@
           @imgLoaded="initAnim(0)"
           :loading="loading2.x"
           :align="'right'"
+          :img="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg'"
           ref="imgLes"
         ></Img-studio>
       </div>
