@@ -45,6 +45,8 @@ export default {
       content: null,
       letters: null,
       mouseEvent: null,
+      firstMove: true,
+      maskActive: false,
     };
   },
   mounted() {
@@ -67,6 +69,11 @@ export default {
      * @param e mouse movement event
      */
     mouseMovement(e) {
+      if (this.firstMove && this.maskActive) {
+        this.$refs.mask3d.initAnim(0);
+        this.$refs.back3d.initAnim(0);
+        this.firstMove = false;
+      }
       this.mouseEvent = e;
       gsap.to(this.mask, {
         duration: 0.5,
@@ -87,8 +94,7 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
-      this.$refs.mask3d.initAnim(1);
-      this.$refs.back3d.initAnim(1);
+      let that = this;
       let letterTl = new gsap.timeline({ paused: true, delay: delay });
       this.letters.forEach((element) => {
         letterTl.to(
@@ -104,6 +110,9 @@ export default {
       letterTl.to(this.mask, {
         duration: 2,
         width: "20vw",
+        onStart: function() {
+          that.maskActive = true;
+        }
       });
       letterTl.play();
     },
