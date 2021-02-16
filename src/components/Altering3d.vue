@@ -42,7 +42,7 @@ export default {
       100
     );
 
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new THREE.WebGLRenderer({antialias:true});
     renderer.setClearColor(this.mask ? 0xffffff : 0xdfdfdf);
     renderer.setSize(window.innerWidth, window.innerHeight);
     this.$el.appendChild(renderer.domElement);
@@ -67,8 +67,10 @@ export default {
 
     function animate() {
       that.animReq = requestAnimationFrame(animate);
-      cube.rotation.x = that.mouseEvent.clientY /720;
-      cube.rotation.y = that.mouseEvent.clientX /720;
+      if (that.mouseEvent) {
+        cube.rotation.x = that.mouseEvent.clientY / 720;
+        cube.rotation.y = that.mouseEvent.clientX / 720;
+      }
       renderer.render(scene, camera);
     }
     animate();
