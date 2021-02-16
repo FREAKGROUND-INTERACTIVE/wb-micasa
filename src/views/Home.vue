@@ -140,13 +140,13 @@ export default {
       }
 
       this.playerAgency = new Player(
-        "https://tonejs.github.io/audio/drum-samples/breakbeat.mp3"
+        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503545/20210215_MICASA/COMP/MICASA_AGENCY_afb3k0.mp3"
       );
       this.playerStudio = new Player(
-        "https://tonejs.github.io/audio/drum-samples/breakbeat.mp3"
+        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503543/20210215_MICASA/COMP/MICASA_STUDIO_cyblqr.mp3"
       );
       this.playerPowered = new Player(
-        "https://tonejs.github.io/audio/drum-samples/breakbeat.mp3"
+        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503543/20210215_MICASA/COMP/MICASA_POWERED_drviqq.mp3"
       );
     },
     leave(el, done) {
