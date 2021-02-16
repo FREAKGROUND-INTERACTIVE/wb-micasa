@@ -36,6 +36,8 @@ $light: white;
 body {
   font-family: "Montserrat";
   background-color: $light;
+  color: $dark;
+  cursor: none !important;
 }
 
 .layout {

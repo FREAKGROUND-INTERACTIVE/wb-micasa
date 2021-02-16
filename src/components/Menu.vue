@@ -44,7 +44,7 @@
           ></Menu-title>
         </div>
       </div>
-      <div class="menu__button" @click="showMenu">
+      <div class="menu__button" @click="showMenu" @mouseenter="inHover" @mouseleave="outHover">
         <div></div>
         <div></div>
       </div>
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { mutations } from '@/state';
 import gsap from "gsap";
 import Paragraph from "@/components/Paragraph";
 import MenuTitle from "@/components/MenuTitle";
@@ -113,6 +114,14 @@ export default {
       this.showMenu();
       this.$router.push({ path: url });
     },
+    inHover() {
+      console.log("inHover");
+      mutations.inHover();
+    },
+    outHover() {
+      console.log("outHover");
+      mutations.outHover();
+    }
   },
 };
 </script>
