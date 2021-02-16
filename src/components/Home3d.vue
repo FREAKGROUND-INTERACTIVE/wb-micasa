@@ -73,7 +73,7 @@ export default {
 
       //* load a .OBJ resource from provided URL synchronously
       loader.load(
-        "https://res.cloudinary.com/nancloud/raw/upload/v1613356527/mi-casa/models/landing_4_fjojwf.obj",
+        "https://res.cloudinary.com/nancloud/raw/upload/v1613508604/mi-casa/models/landing_5_nh08c0.obj",
         function (object) {
           obj = object;
           sceneA.addObj(obj, false);
@@ -120,7 +120,7 @@ export default {
       this.camera = new THREE.PerspectiveCamera(
         fov,
         window.innerWidth / window.innerHeight,
-        6.4,
+        6.5,
         100
       );
       this.camera.position.z = cameraZ;
