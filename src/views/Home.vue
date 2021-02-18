@@ -197,7 +197,7 @@ export default {
   }
 
   .home__links {
-    grid-area: content;
+    grid-area: logo;
     place-self: end center;
     width: 200px;
     z-index: 999999;
