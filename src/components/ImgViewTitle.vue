@@ -99,7 +99,7 @@ export default {
     imgAnim() {
       gsap.to(this.imgContainer, {
         duration: 1.5,
-        width: 660,
+        width: '33vw',
         ease: "power2.out",
         delay: 1,
       });
@@ -140,7 +140,8 @@ export default {
   .img-view__img-container {
     position: relative;
     width: 0;
-    height: 360px;
+    // width: 33vw;
+    height: calc(33vw * 0.5625);
     overflow: hidden;
     .img-view__img {
       position: absolute;
