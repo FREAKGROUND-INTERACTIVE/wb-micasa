@@ -42,7 +42,7 @@ export default {
       100
     );
 
-    const renderer = new THREE.WebGLRenderer({antialias:true});
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setClearColor(this.mask ? 0xffffff : 0xdfdfdf);
     renderer.setSize(window.innerWidth, window.innerHeight);
     this.$el.appendChild(renderer.domElement);
@@ -64,6 +64,17 @@ export default {
     scene.add(cube);
 
     camera.position.z = 2;
+
+    window.addEventListener("resize", onWindowResize, false);
+
+    function onWindowResize() {
+      var aspect = window.innerWidth / window.innerHeight;
+
+      camera.aspect = aspect;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
 
     function animate() {
       that.animReq = requestAnimationFrame(animate);
