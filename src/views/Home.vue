@@ -60,7 +60,11 @@ export default {
     },
     initAudio: function (val) {
       console.log(val);
+      this.playerLoop.start();
       this.playerLoop.play();
+      this.playerAgency.start();
+      this.playerStudio.start();
+      this.playerPowered.start();
     },
   },
   data() {
@@ -86,56 +90,36 @@ export default {
     this.playerSetup();
   },
   methods: {
-    toneJs(val) {
-      switch (val) {
-        case "Agency":
-          if (this.playerStudio.state == "started") {
-            gsap.to(this.playerStudio.volume, {
-              duration: 1,
-              value: 0,
-              onComplete: function () {
-                this.playerStudio.stop();
-              },
-            });
-          }
-          this.playerAgency.start();
-          console.log("Agency suena");
-          break;
-        case "Studio":
-          this.playerStudio.start();
-          console.log("Studio suena");
-          break;
-        case "powered":
-          this.playerPowered.start();
-          console.log("powered suena");
-          break;
-        default:
-          break;
-      }
-    },
     playerSetup() {
       class Player {
         constructor(sample) {
           this.player = new Tone.Player(sample).toDestination();
         }
-
-        play() {
+        start() {
           this.player.loop = true;
+          this.player.volume.value = -80;
           this.player.start();
-          this.player.volume.value = 0;
-          // gsap.to(this.player.volume, {
-          //   duration: 4,
-          //   value: 0.7,
-          // });
+        }
+        play() {
+          gsap.to(this.player.volume, {
+            duration: 1,
+            value: -20,
+          });
         }
         stop() {
+          gsap.to(this.player.volume, {
+            duration: 1,
+            value: -80,
+          });
+        }
+        delete() {
           let that = this;
           gsap.to(this.player.volume, {
-            duration: 0.2,
-            value: 0,
-            onComplete: function () {
+            duration: 1,
+            value: -80,
+            onComplete: function() {
               that.player.stop();
-            },
+            }
           });
         }
         playing() {
@@ -145,7 +129,6 @@ export default {
             return false;
           }
         }
-
       }
 
       this.playerLoop = new Player(
@@ -167,6 +150,12 @@ export default {
       this.$refs.home3d.leave();
       this.$refs.linksList.leave();
       this.$refs.colorLayer.leave();
+
+      this.playerLoop.delete();
+      this.playerAgency.delete();
+      this.playerStudio.delete();
+      this.playerPowered.delete();
+
       mutations.setHome(false);
       gsap.to(el, {
         duration: 1,
