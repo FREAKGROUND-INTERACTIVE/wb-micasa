@@ -11,6 +11,7 @@ export default {
     goToWeb() {
       this.$emit("init");
       gsap.to(this.$el, {
+        duration: 1,
         autoAlpha: 0
       });
     }
