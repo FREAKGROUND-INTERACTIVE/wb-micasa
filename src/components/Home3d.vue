@@ -85,7 +85,7 @@ export default {
 
       //* load a .OBJ resource from provided URL synchronously
       loader.load(
-        "https://res.cloudinary.com/nancloud/raw/upload/v1613508604/mi-casa/models/landing_5_nh08c0.obj",
+        "https://res.cloudinary.com/nancloud/raw/upload/v1613749362/mi-casa/models/micasalanding_11_c5s5am.obj",
         function (object) {
           obj = object;
           sceneA.addObj(obj, false);
@@ -132,7 +132,7 @@ export default {
       this.camera = new THREE.PerspectiveCamera(
         fov,
         window.innerWidth / window.innerHeight,
-        6.5,
+        0.1,
         100
       );
       this.camera.position.z = cameraZ;
@@ -197,6 +197,15 @@ export default {
       };
 
       this.addObj = (obj, marco) => {
+        // claqueta, camara, planta, dj, light, flower, mic
+        const urls = [
+          "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/1b375f92ac43d1e79ff6e41092664ad6_zo2ufp.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/1b375f92ac43d1e79ff6e41092664ad6_zo2ufp.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1613749659/mi-casa/models/TEXTURES/f33d5febcf432cdead3a28141a466109_khvcux.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/a44f197958fb1fcc2de6d04d33e2828b_q4molc.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0004_yst7ez.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0ddf2c1ccf9d361cc2dc89c579a9080d_iq3z8v.jpg",
+        ];
         if (marco == true) {
           obj.children[0].material = new THREE.MeshPhongMaterial({
             color: 0xffffff,
@@ -205,9 +214,10 @@ export default {
           this.scene.add(this.mesh2);
           this.mesh2.position.y = 0.05;
         } else {
-          obj.children.forEach((mesh) => {
+          obj.children.forEach((mesh, index) => {
+            const texture = new THREE.TextureLoader().load(urls[index]);
             mesh.material = sceneID
-              ? new THREE.MeshNormalMaterial()
+              ? new THREE.MeshStandardMaterial({map: texture})
               : new THREE.MeshPhongMaterial({ color: 0xffffff });
           });
 
