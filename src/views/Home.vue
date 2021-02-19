@@ -34,28 +34,33 @@ export default {
   },
   props: {
     color: String,
+    initAudio: Boolean,
   },
   watch: {
     color: function (val) {
       switch (val) {
         case "Agency":
-          // this.playerAgency.play();
+          this.playerAgency.play();
           this.playerStudio.stop();
           this.playerPowered.stop();
           break;
         case "Studio":
           this.playerAgency.stop();
-          // this.playerStudio.play();
+          this.playerStudio.play();
           this.playerPowered.stop();
           break;
         case "Powered":
           this.playerAgency.stop();
           this.playerStudio.stop();
-          // this.playerPowered.play();
+          this.playerPowered.play();
           break;
         default:
           break;
       }
+    },
+    initAudio: function (val) {
+      console.log(val);
+      this.playerLoop.play();
     },
   },
   data() {
@@ -64,11 +69,10 @@ export default {
       playerAgency: null,
       playerStudio: null,
       playerPowered: null,
-      playerLoop: null
+      playerLoop: null,
     };
   },
   mounted() {
-
     gsap.to(this.$el, {
       duration: 1,
       opacity: "1",
@@ -114,13 +118,15 @@ export default {
         constructor(sample) {
           this.player = new Tone.Player(sample).toDestination();
         }
+
         play() {
           this.player.loop = true;
           this.player.start();
-          gsap.to(this.player.volume, {
-            duration: 4,
-            value: 0.7,
-          });
+          this.player.volume.value = 0;
+          // gsap.to(this.player.volume, {
+          //   duration: 4,
+          //   value: 0.7,
+          // });
         }
         stop() {
           let that = this;
@@ -139,21 +145,21 @@ export default {
             return false;
           }
         }
+
       }
 
       this.playerLoop = new Player(
-        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503543/20210215_MICASA/COMP/MICASA_LOOPBASE_w3t3lb.mp3"
+        "https://res.cloudinary.com/nancloud/video/upload/v1613692494/mi-casa/audios/MICASA_LOOPBASE_agr0jp.mp3"
       );
-      // this.playerLoop.play();
 
       this.playerAgency = new Player(
-        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503545/20210215_MICASA/COMP/MICASA_AGENCY_afb3k0.mp3"
+        "https://res.cloudinary.com/nancloud/video/upload/v1613692494/mi-casa/audios/MICASA_AGENCY_nhdjve.mp3"
       );
       this.playerStudio = new Player(
-        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503543/20210215_MICASA/COMP/MICASA_STUDIO_cyblqr.mp3"
+        "https://res.cloudinary.com/nancloud/video/upload/v1613692495/mi-casa/audios/MICASA_STUDIO_ki4erp.mp3"
       );
       this.playerPowered = new Player(
-        "https://res.cloudinary.com/tanecujasanda/video/upload/v1613503543/20210215_MICASA/COMP/MICASA_POWERED_drviqq.mp3"
+        "https://res.cloudinary.com/nancloud/video/upload/v1613692495/mi-casa/audios/MICASA_POWERED_xgxfhk.mp3"
       );
     },
     leave(el, done) {
@@ -193,14 +199,14 @@ export default {
 
   .home__3d {
     position: fixed;
-    z-index: 999999;
+    z-index: 9998;
   }
 
   .home__links {
     grid-area: logo;
     place-self: end center;
     width: 200px;
-    z-index: 999999;
+    z-index: 9998;
   }
 
   &.white {
