@@ -79,6 +79,8 @@ export default {
 
       animTl.play();
 
+      let that = this;
+
       //* animate line
       gsap.to(this.line, {
         duration: 1.6,
@@ -86,7 +88,7 @@ export default {
         ease: "power2.out",
         delay: delay,
         onComplete: function () {
-          document.querySelector(".linkButton").style.pointerEvents = "auto";
+          that.$el.style.pointerEvents = "auto";
         },
       });
     },
