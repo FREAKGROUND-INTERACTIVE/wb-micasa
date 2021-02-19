@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <router-view :color="title"/>
+    <router-view :color="title" :initAudio="initAudio"/>
     <View-title :text="title" :home="home"></View-title>
     <Menu></Menu>
+
+    <Loading @init="init"></Loading>
     <!-- <Mouse :inHover="inHover"></Mouse> -->
   </div>
 </template>
@@ -11,11 +13,13 @@
 import { state, mouse, mutations } from "./state";
 import ViewTitle from "@/components/ViewTitle";
 import Menu from "@/components/Menu";
+import Loading from "@/components/Loading";
 // import Mouse from "@/components/Mouse";
 export default {
   components: {
     ViewTitle,
     Menu,
+    Loading
     // Mouse,
   },
   computed: {
@@ -28,6 +32,11 @@ export default {
     inHover() {
       // console.log("computed app hover", mouse.hover);
       return mouse.hover;
+    },
+  },
+  data() {
+    return {
+      initAudio: false
     }
   },
   mounted() {
@@ -47,6 +56,11 @@ export default {
         break;
     }
   },
+  methods: {
+    init() {
+      this.initAudio = true;
+    }
+  }
 };
 </script>
 
