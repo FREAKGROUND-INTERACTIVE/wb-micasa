@@ -6,6 +6,7 @@
 import * as THREE from "three";
 import Stats from "three/examples/jsm/libs/stats.module.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+// import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import gsap from "gsap";
 import fragmentShader from "raw-loader!glslify-loader!@/assets/glsl/fragmentShader.glsl";
 import vertexShader from "raw-loader!glslify-loader!@/assets/glsl/vertexShader.glsl";
@@ -58,8 +59,19 @@ export default {
       const sceneA = new FXScene(8, 35, 0xdfdfdf, true);
       const sceneB = new FXScene(8, 35, 0xdfdfdf, false);
 
+      // const loaderFBX = new FBXLoader();
+      // loaderFBX.load(
+      //   "https://res.cloudinary.com/nancloud/raw/upload/v1613609196/mi-casa/models/animations/claqueta_Anim_sxtqd5.fbx",
+      //   function (object) {
+      //     console.log("fbx: ", object);
+      //     // sceneA.addObj(object.clone(), false);
+      //     // sceneB.addObj(object, false);
+      //   }
+      // );
+
       //* Imported OBJ variable
-      let obj,obj2;
+      let obj;
+      let obj2;
 
       //* load a .OBJ resource from provided URL synchronously
       loader.load(
@@ -139,22 +151,19 @@ export default {
       light.position.set(0, 500, 2000);
       this.scene.add(light);
 
-      //* Init Box mesh
-      const defaultMaterial = new THREE.MeshPhongMaterial({
-        color: sceneID ? 0xff00ff : 0xcccccc,
-        flatShading: true,
-        vertexColors: true,
-      });
-      this.mesh = new THREE.Mesh(new THREE.TorusGeometry(), defaultMaterial);
-      this.mesh2 = new THREE.Mesh(new THREE.TorusGeometry(), defaultMaterial);
-      // this.scene.add(this.mesh);
+      //* create meshes
+      this.mesh;
+      this.mesh2;
+
+      //* Create mixers
+      // this.mixers = [];
 
       const renderTargetParameters = {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
         format: THREE.RGBAFormat,
       };
-      this.fbo = new THREE.WebGLRenderTarget(
+      this.fbo = new THREE.WebGLMultisampleRenderTarget(
         window.innerWidth,
         window.innerHeight,
         renderTargetParameters
@@ -163,6 +172,11 @@ export default {
       this.render = (delta, rtt) => {
         // renderer.setClearColor(this.clearColor);
         // this.mesh.rotation.x = 45;
+
+        // if (this.mixers[0]) {
+        //   this.mixers[0].update(clock.getDelta());
+        // }
+
         if (rtt) {
           renderer.setRenderTarget(this.fbo);
           renderer.clear();
@@ -194,11 +208,32 @@ export default {
           obj.children.forEach((mesh) => {
             mesh.material = sceneID
               ? new THREE.MeshNormalMaterial()
-              : new THREE.MeshDepthMaterial({});
+              : new THREE.MeshPhongMaterial({ color: 0xffffff });
           });
+
           this.mesh = obj;
-          this.scene.add(this.mesh);
           this.mesh.position.y = 0.05;
+          this.scene.add(this.mesh);
+
+          // if (!sceneID) {
+          //   setTimeout(() => {
+          //     console.log("mesh anim: ", this.mesh);
+          //     const mixer = new THREE.AnimationMixer(this.mesh);
+          //     // this.mesh.animations.forEach((animation) => {
+          //     //   const action = mixer.clipAction(animation);
+          //     //   console.log(".getEffectiveTimeScale: ", action.getEffectiveTimeScale() );
+          //     //   action.setDuration(0.05);
+          //     //   action.play();
+          //     // });
+          //     const action = mixer.clipAction(this.mesh.animations[0]);
+          //     const action2 = mixer.clipAction(this.mesh.animations[1]);
+          //     action2.setDuration(0.02);
+          //     action2.play();
+          //     action.setDuration(0.02);
+          //     action.play();
+          //     this.mixers.push(mixer);
+          //   }, 2000);
+          // }
         }
       };
     }
@@ -301,7 +336,7 @@ export default {
         duration: 0.5,
         opacity: "0",
       });
-    }
+    },
   },
 };
 </script>
