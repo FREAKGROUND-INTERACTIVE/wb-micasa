@@ -61,7 +61,7 @@ export default {
     initAudio: function (val) {
       console.log(val);
       this.playerLoop.start();
-      this.playerLoop.play();
+      // this.playerLoop.play();
       this.playerAgency.start();
       this.playerStudio.start();
       this.playerPowered.start();
@@ -103,7 +103,7 @@ export default {
         play() {
           gsap.to(this.player.volume, {
             duration: 1,
-            value: -20,
+            value: -6,
           });
         }
         stop() {
