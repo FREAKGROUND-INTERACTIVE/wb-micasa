@@ -64,7 +64,7 @@ export default {
       let NewY = 1 - -1;
       let posY = ((e.clientY - 0) * NewY) / OldY + -1;
       // let posY = e.clientY / window.innerHeight;
-      const mFactor = 60;
+      const mFactor = 40;
 
       gsap.to(this.img, {
         duration: 1,
@@ -144,10 +144,12 @@ export default {
     height: calc(32vw * 0.5);
     overflow: hidden;
     .img-view__img {
+      width: 38vw;
+      height: auto;
       position: absolute;
       top: 50%;
       left: 50%;
-      @include transform(translate(-50%, -50%) scale(1.3));
+      @include transform(translate(-50%, -50%));
     }
   }
 }
