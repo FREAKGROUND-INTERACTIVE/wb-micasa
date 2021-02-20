@@ -17,20 +17,19 @@
           </template>
         </div>
       </div>
-      <div class="agency-services__button" @click="showServices = true">
+      <div class="agency-services__button" @click="openServices">
         <Button ref="Button" :text="'See our Services'"></Button>
       </div>
       <div class="agency-services__link">
         <Link-button ref="LinkButton" :link="'/why-agency'"></Link-button>
       </div>
-      <div class="agency-services__content" v-if="showServices">
+      <div class="agency-services__content" v-show="showServices">
         <div class="agency-services__content-close" @click="closeServices">
-          <Close-button ref="closeButton" :mountedAnim="true"></Close-button>
+          <Close-button ref="closeButton"></Close-button>
         </div>
         <div class="agency-services__content-paragraph">
           <Services
             ref="services"
-            :mountedAnim="true"
             :list="[
               'Service 1',
               'Service 2',
@@ -92,6 +91,7 @@ export default {
     return {
       lettersUp: null,
       lettersDown: null,
+      contentServices: null,
       showServices: false,
     };
   },
@@ -103,6 +103,7 @@ export default {
     this.lettersDown = this.$el.querySelectorAll(
       ".agency-services__title-down > div"
     );
+    this.contentServices = this.$el.querySelector(".agency-services__content");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
@@ -112,14 +113,29 @@ export default {
     window.removeEventListener("wheel", this.handleScroll);
   },
   methods: {
+    openServices() {
+      this.showServices = true;
+
+      gsap.to(this.contentServices, {
+        duration: 1,
+        opacity: 1,
+      });
+      this.$refs.closeButton.initAnim(0.7);
+      this.$refs.services.initAnim(0.7);
+    },
     closeServices() {
       this.$refs.services.leave();
       this.$refs.closeButton.leave();
-      this.$refs.Button.leave();
+      // this.$refs.Button.leave();
+      gsap.to(this.contentServices, {
+        duration: 0.5,
+        opacity: 0,
+        delay: 1.5,
+      });
 
       setTimeout(() => {
         this.showServices = false;
-        this.$refs.Button.initAnim();
+        // this.$refs.Button.initAnim();
       }, 2000);
     },
     /**
@@ -274,6 +290,7 @@ export default {
 
   .agency-services__content {
     @extend .layout;
+    opacity: 0;
     background-color: $light;
     display: flex;
     flex-flow: column nowrap;
@@ -283,7 +300,7 @@ export default {
     .agency-services__content-close {
       grid-area: 3 / 2 / 4 / 4;
       place-self: center;
-      margin-bottom: 2.5rem;
+      margin-bottom: 1rem;
     }
 
     .agency-services__content-paragraph {
