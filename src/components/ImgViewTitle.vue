@@ -64,11 +64,11 @@ export default {
       let NewY = 1 - -1;
       let posY = ((e.clientY - 0) * NewY) / OldY + -1;
       // let posY = e.clientY / window.innerHeight;
-      const mFactor = 40;
+      const mFactor = 60;
 
       gsap.to(this.img, {
         duration: 1,
-        x: this.$el.style.left - posX * mFactor,
+        x: this.$el.style.left - posX * mFactor/2,
         y: this.$el.style.top - posY * mFactor,
         ease: "power2.out",
       });
@@ -97,9 +97,11 @@ export default {
      * @param delay time for timeLine delay
      */
     imgAnim() {
+      this.img.style.width = Math.floor(window.innerWidth*40/100) + 'px';
+      this.imgContainer.style.height = Math.floor(window.innerWidth*17/100) + 'px';
       gsap.to(this.imgContainer, {
         duration: 1.5,
-        width: '32vw',
+        width: Math.floor(window.innerWidth*33/100),
         ease: "power2.out",
         delay: 1,
       });
@@ -136,15 +138,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  
   @include transform(translate(-50%, -50%));
   .img-view__img-container {
     position: relative;
-    width: 0vw;
-    // width: 33vw;
-    height: calc(32vw * 0.5);
+    width: 0;
+    height: 0;
     overflow: hidden;
     .img-view__img {
-      width: 38vw;
       height: auto;
       position: absolute;
       top: 50%;
