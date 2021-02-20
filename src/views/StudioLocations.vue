@@ -9,14 +9,14 @@
       </div>
 
       <!--* LEFT SIDE -->
-      <div class="locations__sites-brooklyn" v-if="!les">
+      <div class="locations__sites-brooklyn" v-show="!les">
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
           @imgLoaded="initAnim(150)"
           :loading="loading.x"
           :align="'left'"
-          :img="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg'"
+          :imgUrl="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg'"
           ref="imgBrooklyn"
         ></Img-studio>
       </div>
@@ -54,14 +54,14 @@
       </div>
 
       <!--* RIGHT SIDE -->
-      <div class="locations__sites-les" v-if="!brooklyn">
+      <div class="locations__sites-les" v-show="!brooklyn">
         <Img-studio
           @mouseenter.native="initLoading(false)"
           @mouseleave.native="backLoading(false)"
           @imgLoaded="initAnim(0)"
           :loading="loading2.x"
           :align="'right'"
-          :img="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg'"
+          :imgUrl="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg'"
           ref="imgLes"
         ></Img-studio>
       </div>
@@ -249,11 +249,13 @@ export default {
       this.brooklyn = false;
       this.$refs.menuBrooklyn.leave();
       this.$refs.imgBrooklyn.initAnim(0);
+      this.$refs.imgLes.initAnim(0);
     },
 
     closeLes() {
       this.les = false;
       this.$refs.menuLes.leave();
+      this.$refs.imgBrooklyn.initAnim(0);
       this.$refs.imgLes.initAnim(0);
     },
 
@@ -301,15 +303,17 @@ export default {
   .locations__sites-brooklyn {
     grid-area: content-1;
     place-self: center;
-    width: 550px;
-    height: 550px;
+    width: 28vw;
+    height: 28vw;
+    // background-color: red;
   }
 
   .locations__sites-brooklyn-menu {
     grid-area: content-1;
     place-self: center;
-    width: 550px;
-    height: 550px;
+    width: 28vw;
+    height: 28vw;
+    // background-color: rgb(99, 0, 0);
   }
 
   .locations__sites-brooklyn-content {
@@ -317,7 +321,7 @@ export default {
     place-self: center;
     width: 100%;
     height: 100%;
-
+    z-index: 99;
     display: grid;
 
     .locations__sites-brooklyn-exit {
@@ -336,15 +340,17 @@ export default {
   .locations__sites-les {
     grid-area: content-2;
     place-self: center;
-    width: 550px;
-    height: 550px;
+    width: 28vw;
+    height: 28vw;
+    // background-color: green;
   }
 
   .locations__sites-les-menu {
     grid-area: content-2;
     place-self: center;
-    width: 550px;
-    height: 550px;
+    width: 28vw;
+    height: 28vw;
+    // background-color: rgb(1, 43, 1);
   }
 
   .locations__sites-les-content {
@@ -352,7 +358,7 @@ export default {
     place-self: center;
     width: 100%;
     height: 100%;
-
+    z-index: 99;
     display: grid;
 
     .locations__sites-les-exit {
