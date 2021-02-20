@@ -37,6 +37,7 @@
         </div>
         <div class="locations__sites-les-paragraph">
           <Paragraph
+            ref="lesParagraph"
             :title="hoodLes ? infoHoodLes.title : infoStudioLes.title"
             :subtitle="infoStudioLes.subtitle"
             :subtitle2="infoStudioLes.subtitle2"
@@ -46,6 +47,7 @@
         </div>
         <div class="locations__sites-les-button">
           <Button
+            ref="lesButton"
             :mountedAnim="true"
             :mountedDelay="2"
             :text="'Book Now'"
@@ -82,6 +84,7 @@
         </div>
         <div class="locations__sites-brooklyn-paragraph">
           <Paragraph
+            ref="brooklynParagraph"
             :title="
               hoodBrooklyn ? infoHoodBrooklyn.title : infoStudioBrooklyn.title
             "
@@ -93,6 +96,7 @@
         </div>
         <div class="locations__sites-brooklyn-button">
           <Button
+            ref="brooklynButton"
             :mountedAnim="true"
             :mountedDelay="2"
             :text="'Book Now'"
@@ -206,7 +210,7 @@ export default {
             that.loading.x = 0;
             that.$refs.imgLes.leave();
             that.$refs.imgBrooklyn.leave();
-            that.$refs.menuBrooklyn.initAnim(0);
+            that.$refs.menuBrooklyn.initAnim(0.2);
             setTimeout(() => {
               that.brooklyn = true;
             }, 1000);
@@ -221,7 +225,7 @@ export default {
             that.loading2.x = 0;
             that.$refs.imgLes.leave();
             that.$refs.imgBrooklyn.leave();
-            that.$refs.menuLes.initAnim(0);
+            that.$refs.menuLes.initAnim(0.2);
             setTimeout(() => {
               that.les = true;
             }, 1000);
@@ -246,17 +250,27 @@ export default {
       }
     },
     closeBrooklyn() {
-      this.brooklyn = false;
-      this.$refs.menuBrooklyn.leave();
-      this.$refs.imgBrooklyn.initAnim(0);
-      this.$refs.imgLes.initAnim(0);
+      this.$refs.brooklynClose.leave();
+      this.$refs.brooklynParagraph.leave();
+      this.$refs.brooklynButton.leave();
+      this.$refs.imgBrooklyn.initAnim(1.5);
+      this.$refs.imgLes.initAnim(1.5);
+      setTimeout(() => {
+        this.$refs.menuBrooklyn.leave();
+        this.brooklyn = false;
+      }, 1300);
     },
 
     closeLes() {
-      this.les = false;
-      this.$refs.menuLes.leave();
-      this.$refs.imgBrooklyn.initAnim(0);
-      this.$refs.imgLes.initAnim(0);
+      this.$refs.lesClose.leave();
+      this.$refs.lesParagraph.leave();
+      this.$refs.lesButton.leave();
+      this.$refs.imgBrooklyn.initAnim(1.5);
+      this.$refs.imgLes.initAnim(1.5);
+      setTimeout(() => {
+        this.$refs.menuLes.leave();
+        this.les = false;
+      }, 1300);
     },
 
     /**
@@ -265,14 +279,24 @@ export default {
      * @param e mouse movement event
      */
     handleScroll(e) {
-      window.removeEventListener("wheel", this.handleScroll);
-      if (e.deltaY < 0) {
+      if (e.deltaY < 0 && !this.brooklyn && !this.les) {
+        window.removeEventListener("wheel", this.handleScroll);
         this.$router.push({ path: "/studio" });
       }
     },
 
-    leave(done) {
-      console.log(done);
+    leave(el, done) {
+      this.$refs.imgBrooklyn.leave();
+      this.$refs.imgLes.leave();
+      gsap.to(this.line, {
+        duration: 0.5,
+        height: "0vh",
+      });
+      gsap.to(el, {
+        duration: 1.5,
+        y: 0,
+        onComplete: done,
+      });
     },
   },
 };
@@ -325,15 +349,19 @@ export default {
     display: grid;
 
     .locations__sites-brooklyn-exit {
-      place-self: start end;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      background: $light;
+      @include transform(translate(-50%, -50%));
     }
 
     .locations__sites-brooklyn-paragraph {
-      place-self: center;
+      place-self: end center;
     }
 
     .locations__sites-brooklyn-button {
-      place-self: start center;
+      place-self: center;
     }
   }
 
@@ -362,15 +390,19 @@ export default {
     display: grid;
 
     .locations__sites-les-exit {
-      place-self: start start;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      background: $light;
+      @include transform(translate(-50%, -50%));
     }
 
     .locations__sites-les-paragraph {
-      place-self: center;
+      place-self: end center;
     }
 
     .locations__sites-les-button {
-      place-self: start center;
+      place-self: center;
     }
   }
 }
