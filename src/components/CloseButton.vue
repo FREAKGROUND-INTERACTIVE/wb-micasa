@@ -37,11 +37,17 @@ export default {
   },
   methods: {
     initAnim(delay) {
+      gsap.to(this.$el, {
+        duration: 1,
+        height: "35px",
+        margin: "1rem",
+        delay: delay,
+      });
       this.lines.forEach((element) => {
         gsap.to(element, {
           duration: 1,
           width: "100%",
-          delay: delay,
+          delay: delay + 1,
         });
       });
     },
@@ -55,8 +61,14 @@ export default {
         gsap.to(element, {
           duration: 0.5,
           width: "0%",
-          onComplete: done,
         });
+      });
+      gsap.to(this.$el, {
+        duration: 0.5,
+        height: "0",
+        margin: "0",
+        delay: 0.5,
+        onComplete: done,
       });
     },
   },
@@ -68,9 +80,11 @@ export default {
 
 .close-button {
   width: 35px;
-  height: 35px;
+  height: 0px;
+  margin: 0;
   cursor: pointer;
   position: relative;
+  // background-color: red;
 
   @include transform(rotate(0deg));
   @include transition(all 0.5s);
