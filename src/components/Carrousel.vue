@@ -4,23 +4,20 @@
       <splide :options="options">
         <splide-slide>
           <img
+            class="carrousel__img"
             src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
-            width="550"
-            height="550"
           />
         </splide-slide>
         <splide-slide>
           <img
+            class="carrousel__img"
             src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
-            width="550"
-            height="550"
           />
         </splide-slide>
         <splide-slide>
           <img
+            class="carrousel__img"
             src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
-            width="550"
-            height="550"
           />
         </splide-slide>
       </splide>
@@ -53,7 +50,7 @@ export default {
       container: null,
       options: {
         rewind: true,
-        width: 550, //! Definir el tamaño respectivo de la imagen
+        width: (window.innerWidth * 28) / 100, //! Definir el tamaño respectivo de la imagen
         perPage: 1,
         speed: 1000,
         drag: true,
@@ -74,9 +71,9 @@ export default {
      */
     initAnim(delay) {
       gsap.to(this.$el, {
-          duration: 1,
-          height: '550px',
-          delay: delay
+        duration: 1,
+        height: (window.innerWidth * 28) / 100,
+        delay: delay,
       });
     },
 
@@ -87,9 +84,9 @@ export default {
      */
     leave(done) {
       gsap.to(this.$el, {
-          duration: 1,
-          height: '0px',
-          onComplete: done,
+        duration: 1,
+        height: "0px",
+        onComplete: done,
       });
     },
   },
@@ -98,8 +95,12 @@ export default {
 
 <style lang="scss" scoped>
 .carrousel {
-  width: 550px;
+  width: 28vw;
   height: 0;
   overflow: hidden;
+  .carrousel__img {
+    width: 28vw;
+    height: 28vw;
+  }
 }
 </style>
