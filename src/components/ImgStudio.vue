@@ -12,8 +12,8 @@
           @error="imgDontLoaded"
         />
         <div class="img-view__title" :class="align">
-          Mi<br />
-          Casa<br />
+          <!-- Mi<br />
+          Casa<br /> -->
           {{ align == "left" ? "Brooklyn" : "LES" }}
         </div>
       </div>
@@ -40,11 +40,10 @@ export default {
       type: Number,
       default: 0,
     },
-    img: String,
+    imgUrl: String,
   },
   watch: {
     loading: function (val) {
-      // console.log("loading cambiando");
       this.$el.querySelector(".img-view__load").style.width = val + "%";
     },
   },
@@ -52,7 +51,7 @@ export default {
     return {
       imgContainer: null,
       height: window.innerHeight,
-      imgBg: this.img
+      imgBg: this.imgUrl,
     };
   },
   mounted() {
@@ -68,47 +67,25 @@ export default {
     window.removeEventListener("mousemove", this.mouseMovement);
   },
   methods: {
-    mouseMovement(e) {
-      let OldX = window.innerWidth;
-      let NewX = 1 - -1;
-      let posX = ((e.clientX - 0) * NewX) / OldX + -1;
-      // let posX = e.clientX / window.innerWidth;
-      let OldY = window.innerHeight;
-      let NewY = 1 - -1;
-      let posY = ((e.clientY - 0) * NewY) / OldY + -1;
-      // let posY = e.clientY / window.innerHeight;
-      const mFactor = 50;
-
-      gsap.to(this.img, {
-        duration: 1,
-        x: this.$el.style.left - posX * mFactor,
-        y: this.$el.style.top - posY * mFactor,
-        ease: "power2.out",
-      });
-    },
     imgLoaded() {
-      // this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
     imgDontLoaded() {
-      // this.initAnim(this.mountedDelay);
       this.$emit("imgLoaded");
     },
     initAnim(delay) {
-      // window.addEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 1,
-        height: "550px",
+        height: "28vw",
         y: 0,
         delay: delay,
       });
     },
     leave(done) {
-      window.removeEventListener("mousemove", this.mouseMovement);
       gsap.to(this.imgContainer, {
         duration: 1,
         height: 0,
-        y: 550,
+        y: (window.innerWidth * 28) / 100,
         onComplete: function () {
           done;
         },
@@ -133,20 +110,23 @@ export default {
 
   .img-view__img-container {
     position: relative;
-    width: 550px;
-    height: 0;
+    width: 28vw;
+    height: 0vw;
     overflow: hidden;
+
     .img-view__img {
       position: absolute;
       top: 50%;
       left: 50%;
-      @include transform(translate(-50%, -50%) scale(1.3));
+      width: 28vw;
+      height: 28vw;
+      @include transform(translate(-50%, -50%));
     }
 
     .img-view__title {
       position: absolute;
 
-      font-size: 6rem;
+      font-size: 5vw;
       line-height: 0.8;
       color: $light;
       font-weight: 700;
@@ -168,7 +148,7 @@ export default {
   .img-view__load {
     width: 0;
     height: 10px;
-    background-color: $red;
+    background-color: $cyan;
   }
 }
 </style>
