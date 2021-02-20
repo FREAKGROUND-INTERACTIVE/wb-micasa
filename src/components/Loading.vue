@@ -1,21 +1,25 @@
 <template>
-    <div class="loading">
-      <button @click="goToWeb">Continuar</button>
-    </div>
+  <div class="loading">
+    <button @click="goToWeb">Continuar</button>
+  </div>
 </template>
 
 <script>
 import { gsap } from "gsap";
+import * as Tone from "tone";
+
 export default {
   methods: {
-    goToWeb() {
+    async goToWeb() {
+      await Tone.start();
+      console.log("audio is ready");
       this.$emit("init");
       gsap.to(this.$el, {
         duration: 1,
-        autoAlpha: 0
+        autoAlpha: 0,
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
