@@ -74,8 +74,8 @@ body {
   grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 1fr [col4] 1fr [col5] 5% [colEnd];
   grid-template-rows: [rowFirst] 5% [row2] 5% [row3] 40% [row4] 40% [row5] 5% [row6] 5% [rowEnd];
   grid-template-areas:
-    ". . . . ."
-    ". . line button ."
+    ". . line . ."
+    ". . . button ."
     ". info social . ."
     ". info links links ."
     ". . . . ."
