@@ -131,10 +131,9 @@ export default {
     flex-flow: column nowrap;
     justify-content: center;
     align-content: center;
-    // margin-bottom: 7rem;
 
     .agency-clients__paragraph {
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
     .agency-clients__logos {
