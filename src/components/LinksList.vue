@@ -24,8 +24,8 @@
       ></router-link>
       <router-link
         class="link__item"
-        to="/powered-by-micasa"
-        @mouseover.native="setTitle('Powered', false)"
+        :to="links[2].toString()"
+        @mouseover.native="setTitle(links[2].toString(), false)"
         @mouseleave.native="setTitle('micasa', true)"
       ></router-link>
       <!-- <template v-for="item in links">
