@@ -99,6 +99,10 @@ export default {
     grid-area: content-2;
     place-self: end center;
     margin-bottom: 4rem;
+
+    @include breakpoint(lg) {
+      margin-bottom: 1rem;
+    }
   }
 
   .agency-altering__link {
