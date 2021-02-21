@@ -28,3 +28,53 @@
     -ms-user-select: $property;
     user-select: $property;
 }
+
+
+@mixin breakpoint($class) {
+
+    @if $class==xs {
+        @media (max-width: 475px) {
+            @content;
+        }
+    }
+
+    @if $class==h-xs {
+        @media (max-height: 475px) {
+            @content;
+        }
+    }
+
+    @if $class==s {
+        @media (max-width: 576px) {
+            @content;
+        }
+    }
+
+    @if $class==h-s {
+        @media (max-height: 576px) {
+            @content;
+        }
+    }
+
+    @if $class==sm {
+        @media (max-width: 768px) {
+            @content;
+        }
+    }
+
+    @if $class==m {
+        @media (max-width: 1024px) {
+            @content;
+        }
+    }
+
+    @else if $class==lg {
+        @media (max-width: 1366px) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+}
