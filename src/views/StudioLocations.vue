@@ -33,6 +33,7 @@
             ref="lesClose"
             :mountedAnim="true"
             :mountedDelay="3"
+            :color="'cyan'"
           ></Close-button>
         </div>
         <div class="locations__sites-les-paragraph">
@@ -43,6 +44,7 @@
             :subtitle="infoStudioLes.subtitle"
             :subtitle2="infoStudioLes.subtitle2"
             :text="infoStudioLes.text"
+            :color="'cyan'"
             :mountedAnim="true"
           ></Paragraph>
         </div>
@@ -52,6 +54,7 @@
             :mountedAnim="true"
             :mountedDelay="2"
             :text="'Book Now'"
+            :color="'cyan'"
           ></Button>
         </div>
       </div>
@@ -73,6 +76,7 @@
           ref="menuLes"
           :textButton="hoodLes ? 'Studio' : 'Neighborhood'"
           @clickButton="hoodLes = !hoodLes"
+          :color="'cyan'"
         ></Menu-studio>
       </div>
       <div class="locations__sites-brooklyn-content" v-if="brooklyn">
@@ -81,6 +85,7 @@
             ref="brooklynClose"
             :mountedAnim="true"
             :mountedDelay="3"
+            :color="'cyan'"
           ></Close-button>
         </div>
         <div class="locations__sites-brooklyn-paragraph">
@@ -93,6 +98,7 @@
             :subtitle2="infoStudioBrooklyn.subtitle2"
             :text="infoStudioBrooklyn.text"
             :mountedAnim="true"
+            :color="'cyan'"
           ></Paragraph>
         </div>
         <div class="locations__sites-brooklyn-button">
@@ -101,6 +107,7 @@
             :mountedAnim="true"
             :mountedDelay="2"
             :text="'Book Now'"
+            :color="'cyan'"
           ></Button>
         </div>
       </div>

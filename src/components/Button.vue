@@ -11,7 +11,7 @@
             {{ letter }}
           </div>
         </template>
-        <div class="button__title-letter x">+</div>
+        <div class="button__title-letter x" :class="{ cyan: color == 'cyan' }">+</div>
       </div>
       <div class="button__line-container">
         <div class="button__line-bg"></div>
@@ -27,6 +27,7 @@ import { gsap } from "gsap";
 export default {
   props: {
     text: String,
+    color: String,
     mountedAnim: {
       type: Boolean,
       default: false,
@@ -185,6 +186,10 @@ export default {
       .button__title-letter {
         &.x {
           color: $red;
+
+          &.cyan {
+            color: $cyan;
+          }
         }
       }
     }
