@@ -2,10 +2,10 @@
   <transition @leave="leave" :css="false">
     <div class="services">
       <div class="services__title">
-        <h2>Our Services</h2>
+        <h3>Our Services</h3>
       </div>
       <div class="services__list">
-        <span v-for="service in list" :key="service.id">{{ service }}</span>
+        <div v-for="service in list" :key="service.id" v-html="service"></div>
       </div>
     </div>
   </transition>
@@ -30,11 +30,36 @@ export default {
     return {
       listServices: null,
       titleServices: null,
+      random: [
+        16,
+        11,
+        20,
+        9,
+        14,
+        4,
+        2,
+        13,
+        7,
+        1,
+        18,
+        5,
+        11,
+        0,
+        8,
+        3,
+        17,
+        6,
+        10,
+        19,
+        12,
+        15,
+        21,
+      ],
     };
   },
   mounted() {
-    this.listServices = this.$el.querySelector(".services__list");
-    this.titleServices = this.$el.querySelector(".services__title");
+    this.listServices = this.$el.querySelectorAll(".services__list > div");
+    this.titleServices = this.$el.querySelector(".services__title > h3");
 
     //* initAnim function in mounted
     if (this.mountedAnim) {
@@ -43,6 +68,7 @@ export default {
   },
   methods: {
     initAnim(delay) {
+      let that = this;
       //* duration time for animation elements
       let time = 1;
 
@@ -52,25 +78,21 @@ export default {
         delay: delay,
       });
 
-      initTl.to(
-        this.titleServices,
-        {
-          duration: time,
-          opacity: 1,
-          ease: "power1.inOut",
-        },
-        "<0.2"
-      );
-
-      initTl.to(
-        this.listServices,
-        {
-          duration: time,
-          opacity: 1,
-          ease: "power1.inOut",
-        },
-        "<0.2"
-      );
+      initTl.to(this.titleServices, {
+        duration: time,
+        y: "0%",
+      });
+      for (let index = 0; index < this.random.length; index++) {
+        initTl.to(
+          this.listServices[that.random[index]],
+          {
+            duration: time,
+            opacity: 1,
+            ease: "power1.inOut",
+          },
+          "<0.2"
+        );
+      }
 
       initTl.play();
     },
@@ -79,38 +101,39 @@ export default {
      *? Function for leave behavior
      * @param done it return the leave behavior end
      */
-    leave(done, delay) {
+    leave(done) {
+      let that = this;
       //* duration time for animation elements
       let time = 1;
 
       //* create timeLine
       let initTl = gsap.timeline({
         paused: "true",
-        delay: delay,
       });
 
-      initTl.to(
-        this.titleServices,
-        {
-          duration: time,
-          opacity: 0,
-          ease: "power1.inOut",
-        },
-        "<0.2"
-      );
+      initTl.to(this.titleServices, {
+        duration: time,
+        y: "100%",
+      });
 
-      initTl.to(
-        this.listServices,
-        {
-          duration: time,
-          opacity: 0,
-          ease: "power1.inOut",
-          onComplete: done,
-        },
-        "<0.2"
-      );
+      for (let index = 0; index < this.random.length; index++) {
+        initTl.to(
+          this.listServices[that.random[index]],
+          {
+            duration: time/30,
+            opacity: 0,
+            ease: "power1.inOut",
+          },
+          "<0.05"
+        );
+      }
 
       initTl.play();
+
+      gsap.to(this.$el, {
+        duration: 1.5,
+        onComplete: done
+      });
     },
   },
 };
@@ -121,35 +144,42 @@ export default {
 
 .services {
   .services__title {
-    opacity: 0;
     margin-bottom: 1rem;
-    h2 {
+    overflow: hidden;
+    h3 {
       font-family: $lora;
       font-size: 24px;
       font-weight: 400;
       color: $red;
       text-align: center;
+      @include transform(translateY(100%));
     }
-
   }
 
   .services__list {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    width: 30vw;
-    opacity: 0;
+    width: 615px;
+    cursor: default;
 
-    span {
-      &:after {
-        content: "\2022";
-        margin: 0 0.4rem;
-      }
+    div {
+      opacity: 0;
+      margin: 0 0.2rem;
+      // &:after {
+      //   content: "\2022";
+      //   margin: 0 0.4rem;
+      // }
 
-      &:last-child {
-        &:after {
-          content: "";
-        }
+      // &:last-child {
+      //   &:after {
+      //     content: "";
+      //   }
+      // }
+
+      &:hover {
+        color: $red;
+        font-weight: 700;
       }
     }
   }
