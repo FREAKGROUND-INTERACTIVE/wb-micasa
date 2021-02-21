@@ -12,8 +12,8 @@
           @error="imgDontLoaded"
         />
         <div class="img-view__title" :class="align">
-          <!-- Mi<br />
-          Casa<br /> -->
+          Mi<br />
+          Casa<br />
           {{ align == "left" ? "Brooklyn" : "LES" }}
         </div>
       </div>
