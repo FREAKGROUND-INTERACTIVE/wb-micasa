@@ -12,7 +12,7 @@
         <div class="paragraph__quote">{{ quote }}</div>
       </div>
       <div class="paragraph__title-container">
-        <h2 class="paragraph__title">{{ titleData }}</h2>
+        <h2 class="paragraph__title" :class="{cyan: color == 'cyan', green: color == 'green'}">{{ titleData }}</h2>
       </div>
       <div class="paragraph__subtitle-container" v-if="subtitle">
         <h3 class="paragraph__subtitle">{{ subtitle }}</h3>
@@ -40,6 +40,7 @@ export default {
   props: {
     quote: String,
     title: String,
+    color: String,
     subtitle: String,
     subtitle2: String,
     text: String,
@@ -256,6 +257,13 @@ export default {
       font-weight: 400;
       color: $red;
       @include transform(translateY(100%));
+
+      &.cyan {
+        color: $cyan;
+      }
+      &.green {
+        color: $green;
+      }
     }
   }
 
