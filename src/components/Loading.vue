@@ -1,14 +1,33 @@
 <template>
   <div class="loading">
-    <button @click="goToWeb">Continuar</button>
+    <div class="loading__gif">
+      <img
+        src="https://res.cloudinary.com/nancloud/image/upload/v1613945675/mi-casa/images/loading_dg7yne.gif"
+        width="150"
+        height="150"
+        alt="MI-CASA Loading"
+      />
+    </div>
+    <div class="loading__content">
+      <div class="loading__button" @click="goToWeb">
+        <Button ref="Button" :text="'Play'" :mountedAnim="true"></Button>
+      </div>
+      <div class="loading__text">
+        Loading
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { gsap } from "gsap";
 import * as Tone from "tone";
+import Button from "@/components/Button";
 
 export default {
+  components: {
+    Button,
+  },
   methods: {
     async goToWeb() {
       await Tone.start();
@@ -31,8 +50,25 @@ export default {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: red;
+  background-color: $light;
   z-index: 9999;
   opacity: 1;
+
+  .loading__gif {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  }
+
+  .loading__content {
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    @include transform(translateX(-50%));
+    .loading__button {
+      width: fit-content;
+    }
+  }
 }
 </style>
