@@ -31,38 +31,28 @@
           <Services
             ref="services"
             :list="[
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
-              'Service 1',
-              'Service 2',
-              'Service 3',
-              'Service 4',
+              'Research <span>•</span>',
+              'Trend forecasting <span>•</span>',
+              'Live Streaming <span>•</span>',
+              'PodCast Development',
+              'Quantitative Surveys <span>•</span>',
+              'Focus Groups <span>•</span>',
+              'Product Innovation <span>•</span>',
+              'Brand Identity',
+              'Marketing Advertising <span>•</span>',
+              'Campaign Development <span>•</span>',
+              'Optimization',
+              'Data Analysis <span>•</span>',
+              'Websites <span>•</span>',
+              'Content Strategy & Creation <span>•</span>',
+              'Paid Social',
+              'Community Management <span>•</span>',
+              'Influencer Engagement <span>•</span>',
+              'Event Design',
+              'Pop-Ups <span>•</span>',
+              'Space Design <span>•</span>',
+              'Tradeshow Support <span>•</span>',
+              'Whatever It Takes',
             ]"
           ></Services>
         </div>
@@ -121,11 +111,10 @@ export default {
         opacity: 1,
       });
       this.$refs.closeButton.initAnim(0.7);
-      this.$refs.services.initAnim(0.7);
+      this.$refs.services.initAnim(1.7);
     },
     closeServices() {
       this.$refs.services.leave();
-      this.$refs.closeButton.leave();
       // this.$refs.Button.leave();
       gsap.to(this.contentServices, {
         duration: 0.5,
@@ -134,9 +123,13 @@ export default {
       });
 
       setTimeout(() => {
+        this.$refs.closeButton.leave();
+      }, 1500);
+
+      setTimeout(() => {
         this.showServices = false;
         // this.$refs.Button.initAnim();
-      }, 2000);
+      }, 2500);
     },
     /**
      ** SCROLL EVENT FUNCTION
