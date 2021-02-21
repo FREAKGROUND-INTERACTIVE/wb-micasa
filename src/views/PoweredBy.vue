@@ -5,8 +5,9 @@
         <div class="powered-by__paragraph">
           <Paragraph
             ref="paragraph"
-            :class="'center'"
+            :align="'center'"
             :title="'Powered by Micasa'"
+            :color="'green'"
             :text="''"
           ></Paragraph>
         </div>
