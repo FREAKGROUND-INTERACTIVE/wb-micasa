@@ -5,7 +5,7 @@
         <Carrousel ref="carrousel"></Carrousel>
       </div>
       <div class="menu-studio__button" @click="clickButton">
-        <Button ref="button" :text="textButtonData"></Button>
+        <Button ref="button" :text="textButtonData" :color="'cyan'"></Button>
       </div>
     </div>
   </transition>
@@ -33,9 +33,9 @@ export default {
     },
   },
   watch: {
-      textButton: function (val) {
-          this.textButtonData = val;
-      }
+    textButton: function (val) {
+      this.textButtonData = val;
+    },
   },
   data() {
     return {
