@@ -1,8 +1,8 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="close-button">
-      <div></div>
-      <div></div>
+      <div :class="{ cyan: color == 'cyan' }"></div>
+      <div :class="{ cyan: color == 'cyan' }"></div>
     </div>
   </transition>
 </template>
@@ -12,6 +12,7 @@ import { gsap } from "gsap";
 
 export default {
   props: {
+   color: String,
     mountedAnim: {
       type: Boolean,
       default: false,
@@ -113,6 +114,10 @@ export default {
 
     div {
       background-color: $red;
+
+      &.cyan {
+        background-color: $cyan;
+      }
     }
   }
 }
