@@ -91,8 +91,8 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: $light;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     margin: 0.7rem;
     opacity: 0;
     cursor: pointer;

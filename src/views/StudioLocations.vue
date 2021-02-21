@@ -37,6 +37,7 @@
         </div>
         <div class="locations__sites-les-paragraph">
           <Paragraph
+            :align="'right'"
             ref="lesParagraph"
             :title="hoodLes ? infoHoodLes.title : infoStudioLes.title"
             :subtitle="infoStudioLes.subtitle"
