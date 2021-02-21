@@ -1,5 +1,5 @@
 <template>
-  <transition @leave="leave" :css="false">
+  <transition name="found" @leave="leave" :css="false">
     <div class="found">
       <div class="found__img">
         <img
@@ -77,6 +77,7 @@ export default {
     },
 
     leave(el, done) {
+      console.log("leave");
       gsap.to(this.img, {
         duration: 0.5,
         opacity: 0,
@@ -95,9 +96,7 @@ export default {
       gsap.to(el, {
         duration: 0.5,
         y: 0,
-        onComplete: function () {
-          done;
-        },
+        onComplete: done
       });
     },
   },
