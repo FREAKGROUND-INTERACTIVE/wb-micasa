@@ -1,6 +1,21 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-why">
+      <div class="agency-why__painter">
+        <Painter3d></Painter3d>
+      </div>
+      <div class="agency-why__title">
+        <div class="agency-why__title-container">
+          <div class="agency-why__color-picker"></div>
+          <div
+            v-for="letter in 'WHY US?'"
+            :key="letter.id"
+            :class="{ space: letter == ' ' }"
+          >
+            {{ letter }}
+          </div>
+        </div>
+      </div>
       <div class="agency-why__paragraph">
         <Paragraph
           ref="paragraph"
@@ -9,10 +24,7 @@
         ></Paragraph>
       </div>
       <div class="agency-why__link">
-        <Link-button
-          ref="LinkButton"
-          :link="'/clients-agency'"
-        ></Link-button>
+        <Link-button ref="LinkButton" :link="'/clients-agency'"></Link-button>
       </div>
     </div>
   </transition>
@@ -23,11 +35,18 @@ import { mutations } from "./../state";
 import { gsap } from "gsap";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
+import Painter3d from "@/components/Painter3d";
 
 export default {
   components: {
     Paragraph,
     LinkButton,
+    Painter3d,
+  },
+  data() {
+    return {
+      colors: [],
+    };
   },
   mounted() {
     mutations.setTitle(" ");
@@ -90,10 +109,44 @@ export default {
 .agency-why {
   @extend .layout;
 
+  .agency-why__title {
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: fit-content;
+    white-space: nowrap;
+    @include transform(translate(-50%, -50%));
+
+    div {
+      display: inline-block;
+      font-family: $oswald;
+      font-weight: 900;
+      font-size: 16vw;
+      line-height: 0.95;
+      color: $red;
+
+      &.space {
+        margin-left: 3vw;
+      }
+    }
+  }
+
+  .agency-why__painter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
   .agency-why__paragraph {
     grid-area: content-2;
     place-self: end center;
     margin-bottom: 4rem;
+    @include breakpoint(lg) {
+      margin-bottom: 1rem;
+    }
   }
 
   .agency-why__link {
