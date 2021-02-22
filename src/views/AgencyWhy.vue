@@ -23,6 +23,13 @@
           :text="'At the heart of our process is financial strategy. With a\ndeep understanding of our Gen Z consumer, we know how\nour message needs to resonate to create real change\nwithin a budget.'"
         ></Paragraph>
       </div>
+      <div class="agency-why__brandheader">
+        <Brand-header
+          ref="BrandHeader"
+          :link="'/'"
+          :mountedAnim="true"
+        ></Brand-header>
+      </div>
       <div class="agency-why__link">
         <Link-button ref="LinkButton" :link="'/clients-agency'"></Link-button>
       </div>
@@ -36,12 +43,14 @@ import { gsap } from "gsap";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 import Painter3d from "@/components/Painter3d";
+import BrandHeader from "@/components/BrandHeader";
 
 export default {
   components: {
     Paragraph,
     LinkButton,
     Painter3d,
+    BrandHeader
   },
   data() {
     return {
@@ -138,6 +147,10 @@ export default {
     left: 0;
     width: 100vw;
     height: 100vh;
+  }
+
+  .agency-why__brandheader {
+     grid-area: logo;
   }
 
   .agency-why__paragraph {
