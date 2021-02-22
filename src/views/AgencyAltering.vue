@@ -11,6 +11,13 @@
           :text="'We make bold things with a purpose to create real change\nfor the internet and beyond that. In this technology driven\nworld that seems to move faster than the speed of light,\nonly the right narrative to the right people at the right time\nwill pierce through.'"
         ></Paragraph>
       </div>
+      <div class="agency-altering__brandheader">
+        <Brand-header
+          ref="BrandHeader"
+          :link="'/'"
+          :mountedAnim="true"
+        ></Brand-header>
+      </div>
       <div class="agency-altering__link">
         <Link-button ref="LinkButton" :link="'/services-agency'"></Link-button>
       </div>
@@ -25,12 +32,14 @@ import { mutations } from "./../state";
 import Altering from '@/components/Altering';
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
+import BrandHeader from "@/components/BrandHeader";
 
 export default {
   components: {
     Altering,
     Paragraph,
     LinkButton,
+    BrandHeader
   },
   mounted() {
     mutations.setTitle(" ");
@@ -103,6 +112,10 @@ export default {
     @include breakpoint(lg) {
       margin-bottom: 1rem;
     }
+  }
+
+  .agency-altering__brandheader {
+    grid-area: logo;
   }
 
   .agency-altering__link {
