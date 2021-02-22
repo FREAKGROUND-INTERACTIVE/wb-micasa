@@ -21,7 +21,7 @@
             <Brand-header
               :mountedAnim="true"
               :mountedDelay="2.5"
-              :link="'/'"
+              :link="linkBrand"
             ></Brand-header>
           </div>
           <div class="menu__info-dev">
@@ -129,6 +129,7 @@ export default {
       content: null,
       button: null,
       lines: null,
+      linkBrand: "/",
       links: ["www.instagram.com"],
     };
   },
