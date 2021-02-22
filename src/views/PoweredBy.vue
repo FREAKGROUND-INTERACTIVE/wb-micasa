@@ -15,6 +15,13 @@
           <Powered-list ref="poweredList" :list="poweredList"></Powered-list>
         </div>
       </div>
+      <div class="powered-by__brandheader">
+        <Brand-header
+          ref="BrandHeader"
+          :link="'/'"
+          :mountedAnim="true"
+        ></Brand-header>
+      </div>
     </div>
   </transition>
 </template>
@@ -24,11 +31,13 @@ import { mutations } from "./../state";
 import { gsap } from "gsap";
 import Paragraph from "@/components/Paragraph";
 import PoweredList from "@/components/PoweredList";
+import BrandHeader from "@/components/BrandHeader";
 
 export default {
   components: {
     Paragraph,
     PoweredList,
+    BrandHeader
   },
   data() {
     return {
@@ -40,7 +49,7 @@ export default {
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg"
+        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
       ],
     };
   },
@@ -118,6 +127,10 @@ export default {
     .powered-by__logos {
       place-self: center;
     }
+  }
+
+  .powered-by__brandheader {
+    grid-area: logo;
   }
 
   .powered-by__link {
