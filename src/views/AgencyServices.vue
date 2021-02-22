@@ -20,6 +20,9 @@
       <div class="agency-services__button" @click="openServices">
         <Button ref="Button" :text="'See our Services'"></Button>
       </div>
+      <div class="agency__slider">
+        <Slider3d></Slider3d>
+      </div>
       <div class="agency-services__link">
         <Link-button ref="LinkButton" :link="'/why-agency'"></Link-button>
       </div>
@@ -69,6 +72,7 @@ import Button from "@/components/Button";
 import CloseButton from "@/components/CloseButton";
 import Services from "@/components/Services";
 import LinkButton from "@/components/LinkButton";
+import Slider3d from "@/components/Slider3d";
 
 export default {
   components: {
@@ -76,6 +80,7 @@ export default {
     CloseButton,
     Services,
     LinkButton,
+    Slider3d,
   },
   data() {
     return {
