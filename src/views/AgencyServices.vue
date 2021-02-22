@@ -23,6 +23,13 @@
       <div class="agency__slider">
         <Slider3d></Slider3d>
       </div>
+      <div class="agency-services__brandheader">
+        <Brand-header
+          ref="BrandHeader"
+          :link="'/'"
+          :mountedAnim="true"
+        ></Brand-header>
+      </div>
       <div class="agency-services__link">
         <Link-button ref="LinkButton" :link="'/why-agency'"></Link-button>
       </div>
@@ -73,6 +80,7 @@ import CloseButton from "@/components/CloseButton";
 import Services from "@/components/Services";
 import LinkButton from "@/components/LinkButton";
 import Slider3d from "@/components/Slider3d";
+import BrandHeader from "@/components/BrandHeader";
 
 export default {
   components: {
@@ -81,6 +89,7 @@ export default {
     Services,
     LinkButton,
     Slider3d,
+    BrandHeader
   },
   data() {
     return {
@@ -278,6 +287,10 @@ export default {
         }
       }
     }
+  }
+
+  .agency-services__brandheader {
+     grid-area: logo;
   }
 
   .agency-services__button {
