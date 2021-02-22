@@ -14,6 +14,13 @@
           <Client-list ref="clientList" :list="clientList"></Client-list>
         </div>
       </div>
+      <div class="agency-clients__brandheader">
+        <Brand-header
+          ref="BrandHeader"
+          :link="'/'"
+          :mountedAnim="true"
+        ></Brand-header>
+      </div>
       <div class="agency-clients__link">
         <Link-button ref="LinkButton" :link="'/Studio'"></Link-button>
       </div>
@@ -27,12 +34,14 @@ import { gsap } from "gsap";
 import LinkButton from "@/components/LinkButton";
 import Paragraph from "@/components/Paragraph";
 import ClientList from "@/components/ClientList";
+import BrandHeader from "@/components/BrandHeader";
 
 export default {
   components: {
     LinkButton,
     Paragraph,
     ClientList,
+    BrandHeader,
   },
   data() {
     return {
@@ -139,6 +148,10 @@ export default {
     .agency-clients__logos {
       place-self: center;
     }
+  }
+
+  .agency-clients__brandheader {
+    grid-area: logo;
   }
 
   .agency-clients__link {
