@@ -17,17 +17,70 @@
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
             ></Paragraph>
           </div>
+          <div class="menu__info-logo">
+            <Brand-header
+              :mountedAnim="true"
+              :mountedDelay="2.5"
+              :link="'/'"
+            ></Brand-header>
+          </div>
           <div class="menu__info-dev">
             <Paragraph
               :mountedAnim="true"
               :mountedDelay="3"
               :class="'right'"
-              :text="'All Rights Reserved\nDeveloped by Freakground Interactive\n2021'"
+              :text="'MICASA Studio®\nAll Rights Reserved\n2021'"
             ></Paragraph>
           </div>
         </div>
         <div class="menu__line"></div>
-        <div class="menu__social"></div>
+        <div class="menu__social">
+          <router-link :to="links[0]" class="menu__social-logo"
+            ><img
+              width="30"
+              height="30"
+              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/INSTAGRAM_hq7sc9.svg"
+              alt="instagram"
+            />
+            <p>@micasa.nyc</p>
+          </router-link>
+          <router-link :to="links[0]" class="menu__social-logo"
+            ><img
+              width="30"
+              height="30"
+              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/FACEBOOK_jgq4r8.svg"
+              alt="Facebook"
+            />
+            <p>@micasa.nyc</p></router-link
+          >
+          <router-link :to="links[0]" class="menu__social-logo"
+            ><img
+              width="30"
+              height="30"
+              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/TWITTER_c0x4ge.svg"
+              alt="Twitter"
+            />
+            <p>@micasa.nyc</p></router-link
+          >
+          <router-link :to="links[0]" class="menu__social-logo"
+            ><img
+              width="30"
+              height="30"
+              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/YOUTUBE_gpqdi5.svg"
+              alt="Youtube"
+            />
+            <p>@micasa.nyc</p></router-link
+          >
+          <router-link :to="links[0]" class="menu__social-logo"
+            ><img
+              width="30"
+              height="30"
+              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/LINKED_IN_e1a0zp.svg"
+              alt="LinkedIn"
+            />
+            <p>@micasa.nyc</p></router-link
+          >
+        </div>
         <div class="menu__links">
           <Menu-title :text="'Home'" @click.native="goTo('/')"></Menu-title>
           <Menu-title
@@ -44,7 +97,12 @@
           ></Menu-title>
         </div>
       </div>
-      <div class="menu__button" @click="showMenu" @mouseenter="inHover" @mouseleave="outHover">
+      <div
+        class="menu__button"
+        @click="showMenu"
+        @mouseenter="inHover"
+        @mouseleave="outHover"
+      >
         <div></div>
         <div></div>
       </div>
@@ -53,15 +111,17 @@
 </template>
 
 <script>
-import { mutations } from '@/state';
+import { mutations } from "@/state";
 import gsap from "gsap";
 import Paragraph from "@/components/Paragraph";
 import MenuTitle from "@/components/MenuTitle";
+import BrandHeader from "@/components/BrandHeader";
 
 export default {
   components: {
     Paragraph,
     MenuTitle,
+    BrandHeader,
   },
   data() {
     return {
@@ -69,6 +129,7 @@ export default {
       content: null,
       button: null,
       lines: null,
+      links: ["www.instagram.com"],
     };
   },
   mounted() {
@@ -121,7 +182,7 @@ export default {
     outHover() {
       console.log("outHover");
       mutations.outHover();
-    }
+    },
   },
 };
 </script>
@@ -149,22 +210,50 @@ export default {
       grid-template-columns: auto;
       grid-template-areas:
         "sites"
-        "."
+        "logo"
         "dev";
 
       .menu__info-sites {
         grid-area: sites;
+        display: grid;
+        align-content: space-around;
+      }
+
+      .menu__info-logo {
+        grid-area: logo;
+        display: grid;
+        place-self: start end;
+        margin-top: 1rem;
       }
 
       .menu__info-dev {
         grid-area: dev;
         display: flex;
         place-self: end;
+        margin: 0 0.5rem 1.5rem 0;
       }
     }
 
     .menu__social {
       grid-area: social;
+      display: flex;
+      flex-flow: column nowrap;
+      place-self: start;
+      margin: 2rem 0 0 6rem;
+
+      .menu__social-logo {
+        display: flex;
+        flex-flow: row nowrap;
+        margin: 0.2rem 0 0.2rem;
+
+        p {
+          font-family: $fira;
+          font-size: 16px;
+          font-weight: 300;
+          place-self: center;
+          margin-left: 0.5rem;
+        }
+      }
     }
 
     .menu__links {
