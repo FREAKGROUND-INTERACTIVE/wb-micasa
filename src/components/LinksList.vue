@@ -12,18 +12,21 @@
       </template> -->
       <router-link
         class="link__item"
+        :name="links[0].toString()"
         :to="links[0].toString()"
         @mouseover.native="setTitle(links[0].toString(), false)"
         @mouseleave.native="setTitle('micasa', true)"
       ></router-link>
       <router-link
         class="link__item"
+        :name="links[1].toString()"
         :to="links[1].toString()"
         @mouseover.native="setTitle(links[1].toString(), false)"
         @mouseleave.native="setTitle('micasa', true)"
       ></router-link>
       <router-link
         class="link__item"
+        :name="links[2].toString()"
         :to="links[2].toString()"
         @mouseover.native="setTitle(links[2].toString(), false)"
         @mouseleave.native="setTitle('micasa', true)"

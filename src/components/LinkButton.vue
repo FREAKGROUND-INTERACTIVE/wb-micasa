@@ -4,7 +4,7 @@
       <div class="linkButton__line">
         <div></div>
       </div>
-      <router-link :to="linkUrl">
+      <router-link :to="linkUrl" :name="linkUrl.replace('/', '')">
         <div class="linkButton__text">
           <template v-for="letter in text">
             <div :key="letter" class="linkButton__text-letter">
