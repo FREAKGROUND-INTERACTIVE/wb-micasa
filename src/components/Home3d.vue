@@ -4,7 +4,7 @@
 
 <script>
 import * as THREE from "three";
-import Stats from "three/examples/jsm/libs/stats.module.js";
+// import Stats from "three/examples/jsm/libs/stats.module.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 // import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 import gsap from "gsap";
@@ -33,7 +33,7 @@ export default {
       let container;
       let renderer;
       let transition;
-      let stats;
+      // let stats;
 
       //* THREEJS Mouse variable
       this.mouse = new THREE.Vector2(0, 0);
@@ -62,8 +62,8 @@ export default {
         container.appendChild(renderer.domElement);
 
         //* Init stats
-        stats = new Stats();
-        container.appendChild(stats.dom);
+        // stats = new Stats();
+        // container.appendChild(stats.dom);
 
         //* Init Scenes
         const sceneA = new FXScene(8, 35, 0xdfdfdf, true);
@@ -120,7 +120,7 @@ export default {
       const animate = () => {
         this.animReq = requestAnimationFrame(animate);
         render();
-        stats.update();
+        // stats.update();
       };
 
       /**
