@@ -289,7 +289,7 @@ export default {
     handleScroll(e) {
       if (e.deltaY < 0 && !this.brooklyn && !this.les) {
         window.removeEventListener("wheel", this.handleScroll);
-        this.$router.push({ path: "/studio" });
+        this.$router.push({ path: "/" });
       }
     },
 
