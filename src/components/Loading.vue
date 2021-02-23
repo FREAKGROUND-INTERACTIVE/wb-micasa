@@ -9,11 +9,11 @@
       />
     </div>
     <div class="loading__content">
-      <div class="loading__button" @click="goToWeb">
+      <div class="loading__button" @click="goToWeb" v-if="loadingDone">
         <Button ref="Button" :text="'Play'" :mountedAnim="true"></Button>
       </div>
-      <div class="loading__text">
-        Loading
+      <div class="loading__text" v-if="!loadingDone">
+        Loading {{ Math.floor(loadingCount.x )}}%
       </div>
     </div>
   </div>
@@ -27,6 +27,33 @@ import Button from "@/components/Button";
 export default {
   components: {
     Button,
+  },
+  props: {
+    count: Number,
+    finish: Boolean,
+  },
+  watch: {
+    count: function (val) {
+      let that = this;
+      gsap.to(this.loadingCount, {
+        duration: 1,
+        x: val,
+        onComplete: function() {
+          that.loadingDone = true
+        }
+      });
+      //this.loadingCount = val;
+    },
+    finish: function (val) {
+      // this.loadingDone = val;
+      console.log("finish loading: ", val);
+    },
+  },
+  data() {
+    return {
+      loadingCount: { x: this.count },
+      loadingDone: this.finish,
+    };
   },
   methods: {
     async goToWeb() {

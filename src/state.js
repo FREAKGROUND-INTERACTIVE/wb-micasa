@@ -2,10 +2,11 @@ import Vue from 'vue'
 
 export const state = Vue.observable({ title: '', inHome: false})
 export const mouse = Vue.observable({hover: false})
+export const loading = Vue.observable({count: 0, loaded: false})
 
 export const mutations = {
     setTitle(newVal) {
-        // console.log('Setting "title": ', newVal)
+        console.log('Setting "title": ', newVal);
         state.title = newVal
     },
     
@@ -26,5 +27,12 @@ export const mutations = {
     outHover() {
         mouse.hover = false;
         console.log('Setting "outHover": ', mouse.hover);
+    },
+
+    loadingCharge(value) {
+        if (value >=100) {
+            loading.loaded = true;
+        }
+        loading.count = Math.floor(value);
     }
 }

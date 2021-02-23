@@ -4,13 +4,13 @@
     <View-title :text="title" :home="home"></View-title>
     <Menu></Menu>
 
-    <Loading @init="init"></Loading>
+    <Loading @init="init" :count="loadingCount" :finish="loadingDone"></Loading>
     <!-- <Mouse :inHover="inHover"></Mouse> -->
   </div>
 </template>
 
 <script>
-import { state, mouse, mutations } from "./state";
+import { state, mouse, loading, mutations } from "./state";
 import ViewTitle from "@/components/ViewTitle";
 import Menu from "@/components/Menu";
 import Loading from "@/components/Loading";
@@ -33,6 +33,12 @@ export default {
       // console.log("computed app hover", mouse.hover);
       return mouse.hover;
     },
+    loadingCount() {
+      return loading.count;
+    },
+    loadingDone() {
+      return loading.loaded;
+    }
   },
   data() {
     return {
