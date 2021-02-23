@@ -198,7 +198,7 @@ export default {
             raycaster.setFromCamera(that.mouse, this.camera);
             const intersects = raycaster.intersectObjects(this.mesh.children);
             for (let i = 0; i < intersects.length; i++) {
-              intersects[i].object.material.color.set(0xff0000);
+              intersects[i].object.material.color.set(0xffffff);
             }
           }
 
