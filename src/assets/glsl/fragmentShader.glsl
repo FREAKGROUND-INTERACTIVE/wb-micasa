@@ -115,8 +115,9 @@ void main() {
 	// We readjust the mouse coordinates
 	vec2 mouse = u_mouse * -0.5;
 	
-	vec2 circlePos = st + mouse;
-	float c = circle(circlePos, 0.02, 3.) * 2.5;
+	vec2 circlePos = st + mouse/3.0;
+	float c = circle(circlePos, 0.06, 3.) * 2.5;
+  float c2 = circle(vec2(0.0,0.0)* -0.5 + st, 0.03, 3.) * 2.5;
 
 	float offx = v_uv.x + sin(v_uv.y + u_time * .1);
 	float offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;
@@ -124,11 +125,14 @@ void main() {
 	float n = snoise3(vec3(offx, offy, u_time * .1) * 30.) - 1.;
 
 	float finalMask = smoothstep(0.4, 0.5, n + pow(c, 2.));
+  float staticMask = smoothstep(0.4, 0.5, n + pow(c2, 2.));
+
+  float mask = finalMask + staticMask;
 
 	vec4 image = texture2D(u_image, v_uv);
 	vec4 hover = texture2D(u_imagehover, v_uv);
 
-	vec4 finalImage = mix(image, hover, finalMask);
+	vec4 finalImage = mix(image, hover, mask);
 
 	gl_FragColor = finalImage;
 }

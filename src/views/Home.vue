@@ -69,7 +69,6 @@ export default {
   },
   data() {
     return {
-      ready: false,
       playerAgency: null,
       playerStudio: null,
       playerPowered: null,
