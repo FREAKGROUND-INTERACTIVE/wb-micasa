@@ -21,7 +21,7 @@
 
 <script>
 import { gsap } from "gsap";
-import * as Tone from "tone";
+// import * as Tone from "tone";
 import Button from "@/components/Button";
 
 export default {
@@ -56,9 +56,9 @@ export default {
     };
   },
   methods: {
-    async goToWeb() {
-      await Tone.start();
-      console.log("audio is ready");
+    goToWeb() {
+      // await Tone.start();
+      // console.log("audio is ready");
       this.$emit("init");
       gsap.to(this.$el, {
         duration: 1,
