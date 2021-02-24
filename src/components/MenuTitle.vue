@@ -82,7 +82,7 @@ export default {
         animTl.to(
           element,
           {
-            duration: 2,
+            duration: 0.5,
             y: "0%",
           },
           "<0.2"
