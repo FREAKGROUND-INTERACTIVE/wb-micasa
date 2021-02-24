@@ -1,4 +1,5 @@
 <template>
+<transition @leave="leave" :css="false">
   <div class="view-title">
     <h1 class="view-title__new">
       <template v-for="letter in newTitle">
@@ -23,12 +24,25 @@
       </template>
     </h1>
   </div>
+</transition>
+
 </template>
 
 <script>
+
+import { gsap } from "gsap";
+
 export default {
   props: {
     text: String,
+    mountedAnim: {
+      type: Boolean,
+      default: false,
+    },
+    mountedDelay: {
+      type: Number,
+      default: 0,
+    },
   },
   watch: {
     text: function (val) {
@@ -46,7 +60,51 @@ export default {
     return {
       title: this.text,
       newTitle: this.text,
+      letters: null,
     };
+  },
+  mounted() {
+    this.letters = this.$el.querySelectorAll(".view-title > h1");
+    //* initAnim function in mounted
+    if (this.mountedAnim) {
+      this.initAnim(this.mountedDelay);
+    }
+  },
+  methods: {
+    /**
+     ** INIT ANIMATION FUNCTION
+     *? Function for init animation
+     * @param delay time for timeLine delay
+     */
+    initAnim(delay) {
+      let animTl = gsap.timeline({ delay: delay });
+      this.letters.forEach((element) => {
+        animTl.to(
+          element,
+          {
+            duration: 2,
+            y: "0%",
+          },
+          "<0.2"
+        );
+      });
+
+      animTl.play();
+    },
+    /**
+     ** LEAVE FUCTION
+     *? Function for leave behavior
+     * @param done it return the leave behavior end
+     */
+    leave(done) {
+      this.letters.forEach((element) => {
+        gsap.to(element, {
+          duration: 0.5,
+          y: "100%",
+          onComplete: done,
+        });
+      });
+    },
   },
 };
 </script>
@@ -70,8 +128,15 @@ export default {
     font-weight: 900;
     white-space: nowrap;
     padding: 0 0.5rem;
-    .view-title__new-letter,
+    .view-title__new-letter {
+      display: inline-block;
+
+      &.space {
+        margin-right: 1rem;
+      }
+    }
     .view-title__old-letter {
+      visibility: hidden;
       display: inline-block;
 
       &.space {
