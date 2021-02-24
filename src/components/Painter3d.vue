@@ -102,7 +102,17 @@ export default {
     }
 
     function changeColor() {
-      painter.changeColor('rgba('+ Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ',' + Math.floor(Math.random()*255) + ')');
+      if (painter) {
+        painter.changeColor(
+          "rgba(" +
+            Math.floor(Math.random() * 255) +
+            "," +
+            Math.floor(Math.random() * 255) +
+            "," +
+            Math.floor(Math.random() * 255) +
+            ")"
+        );
+      }
     }
 
     function render() {
