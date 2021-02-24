@@ -99,7 +99,7 @@ export default {
     leave(done) {
       this.letters.forEach((element) => {
         gsap.to(element, {
-          duration: 0.5,
+          duration: 0.2,
           y: "100%",
           onComplete: done,
         });
@@ -156,7 +156,7 @@ export default {
   }
 
   &:hover {
-    .view-title__old {
+    .view-title__new {
       -webkit-text-stroke: 1px $red;
     }
   }
