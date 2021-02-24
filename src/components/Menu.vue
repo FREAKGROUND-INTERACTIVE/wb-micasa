@@ -3,32 +3,36 @@
     <div class="menu">
       <div class="menu__content">
         <div class="menu__info">
-          <div class="menu__info-sites">
+          <div class="menu__info-sites" v-if="visible">
             <Paragraph
               :mountedAnim="true"
-              :mountedDelay="1"
+              :mountedDelay="0"
               :class="'right'"
+              ref="paragraph"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
             ></Paragraph>
             <Paragraph
               :mountedAnim="true"
-              :mountedDelay="2"
+              :mountedDelay="0.3"
               :class="'right'"
+              ref="paragraph"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
             ></Paragraph>
           </div>
-          <div class="menu__info-logo">
+          <div class="menu__info-logo" v-if="visible">
             <Brand-header
               :mountedAnim="true"
-              :mountedDelay="2.5"
+              :mountedDelay="0.5"
               :link="linkBrand"
+              ref="brand"
             ></Brand-header>
           </div>
-          <div class="menu__info-dev">
+          <div class="menu__info-dev" v-if="visible">
             <Paragraph
               :mountedAnim="true"
-              :mountedDelay="3"
+              :mountedDelay="0.7"
               :class="'right'"
+              ref="paragraph"
               :text="'MICASA Studio®\nAll Rights Reserved\n2021'"
             ></Paragraph>
           </div>
@@ -82,18 +86,28 @@
           >
         </div>
         <div class="menu__links">
-          <Menu-title :text="'Home'" @click.native="goTo('/')"></Menu-title>
+          <Menu-title
+            :text="'Home'"
+            @click.native="goTo('/')"
+            ref="linksHome"
+          ></Menu-title>
           <Menu-title
             :text="'Agency'"
             @click.native="goTo('/Agency')"
+
+            ref="linksAgency"
           ></Menu-title>
           <Menu-title
             :text="'Studio'"
             @click.native="goTo('/Studio')"
+            
+            ref="linksStudio"
           ></Menu-title>
           <Menu-title
             :text="'Powered by micasa'"
             @click.native="goTo('/Powered')"
+            
+            ref="linksPowered"
           ></Menu-title>
         </div>
       </div>
@@ -128,6 +142,8 @@ export default {
       visible: false,
       content: null,
       button: null,
+      linksSocial: null,
+      linksPagina: null,
       lines: null,
       linkBrand: "/",
       links: ["www.instagram.com"],
@@ -135,6 +151,8 @@ export default {
   },
   mounted() {
     this.content = this.$el.querySelector(".menu__content");
+
+    this.linksSocial = this.$el.querySelector(".menu__social");
 
     this.button = this.$el.querySelector(".menu__button");
 
@@ -146,26 +164,31 @@ export default {
     showMenu() {
       let that = this;
       if (this.visible) {
+        this.leave();
         that.button.classList.remove("close");
         that.lines.forEach((element) => {
           element.classList.remove("close");
         });
         gsap.to(this.content, {
           duration: 1,
-          x: "100%",
+          autoAlpha: 0,
+          delay: 0.5,
+          // x: "100%",
           onComplete: function () {
             console.log("cerrar");
             that.visible = false;
           },
         });
       } else {
+        this.initAnim();
         that.button.classList.add("close");
         that.lines.forEach((element) => {
           element.classList.add("close");
         });
-        gsap.to(this.content, {
+        gsap.to(that.content, {
           duration: 1,
-          x: "0%",
+          autoAlpha: 1,
+          // x: "0%",
           onComplete: function () {
             that.visible = true;
           },
@@ -184,6 +207,32 @@ export default {
       console.log("outHover");
       mutations.outHover();
     },
+    initAnim() {
+      let that = this;
+      this.$refs.linksHome.initAnim(0.4);
+      this.$refs.linksAgency.initAnim(0.6);
+      this.$refs.linksStudio.initAnim(0.8);
+      this.$refs.linksPowered.initAnim(1);
+      gsap.to(that.linksSocial, {
+        duration: 1,
+        opacity: 1,
+        delay: 0.7,
+      });
+    },
+    leave(done) {
+      this.$refs.linksHome.leave();
+      this.$refs.linksAgency.leave();
+      this.$refs.linksStudio.leave();
+      this.$refs.linksPowered.leave();
+      this.$refs.paragraph.leave();
+      this.$refs.brand.leave();
+      gsap.to(this.linksSocial, {
+        duration: 1,
+        opacity: 0,
+        delay: 0.3,
+        onComplete: done
+      });
+    },
   },
 };
 </script>
@@ -193,7 +242,9 @@ export default {
 .menu {
   .menu__content {
     @extend .menu-layout;
-    @include transform(translateX(100%));
+    // @include transform(translateX(100%));
+    opacity: 0;
+    visibility: hidden;
 
     .menu__line {
       width: 1px;
@@ -241,6 +292,7 @@ export default {
       flex-flow: column nowrap;
       place-self: start;
       margin: 2rem 0 0 6rem;
+      opacity: 0;
 
       .menu__social-logo {
         display: flex;
