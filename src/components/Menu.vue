@@ -8,21 +8,21 @@
               :mountedAnim="true"
               :mountedDelay="0"
               :class="'right'"
-              ref="paragraph"
+              ref="paragraph1"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
             ></Paragraph>
             <Paragraph
               :mountedAnim="true"
               :mountedDelay="0.3"
               :class="'right'"
-              ref="paragraph"
+              ref="paragraph2"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
             ></Paragraph>
           </div>
           <div class="menu__info-logo" v-if="visible">
             <Brand-header
               :mountedAnim="true"
-              :mountedDelay="0.5"
+              :mountedDelay="2.1"
               :link="linkBrand"
               ref="brand"
             ></Brand-header>
@@ -32,7 +32,7 @@
               :mountedAnim="true"
               :mountedDelay="0.7"
               :class="'right'"
-              ref="paragraph"
+              ref="paragraph3"
               :text="'MICASA Studio®\nAll Rights Reserved\n2021'"
             ></Paragraph>
           </div>
@@ -94,19 +94,16 @@
           <Menu-title
             :text="'Agency'"
             @click.native="goTo('/Agency')"
-
             ref="linksAgency"
           ></Menu-title>
           <Menu-title
             :text="'Studio'"
             @click.native="goTo('/Studio')"
-            
             ref="linksStudio"
           ></Menu-title>
           <Menu-title
             :text="'Powered by micasa'"
             @click.native="goTo('/Powered')"
-            
             ref="linksPowered"
           ></Menu-title>
         </div>
@@ -145,6 +142,7 @@ export default {
       linksSocial: null,
       linksPagina: null,
       lines: null,
+      middleLine: null,
       linkBrand: "/",
       links: ["www.instagram.com"],
     };
@@ -153,6 +151,8 @@ export default {
     this.content = this.$el.querySelector(".menu__content");
 
     this.linksSocial = this.$el.querySelector(".menu__social");
+
+    this.middleLine = this.$el.querySelector(".menu__line");
 
     this.button = this.$el.querySelector(".menu__button");
 
@@ -164,15 +164,15 @@ export default {
     showMenu() {
       let that = this;
       if (this.visible) {
-        this.leave();
         that.button.classList.remove("close");
         that.lines.forEach((element) => {
           element.classList.remove("close");
         });
+        this.leave();
         gsap.to(this.content, {
           duration: 1,
           autoAlpha: 0,
-          delay: 0.5,
+          delay: 0.7,
           // x: "100%",
           onComplete: function () {
             console.log("cerrar");
@@ -180,11 +180,11 @@ export default {
           },
         });
       } else {
-        this.initAnim();
         that.button.classList.add("close");
         that.lines.forEach((element) => {
           element.classList.add("close");
         });
+        this.initAnim();
         gsap.to(that.content, {
           duration: 1,
           autoAlpha: 1,
@@ -218,19 +218,33 @@ export default {
         opacity: 1,
         delay: 0.7,
       });
+      gsap.to(that.middleLine, {
+        duration: 4,
+        height: "100vh",
+        delay: 0.7,
+        ease: "power4.out",
+
+      });
     },
-    leave(done) {
+    leave() {
+      let that = this;
+      this.$refs.paragraph1.leave();
+      this.$refs.paragraph2.leave();
+      this.$refs.paragraph3.leave();
       this.$refs.linksHome.leave();
       this.$refs.linksAgency.leave();
       this.$refs.linksStudio.leave();
       this.$refs.linksPowered.leave();
-      this.$refs.paragraph.leave();
       this.$refs.brand.leave();
-      gsap.to(this.linksSocial, {
+
+      gsap.to(that.linksSocial, {
         duration: 1,
         opacity: 0,
         delay: 0.3,
-        onComplete: done
+      });
+      gsap.to(that.middleLine, {
+        duration: 0.5,
+        height: "0vh"
       });
     },
   },
@@ -248,7 +262,7 @@ export default {
 
     .menu__line {
       width: 1px;
-      height: 100vh;
+      height: 0vh;
       background-color: $dark;
       grid-area: line;
       place-self: start;
