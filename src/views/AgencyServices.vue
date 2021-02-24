@@ -1,6 +1,9 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-services">
+      <div class="agency__slider">
+          <Slider3d ref="slider3d"></Slider3d>
+        </div>
       <div class="agency-services__title">
         <div class="agency-services__title-up">
           <template v-for="letter in 'ONE HOME'">
@@ -19,9 +22,6 @@
       </div>
       <div class="agency-services__button" @click="openServices">
         <Button ref="Button" :text="'See our Services'"></Button>
-      </div>
-      <div class="agency__slider">
-        <Slider3d></Slider3d>
       </div>
       <div class="agency-services__brandheader">
         <Brand-header
@@ -89,7 +89,7 @@ export default {
     Services,
     LinkButton,
     Slider3d,
-    BrandHeader
+    BrandHeader,
   },
   data() {
     return {
@@ -168,6 +168,7 @@ export default {
       setTimeout(() => {
         this.$refs.Button.initAnim(0);
         this.$refs.LinkButton.initAnim(3);
+        this.$refs.slider3d.initAnim(1);
         let tl = gsap.timeline({ paused: true });
         let tl2 = gsap.timeline({ paused: true, delay: 1 });
 
@@ -205,6 +206,7 @@ export default {
     leave(el, done) {
       this.$refs.Button.leave();
       this.$refs.LinkButton.leave();
+      this.$refs.slider3d.leave();
       let tl = gsap.timeline({ paused: true });
       let tl2 = gsap.timeline({ paused: true });
 
@@ -265,6 +267,7 @@ export default {
         line-height: 1;
         color: transparent;
         -webkit-text-stroke: 1px $dark;
+        -webkit-text-fill-color: $light;
         @include transform(translateY(100%));
 
         &.space {
@@ -290,7 +293,7 @@ export default {
   }
 
   .agency-services__brandheader {
-     grid-area: logo;
+    grid-area: logo;
   }
 
   .agency-services__button {
