@@ -29,7 +29,7 @@
 import { gsap } from "gsap";
 import { mutations } from "./../state";
 
-import Altering from '@/components/Altering';
+import Altering from "@/components/Altering";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 import BrandHeader from "@/components/BrandHeader";
@@ -39,7 +39,7 @@ export default {
     Altering,
     Paragraph,
     LinkButton,
-    BrandHeader
+    BrandHeader,
   },
   mounted() {
     mutations.setTitle(" ");
@@ -116,10 +116,12 @@ export default {
 
   .agency-altering__brandheader {
     grid-area: logo;
+    z-index: 999;
   }
 
   .agency-altering__link {
     @extend .link;
+    z-index: 999;
   }
 }
 </style>

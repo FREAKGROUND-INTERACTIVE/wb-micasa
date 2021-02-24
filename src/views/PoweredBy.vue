@@ -73,7 +73,7 @@ export default {
       window.removeEventListener("wheel", this.handleScroll);
 
       if (e.deltaY < 0) {
-        this.$router.push({ path: "/powered" });
+        this.$router.push({ path: "/" });
       }
     },
 

@@ -72,7 +72,7 @@ export default {
       window.removeEventListener("wheel", this.handleScroll);
 
       if (e.deltaY < 0) {
-        this.$router.push({ path: "/agency" });
+        this.$router.push({ path: "/" });
       }
       if (e.deltaY > 0) {
         this.$router.push({ path: "/altering-agency" });

@@ -98,10 +98,11 @@ export default {
      *? Function for leave behavior
      * @param done it return the leave behavior end
      */
-    leave(el, done) {
-      document.querySelector(".linkButton").style.pointerEvents = "none"; //! esto no sirve y hay un error si se deja el mouse sobre el boton en el leave
+    leave(done) {
+      this.$el.style.pointerEvents = "none";
       //* animate characters
       this.letters.forEach((element) => {
+        element.style.paddingRight = '0.2rem';
         gsap.to(element, {
           duration: 0.4,
           y: "100%",
@@ -148,16 +149,16 @@ export default {
     overflow: hidden;
     font-family: $mont;
     font-size: 14px;
-    font-weight: 200;
+    font-weight: 300;
     color: $dark;
 
     .linkButton__text-letter {
       display: inline-block;
-      @include transition(color 0.3s, padding-right 0.3s);
+      @include transition(all 0.3s);
       @include transform(translateY(100%));
 
       &:hover {
-        color: $red;
+        // color: $red;
         font-weight: 400;
         // &:nth-child(1) {
         //   font-size: 17px;

@@ -72,7 +72,7 @@ export default {
   },
   mounted() {
     //* select text lines elements
-    this.textLines = document.querySelectorAll(".paragraph__split-text");
+    this.textLines = this.$el.querySelectorAll(".paragraph__split-text");
     //* convert collection to array
     this.textLines = [...this.textLines];
     //* initAnim function in mounted
