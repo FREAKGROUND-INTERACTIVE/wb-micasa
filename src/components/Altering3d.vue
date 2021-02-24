@@ -42,8 +42,11 @@ export default {
       100
     );
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setClearColor(this.mask ? 0xffffff : 0xdfdfdf);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    if (!this.mask) {
+      renderer.setClearColor(0xdfdfdf);
+    }
+    
     renderer.setSize(window.innerWidth, window.innerHeight);
     this.$el.appendChild(renderer.domElement);
 
