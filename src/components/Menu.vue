@@ -163,6 +163,9 @@ export default {
   methods: {
     showMenu() {
       let that = this;
+      if (gsap.isTweening(this.content)) {
+        return
+      }
       if (this.visible) {
         that.button.classList.remove("close");
         that.lines.forEach((element) => {
@@ -170,7 +173,7 @@ export default {
         });
         this.leave();
         gsap.to(this.content, {
-          duration: 1,
+          duration: 2,
           autoAlpha: 0,
           delay: 0.7,
           // x: "100%",
@@ -219,7 +222,7 @@ export default {
         delay: 0.7,
       });
       gsap.to(that.middleLine, {
-        duration: 4,
+        duration: 1,
         height: "100vh",
         delay: 0.7,
         ease: "power4.out",
