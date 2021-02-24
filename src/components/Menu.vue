@@ -189,7 +189,7 @@ export default {
         });
         this.initAnim();
         gsap.to(that.content, {
-          duration: 1,
+          duration: 2,
           autoAlpha: 1,
           // x: "0%",
           onComplete: function () {
