@@ -30,7 +30,7 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 
 	this.reference = new THREE.Vector3();
 
-	this.color = "rgba( 247, 37, 133, 1 )";
+	this.color = "rgba(253, 123, 116, 1)";
 
 	//
 	// public methods
@@ -76,7 +76,7 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 
 	var verticesDict;
 
-	var cursorSize = 4;
+	var cursorSize = 8;
 	var frustumSize = 100;
 	var cameraUpdated = true;
 
@@ -111,7 +111,7 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 		}, false );
 
 		if ( src ) scope.bg.src = src;
-		else scope.bg.src = "textures/UV_Grid_Sm.jpg";
+		else scope.bg.src = "https://res.cloudinary.com/nancloud/image/upload/v1614209552/mi-casa/models/TEXTURES/grayTexture_kemfn2.jpg";
 
 		// cursor initialization
 		scope.scene = new THREE.Scene();
