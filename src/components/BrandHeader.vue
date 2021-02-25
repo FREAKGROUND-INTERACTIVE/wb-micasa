@@ -25,7 +25,7 @@ export default {
     },
     mountedDelay: {
       type: Number,
-      default: 0,
+      default: 2,
     },
   },
   data() {
@@ -44,7 +44,7 @@ export default {
   methods: {
     initAnim(delay) {
       gsap.to(this.brandheader, {
-        duration: 2,
+        duration: 1,
         opacity: 0.6,
         delay: delay,
       });
@@ -71,15 +71,14 @@ export default {
 .brandheader {
   width: 60px;
   height: 60px;
-  @include transition(all 1s);
 
   .brandheader__img {
     width: 100%;
     opacity: 0;
-  }
-
-  &:hover {
-    opacity: 1;
+    @include transition(all 1s);
+    &:hover {
+      opacity: 1 !important;
+    }
   }
 }
 </style>
