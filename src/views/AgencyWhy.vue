@@ -2,14 +2,31 @@
   <transition @leave="leave" :css="false">
     <div class="agency-why">
       <div class="agency-why__painter">
-        <Painter3d></Painter3d>
+        <Painter3d
+          ref="painter"
+          :mountedAnim="true"
+          :mountedDelay="3"
+        ></Painter3d>
+      </div>
+      <div class="agency-why__color-picker">
+        <p class="agency-why__color-text">
+          (Pick a Color to paint the Object in the center)
+        </p>
+        <div class="agency-why__colors">
+          <div class="agency-why__color red"></div>
+          <div class="agency-why__color yellow"></div>
+          <div class="agency-why__color green"></div>
+          <div class="agency-why__color cyan"></div>
+          <div class="agency-why__color blue"></div>
+          <div class="agency-why__color pink"></div>
+        </div>
       </div>
       <div class="agency-why__title">
         <div class="agency-why__title-container">
-          <div class="agency-why__color-picker"></div>
           <div
             v-for="letter in 'WHY US?'"
             :key="letter.id"
+            class="agency-why__title-letter"
             :class="{ space: letter == ' ' }"
           >
             {{ letter }}
@@ -50,14 +67,18 @@ export default {
     Paragraph,
     LinkButton,
     Painter3d,
-    BrandHeader
+    BrandHeader,
   },
   data() {
     return {
       colors: [],
+      letters: null,
+      picker: null,
     };
   },
   mounted() {
+    this.letters = this.$el.querySelectorAll(".agency-why__title-letter");
+    this.picker = this.$el.querySelector(".agency-why__color-picker");
     mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
@@ -90,8 +111,25 @@ export default {
      */
     initAnim(delay) {
       setTimeout(() => {
-        this.$refs.paragraph.initAnim(0);
+        this.$refs.paragraph.initAnim(2);
         this.$refs.LinkButton.initAnim(3);
+        const letterTl = new gsap.timeline({ paused: true });
+        this.letters.forEach((element) => {
+          letterTl.to(
+            element,
+            {
+              duration: 1,
+              y: 0,
+            },
+            "<0.2"
+          );
+        });
+        letterTl.play();
+        gsap.to(this.picker, {
+          duration: 2,
+          opacity: 1,
+          delay: 3,
+        });
       }, delay);
     },
 
@@ -103,6 +141,23 @@ export default {
     leave(el, done) {
       this.$refs.paragraph.leave();
       this.$refs.LinkButton.leave();
+      this.$refs.painter.leave();
+      const letterTl = new gsap.timeline({ paused: true });
+      this.letters.forEach((element) => {
+        letterTl.to(
+          element,
+          {
+            duration: 0.3,
+            y: "100%",
+          },
+          "<0.05"
+        );
+      });
+      letterTl.play();
+      gsap.to(this.picker, {
+        duration: 0.5,
+        opacity: 0,
+      });
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -118,25 +173,78 @@ export default {
 .agency-why {
   @extend .layout;
 
+  .agency-why__color-picker {
+    opacity: 0;
+    position: absolute;
+    top: 8%;
+    left: 50%;
+    @include transform(translateX(-50%));
+    width: fit-content;
+    .agency-why__color-text {
+      text-align: center;
+      font-family: $lora;
+      font-size: 14px;
+    }
+    .agency-why__colors {
+      // margin: 0.5rem 0;
+      display: flex;
+      flex-flow: row nowrap;
+      .agency-why__color {
+        width: 35px;
+        height: 35px;
+        margin: 1rem 0.5rem;
+        cursor: pointer;
+
+        &.red {
+          background-color: $red;
+        }
+
+        &.yellow {
+          background-color: $yellow;
+        }
+
+        &.green {
+          background-color: $green;
+        }
+
+        &.cyan {
+          background-color: $cyan;
+        }
+
+        &.blue {
+          background-color: $blue;
+        }
+
+        &.pink {
+          background-color: $pink;
+        }
+      }
+    }
+  }
+
   .agency-why__title {
-    pointer-events: none;
     position: absolute;
     top: 50%;
     left: 50%;
     width: fit-content;
     white-space: nowrap;
+    pointer-events: none;
     @include transform(translate(-50%, -50%));
 
-    div {
-      display: inline-block;
-      font-family: $oswald;
-      font-weight: 900;
-      font-size: 16vw;
-      line-height: 0.95;
-      color: $red;
+    .agency-why__title-container {
+      overflow: hidden;
+      .agency-why__title-letter {
+        display: inline-block;
+        font-family: $oswald;
+        font-weight: 900;
+        font-size: 16vw;
+        line-height: 0.95;
+        color: $red;
+        @include transform(translateY(100%));
 
-      &.space {
-        margin-left: 3vw;
+        &.space {
+          margin-left: 3vw;
+        }
       }
     }
   }
@@ -150,7 +258,7 @@ export default {
   }
 
   .agency-why__brandheader {
-     grid-area: logo;
+    grid-area: logo;
   }
 
   .agency-why__paragraph {
