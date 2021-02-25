@@ -180,7 +180,7 @@ export default {
         let goTo = "";
         const goToPage = function () {
           document.body.style.cursor = "default";
-          if (sceneID) {
+          if (sceneID && goTo != "") {
             window.removeEventListener("click", goToPage, false);
             scope.$router.push({ name: goTo });
           }
@@ -211,6 +211,8 @@ export default {
             // console.log("intersects: ", intersects);
 
             if (intersects.length == 0) {
+              window.addEventListener("click", goToPage, false);
+              goTo = "";
               document.body.style.cursor = "default";
               gsap.to(this.mesh.children[0].scale, {
                 duration: 1,
@@ -297,6 +299,7 @@ export default {
                 document.body.style.cursor = "pointer";
               } else {
                 document.body.style.cursor = "default";
+                goTo = "";
               }
             }
           }
