@@ -207,6 +207,7 @@ export default {
       this.$refs.Button.leave();
       this.$refs.LinkButton.leave();
       this.$refs.slider3d.leave();
+      this.$refs.BrandHeader.leave();
       let tl = gsap.timeline({ paused: true });
       let tl2 = gsap.timeline({ paused: true });
 
