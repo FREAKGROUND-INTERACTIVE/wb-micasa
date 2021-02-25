@@ -197,8 +197,8 @@ export default {
       this.initImg += 1;
       if (this.initImg == 2) {
         setTimeout(() => {
-          this.$refs.imgBrooklyn.initAnim(0);
-          this.$refs.imgLes.initAnim(0);
+          this.$refs.imgBrooklyn.initAnim(0.2);
+          this.$refs.imgLes.initAnim(0.2);
           gsap.to(this.line, {
             duration: 1,
             height: "100vh",
