@@ -5,7 +5,7 @@
       <div class="locations__line"></div>
       <div class="locations__breadcrumb"></div>
       <div class="locations__brandheader">
-        <Brand-header :link="'/'" :mountedAnim="true"></Brand-header>
+        <Brand-header :link="'/'" :mountedAnim="true" ref="BrandHeader"></Brand-header>
       </div>
 
       <!--* LEFT SIDE -->
@@ -296,6 +296,7 @@ export default {
     leave(el, done) {
       this.$refs.imgBrooklyn.leave();
       this.$refs.imgLes.leave();
+      this.$refs.BrandHeader.leave();
       gsap.to(this.line, {
         duration: 0.5,
         height: "0vh",
@@ -321,7 +322,7 @@ export default {
     justify-self: right;
     width: 1px;
     background-color: $dark;
-    height: 0;
+    height: 0vh;
   }
 
   .locations__breadcrumb {
