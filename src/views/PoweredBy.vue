@@ -97,6 +97,7 @@ export default {
     leave(el, done) {
       this.$refs.paragraph.leave();
       this.$refs.poweredList.leave();
+      this.$refs.BrandHeader.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,

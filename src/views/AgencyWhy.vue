@@ -140,7 +140,8 @@ export default {
      */
     leave(el, done) {
       this.$refs.paragraph.leave();
-      this.$refs.LinkButton.leave();
+      this.$refs.LinkButton.leave();      
+      this.$refs.BrandHeader.leave();
       this.$refs.painter.leave();
       const letterTl = new gsap.timeline({ paused: true });
       this.letters.forEach((element) => {
