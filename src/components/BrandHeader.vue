@@ -45,7 +45,7 @@ export default {
     initAnim(delay) {
       gsap.to(this.brandheader, {
         duration: 2,
-        opacity: 1,
+        opacity: 0.6,
         delay: delay,
       });
     },
@@ -56,7 +56,7 @@ export default {
      */
     leave(done) {
       gsap.to(this.brandheader, {
-        duration: 1.5,
+        duration: 0.3,
         opacity: 0,
         onComplete: done,
       });
@@ -71,7 +71,7 @@ export default {
 .brandheader {
   width: 60px;
   height: 60px;
-  @include transition(all 0.5s);
+  @include transition(all 1s);
 
   .brandheader__img {
     width: 100%;
@@ -79,7 +79,7 @@ export default {
   }
 
   &:hover {
-    @include transform(translateY(-10%));
+    opacity: 1;
   }
 }
 </style>
