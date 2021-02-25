@@ -6,7 +6,6 @@
           <div class="menu__info-sites" v-if="visible">
             <Paragraph
               :mountedAnim="true"
-              :mountedDelay="0"
               :class="'right'"
               ref="paragraph1"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
@@ -137,6 +136,7 @@ export default {
   data() {
     return {
       visible: false,
+
       content: null,
       button: null,
       linksSocial: null,
@@ -173,7 +173,7 @@ export default {
         });
         this.leave();
         gsap.to(this.content, {
-          duration: 2,
+          duration: 1,
           autoAlpha: 0,
           delay: 0.7,
           // x: "100%",
