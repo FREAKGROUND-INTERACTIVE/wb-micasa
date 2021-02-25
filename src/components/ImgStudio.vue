@@ -50,6 +50,8 @@ export default {
   data() {
     return {
       imgContainer: null,
+      img: null,
+      text: null,
       height: window.innerHeight,
       imgBg: this.imgUrl,
     };
@@ -57,6 +59,7 @@ export default {
   mounted() {
     this.imgContainer = this.$el.querySelector(".img-view__img-container");
     this.img = this.$el.querySelector(".img-view__img");
+    this.text = this.$el.querySelector(".img-view__title");
 
     //* initAnim function in mounted
     if (this.mountedAnim) {
@@ -80,12 +83,22 @@ export default {
         y: 0,
         delay: delay,
       });
+      gsap.to(this.img, {
+        duration: 1,
+        scale: 1,
+        delay: delay,
+      });
+      gsap.to(this.text, {
+        duration: 1,
+        opacity: 1,
+        delay: delay + 1,
+      });
     },
     leave(done) {
       gsap.to(this.imgContainer, {
         duration: 1,
         height: 0,
-        y: (window.innerWidth * 28) / 100,
+        // y: (window.innerWidth * 28) / 100,
         onComplete: function () {
           done;
         },
@@ -116,16 +129,16 @@ export default {
 
     .img-view__img {
       position: absolute;
-      top: 50%;
+      top: 0%;
       left: 50%;
       width: 28vw;
       height: 28vw;
-      @include transform(translate(-50%, -50%));
+      @include transform(translate(-50%, 0) scale(1.3));
     }
 
     .img-view__title {
       position: absolute;
-
+      opacity: 0;
       font-size: 5vw;
       line-height: 0.8;
       color: $light;
