@@ -118,6 +118,7 @@ export default {
       this.$refs.paragraph.leave();
       this.$refs.LinkButton.leave();
       this.$refs.clientList.leave();
+      this.$refs.BrandHeader.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
