@@ -45,7 +45,7 @@ export default {
     initAnim(delay) {
       gsap.to(this.brandheader, {
         duration: 1,
-        opacity: 0.6,
+        opacity: 1,
         delay: delay,
       });
     },
@@ -55,6 +55,7 @@ export default {
      * @param done it return the leave behavior end
      */
     leave(done) {
+      this.brandheader.style.pointerEvents = "none";
       gsap.to(this.brandheader, {
         duration: 0.3,
         opacity: 0,
@@ -77,7 +78,7 @@ export default {
     opacity: 0;
     @include transition(all 1s);
     &:hover {
-      opacity: 1 !important;
+      @include transform(translateY(-10%));
     }
   }
 }
