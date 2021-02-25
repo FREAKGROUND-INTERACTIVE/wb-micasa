@@ -72,6 +72,7 @@ export default {
 .brandheader {
   width: 60px;
   height: 60px;
+  @include transform(translateY(-50%));
 
   .brandheader__img {
     width: 100%;
