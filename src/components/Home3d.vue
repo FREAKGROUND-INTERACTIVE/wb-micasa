@@ -10,7 +10,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import gsap from "gsap";
 import fragmentShader from "raw-loader!glslify-loader!@/assets/glsl/fragmentShader.glsl";
 
-import { mutations } from "@/state";
+import { state, mutations } from "@/state";
 import vertexShader from "raw-loader!glslify-loader!@/assets/glsl/vertexShader.glsl";
 
 export default {
@@ -51,6 +51,7 @@ export default {
        *? init function for initialize THREE basics
        */
       const init = () => {
+        let that = this;
         //* Init Container
         container = document.getElementById("home3d");
 
@@ -66,8 +67,8 @@ export default {
         // container.appendChild(stats.dom);
 
         //* Init Scenes
-        const sceneA = new FXScene(8, 35, 0xdfdfdf, true);
-        const sceneB = new FXScene(8, 35, 0xdfdfdf, false);
+        const sceneA = new FXScene(8, 35, 0xdfdfdf, true, that);
+        const sceneB = new FXScene(8, 35, 0xdfdfdf, false, that);
 
         // const loaderFBX = new FBXLoader();
         // loaderFBX.load(
@@ -139,7 +140,7 @@ export default {
        * @param clearColor color for setClearColor renderer
        * @param sceneID Id for diferent scene
        */
-      function FXScene(cameraZ, fov, clearColor, sceneID) {
+      function FXScene(cameraZ, fov, clearColor, sceneID, scope) {
         this.clearColor = clearColor;
 
         //* Init scene Camera
@@ -176,6 +177,14 @@ export default {
 
         const raycaster = new THREE.Raycaster(); // create once
 
+        let goTo = "";
+        const goToPage = function () {
+          if (sceneID) {
+            window.removeEventListener("click", goToPage, false);
+            scope.$router.push({ name: goTo });
+          }
+        };
+
         const renderTargetParameters = {
           minFilter: THREE.LinearFilter,
           magFilter: THREE.LinearFilter,
@@ -197,8 +206,97 @@ export default {
           if (this.mesh) {
             raycaster.setFromCamera(that.mouse, this.camera);
             const intersects = raycaster.intersectObjects(this.mesh.children);
+            window.addEventListener("click", goToPage, false);
+            // console.log("intersects: ", intersects);
+
+            if (intersects.length == 0) {
+              document.body.style.cursor = "default";
+              gsap.to(this.mesh.children[0].scale, {
+                duration: 1,
+                x: 1,
+                y: 1,
+              });
+              gsap.to(this.mesh.children[1].scale, {
+                duration: 1,
+                x: 1,
+                y: 1,
+              });
+              gsap.to(this.mesh.children[3].scale, {
+                duration: 1,
+                x: 1,
+                y: 1,
+              });
+            }
             for (let i = 0; i < intersects.length; i++) {
-              intersects[i].object.material.color.set(0xffffff);
+              if (intersects[i].object.name == "Claqueta_Mesh") {
+                goTo = "Agency";
+                gsap.to(this.mesh.children[0].scale, {
+                  duration: 1,
+                  x: 1.1,
+                  y: 1.1,
+                });
+                // document.body.style.cursor = "pointer";
+                if (state.title != "Agency") {
+                  mutations.setTitle("Agency");
+                }
+              } else {
+                // document.body.style.cursor = "default";
+                gsap.to(this.mesh.children[0].scale, {
+                  duration: 1,
+                  x: 1,
+                  y: 1,
+                });
+              }
+
+              if (intersects[i].object.name == "Camera_Mesh.001") {
+                goTo = "Studio";
+                gsap.to(intersects[i].object.scale, {
+                  duration: 1,
+                  x: 1.1,
+                  y: 1.1,
+                });
+                // document.body.style.cursor = "pointer";
+                if (state.title != "Studio") {
+                  mutations.setTitle("Studio");
+                }
+              } else {
+                // document.body.style.cursor = "default";
+                gsap.to(this.mesh.children[1].scale, {
+                  duration: 1,
+                  x: 1,
+                  y: 1,
+                });
+              }
+
+              if (intersects[i].object.name == "Light_Mesh.002") {
+                goTo = "Powered";
+                gsap.to(intersects[i].object.scale, {
+                  duration: 1,
+                  x: 1.1,
+                  y: 1.1,
+                });
+                // document.body.style.cursor = "pointer";
+                if (state.title != "Powered") {
+                  mutations.setTitle("Powered");
+                }
+              } else {
+                // document.body.style.cursor = "default";
+                gsap.to(this.mesh.children[3].scale, {
+                  duration: 1,
+                  x: 1,
+                  y: 1,
+                });
+              }
+
+              if (
+                intersects[i].object.name == "Claqueta_Mesh" ||
+                intersects[i].object.name == "Camera_Mesh.001" ||
+                intersects[i].object.name == "Light_Mesh.002"
+              ) {
+                document.body.style.cursor = "pointer";
+              } else {
+                document.body.style.cursor = "default";
+              }
             }
           }
 
@@ -249,6 +347,7 @@ export default {
             });
 
             this.mesh = obj;
+            console.log("mesh: ", this.mesh);
             this.mesh.position.y = 0.05;
             this.scene.add(this.mesh);
 
