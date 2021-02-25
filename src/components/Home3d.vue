@@ -179,6 +179,7 @@ export default {
 
         let goTo = "";
         const goToPage = function () {
+          document.body.style.cursor = "default";
           if (sceneID) {
             window.removeEventListener("click", goToPage, false);
             scope.$router.push({ name: goTo });
