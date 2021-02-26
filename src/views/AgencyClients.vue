@@ -1,6 +1,9 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-clients">
+      <div class="agency-clients__bread">
+        <Bread-crumb ref="bread" :number="'05'" :title="'Clients'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="4" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+      </div>
       <div class="agency-clients__container">
         <div class="agency-clients__paragraph">
           <Paragraph
@@ -35,6 +38,7 @@ import LinkButton from "@/components/LinkButton";
 import Paragraph from "@/components/Paragraph";
 import ClientList from "@/components/ClientList";
 import BrandHeader from "@/components/BrandHeader";
+import BreadCrumb from "@/components/BreadCrumb";
 
 export default {
   components: {
@@ -42,6 +46,7 @@ export default {
     Paragraph,
     ClientList,
     BrandHeader,
+    BreadCrumb,
   },
   data() {
     return {
@@ -119,6 +124,7 @@ export default {
       this.$refs.LinkButton.leave();
       this.$refs.clientList.leave();
       this.$refs.BrandHeader.leave();
+      this.$refs.bread.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -134,6 +140,11 @@ export default {
 
 .agency-clients {
   @extend .layout;
+
+  .agency-clients__bread {
+    grid-area: breadCrumb;
+    position: absolute;
+  }
 
   .agency-clients__container {
     grid-area: 3 / 2 / 4 / 4;
