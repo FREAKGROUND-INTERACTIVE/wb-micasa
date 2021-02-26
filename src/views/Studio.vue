@@ -3,6 +3,9 @@
     <div class="studio">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
+      <div class="studio__bar-container">
+        <div class="studio__bar"></div>
+      </div>
     </div>
   </transition>
 </template>
@@ -30,6 +33,11 @@ export default {
         if (state.title != "Studio") {
           mutations.setTitle("Studio");
         }
+        gsap.to(".studio__bar", {
+          duration: 3,
+          width: "100%",
+          delay: 0.4,
+        });
       }, delay);
       setTimeout(() => {
         this.$router.push({ name:'StudioLocations'});
@@ -44,6 +52,11 @@ export default {
     leave(el, done) {
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
+      gsap.to(".studio__bar", {
+        duration: 1,
+        width: "0%",
+      });
+
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -58,5 +71,18 @@ export default {
 @import "./../assets/styles/setup";
 .studio {
   @extend .layout;
+
+  .studio__bar-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 7px;
+    .studio__bar {
+      width: 0%;
+      height: 100%;
+      background-color: $cyan;
+    }
+  }
 }
 </style>
