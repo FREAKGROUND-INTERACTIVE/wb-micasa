@@ -95,9 +95,19 @@ export default {
       });
     },
     leave(done) {
+      gsap.to(this.img, {
+        duration: 1,
+        scale: 1.3,
+        delay: 0.3,
+      });
+      gsap.to(this.text, {
+        duration: 0.3,
+        opacity: 0,
+      });
       gsap.to(this.imgContainer, {
         duration: 1,
-        height: 0,
+        height: "0vw",
+        delay: 0.3,
         // y: (window.innerWidth * 28) / 100,
         onComplete: function () {
           done;
@@ -129,7 +139,7 @@ export default {
 
     .img-view__img {
       position: absolute;
-      top: 0%;
+      top: 1px;
       left: 50%;
       width: 28vw;
       height: 28vw;
