@@ -87,10 +87,8 @@ export default {
             mesh.geometry.computeBoundingBox();
             if (index == 0) {
               const texture = new THREE.TextureLoader().load(urls[index]);
-              mesh.material = new THREE.MeshStandardMaterial({
-                map: texture,
-                opacity: 0,
-              });
+              mesh.material = new THREE.MeshStandardMaterial({ map: texture });
+              mesh.position.y = 10;
               
             } else {
               const texture = new THREE.TextureLoader().load(urls[index]);
@@ -187,7 +185,7 @@ export default {
             y: obj.rotation.y + (60 * Math.PI) / 180,
             delay: 1,
             onComplete: function () {
-              obj.children[0].material.opacity = 1;
+              obj.children[0].position.y = 0;
             },
           });
         }
