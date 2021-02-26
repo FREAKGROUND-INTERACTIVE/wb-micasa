@@ -6,7 +6,7 @@ export const loading = Vue.observable({count: 0, loaded: false})
 
 export const mutations = {
     setTitle(newVal) {
-        console.log('Setting "title": ', newVal);
+        // console.log('Setting "title": ', newVal);
         state.title = newVal
     },
     
@@ -21,12 +21,12 @@ export const mutations = {
 
     inHover() {
         mouse.hover = true;
-        console.log('Setting "inHover": ', mouse.hover);
+        // console.log('Setting "inHover": ', mouse.hover);
     },
 
     outHover() {
         mouse.hover = false;
-        console.log('Setting "outHover": ', mouse.hover);
+        // console.log('Setting "outHover": ', mouse.hover);
     },
 
     loadingCharge(value) {
