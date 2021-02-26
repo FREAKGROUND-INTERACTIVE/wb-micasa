@@ -32,7 +32,7 @@
           <Close-button
             ref="lesClose"
             :mountedAnim="true"
-            :mountedDelay="3"
+            :mountedDelay="1"
             :color="'cyan'"
           ></Close-button>
         </div>
@@ -84,7 +84,7 @@
           <Close-button
             ref="brooklynClose"
             :mountedAnim="true"
-            :mountedDelay="3"
+            :mountedDelay="1"
             :color="'cyan'"
           ></Close-button>
         </div>
@@ -218,10 +218,10 @@ export default {
             that.loading.x = 0;
             that.$refs.imgLes.leave();
             that.$refs.imgBrooklyn.leave();
-            that.$refs.menuBrooklyn.initAnim(0.2);
+            that.$refs.menuBrooklyn.initAnim(2);
             setTimeout(() => {
               that.brooklyn = true;
-            }, 1000);
+            }, 2000);
           },
         });
       } else {
@@ -233,10 +233,10 @@ export default {
             that.loading2.x = 0;
             that.$refs.imgLes.leave();
             that.$refs.imgBrooklyn.leave();
-            that.$refs.menuLes.initAnim(0.2);
+            that.$refs.menuLes.initAnim(2);
             setTimeout(() => {
               that.les = true;
-            }, 1000);
+            }, 2000);
           },
         });
       }
@@ -261,8 +261,8 @@ export default {
       this.$refs.brooklynClose.leave();
       this.$refs.brooklynParagraph.leave();
       this.$refs.brooklynButton.leave();
-      this.$refs.imgBrooklyn.initAnim(1.5);
-      this.$refs.imgLes.initAnim(1.5);
+      this.$refs.imgBrooklyn.initAnim(2.5);
+      this.$refs.imgLes.initAnim(2.5);
       setTimeout(() => {
         this.$refs.menuBrooklyn.leave();
         this.brooklyn = false;
@@ -273,8 +273,8 @@ export default {
       this.$refs.lesClose.leave();
       this.$refs.lesParagraph.leave();
       this.$refs.lesButton.leave();
-      this.$refs.imgBrooklyn.initAnim(1.5);
-      this.$refs.imgLes.initAnim(1.5);
+      this.$refs.imgBrooklyn.initAnim(2.5);
+      this.$refs.imgLes.initAnim(2.5);
       setTimeout(() => {
         this.$refs.menuLes.leave();
         this.les = false;
