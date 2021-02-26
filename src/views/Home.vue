@@ -38,7 +38,8 @@ export default {
   },
   watch: {
     color: function (val) {
-      console.log(val);
+      this.setColor = val;
+      // console.log(val);
       // switch (val) {
       //   case "Agency":
       //     this.playerAgency.play();
@@ -68,19 +69,20 @@ export default {
     //   this.playerPowered.start();
     // },
   },
-  // data() {
-  //   return {
-  //     playerAgency: null,
-  //     playerStudio: null,
-  //     playerPowered: null,
-  //     playerLoop: null,
-  //   };
-  // },
+  data() {
+    return {
+      // playerAgency: null,
+      // playerStudio: null,
+      // playerPowered: null,
+      // playerLoop: null,
+      setColor: null,
+    };
+  },
   mounted() {
     gsap.to(this.$el, {
-      duration: 1,
+      duration: 2,
       opacity: "1",
-      delay: 0.5,
+      delay: 1.5,
       onComplete: function () {
         mutations.setTitle("micasa");
         mutations.setHome(true);
