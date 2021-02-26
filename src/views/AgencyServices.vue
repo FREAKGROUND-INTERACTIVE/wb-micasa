@@ -2,8 +2,11 @@
   <transition @leave="leave" :css="false">
     <div class="agency-services">
       <div class="agency__slider">
-          <Slider3d ref="slider3d"></Slider3d>
-        </div>
+        <Slider3d ref="slider3d"></Slider3d>
+      </div>
+      <div class="agency-services__bread">
+        <Bread-crumb ref="bread" :number="'03'" :title="'Services'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="2" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+      </div>
       <div class="agency-services__title">
         <div class="agency-services__title-up">
           <template v-for="letter in 'ONE HOME'">
@@ -81,6 +84,7 @@ import Services from "@/components/Services";
 import LinkButton from "@/components/LinkButton";
 import Slider3d from "@/components/Slider3d";
 import BrandHeader from "@/components/BrandHeader";
+import BreadCrumb from "@/components/BreadCrumb";
 
 export default {
   components: {
@@ -90,6 +94,7 @@ export default {
     LinkButton,
     Slider3d,
     BrandHeader,
+    BreadCrumb,
   },
   data() {
     return {
@@ -208,6 +213,7 @@ export default {
       this.$refs.LinkButton.leave();
       this.$refs.slider3d.leave();
       this.$refs.BrandHeader.leave();
+      this.$refs.bread.leave();
       let tl = gsap.timeline({ paused: true });
       let tl2 = gsap.timeline({ paused: true });
 
@@ -250,6 +256,11 @@ export default {
 
 .agency-services {
   @extend .layout;
+
+  .agency-services__bread {
+    grid-area: breadCrumb;
+    position: absolute;
+  }
 
   .agency-services__title {
     position: absolute;
