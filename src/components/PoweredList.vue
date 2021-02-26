@@ -96,10 +96,19 @@ export default {
     margin: 0.7rem;
     opacity: 0;
     cursor: pointer;
+    overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
+      filter: grayscale(50%);
+      @include transform(scale(1.1));
+      @include transition(all 0.5s);
+
+      &:hover {
+        filter: grayscale(0%);
+        @include transform(scale(1));
+      }
     }
   }
 }
