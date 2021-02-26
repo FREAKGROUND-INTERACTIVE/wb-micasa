@@ -38,51 +38,76 @@
         </div>
         <div class="menu__line"></div>
         <div class="menu__social">
-          <router-link :to="links[0]" class="menu__social-logo"
-            ><img
+          <a
+            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
+          >
+            <img
               width="30"
               height="30"
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/INSTAGRAM_hq7sc9.svg"
               alt="instagram"
             />
             <p>@micasa.nyc</p>
-          </router-link>
-          <router-link :to="links[0]" class="menu__social-logo"
-            ><img
+          </a>
+          <a
+            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
+          >
+            <img
               width="30"
               height="30"
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/FACEBOOK_jgq4r8.svg"
               alt="Facebook"
             />
-            <p>@micasa.nyc</p></router-link
+            <p>@micasa.nyc</p>
+          </a>
+          <a
+            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
           >
-          <router-link :to="links[0]" class="menu__social-logo"
-            ><img
+            <img
               width="30"
               height="30"
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/TWITTER_c0x4ge.svg"
               alt="Twitter"
             />
-            <p>@micasa.nyc</p></router-link
+            <p>@micasa.nyc</p>
+          </a>
+          <a
+            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
           >
-          <router-link :to="links[0]" class="menu__social-logo"
-            ><img
+            <img
               width="30"
               height="30"
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/YOUTUBE_gpqdi5.svg"
               alt="Youtube"
             />
-            <p>@micasa.nyc</p></router-link
+            <p>@micasa.nyc</p>
+          </a>
+          <a
+            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
           >
-          <router-link :to="links[0]" class="menu__social-logo"
-            ><img
+            <img
               width="30"
               height="30"
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/LINKED_IN_e1a0zp.svg"
               alt="LinkedIn"
             />
-            <p>@micasa.nyc</p></router-link
-          >
+            <p>@micasa.nyc</p>
+          </a>
         </div>
         <div class="menu__links">
           <Menu-title
@@ -164,7 +189,7 @@ export default {
     showMenu() {
       let that = this;
       if (gsap.isTweening(this.content)) {
-        return
+        return;
       }
       if (this.visible) {
         that.button.classList.remove("close");
@@ -226,7 +251,6 @@ export default {
         height: "100vh",
         delay: 0.7,
         ease: "power4.out",
-
       });
     },
     leave() {
@@ -247,7 +271,7 @@ export default {
       });
       gsap.to(that.middleLine, {
         duration: 0.5,
-        height: "0vh"
+        height: "0vh",
       });
     },
   },
@@ -291,7 +315,7 @@ export default {
       .menu__info-logo {
         grid-area: logo;
         display: grid;
-        place-self: start end;
+        place-self: center end;
         margin-top: 1rem;
       }
 
@@ -315,6 +339,8 @@ export default {
         display: flex;
         flex-flow: row nowrap;
         margin: 0.2rem 0 0.2rem;
+        color: $dark;
+        @include transition(all 0.5s);
 
         p {
           font-family: $fira;
@@ -322,6 +348,10 @@ export default {
           font-weight: 300;
           place-self: center;
           margin-left: 0.5rem;
+        }
+
+        &:hover {
+          @include transform(translateX(10%));
         }
       }
     }
