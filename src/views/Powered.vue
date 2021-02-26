@@ -3,6 +3,9 @@
     <div class="powered">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
+      <div class="powered__bar-container">
+        <div class="powered__bar"></div>
+      </div>
     </div>
   </transition>
 </template>
@@ -31,9 +34,14 @@ export default {
         if (state.title != "Powered") {
           mutations.setTitle("Powered");
         }
+        gsap.to(".powered__bar", {
+          duration: 3,
+          width: "100%",
+          delay: 0.4,
+        });
       }, delay);
       setTimeout(() => {
-        this.$router.push({ name:'PoweredBy'});
+        this.$router.push({ name: "PoweredBy" });
       }, 6000);
     },
 
@@ -45,6 +53,10 @@ export default {
     leave(el, done) {
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
+      gsap.to(".powered__bar", {
+        duration: 1,
+        width: "0%",
+      });
 
       gsap.to(el, {
         duration: 1.5,
@@ -60,5 +72,18 @@ export default {
 @import "./../assets/styles/setup";
 .powered {
   @extend .layout;
+
+  .powered__bar-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 7px;
+    .powered__bar {
+      width: 0%;
+      height: 100%;
+      background-color: $green;
+    }
+  }
 }
 </style>
