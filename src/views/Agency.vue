@@ -3,6 +3,9 @@
     <div class="agency">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
       <Img-view-title ref="imgViewTitle"></Img-view-title>
+      <div class="agency__bar-container">
+        <div class="agency__bar"></div>
+      </div>
     </div>
   </transition>
 </template>
@@ -30,10 +33,15 @@ export default {
         if (state.title != "Agency") {
           mutations.setTitle("Agency");
         }
+        gsap.to(".agency__bar", {
+          duration: 3,
+          width: "100%",
+          delay: 0.4,
+        });
       }, delay);
       setTimeout(() => {
-        this.$router.push({ name:'AgencyAbout'});
-      }, 6000);
+        this.$router.push({ name: "AgencyAbout" });
+      }, 5000);
     },
 
     /**
@@ -44,6 +52,10 @@ export default {
     leave(el, done) {
       this.$refs.imgViewTitle.leave();
       this.$refs.viewTitleBg.leave();
+      gsap.to(".agency__bar", {
+        duration: 1,
+        width: "0%",
+      });
 
       gsap.to(el, {
         duration: 1.5,
@@ -59,5 +71,18 @@ export default {
 @import "./../assets/styles/setup";
 .agency {
   @extend .layout;
+
+  .agency__bar-container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 7px;
+    .agency__bar {
+      width: 0%;
+      height: 100%;
+      background-color: $red;
+    }
+  }
 }
 </style>
