@@ -43,7 +43,7 @@
             :title="hoodLes ? infoHoodLes.title : infoStudioLes.title"
             :subtitle="infoStudioLes.subtitle"
             :subtitle2="infoStudioLes.subtitle2"
-            :text="infoStudioLes.text"
+            :text="hoodLes ? infoHoodLes.text : infoStudioLes.text"
             :color="'cyan'"
             :mountedAnim="true"
           ></Paragraph>
@@ -96,7 +96,7 @@
             "
             :subtitle="infoStudioBrooklyn.subtitle"
             :subtitle2="infoStudioBrooklyn.subtitle2"
-            :text="infoStudioBrooklyn.text"
+            :text="hoodBrooklyn ? infoHoodBrooklyn.text : infoStudioBrooklyn.text"
             :mountedAnim="true"
             :color="'cyan'"
           ></Paragraph>
@@ -153,14 +153,14 @@ export default {
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+          "This bright studio offers a one-of-a-kind experience with west\nfacing floor-to-ceiling/wall-to-wall steel casement windows,\nfifteen feet ceilings, 25 foot cyclorama, and exposed brick interior.\nThe open floor plan offers maximum versatility with over 3,000\n square feet of open convertible space.",
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+          "Williamsburg is a hip neighborhood in Brooklyn\nthat draws the young and the fashionable to its\nchic boutiques, trendy cafes and buzzy restaurants.",
       },
       les: false,
       hoodLes: false,
@@ -169,14 +169,14 @@ export default {
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+          "This studio is in the heart of the Lower East Side in a\nbuilding that has a rich history, in community and art and\nonce in a Tribeca film festival documentary. The floor \noffers 1,800 square feet of open convertible space and a\n20 foot cyclorama.",
       },
       infoHoodLes: {
         title: "Flacosburg",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Lorem ipsum dolor sit amet,\nconsectetur adipisicing elit. Maxime, a nisi?\nQuaerat tempora itaque debitis eius illum voluptate,\n modi minus nostrum odio perspiciatis labore.\nAnimi eligendi consequuntur odit maiores suscipit.",
+          "The eclectic Lower East Side is where gritty alleys and\ntenement-style buildings and nighttime draws hip, young\ncrowds to the area's trendy bars, music venues and\nrestaurants.",
       },
       line: null,
       initImg: 0,
