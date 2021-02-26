@@ -4,6 +4,9 @@
       <div class="agency-altering__mask">
         <Altering ref="altering"></Altering>
       </div>
+      <div class="agency-altering__bread">
+        <Bread-crumb ref="bread" :number="'02'" :title="'Altering'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="1" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+      </div>
       <div class="agency-altering__paragraph">
         <Paragraph
           ref="paragraph"
@@ -33,6 +36,7 @@ import Altering from "@/components/Altering";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 import BrandHeader from "@/components/BrandHeader";
+import BreadCrumb from "@/components/BreadCrumb";
 
 export default {
   components: {
@@ -40,6 +44,7 @@ export default {
     Paragraph,
     LinkButton,
     BrandHeader,
+    BreadCrumb,
   },
   mounted() {
     mutations.setTitle(" ");
@@ -90,6 +95,7 @@ export default {
       this.$refs.paragraph.leave();
       this.$refs.LinkButton.leave();
       this.$refs.BrandHeader.leave();
+      this.$refs.bread.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -104,6 +110,11 @@ export default {
 @import "./../assets/styles/setup";
 .agency-altering {
   @extend .layout;
+
+  .agency-altering__bread {
+    grid-area: breadCrumb;
+    position: absolute;
+  }
 
   .agency-altering__paragraph {
     grid-area: content-2;
