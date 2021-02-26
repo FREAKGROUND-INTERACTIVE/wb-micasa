@@ -7,6 +7,9 @@
           <Font-weight ref="fontWeight" :text="'agency'"></Font-weight>
         </div>
       </div>
+      <div class="agency-about__bread">
+        <Bread-crumb ref="bread" :number="'01'" :title="'About'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="0" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+      </div>
       <div class="agency-about__brandheader">
         <Brand-header
           ref="BrandHeader"
@@ -38,6 +41,7 @@ import FontWeight from "@/components/FontWeight";
 import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 import BrandHeader from "@/components/BrandHeader";
+import BreadCrumb from "@/components/BreadCrumb";
 export default {
   components: {
     ImgBg,
@@ -45,6 +49,7 @@ export default {
     Paragraph,
     LinkButton,
     BrandHeader,
+    BreadCrumb,
   },
   data() {
     return {
@@ -104,6 +109,7 @@ export default {
       this.$refs.fontWeight.leave();
       this.$refs.LinkButton.leave();
       this.$refs.BrandHeader.leave();
+      this.$refs.bread.leave();
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -119,12 +125,13 @@ export default {
 .agency-about {
   @extend .layout;
 
-  .agency-about__brandheader {
-    grid-area: logo;
+  .agency-about__bread {
+    grid-area: breadCrumb;
+    position: absolute;
   }
 
-  .agency-about__breadcrumb {
-    grid-area: breadCrumb;
+  .agency-about__brandheader {
+    grid-area: logo;
   }
 
   .agency-about__img {
