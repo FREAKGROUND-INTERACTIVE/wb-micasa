@@ -33,6 +33,9 @@
           </div>
         </div>
       </div>
+      <div class="agency-why__bread">
+        <Bread-crumb ref="bread" :number="'04'" :title="'Why Us'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="3" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+      </div>
       <div class="agency-why__paragraph">
         <Paragraph
           ref="paragraph"
@@ -61,6 +64,7 @@ import Paragraph from "@/components/Paragraph";
 import LinkButton from "@/components/LinkButton";
 import Painter3d from "@/components/Painter3d";
 import BrandHeader from "@/components/BrandHeader";
+import BreadCrumb from "@/components/BreadCrumb";
 
 export default {
   components: {
@@ -68,6 +72,7 @@ export default {
     LinkButton,
     Painter3d,
     BrandHeader,
+    BreadCrumb,
   },
   data() {
     return {
@@ -143,6 +148,7 @@ export default {
       this.$refs.LinkButton.leave();      
       this.$refs.BrandHeader.leave();
       this.$refs.painter.leave();
+      this.$refs.bread.leave();
       const letterTl = new gsap.timeline({ paused: true });
       this.letters.forEach((element) => {
         letterTl.to(
@@ -256,6 +262,11 @@ export default {
     left: 0;
     width: 100vw;
     height: 100vh;
+  }
+
+  .agency-why__bread {
+    grid-area: breadCrumb;
+    position: absolute;
   }
 
   .agency-why__brandheader {
