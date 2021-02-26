@@ -12,7 +12,12 @@
         <div class="paragraph__quote">{{ quote }}</div>
       </div>
       <div class="paragraph__title-container">
-        <h2 class="paragraph__title" :class="{cyan: color == 'cyan', green: color == 'green'}">{{ titleData }}</h2>
+        <h2
+          class="paragraph__title"
+          :class="{ cyan: color == 'cyan', green: color == 'green' }"
+        >
+          {{ titleData }}
+        </h2>
       </div>
       <div class="paragraph__subtitle-container" v-if="subtitle">
         <h3 class="paragraph__subtitle">{{ subtitle }}</h3>
@@ -56,25 +61,27 @@ export default {
   },
   watch: {
     title: function (val) {
-      this.leave();
       setTimeout(() => {
         this.titleData = val;
-        this.initAnim(0);
       }, 1000);
+    },
+    text: function (val) {
+      this.leave();
+      setTimeout(() => {
+        this.splitText = val.split(/\r?\n/);
+      }, 1000);
+      setTimeout(() => {
+        this.initAnim(0);
+      }, 3000);
     },
   },
   data() {
     return {
       titleData: this.title,
       splitText: this.text.split(/\r?\n/), //* split text in lines
-      textLines: null, //* variable for text lines elements
     };
   },
   mounted() {
-    //* select text lines elements
-    this.textLines = this.$el.querySelectorAll(".paragraph__split-text");
-    //* convert collection to array
-    this.textLines = [...this.textLines];
     //* initAnim function in mounted
     if (this.mountedAnim) {
       this.initAnim(this.mountedDelay);
@@ -143,7 +150,7 @@ export default {
       }
 
       //* text lines animation
-      this.textLines.forEach((element) => {
+      this.$el.querySelectorAll(".paragraph__split-text").forEach((element) => {
         initTl.to(
           element,
           {
@@ -168,7 +175,7 @@ export default {
       let time = 1.5;
 
       //* text lines animation
-      this.textLines.forEach((element) => {
+      this.$el.querySelectorAll(".paragraph__split-text").forEach((element) => {
         gsap.to(element, {
           duration: time,
           y: "100%",
@@ -238,7 +245,6 @@ export default {
   }
 
   .paragraph__subtitle-container {
-
     .paragraph__subtitle,
     .paragraph__subtitle2 {
       font-family: $lora;
