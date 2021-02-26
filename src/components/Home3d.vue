@@ -180,9 +180,10 @@ export default {
         let goTo = "";
         const goToPage = function () {
           document.body.style.cursor = "default";
+          window.removeEventListener("mousedown", goToPage, false);
           if (sceneID && goTo != "") {
-            window.removeEventListener("click", goToPage, false);
             scope.$router.push({ name: goTo });
+            document.body.style.cursor = "default";
           }
         };
 
@@ -207,11 +208,10 @@ export default {
           if (this.mesh) {
             raycaster.setFromCamera(that.mouse, this.camera);
             const intersects = raycaster.intersectObjects(this.mesh.children);
-            window.addEventListener("click", goToPage, false);
             // console.log("intersects: ", intersects);
 
             if (intersects.length == 0) {
-              window.addEventListener("click", goToPage, false);
+              window.addEventListener("mousedown", goToPage, false);
               goTo = "";
               document.body.style.cursor = "default";
               gsap.to(this.mesh.children[0].scale, {
@@ -468,6 +468,7 @@ export default {
       });
     },
     leave() {
+      document.body.style.cursor = "default";
       gsap.to(this.$el, {
         duration: 0.5,
         opacity: "0",
