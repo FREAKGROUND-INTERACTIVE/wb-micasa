@@ -86,11 +86,11 @@ export default {
         initTl.to(
           this.listServices[that.random[index]],
           {
-            duration: time,
+            duration: 0.2,
             opacity: 1,
             ease: "power1.inOut",
           },
-          "<0.2"
+          "<0.1"
         );
       }
 
@@ -166,6 +166,7 @@ export default {
     div {
       opacity: 0;
       margin: 0 0.2rem;
+      @include transition(color 0.3s);
       // &:after {
       //   content: "\2022";
       //   margin: 0 0.4rem;
@@ -179,7 +180,6 @@ export default {
 
       &:hover {
         color: $red;
-        font-weight: 700;
       }
     }
   }
