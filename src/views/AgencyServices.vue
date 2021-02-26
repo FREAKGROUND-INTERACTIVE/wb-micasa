@@ -1,11 +1,16 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-services">
-      <div class="agency__slider">
-        <Slider3d ref="slider3d"></Slider3d>
-      </div>
       <div class="agency-services__bread">
-        <Bread-crumb ref="bread" :number="'03'" :title="'Services'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="2" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+        <Bread-crumb
+          ref="bread"
+          :number="'03'"
+          :title="'Services'"
+          :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
+          :mark="2"
+          :mountedAnim="true"
+          :mountedDelay="2"
+        ></Bread-crumb>
       </div>
       <div class="agency-services__title">
         <div class="agency-services__title-up">
@@ -14,6 +19,9 @@
               {{ letter }}
             </div>
           </template>
+        </div>
+        <div class="agency__slider">
+          <Slider3d ref="slider3d"></Slider3d>
         </div>
         <div class="agency-services__title-down">
           <template v-for="letter in 'MANY ROOMS'">
@@ -260,18 +268,26 @@ export default {
   .agency-services__bread {
     grid-area: breadCrumb;
     position: absolute;
+    z-index: 4;
   }
 
   .agency-services__title {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     text-align: center;
     font-family: $oswald;
-    @include transform(translate(-50%, -50%));
+    // @include transform(translate(-50%, -50%));
 
     .agency-services__title-up {
       overflow: hidden;
+      z-index: 1;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include transform(translate(-50%, -100%));
       div {
         display: inline-block;
         font-size: 10vw;
@@ -288,8 +304,20 @@ export default {
       }
     }
 
+    .agency__slider {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
     .agency-services__title-down {
       overflow: hidden;
+      z-index: 3;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      @include transform(translate(-50%, 0%));
       div {
         display: inline-block;
         font-size: 7.5vw;
@@ -306,12 +334,14 @@ export default {
 
   .agency-services__brandheader {
     grid-area: logo;
+    z-index: 4;
   }
 
   .agency-services__button {
     grid-area: 3 / 2 / 4 / 4;
     place-self: end center;
     margin-bottom: 4rem;
+    z-index: 4;
   }
 
   .agency-services__content {
@@ -322,6 +352,7 @@ export default {
     flex-flow: column nowrap;
     justify-content: center;
     align-content: center;
+    z-index: 4;
 
     .agency-services__content-close {
       grid-area: 3 / 2 / 4 / 4;
@@ -338,6 +369,7 @@ export default {
 
   .agency-services__link {
     @extend .link;
+    z-index: 4;
   }
 }
 </style>
