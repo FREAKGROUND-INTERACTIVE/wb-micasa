@@ -79,7 +79,7 @@ export default {
     opacity: 0;
     @include transition(all 1s);
     &:hover {
-      @include transform(translateY(-10%));
+      @include transform(scale(1.2));
     }
   }
 }
