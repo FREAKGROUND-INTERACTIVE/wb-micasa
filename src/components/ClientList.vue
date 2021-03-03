@@ -16,7 +16,30 @@ export default {
   },
   data() {
     return {
-      listClient: null
+      listClient: null,
+      random: [
+        0,
+        20,
+        1,
+        19,
+        2,
+        18,
+        3,
+        17,
+        4,
+        16,
+        5,
+        15,
+        6,
+        14,
+        7,
+        13,
+        8,
+        12,
+        9,
+        11,
+        10
+      ],
     }
   },
   mounted() {
@@ -29,20 +52,21 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
+      let that = this;
       //* create timeLine
       let initTl = gsap.timeline({ paused: "true", delay: delay });
 
-      this.listClient.forEach((element) => {
+      for (let index = 0; index < this.random.length; index++) {
         initTl.to(
-          element,
+          this.listClient[that.random[index]],
           {
-            duration: 2.5,
+            duration: 0.8,
             opacity: 1,
             ease: "power2.out",
           },
           "<0.1"
         );
-      });
+      }
 
       initTl.play();
     },
@@ -52,20 +76,35 @@ export default {
      * @param done it return the leave behavior end
      */
     leave(done) {
+      let that = this;
+       //* duration time for animation elements
+      let time = 1;
       //* create timeLine
       let initTl = gsap.timeline({ paused: "true"});
 
-      this.listClient.forEach((element) => {
+      for (let index = 0; index < this.random.length; index++) {
         initTl.to(
-          element,
+          this.listClient[that.random[index]],
           {
-            duration: 0.1,
+            duration: time/30,
             opacity: 0,
-            ease: "power2.in",
+            ease: "power2.inOut",
           },
           "<0.05"
         );
-      });
+      }
+
+      // this.listClient.forEach((element) => {
+      //   initTl.to(
+      //     element,
+      //     {
+      //       duration: 0.1,
+      //       opacity: 0,
+      //       ease: "power2.in",
+      //     },
+      //     "<0.05"
+      //   );
+      // });
 
       initTl.play();
       console.log(done);
