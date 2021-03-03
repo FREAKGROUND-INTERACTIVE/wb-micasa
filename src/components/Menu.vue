@@ -22,15 +22,17 @@
           </div>
           <div class="menu__info-logo" v-if="visible">
             <div @click="showMenu">
-              <Brand-header
-                :mountedAnim="true"
-                :mountedDelay="2.1"
-                :link="linkBrand"
-                ref="brand"
-              ></Brand-header>
+<Brand-header
+              :mountedAnim="true"
+              :mountedDelay="2.1"
+              :link="linkBrand"
+              ref="brand"
+            ></Brand-header>
             </div>
+            
           </div>
           <div class="menu__info-dev" v-if="visible">
+            
             <Paragraph
               :mountedAnim="true"
               :mountedDelay="0.7"
@@ -203,9 +205,9 @@ export default {
         });
         this.leave();
         gsap.to(this.content, {
-          duration: 1,
+          duration: 1.8,
           autoAlpha: 0,
-          delay: 0.7,
+          delay: 1.6,
           // x: "100%",
           onComplete: function () {
             console.log("cerrar");
