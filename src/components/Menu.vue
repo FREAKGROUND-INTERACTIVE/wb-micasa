@@ -37,6 +37,7 @@
           </div>
         </div>
         <div class="menu__line"></div>
+        <button @click="changeLang">Lang</button>
         <div class="menu__social">
           <a
             href="https://www.instagram.com/micasa.nyc/?hl=en"
@@ -252,6 +253,10 @@ export default {
         delay: 0.7,
         ease: "power4.out",
       });
+    },
+    changeLang() {
+      this.showMenu();
+      mutations.changeLang();
     },
     leave() {
       let that = this;
