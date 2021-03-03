@@ -21,12 +21,14 @@
             ></Paragraph>
           </div>
           <div class="menu__info-logo" v-if="visible">
-            <Brand-header
-              :mountedAnim="true"
-              :mountedDelay="2.1"
-              :link="linkBrand"
-              ref="brand"
-            ></Brand-header>
+            <div @click="showMenu">
+              <Brand-header
+                :mountedAnim="true"
+                :mountedDelay="2.1"
+                :link="linkBrand"
+                ref="brand"
+              ></Brand-header>
+            </div>
           </div>
           <div class="menu__info-dev" v-if="visible">
             <Paragraph
@@ -165,7 +167,6 @@ export default {
   data() {
     return {
       visible: false,
-
       content: null,
       button: null,
       linksSocial: null,
