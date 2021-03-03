@@ -9,6 +9,7 @@
               :class="'right'"
               ref="paragraph1"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
+              :font="'lora'"
             ></Paragraph>
             <Paragraph
               :mountedAnim="true"
@@ -16,6 +17,7 @@
               :class="'right'"
               ref="paragraph2"
               :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
+              :font="'lora'"
             ></Paragraph>
           </div>
           <div class="menu__info-logo" v-if="visible">
@@ -33,6 +35,7 @@
               :class="'right'"
               ref="paragraph3"
               :text="'MICASA Studio®\nAll Rights Reserved\n2021'"
+              :font="'lora'"
             ></Paragraph>
           </div>
         </div>
@@ -348,9 +351,9 @@ export default {
         @include transition(all 0.5s);
 
         p {
-          font-family: $fira;
-          font-size: 16px;
-          font-weight: 300;
+          font-family: $lora;
+          font-size: 14px;
+          font-weight: 400;
           place-self: center;
           margin-left: 0.5rem;
         }
