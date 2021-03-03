@@ -4,7 +4,7 @@
       <div class="agency-about__img">
         <Img-bg ref="imgBg" @imgLoaded="initAnim"></Img-bg>
         <div class="agency-about__title">
-          <Font-weight ref="fontWeight" :text="'agency'"></Font-weight>
+          <Font-weight ref="fontWeight" :text="dataComp.title"></Font-weight>
         </div>
       </div>
       <div class="agency-about__bread">
@@ -16,13 +16,13 @@
           :link="link"
           :mountedAnim="true"
         ></Brand-header>
-      </div>
+      </div> 
       <div class="agency-about__paragraph">
         <Paragraph
           ref="paragraph"
-          :quote="'About us'"
-          :title="'Mi Casa Studios'"
-          :text="'Here at Mi Casa Studios we are more\nthan an agency. We are the home base\nfor a creative community that nurtures\nits menbers and provides fertile\nground for ideas to grow.'"
+          :quote="dataComp.paragraph.quote"
+          :title="dataComp.paragraph.title"
+          :text="dataComp.paragraph.text"
           :align="'left'"
         ></Paragraph>
       </div>
@@ -51,14 +51,24 @@ export default {
     BrandHeader,
     BreadCrumb,
   },
+  props: {
+    data: Object
+  },
+  watch: {
+    data: function(val) {
+      this.dataComp = val.agency.about;
+    }
+  },
   data() {
     return {
+      dataComp: this.data.agency.about,
       link: "/",
       numberPage: "01",
       titlePage: "Agency",
     };
   },
   mounted() {
+    console.log("data en about:", this.dataComp);
     mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
