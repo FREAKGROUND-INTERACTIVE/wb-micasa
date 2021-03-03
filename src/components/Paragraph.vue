@@ -25,7 +25,7 @@
       <div class="paragraph__subtitle-container" v-if="subtitle2">
         <h3 class="paragraph__subtitle2">{{ subtitle2 }}</h3>
       </div>
-      <p class="paragraph__text">
+      <p class="paragraph__text" :class="{ lora: font == 'lora' }">
         <template v-for="item in splitText">
           <div class="paragraph__split-container" :key="item">
             <div class="paragraph__split-text">
@@ -46,6 +46,7 @@ export default {
     quote: String,
     title: String,
     color: String,
+    font: String,
     subtitle: String,
     subtitle2: String,
     text: String,
@@ -285,6 +286,12 @@ export default {
       .paragraph__split-text {
         @include transform(translateY(100%));
       }
+    }
+
+    &.lora {
+      font-family: $lora;
+      font-size: 14px;
+      font-weight: 400;
     }
   }
 
