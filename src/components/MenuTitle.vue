@@ -1,35 +1,33 @@
 <template>
-<transition @leave="leave" :css="false">
-  <div class="view-title">
-    <h1 class="view-title__new">
-      <template v-for="letter in newTitle">
-        <div
-          class="view-title__new-letter"
-          :key="letter.id"
-          :class="{ space: letter == ' ' }"
-        >
-          {{ letter }}
-        </div>
-      </template>
-    </h1>
-    <h1 class="view-title__old">
-      <template v-for="letter in title">
-        <div
-          class="view-title__old-letter"
-          :key="letter.id"
-          :class="{ space: letter == ' ' }"
-        >
-          {{ letter }}
-        </div>
-      </template>
-    </h1>
-  </div>
-</transition>
-
+  <transition @leave="leave" :css="false">
+    <div class="view-title">
+      <h1 class="view-title__new">
+        <template v-for="letter in newTitle">
+          <div
+            class="view-title__new-letter"
+            :key="letter.id"
+            :class="{ space: letter == ' ' }"
+          >
+            {{ letter }}
+          </div>
+        </template>
+      </h1>
+      <h1 class="view-title__old">
+        <template v-for="letter in title">
+          <div
+            class="view-title__old-letter"
+            :key="letter.id"
+            :class="{ space: letter == ' ' }"
+          >
+            {{ letter }}
+          </div>
+        </template>
+      </h1>
+    </div>
+  </transition>
 </template>
 
 <script>
-
 import { gsap } from "gsap";
 
 export default {
@@ -128,9 +126,9 @@ export default {
     font-weight: 900;
     white-space: nowrap;
     padding: 0 0.5rem;
+
     .view-title__new-letter {
       display: inline-block;
-
       &.space {
         margin-right: 1rem;
       }
@@ -157,7 +155,7 @@ export default {
 
   &:hover {
     .view-title__new {
-      -webkit-text-stroke: 1px $red;
+      -webkit-text-fill-color: $red;
     }
   }
 }
