@@ -29,6 +29,10 @@ export default {
       default: 0,
     },
   },
+  watch: {
+    text: function(val) {
+      this.title = val.split("\n");    }
+  },
   data() {
     return {
       title: this.text.split("\n"), //* split text in lines
@@ -45,6 +49,10 @@ export default {
       this.initAnim(this.mountedDelay);
     }
   },
+  updated() {
+    this.chars = this.$el.querySelectorAll(".font__char");
+    this.initAnim(0);
+  },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
   },
@@ -55,9 +63,10 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
+      console.log('Empezo initAnim');
       //* create timeLine
       let initTl = gsap.timeline({ paused: "true", delay: delay });
-
+      
       this.chars.forEach((element) => {
         initTl.to(
           element,
