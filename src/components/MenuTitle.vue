@@ -122,13 +122,17 @@ export default {
     text-transform: uppercase;
     // line-height: 0.5;
     color: transparent;
-    -webkit-text-stroke: 1px $dark;
     font-weight: 900;
     white-space: nowrap;
     padding: 0 0.5rem;
 
     .view-title__new-letter {
       display: inline-block;
+
+      -webkit-text-stroke: 1px $dark;
+      color: transparent;
+      @include transition(all 0.5s ease-out);
+
       &.space {
         margin-right: 1rem;
       }
@@ -143,19 +147,15 @@ export default {
     }
 
     @include transform(translateY(-100%));
-    @include transition(all 0.3s ease-out);
-  }
-
-  &.change {
-    h1 {
-      @include transform(translateY(0));
-      @include transition(all 0.3s ease-out);
-    }
+    @include transition(transform 0.3s ease-out);
   }
 
   &:hover {
     .view-title__new {
-      -webkit-text-fill-color: $red;
+      .view-title__new-letter {
+        color: $dark;
+        // -webkit-text-stroke: $dark;
+      }
     }
   }
 }
