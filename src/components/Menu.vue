@@ -8,7 +8,7 @@
               :mountedAnim="true"
               :class="'right'"
               ref="paragraph1"
-              :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
+              :text="'318 Grand Street\nSuite 1G Brooklyn\nNY 11211\ninfo@mi-casa.us'"
               :font="'lora'"
             ></Paragraph>
             <Paragraph
@@ -16,29 +16,27 @@
               :mountedDelay="0.3"
               :class="'right'"
               ref="paragraph2"
-              :text="'318 Grand Street, Suite 1G\nBrooklyn, NY 11211\nmicasastudios@gmail.com\n(+1) 855-766-3835'"
+              :text="'70 Hester Street\nNY 10002\ninfo@mi-casa.us'"
               :font="'lora'"
             ></Paragraph>
           </div>
           <div class="menu__info-logo" v-if="visible">
             <div @click="showMenu">
-<Brand-header
-              :mountedAnim="true"
-              :mountedDelay="2.1"
-              :link="linkBrand"
-              ref="brand"
-            ></Brand-header>
+              <Brand-header
+                :mountedAnim="true"
+                :mountedDelay="2.1"
+                :link="linkBrand"
+                ref="brand"
+              ></Brand-header>
             </div>
-            
           </div>
           <div class="menu__info-dev" v-if="visible">
-            
             <Paragraph
               :mountedAnim="true"
               :mountedDelay="0.7"
               :class="'right'"
               ref="paragraph3"
-              :text="'MICASA Studio®\nAll Rights Reserved\n2021'"
+              :text="'MI-CASA Studios®\nAll Rights Reserved\n2021'"
               :font="'lora'"
             ></Paragraph>
           </div>
@@ -47,7 +45,7 @@
         <button @click="changeLang">Lang</button>
         <div class="menu__social">
           <a
-            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            href="https://www.instagram.com/micasa.nyc/"
             target="_blank"
             rel="noopener noreferrer"
             class="menu__social-logo"
@@ -61,7 +59,7 @@
             <p>@micasa.nyc</p>
           </a>
           <a
-            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            href="https://www.facebook.com/micasa.us"
             target="_blank"
             rel="noopener noreferrer"
             class="menu__social-logo"
@@ -72,10 +70,10 @@
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/FACEBOOK_jgq4r8.svg"
               alt="Facebook"
             />
-            <p>@micasa.nyc</p>
+            <p>@micasa.us</p>
           </a>
           <a
-            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            href="https://twitter.com/MiCasa_Studios"
             target="_blank"
             rel="noopener noreferrer"
             class="menu__social-logo"
@@ -86,10 +84,10 @@
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/TWITTER_c0x4ge.svg"
               alt="Twitter"
             />
-            <p>@micasa.nyc</p>
+            <p>@MiCasa_Studios</p>
           </a>
           <a
-            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            href="https://www.youtube.com/channel/UCaEYVWucHQpLRAKKB_Psmjw"
             target="_blank"
             rel="noopener noreferrer"
             class="menu__social-logo"
@@ -100,10 +98,10 @@
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/YOUTUBE_gpqdi5.svg"
               alt="Youtube"
             />
-            <p>@micasa.nyc</p>
+            <p>@Mi Casa Studios</p>
           </a>
           <a
-            href="https://www.instagram.com/micasa.nyc/?hl=en"
+            href="https://www.linkedin.com/company/micasacreative/"
             target="_blank"
             rel="noopener noreferrer"
             class="menu__social-logo"
@@ -114,7 +112,7 @@
               src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/LINKED_IN_e1a0zp.svg"
               alt="LinkedIn"
             />
-            <p>@micasa.nyc</p>
+            <p>@micasacreative</p>
           </a>
         </div>
         <div class="menu__links">
