@@ -68,7 +68,6 @@ export default {
     };
   },
   mounted() {
-    console.log("data en about:", this.dataComp);
     mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
