@@ -10,8 +10,8 @@
       <div class="agency-altering__paragraph">
         <Paragraph
           ref="paragraph"
-          :title="'Altering the constant'"
-          :text="'We make bold things with a purpose to create real change\nfor the internet and beyond that. In this technology driven\nworld that seems to move faster than the speed of light,\nonly the right narrative to the right people at the right time\nwill pierce through.'"
+          :title="dataComp.paragraph.title"
+          :text="dataComp.paragraph.text"
         ></Paragraph>
       </div>
       <div class="agency-altering__brandheader">
@@ -45,6 +45,19 @@ export default {
     LinkButton,
     BrandHeader,
     BreadCrumb,
+  },
+  props: {
+    data: Object
+  },
+  watch: {
+    data: function(val) {
+      this.dataComp = val.agency.altering;
+    }
+  },
+  data() {
+    return {
+      dataComp: this.data.agency.altering,
+    }
   },
   mounted() {
     mutations.setTitle(" ");
