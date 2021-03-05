@@ -6,7 +6,7 @@
           <Paragraph
             ref="paragraph"
             :align="'center'"
-            :title="'Powered by Micasa'"
+            :title="dataComp.title"
             :color="'green'"
             :text="''"
           ></Paragraph>
@@ -39,8 +39,17 @@ export default {
     PoweredList,
     BrandHeader
   },
+  props: {
+    data: Object
+  },
+  watch: {
+    data: function(val) {
+      this.dataComp = val.powered;
+    }
+  },
   data() {
     return {
+      dataComp: this.data.powered,
       poweredList: [
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
