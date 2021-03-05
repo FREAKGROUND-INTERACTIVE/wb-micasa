@@ -2,15 +2,23 @@
   <transition @leave="leave" :css="false">
     <div class="agency-clients">
       <div class="agency-clients__bread">
-        <Bread-crumb ref="bread" :number="'05'" :title="'Clients'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="4" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+        <Bread-crumb
+          ref="bread"
+          :number="'05'"
+          :title="'Clients'"
+          :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
+          :mark="4"
+          :mountedAnim="true"
+          :mountedDelay="2"
+        ></Bread-crumb>
       </div>
       <div class="agency-clients__container">
         <div class="agency-clients__paragraph">
           <Paragraph
             ref="paragraph"
             :class="'center'"
-            :title="'Our Clients'"
-            :text="'We are passionate about what we create and attract others like us. Ideal collaborators\nare agents who seek a fresh perspective. Together we disrupt the status quo.'"
+            :title="dataComp.paragraph.title"
+            :text="dataComp.paragraph.text"
           ></Paragraph>
         </div>
         <div class="agency-clients__logos">
@@ -48,6 +56,14 @@ export default {
     BrandHeader,
     BreadCrumb,
   },
+  props: {
+    data: Object,
+  },
+  watch: {
+    data: function (val) {
+      this.dataComp = val.agency.clients;
+    },
+  },
   data() {
     return {
       clientList: [
@@ -72,6 +88,7 @@ export default {
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
         "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
       ],
+      dataComp: this.data.agency.clients
     };
   },
   mounted() {
