@@ -14,7 +14,7 @@
       </div>
       <div class="agency-services__title">
         <div class="agency-services__title-up">
-          <template v-for="letter in 'ONE HOME'">
+          <template v-for="letter in dataComp.titleOne">
             <div :key="letter.id" :class="{ space: letter == ' ' }">
               {{ letter }}
             </div>
@@ -24,7 +24,7 @@
           <Slider3d ref="slider3d"></Slider3d>
         </div>
         <div class="agency-services__title-down">
-          <template v-for="letter in 'MANY ROOMS'">
+          <template v-for="letter in dataComp.titleTwo">
             <div :key="letter.id" :class="{ space: letter == ' ' }">
               {{ letter }}
             </div>
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="agency-services__button" @click="openServices">
-        <Button ref="Button" :text="'See our Services'"></Button>
+        <Button ref="Button" :text="dataComp.button"></Button>
       </div>
       <div class="agency-services__brandheader">
         <Brand-header
@@ -51,30 +51,7 @@
         <div class="agency-services__content-paragraph">
           <Services
             ref="services"
-            :list="[
-              'Research <span>•</span>',
-              'Trend forecasting <span>•</span>',
-              'Live Streaming <span>•</span>',
-              'PodCast Development',
-              'Quantitative Surveys <span>•</span>',
-              'Focus Groups <span>•</span>',
-              'Product Innovation <span>•</span>',
-              'Brand Identity',
-              'Marketing Advertising <span>•</span>',
-              'Campaign Development <span>•</span>',
-              'Optimization',
-              'Data Analysis <span>•</span>',
-              'Websites <span>•</span>',
-              'Content Strategy & Creation <span>•</span>',
-              'Paid Social',
-              'Community Management <span>•</span>',
-              'Influencer Engagement <span>•</span>',
-              'Event Design',
-              'Pop-Ups <span>•</span>',
-              'Space Design <span>•</span>',
-              'Tradeshow Support <span>•</span>',
-              'Whatever It Takes',
-            ]"
+            :list="dataComp.list"
           ></Services>
         </div>
       </div>
@@ -104,12 +81,21 @@ export default {
     BrandHeader,
     BreadCrumb,
   },
+  props: {
+    data: Object
+  },
+  watch: {
+    data: function(val) {
+      this.dataComp = val.agency.services;
+    }
+  },
   data() {
     return {
       lettersUp: null,
       lettersDown: null,
       contentServices: null,
       showServices: false,
+      dataComp: this.data.agency.services,
     };
   },
   mounted() {
