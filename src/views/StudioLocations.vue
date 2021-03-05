@@ -23,7 +23,7 @@
       <div class="locations__sites-brooklyn-menu">
         <Menu-studio
           ref="menuBrooklyn"
-          :textButton="hoodBrooklyn ? 'Studio' : 'Neighborhood'"
+          :textButton="hoodBrooklyn ? 'Studio' : dataComp.buttonN"
           @clickButton="hoodBrooklyn = !hoodBrooklyn"
         ></Menu-studio>
       </div>
@@ -40,10 +40,10 @@
           <Paragraph
             :align="'right'"
             ref="lesParagraph"
-            :title="hoodLes ? infoHoodLes.title : infoStudioLes.title"
-            :subtitle="infoStudioLes.subtitle"
-            :subtitle2="infoStudioLes.subtitle2"
-            :text="hoodLes ? infoHoodLes.text : infoStudioLes.text"
+            :title="hoodLes ? dataComp.les.infoHoodLes.title : dataComp.les.infoStudioLes.title"
+            :subtitle="dataComp.les.infoStudioLes.subtitle"
+            :subtitle2="dataComp.les.infoStudioLes.subtitle2"
+            :text="hoodLes ? dataComp.les.infoHoodLes.text : dataComp.les.infoStudioLes.text"
             :color="'cyan'"
             :mountedAnim="true"
           ></Paragraph>
@@ -74,7 +74,7 @@
       <div class="locations__sites-les-menu">
         <Menu-studio
           ref="menuLes"
-          :textButton="hoodLes ? 'Studio' : 'Neighborhood'"
+          :textButton="hoodLes ? 'Studio' : dataComp.buttonN"
           @clickButton="hoodLes = !hoodLes"
           :color="'cyan'"
         ></Menu-studio>
@@ -92,11 +92,11 @@
           <Paragraph
             ref="brooklynParagraph"
             :title="
-              hoodBrooklyn ? infoHoodBrooklyn.title : infoStudioBrooklyn.title
+              hoodBrooklyn ? dataComp.bro.infoHoodBrooklyn.title : dataComp.bro.infoStudioBrooklyn.title
             "
-            :subtitle="infoStudioBrooklyn.subtitle"
-            :subtitle2="infoStudioBrooklyn.subtitle2"
-            :text="hoodBrooklyn ? infoHoodBrooklyn.text : infoStudioBrooklyn.text"
+            :subtitle="dataComp.bro.infoStudioBrooklyn.subtitle"
+            :subtitle2="dataComp.bro.infoStudioBrooklyn.subtitle2"
+            :text="hoodBrooklyn ? dataComp.bro.infoHoodBrooklyn.text : dataComp.bro.infoStudioBrooklyn.text"
             :mountedAnim="true"
             :color="'cyan'"
           ></Paragraph>
@@ -137,7 +137,14 @@ export default {
     CloseButton,
     MenuStudio,
   },
-
+  props: {
+    data: Object
+  },
+  watch: {
+    data: function (val) {
+      this.dataComp = val.locations;
+    },
+  },
   data() {
     return {
       loading: {
@@ -146,6 +153,7 @@ export default {
       loading2: {
         x: 0,
       },
+      dataComp: this.data.locations,
       brooklyn: false,
       hoodBrooklyn: false,
       infoStudioBrooklyn: {
