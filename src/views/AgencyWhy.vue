@@ -10,7 +10,7 @@
       </div>
       <div class="agency-why__color-picker">
         <p class="agency-why__color-text">
-          (Pick a Color to paint the Object in the center)
+          {{ dataComp.textPainter }}
         </p>
         <div class="agency-why__colors">
           <div class="agency-why__color red"></div>
@@ -24,7 +24,7 @@
       <div class="agency-why__title">
         <div class="agency-why__title-container">
           <div
-            v-for="letter in 'WHY US?'"
+            v-for="letter in dataComp.title"
             :key="letter.id"
             class="agency-why__title-letter"
             :class="{ space: letter == ' ' }"
@@ -39,8 +39,8 @@
       <div class="agency-why__paragraph">
         <Paragraph
           ref="paragraph"
-          :title="'Why us?'"
-          :text="'At the heart of our process is financial strategy. With a\ndeep understanding of our Gen Z consumer, we know how\nour message needs to resonate to create real change\nwithin a budget.'"
+          :title="dataComp.paragraph.title"
+          :text="dataComp.paragraph.text"
         ></Paragraph>
       </div>
       <div class="agency-why__brandheader">
@@ -74,11 +74,20 @@ export default {
     BrandHeader,
     BreadCrumb,
   },
+  props: {
+    data: Object
+  },
+  watch: {
+    data: function(val) {
+      this.dataComp = val.agency.why;
+    }
+  },
   data() {
     return {
       colors: [],
       letters: null,
       picker: null,
+      dataComp: this.data.agency.why,
     };
   },
   mounted() {
