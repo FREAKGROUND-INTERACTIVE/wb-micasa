@@ -219,9 +219,9 @@ export default {
           this.green.toggle();
           break;
         case 4:
-          this.red.close();
-          this.blue.close();
-          this.green.close();
+          // this.red.close();
+          // this.blue.close();
+          // this.green.close();
           this.gray.toggle();
           break;
 
