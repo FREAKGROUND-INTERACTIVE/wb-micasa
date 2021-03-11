@@ -19,7 +19,6 @@
 <script>
 import { mutations } from "./../state";
 import { gsap } from "gsap";
-// import * as Tone from "tone";
 
 import ColorLayer from "@/components/ColorLayer";
 import Home3d from "@/components/Home3d";
@@ -34,129 +33,49 @@ export default {
   },
   props: {
     color: String,
-    // initAudio: Boolean,
+    initPage: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     color: function (val) {
       this.setColor = val;
-      // console.log(val);
-      // switch (val) {
-      //   case "Agency":
-      //     this.playerAgency.play();
-      //     this.playerStudio.stop();
-      //     this.playerPowered.stop();
-      //     break;
-      //   case "Studio":
-      //     this.playerAgency.stop();
-      //     this.playerStudio.play();
-      //     this.playerPowered.stop();
-      //     break;
-      //   case "Powered":
-      //     this.playerAgency.stop();
-      //     this.playerStudio.stop();
-      //     this.playerPowered.play();
-      //     break;
-      //   default:
-      //     break;
-      // }
     },
-    // initAudio: function (val) {
-    //   console.log(val);
-    //   this.playerLoop.start();
-    //   // this.playerLoop.play();
-    //   this.playerAgency.start();
-    //   this.playerStudio.start();
-    //   this.playerPowered.start();
-    // },
+    initPage: function (val) {
+      if (val) {
+        this.initAnim(1);
+      }
+    },
   },
   data() {
     return {
-      // playerAgency: null,
-      // playerStudio: null,
-      // playerPowered: null,
-      // playerLoop: null,
       setColor: null,
     };
   },
   mounted() {
-    gsap.to(this.$el, {
-      duration: 2,
-      opacity: "1",
-      delay: 1.5,
-      onComplete: function () {
-        mutations.setTitle("micasa");
-        mutations.setHome(true);
-      },
-    });
-
-    // this.playerSetup();
+    //* initAnim function in mounted
+    if (this.initPage) {
+      this.initAnim(1.5);
+    }
   },
   methods: {
-    // playerSetup() {
-    //   class Player {
-    //     constructor(sample) {
-    //       this.player = new Tone.Player(sample).toDestination();
-    //     }
-    //     start() {
-    //       this.player.loop = true;
-    //       this.player.volume.value = -80;
-    //       this.player.start();
-    //     }
-    //     play() {
-    //       gsap.to(this.player.volume, {
-    //         duration: 1,
-    //         value: -6,
-    //       });
-    //     }
-    //     stop() {
-    //       gsap.to(this.player.volume, {
-    //         duration: 1,
-    //         value: -80,
-    //       });
-    //     }
-    //     delete() {
-    //       let that = this;
-    //       gsap.to(this.player.volume, {
-    //         duration: 1,
-    //         value: -80,
-    //         onComplete: function() {
-    //           that.player.stop();
-    //         }
-    //       });
-    //     }
-    //     playing() {
-    //       if (this.player.state == "started") {
-    //         return true;
-    //       } else {
-    //         return false;
-    //       }
-    //     }
-    //   }
-
-    //   this.playerLoop = new Player(
-    //     "https://res.cloudinary.com/nancloud/video/upload/v1613692494/mi-casa/audios/MICASA_LOOPBASE_agr0jp.mp3"
-    //   );
-
-    //   this.playerAgency = new Player(
-    //     "https://res.cloudinary.com/nancloud/video/upload/v1613692494/mi-casa/audios/MICASA_AGENCY_nhdjve.mp3"
-    //   );
-    //   this.playerStudio = new Player(
-    //     "https://res.cloudinary.com/nancloud/video/upload/v1613692495/mi-casa/audios/MICASA_STUDIO_ki4erp.mp3"
-    //   );
-    //   this.playerPowered = new Player(
-    //     "https://res.cloudinary.com/nancloud/video/upload/v1613692495/mi-casa/audios/MICASA_POWERED_xgxfhk.mp3"
-    //   );
-    // },
+    initAnim(delay) {
+      gsap.to(this.$el, {
+        duration: 2,
+        opacity: "1",
+        delay: delay,
+        onComplete: function () {
+          mutations.setTitle("micasa");
+          mutations.setHome(true);
+        },
+      });
+    },
     leave(el, done) {
       this.$el.classList.add("white");
       this.$refs.home3d.leave();
       this.$refs.linksList.leave();
       this.$refs.colorLayer.leave();
-
-      // this.playerLoop.delete();
-      // this.playerAgency.delete();
-      // this.playerStudio.delete();
-      // this.playerPowered.delete();
 
       mutations.setHome(false);
       gsap.to(el, {
