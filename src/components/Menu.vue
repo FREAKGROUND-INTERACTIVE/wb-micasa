@@ -439,6 +439,10 @@ export default {
         }
       }
     }
+
+    @include breakpoint(sm) {
+      right: 2.5rem;
+    }
   }
 }
 </style>
