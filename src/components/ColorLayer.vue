@@ -27,6 +27,15 @@
       <path class="shape-overlays__path"></path>
       <path class="shape-overlays__path"></path>
     </svg>
+    <svg
+      class="shape-overlays gray"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+    >
+      <path class="shape-overlays__path"></path>
+      <path class="shape-overlays__path"></path>
+      <path class="shape-overlays__path"></path>
+    </svg>
   </div>
 </template>
 
@@ -41,7 +50,7 @@ export default {
   watch: {
     color: function (val, oldVal) {
       // console.log("inHome: ", mutations.getHome());
-      if (val != oldVal && val != "micasa" && mutations.getHome()) {
+      if (val != oldVal && mutations.getHome()) {
         switch (val) {
           case "Agency":
             this.anim(1);
@@ -51,6 +60,9 @@ export default {
             break;
           case "Powered":
             this.anim(3);
+            break;
+          case "micasa":
+            this.anim(4);
             break;
 
           default:
@@ -64,9 +76,11 @@ export default {
       elmOverlay: null,
       elmOverlay2: null,
       elmOverlay3: null,
+      elmOverlay4: null,
       red: null,
       cyan: null,
       green: null,
+      gray: null,
       index: 1,
     };
   },
@@ -115,7 +129,7 @@ export default {
           this.elm.classList.remove("is-opened");
           this.timeStart = Date.now();
           this.renderLoop();
-        }else {
+        } else {
           return;
         }
       }
@@ -186,9 +200,11 @@ export default {
     this.elmOverlay = document.querySelector(".red");
     this.elmOverlay2 = document.querySelector(".blue");
     this.elmOverlay3 = document.querySelector(".green");
+    this.elmOverlay4 = document.querySelector(".gray");
     this.red = new ShapeOverlays(this.elmOverlay);
     this.blue = new ShapeOverlays(this.elmOverlay2);
     this.green = new ShapeOverlays(this.elmOverlay3);
+    this.gray = new ShapeOverlays(this.elmOverlay4);
   },
   methods: {
     anim(value) {
@@ -202,6 +218,12 @@ export default {
         case 3:
           this.green.toggle();
           break;
+        case 4:
+          this.red.close();
+          this.blue.close();
+          this.green.close();
+          this.gray.toggle();
+          break;
 
         default:
           break;
@@ -211,6 +233,7 @@ export default {
       this.red.close();
       this.blue.close();
       this.green.close();
+      this.gray.close();
     },
   },
 };
@@ -266,6 +289,18 @@ export default {
       }
       path:nth-of-type(3) {
         fill: $green;
+      }
+    }
+
+    &.gray {
+      path:nth-of-type(1) {
+        fill: lighten(#dfdfdf, 20%);
+      }
+      path:nth-of-type(2) {
+        fill: lighten(#dfdfdf, 10%);
+      }
+      path:nth-of-type(3) {
+        fill: #dfdfdf;
       }
     }
   }
