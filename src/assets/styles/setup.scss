@@ -1,28 +1,23 @@
 //* FONTS
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
 // @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap");
 
 //* SCSS PARTIALS
-@import './partials/resets';
-@import './partials/utils';
+@import "./partials/resets";
+@import "./partials/utils";
 
 //* VARIABLES
 
-$lora: 'Lora',
-serif;
-$fira: 'Fira Sans',
-sans-serif;
-$mont: 'Montserrat',
-sans-serif;
-$raleway: 'Raleway',
-sans-serif;
-$oswald: 'Oswald', sans-serif;
+$lora: "Lora", serif;
+$fira: "Fira Sans", sans-serif;
+$mont: "Montserrat", sans-serif;
+$raleway: "Raleway", sans-serif;
+$oswald: "Oswald", sans-serif;
 
 $red: #fd7b74;
 $yellow: #f9b200;
@@ -55,6 +50,17 @@ body {
     ". content-1 content-2 ."
     ". logo button ."
     ".    .     .     .";
+
+  @include breakpoint(sm) {
+    grid-template-columns: [colFirst] 8% [col2] 1fr [col3] 1fr [col4] 8% [colEnd];
+    grid-template-rows: [rowFirst] 6% [row2] 4% [row3] 80% [row4] 4% [row5] 6% [rowEnd];
+    grid-template-areas:
+    ".    .     .     ."
+    ". breadCrumb menu ."
+    ". content-1 content-2 ."
+    ". logo button ."
+    ".    .     .     .";
+  }
 }
 
 .link {
