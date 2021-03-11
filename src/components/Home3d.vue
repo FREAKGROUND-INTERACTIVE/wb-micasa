@@ -414,6 +414,7 @@ export default {
             u_res: {
               value: new THREE.Vector2(window.innerWidth, window.innerHeight),
             },
+            u_radio: { value: 0 },
           },
           vertexShader: vertexShader,
           fragmentShader: fragmentShader,
@@ -444,6 +445,12 @@ export default {
           this.quadmaterial.uniforms.u_mouse.value.x = that.mouse.x;
           this.quadmaterial.uniforms.u_mouse.value.y = that.mouse.y; //((that.mouse.y - 0) * (0 - 1)) / (1 - 0) + 1;
           this.quadmaterial.uniforms.u_time.value += 0.001;
+          if( state.inHome && this.quadmaterial.uniforms.u_radio.value != 0.06) {
+            gsap.to(this.quadmaterial.uniforms.u_radio, {
+              duration: 3,
+              value: 0.06,
+            });
+          }
 
           this.sceneA.render(delta, true);
           this.sceneB.render(delta, true);
