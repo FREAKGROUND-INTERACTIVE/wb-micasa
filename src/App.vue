@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <router-view :color="title" :initAudio="initAudio" :data="dataLang"/>
+    <router-view :color="title" :initPage="initPage" :data="dataLang"/>
     <View-title :text="title" :home="home"></View-title>
     <Menu></Menu>
 
-    <Loading @init="init" :count="loadingCount" :finish="loadingDone" v-if="false"></Loading>
+    <Loading @init="init" :count="loadingCount" :finish="loadingDone"></Loading>
     <!-- <Mouse :inHover="inHover"></Mouse> -->
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
       return state.inHome;
     },
     inHover() {
-      // console.log("computed app hover", mouse.hover);
       return mouse.hover;
     },
     loadingCount() {
@@ -45,7 +44,7 @@ export default {
   },
   data() {
     return {
-      initAudio: false
+      initPage: false
     }
   },
   mounted() {
@@ -68,7 +67,7 @@ export default {
   },
   methods: {
     init() {
-      this.initAudio = true;
+      this.initPage = true;
     }
   }
 };
