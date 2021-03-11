@@ -222,6 +222,7 @@ export default {
               window.addEventListener("mousedown", goToPage, false);
               goTo = "";
               document.body.style.cursor = "default";
+              mutations.setTitle("micasa");
               gsap.to(this.mesh.children[0].scale, {
                 duration: 1,
                 x: 1,
@@ -308,6 +309,7 @@ export default {
               } else {
                 document.body.style.cursor = "default";
                 goTo = "";
+                mutations.setTitle("micasa");
               }
             }
           }
