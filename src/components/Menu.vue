@@ -13,18 +13,16 @@
             ></Paragraph>
             <Paragraph
               :mountedAnim="true"
-              :mountedDelay="0.3"
               :class="'right'"
               ref="paragraph2"
               :text="'70 Hester Street\nNY 10002\ninfo@mi-casa.us'"
               :font="'lora'"
             ></Paragraph>
           </div>
-          <div class="menu__info-logo" v-if="visible">
+          <div class="menu__info-logo" v-show="false">
             <div @click="showMenu">
               <Brand-header
                 :mountedAnim="true"
-                :mountedDelay="2.1"
                 :link="linkBrand"
                 ref="brand"
               ></Brand-header>
@@ -33,7 +31,6 @@
           <div class="menu__info-dev" v-if="visible">
             <Paragraph
               :mountedAnim="true"
-              :mountedDelay="0.7"
               :class="'right'"
               ref="paragraph3"
               :text="'MI-CASA Studios®\nAll Rights Reserved\n2021'"
@@ -222,9 +219,9 @@ export default {
           duration: 2,
           autoAlpha: 1,
           // x: "0%",
-          onComplete: function () {
-            that.visible = true;
-          },
+          // onComplete: function () {
+          //   that.visible = true;
+          // },
         });
       }
     },
@@ -249,14 +246,17 @@ export default {
       gsap.to(that.linksSocial, {
         duration: 1,
         opacity: 1,
-        delay: 0.7,
+        // delay: 0.7,
       });
       gsap.to(that.middleLine, {
         duration: 1,
         height: "100vh",
-        delay: 0.7,
+        // delay: 0.7,
         ease: "power4.out",
       });
+      setTimeout(() => {
+        this.visible = true;
+      }, 3);
     },
     changeLang() {
       this.showMenu();
