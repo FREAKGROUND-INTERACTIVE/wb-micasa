@@ -102,7 +102,7 @@ export default {
       this.$el.style.pointerEvents = "none";
       //* animate characters
       this.letters.forEach((element) => {
-        element.style.paddingRight = '0.2rem';
+        element.style.paddingRight = "0.2rem";
         gsap.to(element, {
           duration: 0.4,
           y: "100%",
@@ -132,16 +132,24 @@ export default {
   align-items: center;
   pointer-events: none;
 
+  @include breakpoint(sm) {
+    justify-content: flex-end;
+  }
+
   .linkButton__line {
     margin-right: 1rem;
     width: 130px;
 
     div {
-      width: 0;
+      width: 0px;
       height: 1px;
       background-color: $dark;
 
       @include transition(all 0.5s);
+    }
+
+    @include breakpoint(sm) {
+      display: none;
     }
   }
 
