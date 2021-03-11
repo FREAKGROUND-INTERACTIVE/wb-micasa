@@ -5,7 +5,7 @@
       <div class="home__3d">
         <Home3d ref="home3d"></Home3d>
       </div>
-      <div class="home__links">
+      <div class="home__links" v-show="false">
         <Links-list
           ref="linksList"
           :mountedAnim="true"
