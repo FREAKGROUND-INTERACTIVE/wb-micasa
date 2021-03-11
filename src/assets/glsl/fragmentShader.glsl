@@ -5,6 +5,7 @@ uniform sampler2D u_image;
 uniform sampler2D u_imagehover;
 
 uniform float u_time;
+uniform float u_radio;
 
 varying vec2 v_uv;
 
@@ -116,8 +117,8 @@ void main() {
 	vec2 mouse = u_mouse * -0.5;
 	
 	vec2 circlePos = st + mouse/3.0;
-	float c = circle(circlePos, 0.06, 3.) * 2.5;
-  float c2 = circle(vec2(0.0,0.0)* -0.5 + st, 0.03, 3.) * 2.5;
+	float c = circle(circlePos, u_radio, 3.) * 2.5;
+  float c2 = circle(vec2(0.0,0.0)* -0.5 + st, u_radio/2.0, 3.) * 2.5;
 
 	float offx = v_uv.x + sin(v_uv.y + u_time * .1);
 	float offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;
