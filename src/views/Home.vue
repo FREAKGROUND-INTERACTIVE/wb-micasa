@@ -44,7 +44,7 @@ export default {
     },
     initPage: function (val) {
       if (val) {
-        this.initAnim(1);
+        this.initAnim(0.5);
       }
     },
   },
@@ -67,7 +67,9 @@ export default {
         delay: delay,
         onComplete: function () {
           mutations.setTitle("micasa");
-          mutations.setHome(true);
+          setTimeout(() => {
+            mutations.setHome(true);
+          }, 500);
         },
       });
     },
