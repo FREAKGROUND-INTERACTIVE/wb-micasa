@@ -213,7 +213,7 @@ export default {
           // if (this.mixers[0]) {
           //   this.mixers[0].update(clock.getDelta());
           // }
-          if (this.mesh) {
+          if (this.mesh && state.inHome) {
             raycaster.setFromCamera(that.mouse, this.camera);
             const intersects = raycaster.intersectObjects(this.mesh.children);
             // console.log("intersects: ", intersects);
@@ -469,11 +469,13 @@ export default {
       window.addEventListener("mousemove", that.onMouseMove, false);
     },
     onMouseMove(event) {
-      gsap.to(this.mouse, {
-        duration: 0.5,
-        x: (event.clientX / window.innerWidth) * 2 - 1,
-        y: -(event.clientY / window.innerHeight) * 2 + 1,
-      });
+      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      // gsap.to(this.mouse, {
+      //   duration: 0.5,
+      //   x: (event.clientX / window.innerWidth) * 2 - 1,
+      //   y: -(event.clientY / window.innerHeight) * 2 + 1,
+      // });
     },
     leave() {
       document.body.style.cursor = "default";
