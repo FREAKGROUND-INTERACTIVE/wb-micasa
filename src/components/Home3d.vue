@@ -33,6 +33,7 @@ export default {
       let container;
       let renderer;
       let transition;
+      let show = true;
       // let stats;
 
       //* THREEJS Mouse variable
@@ -122,6 +123,13 @@ export default {
         this.animReq = requestAnimationFrame(animate);
         render();
         // stats.update();
+        if (show) {
+          show = false;
+          gsap.to(this.$el, {
+            duration: 0.5,
+            opacity: 1,
+          });
+        }
       };
 
       /**
