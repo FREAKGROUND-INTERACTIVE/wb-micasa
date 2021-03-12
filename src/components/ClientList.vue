@@ -83,6 +83,7 @@ export default {
       let initTl = gsap.timeline({ paused: "true"});
 
       for (let index = 0; index < this.random.length; index++) {
+        gsap.killTweensOf(this.listClient[that.random[index]]);
         initTl.to(
           this.listClient[that.random[index]],
           {
