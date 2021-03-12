@@ -56,6 +56,7 @@ export default {
       let initTl = gsap.timeline({ paused: "true" });
 
       this.listClient.forEach((element) => {
+        gsap.killTweensOf(element);
         initTl.to(
           element,
           {
