@@ -33,7 +33,7 @@
               :mountedAnim="true"
               :class="'right'"
               ref="paragraph3"
-              :text="'MI-CASA Studios®\nAll Rights Reserved\n2021'"
+              :text="'MI-CASA Studios ®\nAll Rights Reserved\n2021'"
               :font="'lora'"
             ></Paragraph>
           </div>
