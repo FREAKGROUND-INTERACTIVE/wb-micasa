@@ -2,7 +2,10 @@
   <transition @leave="leave" :css="false">
     <div class="menu-studio">
       <div class="menu-studio__slider">
-        <Carrousel ref="carrousel"></Carrousel>
+        <Carrousel ref="carrousel1" :imgs="isBrooklyn?imgBrooklyn.studio:imgLes.studio"></Carrousel>
+      </div>
+      <div class="menu-studio__slider2">
+        <Carrousel ref="carrousel2" :imgs="isBrooklyn?imgBrooklyn.hood:imgLes.hood"></Carrousel>
       </div>
       <div class="menu-studio__button" @click="clickButton">
         <Button ref="button" :text="textButtonData" :color="'cyan'"></Button>
@@ -22,6 +25,10 @@ export default {
     Button,
   },
   props: {
+    isBrooklyn: {
+      type: Boolean,
+      default: false,
+    },
     textButton: String,
     mountedAnim: {
       type: Boolean,
@@ -40,6 +47,31 @@ export default {
   data() {
     return {
       textButtonData: this.textButton,
+      activeCarrousel: true,
+      imgBrooklyn: {
+        studio: [
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
+        ],
+        hood: [
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD4_wbdu4z.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD4_wbdu4z.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD4_wbdu4z.jpg",
+        ]
+      },
+      imgLes: {
+        studio: [
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
+        ],
+        hood: [
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD_q9farf.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD_q9farf.jpg",
+          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD_q9farf.jpg",
+        ]
+      }
     };
   },
   mounted() {
@@ -55,16 +87,25 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
-      this.$refs.carrousel.initAnim(delay);
+      this.$refs.carrousel1.initAnim(delay);
       this.$refs.button.initAnim(delay + 1);
     },
 
     clickButton() {
+      if (this.activeCarrousel) {
+        // this.$refs.carrousel1.leave();
+        this.$refs.carrousel2.initAnim(1);
+      } else {
+        this.$refs.carrousel2.leave();
+        // this.$refs.carrousel1.initAnim(1);
+      }
+      this.activeCarrousel = !this.activeCarrousel;
       this.$emit("clickButton");
     },
 
     leave(el, done) {
-      this.$refs.carrousel.leave();
+      this.$refs.carrousel1.leave();
+      this.$refs.carrousel2.leave();
       this.$refs.button.leave();
       gsap.to(el, {
         duration: 1,
@@ -80,11 +121,16 @@ export default {
 @import "./../assets/styles/setup";
 
 .menu-studio {
+  position: relative;
+  .menu-studio__slider2 {
+    position: absolute;
+    top: 0;
+  }
   .menu-studio__button {
     position: absolute;
     width: fit-content;
     margin-top: 2rem;
-    position: relative;
+    // position: relative;
     left: 50%;
     @include transform(translateX(-50%));
   }
