@@ -30,7 +30,7 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 
 	this.reference = new THREE.Vector3();
 
-	this.color = "rgba(253, 123, 116, 1)";
+	this.color = "rgba(253, 107, 99, 1)";
 
 	//
 	// public methods
