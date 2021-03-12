@@ -154,6 +154,10 @@ export default {
     width: 100%;
     height: 0vh;
     overflow: hidden;
+
+    @include breakpoint(sm) {
+      height: 55vh;
+    }
     .img-view__img {
       position: absolute;
       // width: 100%;
@@ -161,7 +165,12 @@ export default {
       top: 0%;
       left: 50%;
       @include transform(translate(-50%, 0%) scale(2));
+
+      @include breakpoint(sm) {
+      height: 60vh;
     }
+    }
+    
   }
 }
 </style>
