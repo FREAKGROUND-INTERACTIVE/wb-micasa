@@ -1,14 +1,34 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="agency-about">
-      <div class="agency-about__img">
-        <Img-bg ref="imgBg" @imgLoaded="initAnim"></Img-bg>
-        <div class="agency-about__title">
-          <Font-weight ref="fontWeight" :text="dataComp.title"></Font-weight>
+      <div class="agency-about__content">
+        <div class="agency-about__img">
+          <Img-bg ref="imgBg" @imgLoaded="initAnim"></Img-bg>
+          <div class="agency-about__title">
+            <Font-weight ref="fontWeight" :text="dataComp.title"></Font-weight>
+          </div>
+        </div>
+        <div class="agency-about__paragraph">
+          <Paragraph
+            ref="paragraph"
+            :quote="dataComp.paragraph.quote"
+            :title="dataComp.paragraph.title"
+            :text="dataComp.paragraph.text"
+            :align="'left'"
+          ></Paragraph>
         </div>
       </div>
+
       <div class="agency-about__bread">
-        <Bread-crumb ref="bread" :number="'01'" :title="'About'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="0" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+        <Bread-crumb
+          ref="bread"
+          :number="'01'"
+          :title="'About'"
+          :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
+          :mark="0"
+          :mountedAnim="true"
+          :mountedDelay="2"
+        ></Bread-crumb>
       </div>
       <div class="agency-about__brandheader">
         <Brand-header
@@ -16,15 +36,6 @@
           :link="link"
           :mountedAnim="true"
         ></Brand-header>
-      </div> 
-      <div class="agency-about__paragraph">
-        <Paragraph
-          ref="paragraph"
-          :quote="dataComp.paragraph.quote"
-          :title="dataComp.paragraph.title"
-          :text="dataComp.paragraph.text"
-          :align="'left'"
-        ></Paragraph>
       </div>
       <div class="agency-about__link">
         <Link-button ref="LinkButton" :link="'/altering-agency'"></Link-button>
@@ -52,12 +63,12 @@ export default {
     BreadCrumb,
   },
   props: {
-    data: Object
+    data: Object,
   },
   watch: {
-    data: function(val) {
+    data: function (val) {
       this.dataComp = val.agency.about;
-    }
+    },
   },
   data() {
     return {
@@ -143,29 +154,61 @@ export default {
     grid-area: logo;
   }
 
-  .agency-about__img {
-    grid-area: 1 / 2 / 6 / 3;
-    display: grid;
-    grid-template-columns: 1fr 74%;
-    grid-template-areas: ". img";
-    justify-self: end;
-    width: 100%;
+  .agency-about__content {
+    @extend .content;
 
-    .agency-about__title {
-      grid-area: img;
+    @include breakpoint(sm) {
+      grid-area: 3 / 2 / 4 / 4;
+      grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 5% [colEnd];
+      grid-template-rows: repeat(3, 1fr);
+      grid-template-areas: 
+      ". content-1  ."
+      ". content-1  ."
+      ". content-2  .";
+    }
+
+    .agency-about__img {
+      grid-area: 1 / 1 / 2 / 2;
+      display: grid;
+      grid-template-columns: 1fr 74%;
+      grid-template-areas: ". img";
+      justify-self: end;
+      width: 100%;
+
+      // @include breakpoint(sm) {
+      //   grid-area: 3 / 2 / 4 / 4;
+      //   grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 5% [colEnd];
+      //   grid-template-rows: [rowFirst] 0.7fr [row2] 0.3fr [rowEnd];
+      //   grid-template-areas:
+      //   ".  img ."
+      //   ".  text .";
+      // }
+
+      @include breakpoint(sm) {
+        grid-area: content-1;
+        grid-template-columns: 1fr;
+        grid-template-areas: "img";
+      }
+
+      .agency-about__title {
+        grid-area: img;
+        justify-self: center;
+        align-self: center;
+        z-index: 1;
+        // position: absolute;
+        // @include transform(translateX(10%));
+
+        @include breakpoint(sm) {
+        }
+      }
+    }
+
+    .agency-about__paragraph {
+      grid-area: content-2;
       justify-self: center;
       align-self: center;
-      z-index: 1;
-      // position: absolute;
-      // @include transform(translateX(10%));
+      margin-right: 5rem;
     }
-  }
-
-  .agency-about__paragraph {
-    grid-area: content-2;
-    justify-self: center;
-    align-self: center;
-    margin-right: 5rem;
   }
 
   .agency-about__link {

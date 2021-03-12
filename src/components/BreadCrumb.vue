@@ -207,6 +207,10 @@ export default {
       height: 1px;
       background-color: $dark;
     }
+
+    @include breakpoint(m) {
+        width: 0px;
+    }
   }
   .breadcrumb__points {
     display: flex;

@@ -4,16 +4,30 @@
       <div class="agency-altering__mask">
         <Altering ref="altering"></Altering>
       </div>
+      <div class="agency-altering__content">
+        <div class="agency-altering__title">
+          <h2>ALTERING<br />THE CONSTANT</h2>
+        </div>
+        <div class="agency-altering__paragraph">
+          <Paragraph
+            ref="paragraph"
+            :title="dataComp.paragraph.title"
+            :text="dataComp.paragraph.text"
+          ></Paragraph>
+        </div>
+      </div>
       <div class="agency-altering__bread">
-        <Bread-crumb ref="bread" :number="'02'" :title="'Altering'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="1" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+        <Bread-crumb
+          ref="bread"
+          :number="'02'"
+          :title="'Altering'"
+          :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
+          :mark="1"
+          :mountedAnim="true"
+          :mountedDelay="2"
+        ></Bread-crumb>
       </div>
-      <div class="agency-altering__paragraph">
-        <Paragraph
-          ref="paragraph"
-          :title="dataComp.paragraph.title"
-          :text="dataComp.paragraph.text"
-        ></Paragraph>
-      </div>
+
       <div class="agency-altering__brandheader">
         <Brand-header
           ref="BrandHeader"
@@ -47,17 +61,17 @@ export default {
     BreadCrumb,
   },
   props: {
-    data: Object
+    data: Object,
   },
   watch: {
-    data: function(val) {
+    data: function (val) {
       this.dataComp = val.agency.altering;
-    }
+    },
   },
   data() {
     return {
       dataComp: this.data.agency.altering,
-    }
+    };
   },
   mounted() {
     mutations.setTitle(" ");
@@ -129,13 +143,52 @@ export default {
     position: absolute;
   }
 
-  .agency-altering__paragraph {
-    grid-area: content-2;
-    place-self: end center;
-    margin-bottom: 4rem;
+  .agency-altering__mask {
+    @include breakpoint(sm) {
+      display: none;
+    }
+  }
 
-    @include breakpoint(lg) {
-      margin-bottom: 1rem;
+  .agency-altering__content {
+    @extend .content;
+
+    @include breakpoint(sm) {
+      grid-area: 3 / 2 / 4 / 4;
+      grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 5% [colEnd];
+      grid-template-rows: repeat(4, 1fr);
+      grid-template-areas:
+        ". content-1  ."
+        ". content-2  ."
+        ". content-3  ."
+        ". content-3  .";
+    }
+
+    .agency-altering__title {
+      display: none;
+
+      h2 {
+        font-family: $oswald;
+        font-weight: 900;
+        font-size: 10vw;
+      }
+
+      @include breakpoint(sm) {
+        display: flex;
+        justify-self: center;
+        line-height: 5rem;
+        text-align: center;
+        grid-area: content-1;
+      }
+    }
+
+    .agency-altering__paragraph {
+      grid-area: content-2;
+      place-self: end center;
+      margin-bottom: 4rem;
+
+      @include breakpoint(lg) {
+        margin-bottom: 1rem;
+      }
     }
   }
 

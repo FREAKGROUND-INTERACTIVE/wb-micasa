@@ -49,11 +49,11 @@
           <Close-button ref="closeButton"></Close-button>
         </div>
         <div class="agency-services__content-paragraph">
-          <Services
-            ref="services"
-            :list="dataComp.list"
-          ></Services>
+          <Services ref="services" :list="dataComp.list"></Services>
         </div>
+      </div>
+      <div class="agency-services__list">
+        <Services :list="dataComp.list"></Services>
       </div>
     </div>
   </transition>
@@ -82,12 +82,12 @@ export default {
     BreadCrumb,
   },
   props: {
-    data: Object
+    data: Object,
   },
   watch: {
-    data: function(val) {
+    data: function (val) {
       this.dataComp = val.agency.services;
-    }
+    },
   },
   data() {
     return {
@@ -274,6 +274,12 @@ export default {
       top: 50%;
       left: 50%;
       @include transform(translate(-50%, -100%));
+
+      @include breakpoint(sm) {
+        top: 25%;
+        width: 40rem;
+      }
+
       div {
         display: inline-block;
         font-size: 10vw;
@@ -283,6 +289,10 @@ export default {
         -webkit-text-stroke: 1px $dark;
         -webkit-text-fill-color: $light;
         @include transform(translateY(100%));
+
+        @include breakpoint(sm) {
+          font-size: 18vw;
+        }
 
         &.space {
           margin-left: 2rem;
@@ -295,6 +305,10 @@ export default {
       top: 0;
       left: 0;
       z-index: 2;
+
+      @include breakpoint(sm) {
+        display: none;
+      }
     }
 
     .agency-services__title-down {
@@ -304,6 +318,11 @@ export default {
       top: 50%;
       left: 50%;
       @include transform(translate(-50%, 0%));
+
+      @include breakpoint(sm) {
+        top: 25%;
+        width: 42rem;
+      }
       div {
         display: inline-block;
         font-size: 7.5vw;
@@ -311,6 +330,11 @@ export default {
         line-height: 1;
         color: $red;
         @include transform(translateY(-100%));
+
+        @include breakpoint(sm) {
+          font-size: 13vw;
+        }
+
         &.space {
           margin-left: 2rem;
         }
@@ -328,6 +352,10 @@ export default {
     place-self: end center;
     margin-bottom: 4rem;
     z-index: 4;
+
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-services__content {
@@ -356,6 +384,15 @@ export default {
   .agency-services__link {
     @extend .link;
     z-index: 4;
+  }
+
+  .agency-services__list {
+    display: none;
+
+    @include breakpoint(sm) {
+      grid-area: 3 / 2 / 4 / 4;
+      display: flex;
+    }
   }
 }
 </style>
