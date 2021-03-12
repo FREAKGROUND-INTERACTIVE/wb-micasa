@@ -170,6 +170,7 @@ export default {
         );
       });
       letterTl.play();
+      gsap.killTweensOf(this.picker);
       gsap.to(this.picker, {
         duration: 0.5,
         opacity: 0,
