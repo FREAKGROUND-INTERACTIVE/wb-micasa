@@ -96,11 +96,15 @@ export default {
     mutations.setTitle(" ");
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
+      window.addEventListener("mousedown", this.hideTitle);
+      window.addEventListener("mouseup", this.showTitle);
     }, 3000);
     this.initAnim(1500);
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
+    window.removeEventListener("mousedown", this.hideTitle);
+    window.removeEventListener("mouseup", this.showTitle);
   },
   methods: {
     /**
@@ -116,6 +120,32 @@ export default {
       if (e.deltaY > 0) {
         this.$router.push({ path: "/clients-agency" });
       }
+    },
+
+    /**
+     ** MOUSE DOWN EVENT FUNCTION
+     *? Function for hide title when mouse is down
+     */
+    hideTitle() {
+      this.letters.forEach(element => {
+        gsap.to(element, {
+          duration: 1,
+          opacity: 0,
+        });
+      });
+    },
+
+    /**
+     ** MOUSE UP EVENT FUNCTION
+     *? Function for show title when mouse is up
+     */
+    showTitle() {
+      this.letters.forEach(element => {
+        gsap.to(element, {
+          duration: 1,
+          opacity: 1,
+        });
+      });
     },
 
     /**
