@@ -55,12 +55,20 @@ body {
     grid-template-columns: [colFirst] 8% [col2] 1fr [col3] 1fr [col4] 8% [colEnd];
     grid-template-rows: [rowFirst] 6% [row2] 4% [row3] 80% [row4] 4% [row5] 6% [rowEnd];
     grid-template-areas:
-    ".    .     .     ."
-    ". breadCrumb menu ."
-    ". content-1 content-2 ."
-    ". logo button ."
-    ".    .     .     .";
+      ".    .     .     ."
+      ". breadCrumb menu ."
+      ". content-1 content-2 ."
+      ". logo button ."
+      ".    .     .     .";
   }
+}
+
+.content {
+  grid-area: 1 / 2 / 4 / 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "content-1 content-2";
 }
 
 .link {
