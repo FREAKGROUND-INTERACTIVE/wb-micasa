@@ -23,6 +23,7 @@
       <div class="locations__sites-brooklyn-menu">
         <Menu-studio
           ref="menuBrooklyn"
+          :isBrooklyn="true"
           :textButton="hoodBrooklyn ? 'Studio' : dataComp.buttonN"
           @clickButton="hoodBrooklyn = !hoodBrooklyn"
         ></Menu-studio>
