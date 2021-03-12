@@ -1,37 +1,53 @@
 <template>
   <div class="view-title">
-    <h1
-      class="view-title__new"
-      :class="{
-        red: newTitle == 'Agency' && !home,
-        blue: newTitle == 'Studio' && !home,
-        green: newTitle == 'Powered' && !home,
-      }"
-    >
-      <template v-for="letter in newTitle">
-        <div class="view-title__new-letter" :key="letter.id">
-          {{ letter == " " ? "&nbsp;" : letter }}
-        </div>
-      </template>
-    </h1>
-    <h1
-      class="view-title__old"
-      :class="{
-        red: newTitle == 'Agency' && !home,
-        blue: newTitle == 'Studio' && !home,
-        green: newTitle == 'Powered' && !home,
-      }"
-    >
-      <template v-for="letter in title">
-        <div class="view-title__old-letter" :key="letter.id">
-          {{ letter == " " ? "&nbsp;" : letter }}
-        </div>
-      </template>
-    </h1>
+    <div class="view-title__container">
+      <h1
+        class="view-title__new"
+        :class="{
+          red: newTitle == 'Agency' && !home,
+          blue: newTitle == 'Studio' && !home,
+          green: newTitle == 'Powered' && !home,
+        }"
+      >
+        <template v-for="letter in newTitle">
+          <div class="view-title__new-letter" :key="letter.id">
+            {{ letter == " " ? "&nbsp;" : letter }}
+          </div>
+        </template>
+      </h1>
+      <h1
+        class="view-title__old"
+        :class="{
+          red: newTitle == 'Agency' && !home,
+          blue: newTitle == 'Studio' && !home,
+          green: newTitle == 'Powered' && !home,
+        }"
+      >
+        <template v-for="letter in title">
+          <div class="view-title__old-letter" :key="letter.id">
+            {{ letter == " " ? "&nbsp;" : letter }}
+          </div>
+        </template>
+      </h1>
+    </div>
+
+    <div class="view-title__quote">
+      <p
+        class="view-title__quote-text"
+        :class="{
+          red: newTitle == 'Agency' && !home,
+          blue: newTitle == 'Studio' && !home,
+          green: newTitle == 'Powered' && !home,
+        }"
+      >
+        by MI-CASA
+      </p>
+    </div>
   </div>
 </template>
 
 <script>
+import { gsap } from "gsap";
 export default {
   props: {
     text: String,
@@ -42,6 +58,17 @@ export default {
       this.newTitle = val;
 
       this.$el.classList.add("change");
+      if (val == "Powered") {
+        gsap.to(this.$el.querySelector(".view-title__quote-text"), {
+          duration: 0.3,
+          y: "0%",
+        });
+      } else {
+        gsap.to(this.$el.querySelector(".view-title__quote-text"), {
+          duration: 0.3,
+          y: "-100%",
+        });
+      }
 
       setTimeout(() => {
         this.title = this.newTitle;
@@ -66,46 +93,75 @@ export default {
   left: 50%;
   top: 50%;
   @include transform(translate(-50%, -50%));
-  height: 20vh;
-  overflow: hidden;
-  text-align: center;
-  pointer-events: none;
 
-  .view-title__new,
-  .view-title__old {
-    font-size: 22vh;
-    text-transform: uppercase;
-    line-height: 1;
-    color: white;
-    font-weight: 900;
-    white-space: nowrap;
-    padding: 0 1rem;
-    @include transform(translateY(-100%));
-    @include transition(color 0.5s 0.5s);
+  .view-title__container {
+    height: 20vh;
+    overflow: hidden;
+    text-align: center;
+    pointer-events: none;
+    .view-title__new,
+    .view-title__old {
+      font-size: 22vh;
+      text-transform: uppercase;
+      line-height: 1;
+      color: white;
+      font-weight: 900;
+      white-space: nowrap;
+      padding: 0 1rem;
+      @include transform(translateY(-100%));
+      @include transition(color 0.5s 0.5s);
 
+      .view-title__new-letter,
+      .view-title__old-letter {
+        display: inline-block;
+      }
 
-    .view-title__new-letter,
-    .view-title__old-letter {
-      display: inline-block;
-    }
+      &.red {
+        color: $red;
+      }
 
-    &.red {
-      color: $red;
-    }
+      &.blue {
+        color: $cyan;
+      }
 
-    &.blue {
-      color: $cyan;
-    }
-
-    &.green {
-      color: $green;
+      &.green {
+        color: $green;
+      }
     }
   }
 
+  .view-title__quote {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+
+    .view-title__quote-text {
+      text-align: center;
+      color: white;
+      font-weight: 900;
+      font-size: 5vh;
+      @include transform(translateY(-100%));
+      @include transition(color 0.5s 0.5s);
+
+      &.red {
+        color: $red;
+      }
+
+      &.blue {
+        color: $cyan;
+      }
+
+      &.green {
+        color: $green;
+      }
+    }
+  }
   &.change {
-    h1 {
-      @include transform(translateY(0));
-      @include transition(all 0.3s ease-out);
+    .view-title__container {
+      h1 {
+        @include transform(translateY(0));
+        @include transition(all 0.3s ease-out);
+      }
     }
   }
 }
