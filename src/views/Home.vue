@@ -5,7 +5,7 @@
       <div class="home__3d">
         <Home3d ref="home3d"></Home3d>
       </div>
-      <div class="home__links">
+      <div class="home__links" v-show="false">
         <Links-list
           ref="linksList"
           :mountedAnim="true"
@@ -44,7 +44,7 @@ export default {
     },
     initPage: function (val) {
       if (val) {
-        this.initAnim(1);
+        this.initAnim(0.5);
       }
     },
   },
@@ -67,7 +67,9 @@ export default {
         delay: delay,
         onComplete: function () {
           mutations.setTitle("micasa");
-          mutations.setHome(true);
+          setTimeout(() => {
+            mutations.setHome(true);
+          }, 500);
         },
       });
     },

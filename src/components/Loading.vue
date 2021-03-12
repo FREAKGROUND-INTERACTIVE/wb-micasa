@@ -39,7 +39,6 @@ export default {
         duration: 1,
         x: val,
         onComplete: function() {
-          that.loadingDone = true;
           that.goToWeb();
         }
       });
@@ -58,12 +57,14 @@ export default {
   },
   methods: {
     goToWeb() {
-      // await Tone.start();
-      // console.log("audio is ready");
-      this.$emit("init");
+      let that = this;
       gsap.to(this.$el, {
         duration: 1,
         autoAlpha: 0,
+        onComplete: function() {
+          that.loadingDone = true;
+          that.$emit("init");
+        }
       });
     },
   },
