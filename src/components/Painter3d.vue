@@ -98,14 +98,16 @@ export default {
         var mesh;
 
         loader.load(
-          "https://res.cloudinary.com/nancloud/raw/upload/v1613955545/mi-casa/models/camera-testPainter_si6c4b.obj",
+          "https://res.cloudinary.com/nancloud/raw/upload/v1615570551/mi-casa/models/house_iewzzm.obj",
           function (object) {
             console.log("obj: ", object.children[0].geometry);
             var geo = new THREE.Geometry().fromBufferGeometry(
               object.children[0].geometry
             );
             mesh = new THREE.Mesh(geo, planeMaterial);
-            mesh.position.z = -5;
+            mesh.position.z = -6;
+            // mesh.rotation.y = -35*(Math.PI/180);
+            // mesh.rotation.x = 25*(Math.PI/180);
             // mesh.rotation.x = 180 * Math.PI / 180;
             // mesh.rotation.y = -10 * Math.PI / 180;
             // mesh.updateMatrix();
@@ -137,7 +139,8 @@ export default {
 
           switch (color) {
             case "red":
-              painter.changeColor("rgba(253, 123, 116, 1)");
+              // painter.changeColor("rgba(253, 123, 116, 1)");
+              painter.changeColor("rgba(253, 107, 99, 1)");
               break;
             case "yellow":
               painter.changeColor("rgba(249, 178, 0, 1)");
@@ -188,6 +191,7 @@ export default {
       render();
     },
     leave(done) {
+      gsap.killTweensOf(this.$el);
       gsap.to(this.$el, {
         duration: 0.5,
         opacity: 0,
