@@ -40,7 +40,7 @@ export default {
     initAnim(delay) {
       gsap.to(this.$el, {
         duration: 1,
-        height: "35px",
+        height: window.innerHeight > 768 ? "35px":"30px",
         margin: "1rem",
         delay: delay,
       });
@@ -119,6 +119,10 @@ export default {
         background-color: $cyan;
       }
     }
+  }
+
+  @include breakpoint(sm) {
+    width: 30px;
   }
 }
 </style>
