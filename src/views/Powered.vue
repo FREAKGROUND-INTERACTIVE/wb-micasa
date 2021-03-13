@@ -21,8 +21,24 @@ export default {
     ImgViewTitle,
     ViewTitleBg,
   },
+  props: {
+    initPage: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  watch: {
+    initPage: function (val) {
+      if (val) {
+        this.initAnim(500);
+      }
+    },
+  },
   mounted() {
-    this.initAnim(1500);
+    //* initAnim function in mounted
+    if (this.initPage) {
+      this.initAnim(1500);
+    }
   },
   destroyed() {
     mutations.setTitle(" ");
