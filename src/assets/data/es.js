@@ -59,7 +59,7 @@ export const es = {
       title: "¿POR QUÉ NOSOTROS?",
       paragraph: {
         title: "¿Por qué nosotros?",
-        text: "En el corazón de nuestro proceso está la estrategia financiera. Con un\nprofundo conocimiento de nuestro consumidor Gen Z, sabemos cómo\nnuestro mensaje debe resonar para crear un cambio real\ndentro de un presupuesto."
+        text: "En el corazón de nuestro proceso está la estrategia\nfinanciera. Con un profundo conocimiento de nuestro\nconsumidor Gen Z, sabemos cómo nuestro mensaje\ndebe resonar para crear un cambio real\ndentro de un presupuesto."
       }
     },
     clients: {
