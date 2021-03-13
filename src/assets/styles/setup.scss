@@ -53,7 +53,7 @@ body {
 
   @include breakpoint(sm) {
     grid-template-columns: [colFirst] 8% [col2] 1fr [col3] 1fr [col4] 8% [colEnd];
-    grid-template-rows: [rowFirst] 6% [row2] 4% [row3] 80% [row4] 4% [row5] 6% [rowEnd];
+    grid-template-rows: [rowFirst] 2% [row2] 6% [row3] 80% [row4] 4% [row5] 8% [rowEnd];
     grid-template-areas:
       ".    .     .     ."
       ". breadCrumb menu ."
