@@ -2,7 +2,7 @@
   <transition @leave="leave" :css="false">
     <div class="services">
       <div class="services__title">
-        <h3>Our Services</h3>
+        <h3>{{lang == 'en'? 'Our Services':'Nuestros Servicios'}}</h3>
       </div>
       <div class="services__list">
         <div v-for="service in list" :key="service.id" v-html="service"></div>
@@ -13,8 +13,14 @@
 
 <script>
 import { gsap } from "gsap";
+import { lang } from "@/state";
 
 export default {
+  computed: {
+    lang() {
+      return lang.lg;
+    },
+  },
   props: {
     list: Array,
     mountedAnim: {
@@ -119,7 +125,7 @@ export default {
         initTl.to(
           this.listServices[that.random[index]],
           {
-            duration: time/30,
+            duration: time / 30,
             opacity: 0,
             ease: "power1.inOut",
           },
@@ -131,7 +137,7 @@ export default {
 
       gsap.to(this.$el, {
         duration: 1.5,
-        onComplete: done
+        onComplete: done,
       });
     },
   },
@@ -180,6 +186,10 @@ export default {
       &:hover {
         color: $red;
       }
+    }
+
+    @include breakpoint(sm) {
+      width: 320px;
     }
   }
 }
