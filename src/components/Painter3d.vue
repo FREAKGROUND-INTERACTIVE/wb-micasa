@@ -105,7 +105,7 @@ export default {
               object.children[0].geometry
             );
             mesh = new THREE.Mesh(geo, planeMaterial);
-            mesh.position.z = -6;
+            mesh.position.z = window.innerWidth > 768 ? -6:-8;
             // mesh.rotation.y = -35*(Math.PI/180);
             // mesh.rotation.x = 25*(Math.PI/180);
             // mesh.rotation.x = 180 * Math.PI / 180;
