@@ -8,7 +8,7 @@
         <Carrousel ref="carrousel2" :imgs="isBrooklyn?imgBrooklyn.hood:imgLes.hood"></Carrousel>
       </div>
       <div class="menu-studio__button" @click="clickButton">
-        <Button ref="button" :text="textButtonData" :color="'cyan'"></Button>
+        <Button ref="button" :text="textButtonData" :color="'cyan'" :isUpdate="updateBtn"></Button>
       </div>
     </div>
   </transition>
@@ -29,6 +29,7 @@ export default {
       type: Boolean,
       default: false,
     },
+    btnUpdate: Boolean,
     textButton: String,
     mountedAnim: {
       type: Boolean,
@@ -43,11 +44,15 @@ export default {
     textButton: function (val) {
       this.textButtonData = val;
     },
+    btnUpdate: function (val) {
+      this.updateBtn = val;
+    },
   },
   data() {
     return {
       textButtonData: this.textButton,
       activeCarrousel: true,
+      updateBtn: this.btnUpdate,
       imgBrooklyn: {
         studio: [
           "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
