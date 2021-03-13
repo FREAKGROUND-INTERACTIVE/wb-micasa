@@ -1,8 +1,8 @@
 export const en = {
   titles: [
-    'agency',
-    'studio',
-    'powered'
+    'Agency',
+    'Studio',
+    'Powered'
   ],
   home: {
     enterButton: "Enter",
