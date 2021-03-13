@@ -3,10 +3,7 @@
     <div class="carrousel">
       <splide :options="options">
         <splide-slide v-for="img in imgs" :key="img.id">
-          <img
-            class="carrousel__img"
-            :src="img"
-          />
+          <img class="carrousel__img" :src="img" />
         </splide-slide>
         <!-- <splide-slide>
           <img
@@ -57,7 +54,7 @@ export default {
       container: null,
       options: {
         rewind: true,
-        width: (window.innerWidth * 28) / 100, //! Definir el tamaño respectivo de la imagen
+        width: window.innerWidth > 768? ((window.innerWidth * 28) / 100):((window.innerWidth * 60) / 100), //! Definir el tamaño respectivo de la imagen
         perPage: 1,
         speed: 1000,
         drag: true,
@@ -79,7 +76,7 @@ export default {
     initAnim(delay) {
       gsap.to(this.$el, {
         duration: 1,
-        height: (window.innerWidth * 28) / 100,
+        height: window.innerWidth > 768? ((window.innerWidth * 28) / 100):((window.innerWidth * 60) / 100),
         delay: delay,
       });
     },
@@ -101,6 +98,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../assets/styles/setup";
+
 .carrousel {
   width: 28vw;
   height: 0;
@@ -108,6 +107,14 @@ export default {
   .carrousel__img {
     width: 28vw;
     height: 28vw;
+  }
+
+  @include breakpoint(sm) {
+    width: 60vw;
+    .carrousel__img {
+      width: 60vw;
+      height: 60vw;
+    }
   }
 }
 </style>
