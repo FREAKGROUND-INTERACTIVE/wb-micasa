@@ -102,11 +102,13 @@ export default {
             obj = object;
             sceneA.addObj(obj, false);
             sceneB.addObj(obj.clone(), false);
+            // console.log("obj loaded");
+            mutations.loadingCharge(100);
           },
-          function (xhr) {
-            // console.log((xhr.loaded/1803683)*100 + "% loaded", xhr);
-            mutations.loadingCharge((xhr.loaded / 1803683) * 100);
-          }
+          // function (xhr) {
+          //   // console.log((xhr.loaded/1803683)*100 + "% loaded", xhr);
+          //   mutations.loadingCharge((xhr.loaded / 1803683) * 100);
+          // }
         );
 
         //* init Transition
