@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { state, mutations } from "./../state";
+import { state, lang, mutations } from "./../state";
 import gsap from "gsap";
 import ImgViewTitle from "@/components/ImgViewTitle";
 import ViewTitleBg from "@/components/ViewTitleBg";
@@ -46,8 +46,8 @@ export default {
     initAnim(delay) {
       setTimeout(() => {
         this.$refs.viewTitleBg.initAnim(0.5);
-        if (state.title != "Studio") {
-          mutations.setTitle("Studio");
+        if (state.title != "Studio" && state.title != "Estudio") {
+          mutations.setTitle(lang.data.titles[0]);
         }
         gsap.to(".studio__bar", {
           duration: 3,
