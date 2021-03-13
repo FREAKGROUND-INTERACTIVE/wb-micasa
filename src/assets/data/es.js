@@ -22,7 +22,7 @@ export const es = {
       titleTwo: "LO CONSTANTE",
       paragraph: {
         title: "Alterando lo Constante",
-        text: "Hacemos cosas valientes con el propósito de crear un cambio real\npara el Internet y más allá. En este mundo propulsado\npor la tecnología que parece moverse más rápido que la velocidad de la luz,\nsolo la narrativa correcta para las personas correctas en el momento correcto\nse abrirá paso."
+        text: "Hacemos cosas valientes con el propósito de crear un\ncambio real para el Internet y más allá. En este mundo\npropulsado por la tecnología que parece moverse más\nrápido que la velocidad de la luz, solo la narrativa correcta\npara las personas correctas en el momento correcto\nse abrirá paso."
       }
     },
     services: {
