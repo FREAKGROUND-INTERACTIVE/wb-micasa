@@ -9,11 +9,11 @@
       />
     </div>
     <div class="loading__content">
-      <!-- <div class="loading__button" @click="goToWeb" v-if="loadingDone">
+      <div class="loading__button" @click="goToWeb" v-if="loadingDone">
         <Button ref="Button" :text="'Play'" :mountedAnim="true"></Button>
-      </div> -->
+      </div>
       <div class="loading__text">
-        Loading<br>{{ Math.floor(loadingCount.x )}}%
+        Loading<br />{{ Math.floor(loadingCount.x) }}%
       </div>
     </div>
   </div>
@@ -21,13 +21,13 @@
 
 <script>
 import { gsap } from "gsap";
-// import * as Tone from "tone";
-// import Button from "@/components/Button";
+import { mutations } from "@/state";
+import Button from "@/components/Button";
 
 export default {
-  // components: {
-  //   Button,
-  // },
+  components: {
+    Button,
+  },
   props: {
     count: Number,
     finish: Boolean,
@@ -38,9 +38,13 @@ export default {
       gsap.to(this.loadingCount, {
         duration: 1,
         x: val,
-        onComplete: function() {
-          that.goToWeb();
-        }
+        onComplete: function () {
+          console.log("count: ", that.loadingCount.x);
+          if (that.loadingCount.x >= 99) {
+            that.loadingDone = true;
+            // that.goToWeb();
+          }
+        },
       });
       //this.loadingCount = val;
     },
@@ -55,16 +59,21 @@ export default {
       loadingDone: this.finish,
     };
   },
+  mounted() {
+    if (window.location.pathname != "/") {
+      mutations.loadingCharge(100);
+    }
+  },
   methods: {
     goToWeb() {
       let that = this;
       gsap.to(this.$el, {
         duration: 1,
         autoAlpha: 0,
-        onComplete: function() {
+        onComplete: function () {
           that.loadingDone = true;
           that.$emit("init");
-        }
+        },
       });
     },
   },
