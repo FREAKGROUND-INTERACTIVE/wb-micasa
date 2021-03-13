@@ -200,27 +200,34 @@ export default {
       @include breakpoint(sm) {
         grid-area: content-1;
         grid-template-columns: 1fr;
+        grid-template-rows: 100%;
         grid-template-areas: "img";
       }
 
       .agency-about__title {
         grid-area: img;
-        justify-self: center;
-        align-self: center;
+        place-self: center;
         z-index: 1;
         // position: absolute;
         // @include transform(translateX(10%));
 
-        @include breakpoint(sm) {
-        }
+        // @include breakpoint(sm) {
+        //   grid-area: content-1;
+        //   place-self: center;
+        // }
       }
     }
 
     .agency-about__paragraph {
       grid-area: content-2;
-      justify-self: center;
-      align-self: center;
+      place-self: center;
       margin-right: 5rem;
+
+      @include breakpoint(sm) {
+        display: flex;
+        justify-content: center;
+        margin-right: 0;
+      }
     }
   }
 
