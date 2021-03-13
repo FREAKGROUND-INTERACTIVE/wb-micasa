@@ -75,12 +75,21 @@ export default {
     BreadCrumb,
   },
   props: {
-    data: Object
+    data: Object,
+    initPage: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     data: function(val) {
       this.dataComp = val.agency.why;
-    }
+    },
+    initPage: function (val) {
+      if (val) {
+        this.initAnim(500);
+      }
+    },
   },
   data() {
     return {
@@ -99,7 +108,10 @@ export default {
       window.addEventListener("mousedown", this.hideTitle);
       window.addEventListener("mouseup", this.showTitle);
     }, 3000);
-    this.initAnim(1500);
+    //* initAnim function in mounted
+    if (this.initPage) {
+      this.initAnim(1500);
+    }
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
