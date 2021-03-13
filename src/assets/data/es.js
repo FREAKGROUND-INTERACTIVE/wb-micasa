@@ -76,7 +76,7 @@ export const es = {
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Este luminoso estudio ofrece una experiencia única\ncon ventanas abatibles de acero del suelo al techo / pared a pared orientadas al oeste,\ntechos de 15 pies, ciclorama de 25 pies e interior de ladrillo a la vista.\nEl plano de planta abierta ofrece la máxima versatilidad con más de 3,000\npies cuadrados de espacio abierto convertible.",
+          "Este luminoso estudio ofrece una experiencia única\ncon ventanas abatibles de acero del suelo al techo / pared\na pared orientadas al oeste, techos de 15 pies, ciclorama de 25\npies e interior de ladrillo a la vista.\nEl plano de planta abierta ofrece la máxima versatilidad con\nmás de 3,000 pies cuadrados de espacio abierto convertible.",
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
@@ -92,14 +92,14 @@ export const es = {
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Este estudio está en el corazón del Lower East Side\nen un edificio que tiene una rica historia, en comunidad y arte\ne incluido en un documental del festival de cine de Tribeca. El plano\nde planta ofrece 1,800 pies cuadrados de espacio abierto convertible\ny un ciclorama de 20 pies.",
+          "Este estudio está en el corazón del Lower East Side en\nun edificio que tiene una rica historia, en comunidad y arte\ne incluido en un documental del festival de cine de Tribeca.\nEl plano de planta ofrece 1,800 pies cuadrados de espacio\nabierto convertible y un ciclorama de 20 pies.",
       },
       infoHoodLes: {
         title: "Flacosburg",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "El ecléctico Lower East Side es donde los callejones y\nlos edificios de estilo residencial y la noche atraen a multitudes jóvenes\ny de moda a los bares, locales de música y\nrestaurantes de moda de la zona.",
+          "El ecléctico Lower East Side es donde los callejones y\nlos edificios de estilo residencial y la noche atraen a multitudes\njóvenes y de moda a los bares, locales de música y\nrestaurantes de moda de la zona.",
       }
     },
     buttonN: "El vecindario"
