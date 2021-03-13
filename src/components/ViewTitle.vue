@@ -4,8 +4,8 @@
       <h1
         class="view-title__new"
         :class="{
-          red: newTitle == 'Agency' && !home,
-          blue: newTitle == 'Studio' && !home,
+          red: (newTitle == 'Agency' || newTitle == 'Agencia') && !home,
+          blue: (newTitle == 'Studio' || newTitle == 'Estudio') && !home,
           green: newTitle == 'Powered' && !home,
         }"
       >
@@ -18,8 +18,8 @@
       <h1
         class="view-title__old"
         :class="{
-          red: newTitle == 'Agency' && !home,
-          blue: newTitle == 'Studio' && !home,
+          red: (newTitle == 'Agency' || newTitle == 'Agencia') && !home,
+          blue: (newTitle == 'Studio' || newTitle == 'Estudio') && !home,
           green: newTitle == 'Powered' && !home,
         }"
       >
@@ -35,8 +35,6 @@
       <p
         class="view-title__quote-text"
         :class="{
-          red: newTitle == 'Agency' && !home,
-          blue: newTitle == 'Studio' && !home,
           green: newTitle == 'Powered' && !home,
         }"
       >
