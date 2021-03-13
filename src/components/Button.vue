@@ -28,6 +28,10 @@ export default {
   props: {
     text: String,
     color: String,
+    isUpdate: {
+      type: Boolean,
+      default: true,
+    },
     mountedAnim: {
       type: Boolean,
       default: false,
@@ -44,12 +48,16 @@ export default {
         this.textData = val;
       }, 1000);
     },
+    isUpdate: function (val) {
+      this.upd = val;
+    }
   },
   data() {
     return {
       textData: this.text,
       line: null,
       letters: null,
+      upd: this.isUpdate,
     };
   },
   mounted() {
@@ -62,7 +70,9 @@ export default {
   },
   updated() {
     this.letters = this.$el.querySelectorAll(".button__title-letter");
-    this.initAnim(0);
+    if (this.upd) {
+      this.initAnim(0);
+    }
   },
   methods: {
     /**
