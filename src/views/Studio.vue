@@ -47,7 +47,7 @@ export default {
       setTimeout(() => {
         this.$refs.viewTitleBg.initAnim(0.5);
         if (state.title != "Studio" && state.title != "Estudio") {
-          mutations.setTitle(lang.data.titles[0]);
+          mutations.setTitle(lang.data.titles[1]);
         }
         gsap.to(".studio__bar", {
           duration: 3,
