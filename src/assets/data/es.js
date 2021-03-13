@@ -52,7 +52,7 @@ export const es = {
     },
     why: {
       textPainter: "(Escoje un colo para pintar el objeto en el centro)",
-      title: "WHY US?",
+      title: "¿POR QUÉ NOSOTROS?",
       paragraph: {
         title: "¿Por qué nosotros?",
         text: "En el corazón de nuestro proceso está la estrategia financiera. Con un\nprofundo conocimiento de nuestro consumidor Gen Z, sabemos cómo\nnuestro mensaje debe resonar para crear un cambio real\ndentro de un presupuesto."
