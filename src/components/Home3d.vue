@@ -10,7 +10,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import gsap from "gsap";
 import fragmentShader from "raw-loader!glslify-loader!@/assets/glsl/fragmentShader.glsl";
 
-import { state, mutations } from "@/state";
+import { state, lang, mutations } from "@/state";
 import vertexShader from "raw-loader!glslify-loader!@/assets/glsl/vertexShader.glsl";
 
 export default {
@@ -248,8 +248,9 @@ export default {
                   y: 1.1,
                 });
                 // document.body.style.cursor = "pointer";
-                if (state.title != "Agency") {
-                  mutations.setTitle("Agency");
+                if (state.title != "Agency" && state.title != "Agency" ) {
+                  mutations.setTitle(lang.data.titles[0]);
+                  
                 }
               } else {
                 // document.body.style.cursor = "default";
@@ -268,8 +269,8 @@ export default {
                   y: 1.1,
                 });
                 // document.body.style.cursor = "pointer";
-                if (state.title != "Studio") {
-                  mutations.setTitle("Studio");
+                if (state.title != "Studio" && state.title != "Estudio") {
+                  mutations.setTitle(lang.data.titles[1]);
                 }
               } else {
                 // document.body.style.cursor = "default";
@@ -289,7 +290,7 @@ export default {
                 });
                 // document.body.style.cursor = "pointer";
                 if (state.title != "Powered") {
-                  mutations.setTitle("Powered");
+                  mutations.setTitle(lang.data.titles[2]);
                 }
               } else {
                 // document.body.style.cursor = "default";
