@@ -306,5 +306,9 @@ export default {
   &.center {
     text-align: center;
   }
+
+  @include breakpoint(sm) {
+    text-align: center !important;
+  }
 }
 </style>
