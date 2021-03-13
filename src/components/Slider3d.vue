@@ -39,7 +39,7 @@ export default {
       const container = this.$el;
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(
-        35, //* fov
+        window.innerWidth > 768 ? 35:50, //* fov
         window.innerWidth / window.innerHeight, //* aspect ratio
         0.1, //* near
         1000 //* far
