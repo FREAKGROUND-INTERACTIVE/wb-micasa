@@ -79,7 +79,7 @@ export default {
     initAnim(delay) {
       gsap.to(this.imgContainer, {
         duration: 1,
-        height: "28vw",
+        height: window.innerWidth > 768 ? "28vw" : "60vw",
         y: 0,
         delay: delay,
       });
@@ -164,6 +164,25 @@ export default {
         text-align: left;
         bottom: 40px;
         left: 20px;
+      }
+    }
+
+    @include breakpoint(sm) {
+      width: 60vw;
+      .img-view__img {
+        width: 60vw;
+        height: 60vw;
+      }
+      .img-view__title {
+        font-size: 10vw;
+
+        &.right {
+          bottom: 20px;
+        }
+
+        &.left {
+          bottom: 20px;
+        }
       }
     }
   }
