@@ -4,6 +4,10 @@ export const en = {
     'studio',
     'powered'
   ],
+  home: {
+    enterButton: "Enter",
+    text: "Pick object for navigate"
+  },
   agency: {
     about: {
       title: "Agency",
