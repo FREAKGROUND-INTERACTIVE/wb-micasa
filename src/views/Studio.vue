@@ -40,7 +40,7 @@ export default {
     }
   },
   destroyed() {
-    mutations.setTitle(" ");
+    mutations.setTitle("");
   },
   methods: {
     initAnim(delay) {
