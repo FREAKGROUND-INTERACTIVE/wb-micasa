@@ -124,6 +124,12 @@ export default {
       this.initAnim(1500);
     }
   },
+  updated() {
+     this.lettersDown = this.$el.querySelectorAll(
+      ".agency-services__title-down > div"
+    );
+    this.initAnim(0);
+  },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
   },
@@ -329,6 +335,7 @@ export default {
       position: absolute;
       top: 50%;
       left: 50%;
+      width: 95rem;
       @include transform(translate(-50%, 0%));
 
       @include breakpoint(sm) {

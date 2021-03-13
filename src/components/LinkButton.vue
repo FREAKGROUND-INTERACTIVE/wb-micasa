@@ -6,8 +6,8 @@
       </div>
       <router-link :to="linkUrl" :name="linkUrl.replace('/', '')">
         <div class="linkButton__text">
-          <template v-for="letter in text">
-            <div :key="letter" class="linkButton__text-letter">
+          <template v-for="letter in dataComp.button">
+            <div :key="letter.id" class="linkButton__text-letter">
               {{ letter }}
             </div>
           </template>
@@ -19,6 +19,7 @@
 
 <script>
 import { gsap } from "gsap";
+import { lang } from "./../state";
 
 export default {
   props: {
@@ -37,10 +38,15 @@ export default {
       this.linkUrl = val;
     },
   },
+  computed: {
+    dataComp() {
+      return lang.data.generals
+    }
+  },
   data() {
     return {
       linkUrl: this.link, //* link for router
-      text: "Next", //* text for button
+      text: lang.lg == 'en' ? 'Next' : 'Siguiente', //* text for button
       letters: null, //* variable for character elements
       line: null, //* variable for line element
     };
@@ -54,6 +60,18 @@ export default {
     if (this.mountedAnim) {
       this.initAnim(this.mountedDelay);
     }
+
+    // if (lang.lg == 'en') {
+    //   this.text = "Next"
+    // } else {
+    //   console.log('Cambio a espanol');
+    //   this.text = "Siguiente"
+    // }
+  },
+  updated() {
+    //* select characters
+    this.letters = this.$el.querySelectorAll(".linkButton__text-letter");
+    this.initAnim(0);
   },
   methods: {
     /**
@@ -125,7 +143,6 @@ export default {
 @import "./../assets/styles/setup";
 
 .linkButton {
-  width: 200px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
