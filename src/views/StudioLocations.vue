@@ -5,7 +5,11 @@
       <div class="locations__line"></div>
       <div class="locations__breadcrumb"></div>
       <div class="locations__brandheader">
-        <Brand-header :link="'/'" :mountedAnim="true" ref="BrandHeader"></Brand-header>
+        <Brand-header
+          :link="'/'"
+          :mountedAnim="true"
+          ref="BrandHeader"
+        ></Brand-header>
       </div>
 
       <!--* LEFT SIDE -->
@@ -40,10 +44,18 @@
           <Paragraph
             :align="'right'"
             ref="lesParagraph"
-            :title="hoodLes ? dataComp.les.infoHoodLes.title : dataComp.les.infoStudioLes.title"
+            :title="
+              hoodLes
+                ? dataComp.les.infoHoodLes.title
+                : dataComp.les.infoStudioLes.title
+            "
             :subtitle="dataComp.les.infoStudioLes.subtitle"
             :subtitle2="dataComp.les.infoStudioLes.subtitle2"
-            :text="hoodLes ? dataComp.les.infoHoodLes.text : dataComp.les.infoStudioLes.text"
+            :text="
+              hoodLes
+                ? dataComp.les.infoHoodLes.text
+                : dataComp.les.infoStudioLes.text
+            "
             :color="'cyan'"
             :mountedAnim="true"
           ></Paragraph>
@@ -64,7 +76,6 @@
         <Img-studio
           @mouseenter.native="initLoading(false)"
           @mouseleave.native="backLoading(false)"
-          @imgLoaded="initAnim(0)"
           :loading="loading2.x"
           :align="'right'"
           :imgUrl="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg'"
@@ -92,11 +103,17 @@
           <Paragraph
             ref="brooklynParagraph"
             :title="
-              hoodBrooklyn ? dataComp.bro.infoHoodBrooklyn.title : dataComp.bro.infoStudioBrooklyn.title
+              hoodBrooklyn
+                ? dataComp.bro.infoHoodBrooklyn.title
+                : dataComp.bro.infoStudioBrooklyn.title
             "
             :subtitle="dataComp.bro.infoStudioBrooklyn.subtitle"
             :subtitle2="dataComp.bro.infoStudioBrooklyn.subtitle2"
-            :text="hoodBrooklyn ? dataComp.bro.infoHoodBrooklyn.text : dataComp.bro.infoStudioBrooklyn.text"
+            :text="
+              hoodBrooklyn
+                ? dataComp.bro.infoHoodBrooklyn.text
+                : dataComp.bro.infoStudioBrooklyn.text
+            "
             :mountedAnim="true"
             :color="'cyan'"
           ></Paragraph>
@@ -206,7 +223,7 @@ export default {
     }, 3000);
     //* initAnim function in mounted
     if (this.initPage) {
-      this.initAnim(150);
+      this.initAnim(1500);
     }
   },
   destroyed() {
@@ -214,18 +231,30 @@ export default {
   },
   methods: {
     initAnim(delay) {
-      this.initImg += 1;
-      if (this.initImg == 2) {
-        setTimeout(() => {
-          this.$refs.imgBrooklyn.initAnim(0.2);
-          this.$refs.imgLes.initAnim(0.2);
-          gsap.to(this.line, {
-            duration: 1,
-            height: "100vh",
-            delay: delay,
-          });
-        }, delay);
-      }
+      // this.initImg += 1;
+      // if (this.initImg == 2) {
+      //   setTimeout(() => {
+      //     console.log("location timeout", this.line);
+      //     this.$refs.imgBrooklyn.initAnim(0.2);
+      //     this.$refs.imgLes.initAnim(0.2);
+      //     gsap.to(this.line, {
+      //       duration: 1,
+      //       height: "100vh",
+      //       delay: delay,
+      //       onStart: function () {
+      //         console.log("line finish");
+      //       },
+      //     });
+      //   }, delay);
+      // }
+      setTimeout(() => {
+        this.$refs.imgBrooklyn.initAnim(0.2);
+        this.$refs.imgLes.initAnim(0.2);
+        gsap.to(this.line, {
+          duration: 1,
+          height: "100vh",
+        });
+      }, delay);
     },
     initLoading(first) {
       let that = this;
