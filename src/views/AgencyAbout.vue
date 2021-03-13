@@ -3,7 +3,7 @@
     <div class="agency-about">
       <div class="agency-about__content">
         <div class="agency-about__img">
-          <Img-bg ref="imgBg" @imgLoaded="initAnim"></Img-bg>
+          <Img-bg ref="imgBg"></Img-bg>
           <div class="agency-about__title">
             <Font-weight ref="fontWeight" :text="dataComp.title"></Font-weight>
           </div>
@@ -64,10 +64,19 @@ export default {
   },
   props: {
     data: Object,
+    initPage: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     data: function (val) {
       this.dataComp = val.agency.about;
+    },
+    initPage: function (val) {
+      if (val) {
+        this.initAnim(500);
+      }
     },
   },
   data() {
@@ -83,6 +92,10 @@ export default {
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    //* initAnim function in mounted
+    if (this.initPage) {
+      this.initAnim(1500);
+    }
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -109,13 +122,13 @@ export default {
      *? Function for init animation
      * @param delay time for timeLine delay
      */
-    initAnim() {
+    initAnim(delay) {
       setTimeout(() => {
         this.$refs.imgBg.initAnim(0);
         this.$refs.paragraph.initAnim(0.5);
         this.$refs.fontWeight.initAnim(0.9);
         this.$refs.LinkButton.initAnim(3);
-      }, 1500);
+      }, delay);
     },
 
     /**
