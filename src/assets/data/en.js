@@ -55,7 +55,7 @@ export const en = {
       ]
     },
     why: {
-      textPainter: "(Escoje un colo para pintar el objeto en el centro)",
+      textPainter: "(Pick a color to paint the object in the center)",
       title: "WHY US?",
       paragraph: {
         title: "Why us?",
