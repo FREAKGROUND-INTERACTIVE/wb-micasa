@@ -58,10 +58,19 @@ export default {
   },
   props: {
     data: Object,
+    initPage: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     data: function (val) {
       this.dataComp = val.agency.clients;
+    },
+    initPage: function (val) {
+      if (val) {
+        this.initAnim(500);
+      }
     },
   },
   data() {
@@ -93,10 +102,13 @@ export default {
   },
   mounted() {
     mutations.setTitle(" ");
-    this.initAnim(1500);
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
+    //* initAnim function in mounted
+    if (this.initPage) {
+      this.initAnim(1500);
+    }
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
