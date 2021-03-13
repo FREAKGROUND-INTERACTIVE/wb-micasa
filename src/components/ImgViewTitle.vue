@@ -68,7 +68,7 @@ export default {
 
       gsap.to(this.img, {
         duration: 1,
-        x: this.$el.style.left - posX * mFactor/2,
+        x: this.$el.style.left - (posX * mFactor) / 2,
         y: this.$el.style.top - posY * mFactor,
         ease: "power2.out",
       });
@@ -97,14 +97,30 @@ export default {
      * @param delay time for timeLine delay
      */
     imgAnim() {
-      this.img.style.width = Math.floor(window.innerWidth*40/100) + 'px';
-      this.imgContainer.style.height = Math.floor(window.innerWidth*17/100) + 'px';
-      gsap.to(this.imgContainer, {
-        duration: 1.5,
-        width: Math.floor(window.innerWidth*33/100),
-        ease: "power2.out",
-        delay: 1,
-      });
+      if (window.innerWidth > 768) {
+        this.img.style.width =
+          Math.floor((window.innerWidth * 40) / 100) + "px";
+        this.imgContainer.style.height =
+          Math.floor((window.innerWidth * 17) / 100) + "px";
+        gsap.to(this.imgContainer, {
+          duration: 1.5,
+          width: Math.floor((window.innerWidth * 33) / 100),
+          ease: "power2.out",
+          delay: 1,
+        });
+      } else {
+        this.img.style.width =
+          Math.floor((window.innerWidth * 60) / 100) + "px";
+        this.imgContainer.style.height =
+          Math.floor((window.innerWidth * 25.5) / 100) + "px";
+        gsap.to(this.imgContainer, {
+          duration: 1.5,
+          width: Math.floor((window.innerWidth * 49.5) / 100),
+          ease: "power2.out",
+          delay: 1,
+        });
+      }
+
       window.addEventListener("mousemove", this.mouseMovement);
     },
 
@@ -138,7 +154,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   @include transform(translate(-50%, -50%));
   .img-view__img-container {
     position: relative;
@@ -151,6 +167,23 @@ export default {
       top: 50%;
       left: 50%;
       @include transform(translate(-50%, -50%));
+    }
+  }
+
+  @include breakpoint(sm) {
+    top: 46.3%;
+    .img-view__img-container {
+      position: relative;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      .img-view__img {
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+      }
     }
   }
 }
