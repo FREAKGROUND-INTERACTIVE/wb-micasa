@@ -128,6 +128,14 @@ export default {
         color: $green;
       }
     }
+
+    @include breakpoint(sm) {
+      height: 8vh;
+      .view-title__new,
+      .view-title__old {
+        font-size: 9vh;
+      }
+    }
   }
 
   .view-title__quote {
