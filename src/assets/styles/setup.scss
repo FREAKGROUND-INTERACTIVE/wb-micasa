@@ -13,11 +13,16 @@
 
 //* VARIABLES
 
-$lora: "Lora", serif;
-$fira: "Fira Sans", sans-serif;
-$mont: "Montserrat", sans-serif;
-$raleway: "Raleway", sans-serif;
-$oswald: "Oswald", sans-serif;
+$lora: "Lora",
+serif;
+$fira: "Fira Sans",
+sans-serif;
+$mont: "Montserrat",
+sans-serif;
+$raleway: "Raleway",
+sans-serif;
+$oswald: "Oswald",
+sans-serif;
 
 $red: #fd7b74;
 $yellow: #f9b200;
@@ -32,6 +37,7 @@ body {
   font-family: "Montserrat";
   background-color: $light;
   color: $dark;
+  font-size: 16px;
   // cursor: none !important;
 }
 
@@ -94,4 +100,10 @@ body {
     ". info links links ."
     ". . . . ."
     ". . . . .";
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  Body {
+    font-size: 14px;
+  }
 }
