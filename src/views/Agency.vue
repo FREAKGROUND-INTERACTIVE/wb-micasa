@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { state, mutations } from "./../state";
+import { state, lang, mutations } from "./../state";
 import gsap from "gsap";
 import ImgViewTitle from "@/components/ImgViewTitle";
 import ViewTitleBg from "@/components/ViewTitleBg";
@@ -40,14 +40,14 @@ export default {
     }
   },
   destroyed() {
-    mutations.setTitle(" ");
+    mutations.setTitle("");
   },
   methods: {
     initAnim(delay) {
       setTimeout(() => {
         this.$refs.viewTitleBg.initAnim(0.5);
-        if (state.title != "Agency") {
-          mutations.setTitle("Agency");
+        if (state.title != "Agency" && state.title != "Agencia") {
+          mutations.setTitle(lang.data.titles[0]);
         }
         gsap.to(".agency__bar", {
           duration: 3,
