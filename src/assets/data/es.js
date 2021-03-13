@@ -102,5 +102,8 @@ export const es = {
   },
   powered: {
     title: "Desarrollado por Mi Casa Studios"
-  }
+  },
+  generals: {
+    button: "Siguiente"
+  } 
 }
