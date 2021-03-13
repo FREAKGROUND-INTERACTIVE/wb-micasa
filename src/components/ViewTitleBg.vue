@@ -129,5 +129,14 @@ export default {
   .view-title-bg__down {
     @include transform(translateY(-100%));
   }
+
+  @include breakpoint(sm) {
+    top: 46.3%;
+    height: 8vh;
+    .view-title-bg__up,
+    .view-title-bg__down {
+      font-size: 9vh;
+    }
+  }
 }
 </style>
