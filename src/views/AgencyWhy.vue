@@ -34,7 +34,15 @@
         </div>
       </div>
       <div class="agency-why__bread">
-        <Bread-crumb ref="bread" :number="'04'" :title="'Why Us'" :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']" :mark="3" :mountedAnim="true" :mountedDelay="2"></Bread-crumb>
+        <Bread-crumb
+          ref="bread"
+          :number="'04'"
+          :title="'Why Us'"
+          :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
+          :mark="3"
+          :mountedAnim="true"
+          :mountedDelay="2"
+        ></Bread-crumb>
       </div>
       <div class="agency-why__paragraph">
         <Paragraph
@@ -65,6 +73,7 @@ import LinkButton from "@/components/LinkButton";
 import Painter3d from "@/components/Painter3d";
 import BrandHeader from "@/components/BrandHeader";
 import BreadCrumb from "@/components/BreadCrumb";
+import { lang } from "./../state";
 
 export default {
   components: {
@@ -82,7 +91,7 @@ export default {
     },
   },
   watch: {
-    data: function(val) {
+    data: function (val) {
       this.dataComp = val.agency.why;
     },
     initPage: function (val) {
@@ -113,6 +122,21 @@ export default {
       this.initAnim(1500);
     }
   },
+  updated() {
+    this.letters = this.$el.querySelectorAll(".agency-why__title-letter");
+
+    if (lang.lg == "en") {
+      this.letters.forEach(element => {
+        element.classList.add("lang-en");
+      });
+    } else {
+      this.letters.forEach(element => {
+        element.classList.add("lang-es");
+      });
+    }
+
+    this.initAnim(0);
+  },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
     window.removeEventListener("mousedown", this.hideTitle);
@@ -139,7 +163,7 @@ export default {
      *? Function for hide title when mouse is down
      */
     hideTitle() {
-      this.letters.forEach(element => {
+      this.letters.forEach((element) => {
         gsap.to(element, {
           duration: 1,
           opacity: 0,
@@ -152,7 +176,7 @@ export default {
      *? Function for show title when mouse is up
      */
     showTitle() {
-      this.letters.forEach(element => {
+      this.letters.forEach((element) => {
         gsap.to(element, {
           duration: 1,
           opacity: 1,
@@ -196,7 +220,7 @@ export default {
      */
     leave(el, done) {
       this.$refs.paragraph.leave();
-      this.$refs.LinkButton.leave();      
+      this.$refs.LinkButton.leave();
       this.$refs.BrandHeader.leave();
       this.$refs.painter.leave();
       this.$refs.bread.leave();
@@ -303,6 +327,16 @@ export default {
 
         &.space {
           margin-left: 3vw;
+        }
+
+        &.lang-en {
+          font-size: 16vw;
+          line-height: 0.95;
+        }
+
+        &.lang-es {
+          font-size: 9vw;
+          line-height: 1.55;
         }
       }
     }
