@@ -240,7 +240,7 @@ export default {
 
   .paragraph__quote {
     font-family: $lora;
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 400;
     @include transform(translateY(100%));
   }
@@ -249,7 +249,7 @@ export default {
     .paragraph__subtitle,
     .paragraph__subtitle2 {
       font-family: $lora;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 400;
       @include transform(translateY(100%));
     }
@@ -276,7 +276,7 @@ export default {
 
   .paragraph__text {
     font-family: $fira;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 300;
     margin-top: 0.5rem;
 
@@ -290,8 +290,12 @@ export default {
 
     &.lora {
       font-family: $lora;
-      font-size: 14px;
+      font-size: 0.875rem;
       font-weight: 400;
+    }
+
+    @include breakpoint(sm) {
+      font-size: 0.85rem;
     }
   }
 
