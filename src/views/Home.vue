@@ -5,12 +5,24 @@
       <div class="home__3d">
         <Home3d ref="home3d"></Home3d>
       </div>
-      <div class="home__links" v-show="false">
+      <div class="home__links">
         <Links-list
+          v-show="false"
           ref="linksList"
           :mountedAnim="true"
           :links="['Agency', 'Studio', 'Powered']"
         ></Links-list>
+        <transition name="fade" mode="out-in">
+          <div
+            class="home__btn"
+            v-if="color != 'micasa' && color != ''"
+            key="btn"
+            @click="goTo(color)"
+          >
+            <Button :text="dataComp.enterButton" :mountedAnim="true"></Button>
+          </div>
+          <div class="home__text" v-else key="text"><p>{{dataComp.text}}</p></div>
+        </transition>
       </div>
     </div>
   </transition>
@@ -23,6 +35,7 @@ import { gsap } from "gsap";
 import ColorLayer from "@/components/ColorLayer";
 import Home3d from "@/components/Home3d";
 import LinksList from "@/components/LinksList";
+import Button from "@/components/Button";
 
 export default {
   name: "Home",
@@ -30,9 +43,11 @@ export default {
     ColorLayer,
     Home3d,
     LinksList,
+    Button,
   },
   props: {
     color: String,
+    data: Object,
     initPage: {
       type: Boolean,
       default: true,
@@ -41,6 +56,9 @@ export default {
   watch: {
     color: function (val) {
       this.setColor = val;
+    },
+    data: function(val) {
+      this.dataComp = val.home;
     },
     initPage: function (val) {
       if (val) {
@@ -51,6 +69,7 @@ export default {
   data() {
     return {
       setColor: null,
+      dataComp: this.data.home,
     };
   },
   mounted() {
@@ -72,6 +91,22 @@ export default {
           }, 500);
         },
       });
+    },
+    goTo(url) {
+      switch (url) {
+        case 'Agency':
+          this.$router.push({name:'Agency'});
+          break;
+        case 'Studio':
+          this.$router.push({name:'Studio'});
+          break;
+        case 'Powered':
+          this.$router.push({name:'Powered'});
+          break;
+        default:
+          break;
+      }
+      
     },
     leave(el, done) {
       this.$el.classList.add("white");
@@ -119,10 +154,36 @@ export default {
     place-self: end center;
     width: 200px;
     z-index: 9998;
+    display: flex;
+    justify-content: center;
+
+    .home__btn {
+      width: fit-content;
+      display: none;
+    }
+
+    .home__text {
+      text-align: center;
+    }
+
+    @include breakpoint(sm) {
+      @include transform(translateY(-200%));
+      .home__btn {
+        display: initial;
+      }
+    }
   }
 
   &.white {
     background-color: rgba(#ffffff, 0);
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
