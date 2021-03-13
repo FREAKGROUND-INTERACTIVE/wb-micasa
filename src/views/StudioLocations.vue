@@ -252,10 +252,17 @@ export default {
       setTimeout(() => {
         this.$refs.imgBrooklyn.initAnim(0.2);
         this.$refs.imgLes.initAnim(0.2);
-        gsap.to(this.line, {
-          duration: 1,
-          height: "100vh",
-        });
+        if (window.innerWidth > 768) {
+          gsap.to(this.line, {
+            duration: 1,
+            height: "100vh",
+          });
+        } else {
+          gsap.to(this.line, {
+            duration: 1,
+            width: "100vw",
+          });
+        }
       }, delay);
     },
     initLoading(first) {
@@ -368,12 +375,30 @@ export default {
 .locations {
   @extend .layout;
 
+  @include breakpoint(sm) {
+    grid-template-columns: [colFirst] 4% [col2] 1fr [col3] 4% [colEnd];
+    grid-template-rows: [rowFirst] 0% [row2] 4% [row3] 42% [row4] 42% [row5] 4% [row6] 8% [rowEnd];
+    grid-template-areas:
+      ".    .     ."
+      ". menu ."
+      ". content-1 ."
+      ". content-2 ."
+      ". logo ."
+      ".    .     .";
+  }
+
   .locations__line {
     grid-area: 1 / 2 / 6 / -3;
     justify-self: right;
     width: 1px;
     background-color: $dark;
     height: 0vh;
+
+    @include breakpoint(sm) {
+      grid-area: 4 / 1 / -4 / 6;
+      width: 0vw;
+      height: 1px;
+    }
   }
 
   .locations__breadcrumb {
@@ -390,6 +415,10 @@ export default {
     width: 28vw;
     height: 28vw;
     // background-color: red;
+    @include breakpoint(sm) {
+      width: 60vw;
+      height: 60vw;
+    }
   }
 
   .locations__sites-brooklyn-menu {
@@ -398,6 +427,10 @@ export default {
     width: 28vw;
     height: 28vw;
     // background-color: rgb(99, 0, 0);
+    @include breakpoint(sm) {
+      width: 60vw;
+      height: 60vw;
+    }
   }
 
   .locations__sites-brooklyn-content {
@@ -431,6 +464,10 @@ export default {
     width: 28vw;
     height: 28vw;
     // background-color: green;
+    @include breakpoint(sm) {
+      width: 60vw;
+      height: 60vw;
+    }
   }
 
   .locations__sites-les-menu {
@@ -439,6 +476,10 @@ export default {
     width: 28vw;
     height: 28vw;
     // background-color: rgb(1, 43, 1);
+    @include breakpoint(sm) {
+      width: 60vw;
+      height: 60vw;
+    }
   }
 
   .locations__sites-les-content {
