@@ -9,12 +9,15 @@
       />
     </div>
     <div class="loading__content">
-      <div class="loading__button" @click="goToWeb" v-if="loadingDone">
-        <Button ref="Button" :text="'Play'" :mountedAnim="true"></Button>
-      </div>
-      <div class="loading__text">
-        Loading<br />{{ Math.floor(loadingCount.x) }}%
-      </div>
+      <transition name="fade" mode="out-in">
+        <div class="loading__button" v-if="loadingDone" key="btns">
+          <Button ref="Button" :text="'English'" :mountedAnim="true" @click.native="goToWeb('en')"></Button>
+          <Button ref="Button" :text="'Español'" :mountedAnim="true" @click.native="goToWeb('es')"></Button>
+        </div>
+        <div class="loading__text" v-else key="loading">
+          Loading<br />{{ Math.floor(loadingCount.x) }}%
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -65,8 +68,9 @@ export default {
     }
   },
   methods: {
-    goToWeb() {
+    goToWeb(lang) {
       let that = this;
+      mutations.changeLang(lang);
       gsap.to(this.$el, {
         duration: 1,
         autoAlpha: 0,
@@ -106,8 +110,19 @@ export default {
     text-align: center;
     @include transform(translateX(-50%));
     .loading__button {
-      width: fit-content;
+      width: 30vw;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
     }
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
   }
 }
 </style>
