@@ -121,16 +121,31 @@ export default {
     if (this.initPage) {
       this.initAnim(1500);
     }
+
+    if (lang.lg == "en") {
+      this.letters.forEach((element) => {
+        element.classList.add("lang-en");
+      });
+    } else {
+      this.letters.forEach((element) => {
+        element.classList.add("lang-es");
+      });
+    }
   },
   updated() {
     this.letters = this.$el.querySelectorAll(".agency-why__title-letter");
 
+    this.letters.forEach((element) => {
+      element.classList.remove("lang-en");
+      element.classList.remove("lang-es");
+    });
+
     if (lang.lg == "en") {
-      this.letters.forEach(element => {
+      this.letters.forEach((element) => {
         element.classList.add("lang-en");
       });
     } else {
-      this.letters.forEach(element => {
+      this.letters.forEach((element) => {
         element.classList.add("lang-es");
       });
     }
