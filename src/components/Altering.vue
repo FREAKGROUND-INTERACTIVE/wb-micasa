@@ -5,7 +5,7 @@
       <div class="altering__title">
         <div
           class="altering__title-letter"
-          v-for="letter in 'ALTERING'"
+          v-for="letter in lang == 'en' ? 'ALTERING' : 'ALTERAR'"
           :key="letter.id"
         >
           {{ letter }}
@@ -14,7 +14,9 @@
       <div class="altering__mask">
         <div class="altering__mask-content">
           <Altering3d ref="back3d" :mask="false" :pos="mouseEvent"></Altering3d>
-          <h3 class="altering__mask-content-title">THE CONSTANT</h3>
+          <h3 class="altering__mask-content-title">
+            {{ lang == "en" ? "THE CONSTANT" : "LO CONSTANTE" }}
+          </h3>
         </div>
       </div>
     </div>
@@ -24,10 +26,16 @@
 <script>
 import { gsap } from "gsap";
 import Altering3d from "@/components/Altering3d";
+import { lang } from "@/state";
 
 export default {
   components: {
     Altering3d,
+  },
+  computed: {
+    lang() {
+      return lang.lg;
+    },
   },
   props: {
     mountedAnim: {
@@ -110,9 +118,9 @@ export default {
       letterTl.to(this.mask, {
         duration: 2,
         width: "20vw",
-        onStart: function() {
+        onStart: function () {
           that.maskActive = true;
-        }
+        },
       });
       letterTl.play();
     },
