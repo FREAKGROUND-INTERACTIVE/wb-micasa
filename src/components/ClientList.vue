@@ -38,9 +38,9 @@ export default {
         12,
         9,
         11,
-        10
+        10,
       ],
-    }
+    };
   },
   mounted() {
     this.listClient = this.$el.querySelectorAll(".client-list__logo");
@@ -77,17 +77,17 @@ export default {
      */
     leave(done) {
       let that = this;
-       //* duration time for animation elements
+      //* duration time for animation elements
       let time = 1;
       //* create timeLine
-      let initTl = gsap.timeline({ paused: "true"});
+      let initTl = gsap.timeline({ paused: "true" });
 
       for (let index = 0; index < this.random.length; index++) {
         gsap.killTweensOf(this.listClient[that.random[index]]);
         initTl.to(
           this.listClient[that.random[index]],
           {
-            duration: time/30,
+            duration: time / 30,
             opacity: 0,
             ease: "power2.inOut",
           },
@@ -134,6 +134,14 @@ export default {
     img {
       width: 75%;
       height: 75%;
+    }
+  }
+  @include breakpoint(sm) {
+    grid-template-columns: auto auto auto;
+    div {
+      width: 120px;
+      height: 55px;
+      margin: 0;
     }
   }
 }
