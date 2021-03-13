@@ -28,6 +28,7 @@
           ref="menuBrooklyn"
           :isBrooklyn="true"
           :textButton="hoodBrooklyn ? 'Studio' : dataComp.buttonN"
+          :btnUpdate="brooklyn"
           @clickButton="hoodBrooklyn = !hoodBrooklyn"
         ></Menu-studio>
       </div>
@@ -88,6 +89,7 @@
           :textButton="hoodLes ? 'Studio' : dataComp.buttonN"
           @clickButton="hoodLes = !hoodLes"
           :color="'cyan'"
+          :btnUpdate="les"
         ></Menu-studio>
       </div>
       <div class="locations__sites-brooklyn-content" v-if="brooklyn">
