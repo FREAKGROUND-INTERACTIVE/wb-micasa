@@ -13,7 +13,6 @@
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
-          @imgLoaded="initAnim(150)"
           :loading="loading.x"
           :align="'left'"
           :imgUrl="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg'"
@@ -139,11 +138,20 @@ export default {
     MenuStudio,
   },
   props: {
-    data: Object
+    data: Object,
+    initPage: {
+      type: Boolean,
+      default: true,
+    },
   },
   watch: {
     data: function (val) {
       this.dataComp = val.locations;
+    },
+    initPage: function (val) {
+      if (val) {
+        this.initAnim(500);
+      }
     },
   },
   data() {
@@ -196,7 +204,10 @@ export default {
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
-    // this.initAnim(1);
+    //* initAnim function in mounted
+    if (this.initPage) {
+      this.initAnim(150);
+    }
   },
   destroyed() {
     window.removeEventListener("wheel", this.handleScroll);
@@ -213,7 +224,7 @@ export default {
             height: "100vh",
             delay: delay,
           });
-        }, 1500);
+        }, delay);
       }
     },
     initLoading(first) {
