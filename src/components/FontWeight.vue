@@ -176,5 +176,13 @@ export default {
       @include transform(translateY(100%));
     }
   }
+
+  @include breakpoint(sm) {
+    .font__phrase {
+    .font__char {
+      font-size: 22vw;
+    }
+  }
+  }
 }
 </style>
