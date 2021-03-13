@@ -55,7 +55,13 @@ export default {
           case "Agency":
             this.anim(1);
             break;
+          case "Agencia":
+            this.anim(1);
+            break;
           case "Studio":
+            this.anim(2);
+            break;
+          case "Estudio":
             this.anim(2);
             break;
           case "Powered":
