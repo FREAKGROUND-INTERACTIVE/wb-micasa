@@ -7,7 +7,7 @@
       <div class="menu-studio__slider2">
         <Carrousel ref="carrousel2" :imgs="isBrooklyn?imgBrooklyn.hood:imgLes.hood"></Carrousel>
       </div>
-      <div class="menu-studio__button" @click="clickButton">
+      <div class="menu-studio__button" @click="clickButton" v-show="updateBtn">
         <Button ref="button" :text="textButtonData" :color="'cyan'" :isUpdate="updateBtn"></Button>
       </div>
     </div>
@@ -137,7 +137,14 @@ export default {
     margin-top: 2rem;
     // position: relative;
     left: 50%;
-    @include transform(translateX(-50%));
+    @include transform(translateX(-50%) rotate(0deg));
+
+    @include breakpoint(sm) {
+      margin-top: 0;
+      top: 44%;
+      left: -10vw;
+      @include transform(translateX(-50%) rotate(270deg));
+    }
   }
 }
 </style>
