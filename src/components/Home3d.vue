@@ -361,9 +361,13 @@ export default {
             });
 
             this.mesh = obj;
-            console.log("mesh: ", this.mesh);
             this.mesh.position.y = 0.05;
             this.scene.add(this.mesh);
+
+            if (window.innerWidth <= 768) {
+              this.mesh.position.z = -5;
+              this.mesh2.position.z = -5;
+            }
 
             // if (!sceneID) {
             //   setTimeout(() => {
