@@ -92,13 +92,13 @@ export default {
   position: absolute;
   left: 50%;
   top: 50%;
+  pointer-events: none;
   @include transform(translate(-50%, -50%));
 
   .view-title__container {
     height: 20vh;
     overflow: hidden;
     text-align: center;
-    pointer-events: none;
     .view-title__new,
     .view-title__old {
       font-size: 22vh;
