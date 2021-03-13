@@ -114,6 +114,10 @@ export default {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
+
+      @include breakpoint(sm) {
+        width: 70vw;
+      }
     }
   }
 
