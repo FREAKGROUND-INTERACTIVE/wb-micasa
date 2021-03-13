@@ -97,7 +97,13 @@ export default {
         case 'Agency':
           this.$router.push({name:'Agency'});
           break;
+        case 'Agencia':
+          this.$router.push({name:'Agency'});
+          break;
         case 'Studio':
+          this.$router.push({name:'Studio'});
+          break;
+        case 'Estudio':
           this.$router.push({name:'Studio'});
           break;
         case 'Powered':
