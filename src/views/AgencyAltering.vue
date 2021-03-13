@@ -5,9 +5,9 @@
         <Altering ref="altering"></Altering>
       </div>
       <div class="agency-altering__content">
-        <div class="agency-altering__title">
+        <!-- <div class="agency-altering__title">
           <h2>ALTERING<br />THE CONSTANT</h2>
-        </div>
+        </div> -->
         <div class="agency-altering__paragraph">
           <Paragraph
             ref="paragraph"
@@ -155,43 +155,35 @@ export default {
     position: absolute;
   }
 
-  .agency-altering__mask {
-    @include breakpoint(sm) {
-      display: none;
-    }
-  }
-
   .agency-altering__content {
     @extend .content;
 
     @include breakpoint(sm) {
       grid-area: 3 / 2 / 4 / 4;
-      grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 5% [colEnd];
-      grid-template-rows: repeat(4, 1fr);
+      grid-template-columns: [colFirst] 0% [col2] 1fr [col3] 0% [colEnd];
+      grid-template-rows: repeat(2, 1fr);
       grid-template-areas:
         ". content-1  ."
-        ". content-2  ."
-        ". content-3  ."
-        ". content-3  .";
+        ". content-2  .";
     }
 
-    .agency-altering__title {
-      display: none;
+    // .agency-altering__title {
+    //   display: none;
 
-      h2 {
-        font-family: $oswald;
-        font-weight: 900;
-        font-size: 10vw;
-      }
+    //   h2 {
+    //     font-family: $oswald;
+    //     font-weight: 900;
+    //     font-size: 10vw;
+    //   }
 
-      @include breakpoint(sm) {
-        display: flex;
-        justify-self: center;
-        line-height: 5rem;
-        text-align: center;
-        grid-area: content-1;
-      }
-    }
+    //   @include breakpoint(sm) {
+    //     display: flex;
+    //     justify-self: center;
+    //     line-height: 5rem;
+    //     text-align: center;
+    //     grid-area: content-1;
+    //   }
+    // }
 
     .agency-altering__paragraph {
       grid-area: content-2;
@@ -199,6 +191,7 @@ export default {
       margin-bottom: 4rem;
 
       @include breakpoint(lg) {
+        place-self: center;
         margin-bottom: 1rem;
       }
     }
