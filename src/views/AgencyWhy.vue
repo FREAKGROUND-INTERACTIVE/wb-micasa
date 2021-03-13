@@ -184,6 +184,11 @@ export default {
           opacity: 0,
         });
       });
+
+      gsap.to(this.$el.querySelector(".agency-why__paragraph"), {
+        duration: 1,
+        opacity: 0,
+      });
     },
 
     /**
@@ -196,6 +201,11 @@ export default {
           duration: 1,
           opacity: 1,
         });
+      });
+
+      gsap.to(this.$el.querySelector(".agency-why__paragraph"), {
+        duration: 1,
+        opacity: 1,
       });
     },
 
@@ -378,6 +388,10 @@ export default {
     grid-area: content-2;
     place-self: end center;
     margin-bottom: 4rem;
+    @include breakpoint(sm) {
+      width: 200%;
+      @include transform(translate(-25%, -20%));
+    }
     @include breakpoint(lg) {
       margin-bottom: 1rem;
     }
