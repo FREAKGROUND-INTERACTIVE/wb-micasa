@@ -25,7 +25,13 @@
         </div>
         <div class="agency-services__title-down">
           <template v-for="letter in dataComp.titleTwo">
-            <div :key="letter.id" :class="{ space: letter == ' ' }">
+            <div
+              :key="letter.id"
+              :class="{
+                space: letter == ' ',
+                es: dataComp.titleOne == 'UNA CASA',
+              }"
+            >
               {{ letter }}
             </div>
           </template>
@@ -125,7 +131,7 @@ export default {
     }
   },
   updated() {
-     this.lettersDown = this.$el.querySelectorAll(
+    this.lettersDown = this.$el.querySelectorAll(
       ".agency-services__title-down > div"
     );
     this.initAnim(0);
@@ -293,11 +299,6 @@ export default {
       left: 50%;
       @include transform(translate(-50%, -100%));
 
-      @include breakpoint(sm) {
-        top: 25%;
-        width: 40rem;
-      }
-
       div {
         display: inline-block;
         font-size: 10vw;
@@ -308,12 +309,15 @@ export default {
         -webkit-text-fill-color: $light;
         @include transform(translateY(100%));
 
-        @include breakpoint(sm) {
-          font-size: 18vw;
-        }
-
         &.space {
           margin-left: 2rem;
+        }
+      }
+
+      @include breakpoint(sm) {
+        width: 100%;
+        div {
+          font-size: 20vw;
         }
       }
     }
@@ -323,10 +327,6 @@ export default {
       top: 0;
       left: 0;
       z-index: 2;
-
-      @include breakpoint(sm) {
-        display: none;
-      }
     }
 
     .agency-services__title-down {
@@ -338,10 +338,6 @@ export default {
       width: 95rem;
       @include transform(translate(-50%, 0%));
 
-      @include breakpoint(sm) {
-        top: 25%;
-        width: 42rem;
-      }
       div {
         display: inline-block;
         font-size: 7.5vw;
@@ -350,12 +346,22 @@ export default {
         color: $red;
         @include transform(translateY(-100%));
 
-        @include breakpoint(sm) {
-          font-size: 13vw;
-        }
-
         &.space {
           margin-left: 2rem;
+        }
+
+        &.es {
+          font-size: 4vw;
+        }
+      }
+
+      @include breakpoint(sm) {
+        width: 100%;
+        div {
+          font-size: 15vw;
+          &.es {
+            font-size: 8vw;
+          }
         }
       }
     }
@@ -371,10 +377,6 @@ export default {
     place-self: end center;
     margin-bottom: 4rem;
     z-index: 4;
-
-    @include breakpoint(sm) {
-      display: none;
-    }
   }
 
   .agency-services__content {
