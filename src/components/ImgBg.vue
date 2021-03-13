@@ -97,20 +97,20 @@ export default {
     initAnim(delay) {
       let initTl = new gsap.timeline({ paused: true, delay: delay });
 
-
-
       initTl.to(this.imgContainer, {
         duration: 2,
         height: "100vh",
-        ease: "power2.out"
+        ease: "power2.out",
       });
 
-      initTl.to(this.img, {
-        duration: 2.5,
-        scale: 1,
-        ease: "power4.out"
-      },
-      ">-2"
+      initTl.to(
+        this.img,
+        {
+          duration: 2.5,
+          scale: 1,
+          ease: "power4.out",
+        },
+        ">-2"
       );
 
       initTl.play();
@@ -128,7 +128,7 @@ export default {
         duration: 1.5,
         height: 0,
         y: "100vh",
-        ease: "power2.in"
+        ease: "power2.in",
       });
       gsap.to(this.img, {
         duration: 1.5,
@@ -155,9 +155,6 @@ export default {
     height: 0vh;
     overflow: hidden;
 
-    @include breakpoint(sm) {
-      height: 55vh;
-    }
     .img-view__img {
       position: absolute;
       // width: 100%;
@@ -165,12 +162,17 @@ export default {
       top: 0%;
       left: 50%;
       @include transform(translate(-50%, 0%) scale(2));
-
-      @include breakpoint(sm) {
-      height: 60vh;
     }
+  }
+  @include breakpoint(sm) {
+    display: flex;
+    justify-content: center;
+    .img-view__img-container {
+      width: 80%;
+      .img-view__img {
+        height: 50vh;
+      }
     }
-    
   }
 }
 </style>
