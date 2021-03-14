@@ -6,6 +6,8 @@
         left: align == 'left',
         right: align == 'right',
         center: align == 'center',
+        leftImportant: alignImportant == 'left',
+        rightImportant: alignImportant == 'right',
       }"
     >
       <div class="paragraph__quote-container" v-if="quote">
@@ -51,6 +53,7 @@ export default {
     subtitle2: String,
     text: String,
     align: String,
+    alignImportant: String,
     mountedAnim: {
       type: Boolean,
       default: false,
@@ -313,6 +316,14 @@ export default {
 
   @include breakpoint(sm) {
     text-align: center !important;
+
+    &.leftImportant {
+      text-align: left !important;
+    }
+
+    &.rightImportant {
+      text-align: right !important;
+    }
   }
 }
 </style>
