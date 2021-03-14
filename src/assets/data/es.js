@@ -10,6 +10,7 @@ export const es = {
   },
   agency: {
     about: {
+      bread: "Nosotros",
       title: "Agencia",
       paragraph: {
         quote: "Acerca de",
@@ -18,6 +19,7 @@ export const es = {
       }
     },
     altering: {
+      bread: "Alterar",
       titleOne: "ALTERANDO",
       titleTwo: "LO CONSTANTE",
       paragraph: {
@@ -26,6 +28,7 @@ export const es = {
       }
     },
     services: {
+      bread: "Servicios",
       titleOne: "UNA CASA",
       titleTwo: "MUCHAS HABITACIONES",
       button: "Vea nuestros servicios",
@@ -55,6 +58,7 @@ export const es = {
       ]
     },
     why: {
+      bread: "Por qué",
       textPainter: "(Escoje un color para pintar el objeto en el centro)",
       title: "¿POR QUÉ NOSOTROS?",
       paragraph: {
@@ -63,6 +67,7 @@ export const es = {
       }
     },
     clients: {
+      bread: "Clientes",
       paragraph: {
         title: "Nuestros Clientes",
         text: "Somos apasionados por lo que creamos y atraemos a otros como nosotros. Los colaboradores ideales\nson agentes que buscan una nueva perspectiva. Juntos romperemos el status quo."

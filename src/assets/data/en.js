@@ -10,6 +10,7 @@ export const en = {
   },
   agency: {
     about: {
+      bread: "About",
       title: "Agency",
       paragraph: {
         quote: "About us",
@@ -18,6 +19,7 @@ export const en = {
       }
     },
     altering: {
+      bread: "Altering",
       titleOne: "ALTERING",
       titleTwo: "THE CONSTANT",
       paragraph: {
@@ -26,6 +28,7 @@ export const en = {
       }
     },
     services: {
+      bread: "Services",
       titleOne: "ONE HOME",
       titleTwo: "MANY ROOMS",
       button: "See our Services",
@@ -55,6 +58,7 @@ export const en = {
       ]
     },
     why: {
+      bread: "Why Us",
       textPainter: "(Pick a color to paint the object in the center)",
       title: "WHY US?",
       paragraph: {
@@ -63,6 +67,7 @@ export const en = {
       }
     },
     clients: {
+      bread: "Clients",
       paragraph: {
         title: "Our Clients",
         text: "We are passionate about what we create and attract others like us. Ideal collaborators\nare agents who seek a fresh perspective. Together we disrupt the status quo"
