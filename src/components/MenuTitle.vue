@@ -148,6 +148,11 @@ export default {
 
     @include transform(translateY(-100%));
     @include transition(transform 0.3s ease-out);
+
+    @include breakpoint(sm) {
+      font-size: 6vh;
+      padding: 0;
+    }
   }
 
   &:hover {
@@ -157,6 +162,10 @@ export default {
         // -webkit-text-stroke: $dark;
       }
     }
+  }
+
+  @include breakpoint(sm) {
+    height: 8vh;
   }
 }
 </style>
