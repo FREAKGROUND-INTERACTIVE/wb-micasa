@@ -100,6 +100,16 @@ body {
     ". info links links ."
     ". . . . ."
     ". . . . .";
+
+  @include breakpoint(sm) {
+    grid-template-columns: [colFirst] 8% [col2] 1fr [col3] 1fr [col4] 8% [colEnd];
+    grid-template-rows: [rowFirst] 8% [row2] 42% [row3] 42% [row4] 8% [rowEnd];
+    grid-template-areas:
+      " line . . ."
+      " . info social ."
+      " . links links ."
+      " . . . .";
+  }
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
