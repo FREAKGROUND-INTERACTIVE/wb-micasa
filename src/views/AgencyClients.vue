@@ -5,7 +5,7 @@
         <Bread-crumb
           ref="bread"
           :number="'05'"
-          :title="'Clients'"
+          :title="dataComp.bread"
           :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
           :mark="4"
           :mountedAnim="true"

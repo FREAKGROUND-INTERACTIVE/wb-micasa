@@ -37,7 +37,7 @@
         <Bread-crumb
           ref="bread"
           :number="'04'"
-          :title="'Why Us'"
+          :title="dataComp.bread"
           :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
           :mark="3"
           :mountedAnim="true"

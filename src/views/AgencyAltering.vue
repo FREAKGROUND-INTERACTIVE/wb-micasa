@@ -20,7 +20,7 @@
         <Bread-crumb
           ref="bread"
           :number="'02'"
-          :title="'Altering'"
+          :title="dataComp.bread"
           :pages="['About', 'Altering', 'Services', 'Why Us', 'Clients']"
           :mark="1"
           :mountedAnim="true"
