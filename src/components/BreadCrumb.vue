@@ -15,7 +15,7 @@
         <template v-for="(point, index) in pages">
           <div
             :key="point"
-            :class="{ in: index == mark }"
+            :class="{ in: index == mark, es: lang == 'es' }"
             @click="goToPage(index)"
           ></div>
         </template>
@@ -26,8 +26,14 @@
 
 <script>
 import { gsap } from "gsap";
+import { lang } from "@/state";
 
 export default {
+  computed: {
+    lang() {
+      return lang.lg;
+    },
+  },
   props: {
     number: String,
     title: String,
@@ -142,15 +148,12 @@ export default {
         duration: 0.2,
         width: "0%",
       });
-      
-      endTl.to(
-        this.titlePage,
-        {
-          duration: 0.2,
-          y: "100%",
-        }
-      );
-      
+
+      endTl.to(this.titlePage, {
+        duration: 0.2,
+        y: "100%",
+      });
+
       endTl.to(this.numberPage, {
         duration: 0.2,
         y: "100%",
@@ -209,7 +212,7 @@ export default {
     }
 
     @include breakpoint(m) {
-        width: 0px;
+      width: 0px;
     }
   }
   .breadcrumb__points {
@@ -267,6 +270,38 @@ export default {
       &:nth-child(5) {
         &:after {
           content: "Clients";
+        }
+      }
+
+      &.es {
+        &:nth-child(1) {
+          &:after {
+            content: "Nosotros";
+          }
+        }
+
+        &:nth-child(2) {
+          &:after {
+            content: "Alterar";
+          }
+        }
+
+        &:nth-child(3) {
+          &:after {
+            content: "Servicios";
+          }
+        }
+
+        &:nth-child(4) {
+          &:after {
+            content: "Por qué";
+          }
+        }
+
+        &:nth-child(5) {
+          &:after {
+            content: "Clientes";
+          }
         }
       }
 
