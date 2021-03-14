@@ -7,6 +7,7 @@
             <Paragraph
               :mountedAnim="true"
               :class="'right'"
+              :alignImportant="'left'"
               ref="paragraph1"
               :text="'318 Grand Street\nSuite 1G Brooklyn\nNY 11211\ninfo@mi-casa.us'"
               :font="'lora'"
@@ -14,6 +15,7 @@
             <Paragraph
               :mountedAnim="true"
               :class="'right'"
+              :alignImportant="'left'"
               ref="paragraph2"
               :text="'70 Hester Street\nNY 10002\ninfo@mi-casa.us'"
               :font="'lora'"
@@ -32,6 +34,7 @@
             <Paragraph
               :mountedAnim="true"
               :class="'right'"
+              :alignImportant="'left'"
               ref="paragraph3"
               :text="'MI-CASA Studios ®\nAll Rights Reserved\n2021'"
               :font="'lora'"
@@ -39,7 +42,7 @@
           </div>
         </div>
         <div class="menu__line"></div>
-        <button @click="changeLang">Lang</button>
+        <button @click="changeLang" v-if="false">Lang</button>
         <div class="menu__social">
           <a
             href="https://www.instagram.com/micasa.nyc/"
@@ -114,22 +117,22 @@
         </div>
         <div class="menu__links">
           <Menu-title
-            :text="'Home'"
+            :text="lang == 'en'?'Home':'Inicio'"
             @click.native="goTo('/')"
             ref="linksHome"
           ></Menu-title>
           <Menu-title
-            :text="'Agency'"
+            :text="lang == 'en'?'Agency':'Agencia'"
             @click.native="goTo('/Agency')"
             ref="linksAgency"
           ></Menu-title>
           <Menu-title
-            :text="'Studio'"
+            :text="lang == 'en'?'Studio':'Estudio'"
             @click.native="goTo('/Studio')"
             ref="linksStudio"
           ></Menu-title>
           <Menu-title
-            :text="'Powered by micasa'"
+            :text="'Powered'"
             @click.native="goTo('/Powered')"
             ref="linksPowered"
           ></Menu-title>
@@ -149,7 +152,7 @@
 </template>
 
 <script>
-import { mutations } from "@/state";
+import { lang, mutations } from "@/state";
 import gsap from "gsap";
 import Paragraph from "@/components/Paragraph";
 import MenuTitle from "@/components/MenuTitle";
@@ -160,6 +163,11 @@ export default {
     Paragraph,
     MenuTitle,
     BrandHeader,
+  },
+  computed: {
+    lang() {
+      return lang.lg;
+    }
   },
   data() {
     return {
@@ -302,6 +310,9 @@ export default {
       background-color: $dark;
       grid-area: line;
       place-self: start;
+      @include breakpoint(sm) {
+        display: none;
+      }
     }
 
     .menu__info {
@@ -334,6 +345,14 @@ export default {
         place-self: end;
         margin: 0 0.5rem 1.5rem 0;
       }
+
+      @include breakpoint(sm) {
+        margin-right: 0;
+        .menu__info-dev {
+          margin: 0;
+          place-self: start;
+        }
+      }
     }
 
     .menu__social {
@@ -363,12 +382,28 @@ export default {
           @include transform(translateX(10%));
         }
       }
+
+      @include breakpoint(sm) {
+        place-self: center end;
+        margin: 0;
+
+        .menu__social-logo {
+          p {
+            display: none;
+          }
+        }
+      }
     }
 
     .menu__links {
       grid-area: links;
       place-self: end start;
       margin-left: 5rem;
+
+      @include breakpoint(sm) {
+        place-self: center start;
+        margin-left: 0;
+      }
     }
   }
 
@@ -441,7 +476,8 @@ export default {
     }
 
     @include breakpoint(sm) {
-      right: 2.5rem;
+      top: 2%;
+      right: 8%;
     }
   }
 }
