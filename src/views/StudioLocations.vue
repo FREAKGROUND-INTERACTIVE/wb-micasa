@@ -13,7 +13,7 @@
       </div>
 
       <!--* LEFT SIDE -->
-      <div class="locations__sites-brooklyn" v-show="!les">
+      <div class="locations__sites-brooklyn" v-show="!les" @click="initLocation(true)">
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
@@ -73,7 +73,7 @@
       </div>
 
       <!--* RIGHT SIDE -->
-      <div class="locations__sites-les" v-show="!brooklyn">
+      <div class="locations__sites-les" v-show="!brooklyn" @click="initLocation(false)">
         <Img-studio
           @mouseenter.native="initLoading(false)"
           @mouseleave.native="backLoading(false)"
@@ -272,6 +272,7 @@ export default {
           duration: 3,
           x: 100,
           ease: "power4.easeOut",
+          delay: 1,
           onComplete: function () {
             that.loading.x = 0;
             that.$refs.imgLes.leave();
@@ -287,6 +288,7 @@ export default {
           duration: 3,
           x: 100,
           ease: "power4.easeOut",
+          delay: 1,
           onComplete: function () {
             that.loading2.x = 0;
             that.$refs.imgLes.leave();
@@ -297,6 +299,25 @@ export default {
             }, 2000);
           },
         });
+      }
+    },
+    initLocation(first) {
+      if (first) {
+        this.loading.x = 0;
+        this.$refs.imgLes.leave();
+        this.$refs.imgBrooklyn.leave();
+        this.$refs.menuBrooklyn.initAnim(2);
+        setTimeout(() => {
+          this.brooklyn = true;
+        }, 2000);
+      } else {
+        this.loading2.x = 0;
+        this.$refs.imgLes.leave();
+        this.$refs.imgBrooklyn.leave();
+        this.$refs.menuLes.initAnim(2);
+        setTimeout(() => {
+          this.les = true;
+        }, 2000);
       }
     },
     backLoading(first) {
