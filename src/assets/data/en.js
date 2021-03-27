@@ -6,7 +6,7 @@ export const en = {
   ],
   home: {
     enterButton: "Enter",
-    text: "Pick object for navigate"
+    text: "Pick an object to navigate"
   },
   agency: {
     about: {
@@ -15,7 +15,7 @@ export const en = {
       paragraph: {
         quote: "About us",
         title: "Mi Casa Studios",
-        text: "Here at Mi Casa Studios we are more\nthan an agency. We are the home base\nfor a creative community that nurtures\nits menbers and provides fertile\nground for ideas to grow."
+        text: "Here at Mi Casa Studios we are more\nthan an agency. We are the home base\nfor a creative community that nurtures\nits members and provides fertile\nground for ideas to grow."
       }
     },
     altering: {
@@ -33,28 +33,37 @@ export const en = {
       titleTwo: "MANY ROOMS",
       button: "See our Services",
       list: [
-        'Research <span>•</span>',
-        'Trend forecasting <span>•</span>',
-        'Live Streaming <span>•</span>',
-        'PodCast Development',
-        'Quantitative Surveys <span>•</span>',
-        'Focus Groups <span>•</span>',
         'Product Innovation <span>•</span>',
-        'Brand Identity',
-        'Marketing Advertising <span>•</span>',
+        'Brand Identity Development <span>•</span>',
         'Campaign Development <span>•</span>',
-        'Optimization',
+        'Print <span>•</span>',
+        'Digital <span>•</span>',
+        'Email <span>•</span>',
+        'Paid Search <span>•</span>',
+        'SEO <span>•</span>',
+        'Media Planning <span>•</span>',
+        'Buying <span>•</span>',
+        'Content Optimization <span>•</span>',
         'Data Analysis <span>•</span>',
         'Websites <span>•</span>',
+        'Landing Pages <span>•</span>',
+        'Microsites <span>•</span>',
         'Content Strategy & Creation <span>•</span>',
-        'Paid Social',
+        'Film Production <span>•</span>',
+        'Photography <span>•</span>',
+        'Editing <span>•</span>',
+        'Coloring <span>•</span>',
+        'Script writing <span>•</span>',
+        'Podcasts <span>•</span>',
+        'Live Broadcasting <span>•</span>',
+        'Paid Social <span>•</span>',
         'Community Management <span>•</span>',
         'Influencer Engagement <span>•</span>',
-        'Event Design',
+        'Event Design <span>•</span>',
         'Pop-Ups <span>•</span>',
         'Space Design <span>•</span>',
         'Tradeshow Support <span>•</span>',
-        'Whatever It Takes',
+        'Whatever it Takes <span>•</span>'
       ]
     },
     why: {
@@ -63,7 +72,7 @@ export const en = {
       title: "WHY US?",
       paragraph: {
         title: "Why us?",
-        text: "At the heart of our process is financial strategy. With a\ndeep understanding of our Gen Z consumer, we know how\nour message needs to resonate to create real change\nwithin a budget."
+        text: "At the heart of our process is financial strategy. With a\ndeep understanding of our consumer, we know how\nour message needs to resonate to create real change\nwithin a budget."
       }
     },
     clients: {
@@ -94,15 +103,15 @@ export const en = {
     les: {
       infoStudioLes: {
         title: "Mi Casa LES",
-        subtitle: "318 Grand Street, Suite 1G",
-        subtitle2: "Brooklyn, NY 11211",
+        subtitle: "70 Hester Street",
+        subtitle2: "New York, NY 10002",
         text:
           "This studio is in the heart of the Lower East Side in a\nbuilding that has a rich history, in community and art and\nonce in a Tribeca film festival documentary. The floor \noffers 1,800 square feet of open convertible space and a\n20 foot cyclorama.",
       },
       infoHoodLes: {
-        title: "Flacosburg",
-        subtitle: "318 Grand Street, Suite 1G",
-        subtitle2: "Brooklyn, NY 11211",
+        title: "Mi Casa LES",
+        subtitle: "70 Hester Street",
+        subtitle2: "New York, NY 10002",
         text:
           "The eclectic Lower East Side is where gritty alleys and\ntenement-style buildings and nighttime draws hip, young\ncrowds to the area's trendy bars, music venues and\nrestaurants.",
       },
@@ -114,5 +123,5 @@ export const en = {
   },
   generals: {
     button: "Next"
-  } 
+  }
 }

@@ -6,7 +6,7 @@ export const es = {
   ],
   home: {
     enterButton: "Entrar",
-    text: "Seleccione los objetos para navegar"
+    text: "Seleccione un objeto para navegar"
   },
   agency: {
     about: {
@@ -33,28 +33,37 @@ export const es = {
       titleTwo: "MUCHAS HABITACIONES",
       button: "Vea nuestros servicios",
       list: [
-        'Investigación <span>•</span>',
-        'Pronóstico de Tendencias <span>•</span>',
-        'Transmisión en Vivo',
-        'Desarrollo de PodCast <span>•</span>',
-        'Encuestas Cuantitativas <span>•</span>',
-        'Grupos de Enfoque',
-        'Innovación de Productos <span>•</span>',
-        'Identidad de Marca <span>•</span>',
-        'Márketing <span>•</span>',
-        'Publicidad',
-        'Desarrollo de Campañas <span>•</span>',
-        'Optimización <span>•</span>',
-        'Análisis de Datos <span>•</span>',
-        'Sitios Web',
-        'Estrategia y Creación de Contenido <span>•</span>',
-        'Redes Sociales Pagadas',
-        'Administración de la Comunidad <span>•</span>',
-        'Participación de Influencers',
-        'Diseño de Eventos <span>•</span>',
+        'Product Innovation <span>•</span>',
+        'Brand Identity Development <span>•</span>',
+        'Campaign Development <span>•</span>',
+        'Print <span>•</span>',
+        'Digital <span>•</span>',
+        'Email <span>•</span>',
+        'Paid Search <span>•</span>',
+        'SEO <span>•</span>',
+        'Media Planning <span>•</span>',
+        'Buying <span>•</span>',
+        'Content Optimization <span>•</span>',
+        'Data Analysis <span>•</span>',
+        'Websites <span>•</span>',
+        'Landing Pages <span>•</span>',
+        'Microsites <span>•</span>',
+        'Content Strategy & Creation <span>•</span>',
+        'Film Production <span>•</span>',
+        'Photography <span>•</span>',
+        'Editing <span>•</span>',
+        'Coloring <span>•</span>',
+        'Script writing <span>•</span>',
+        'Podcasts <span>•</span>',
+        'Live Broadcasting <span>•</span>',
+        'Paid Social <span>•</span>',
+        'Community Management <span>•</span>',
+        'Influencer Engagement <span>•</span>',
+        'Event Design <span>•</span>',
         'Pop-Ups <span>•</span>',
-        'Diseño de Espacios',
-        'Soporte Para Ferias Comerciales'
+        'Space Design <span>•</span>',
+        'Tradeshow Support <span>•</span>',
+        'Whatever it Takes <span>•</span>'
       ]
     },
     why: {
@@ -63,7 +72,7 @@ export const es = {
       title: "¿POR QUÉ NOSOTROS?",
       paragraph: {
         title: "¿Por qué nosotros?",
-        text: "En el corazón de nuestro proceso está la estrategia\nfinanciera. Con un profundo conocimiento de nuestro\nconsumidor Gen Z, sabemos cómo nuestro mensaje\ndebe resonar para crear un cambio real\ndentro de un presupuesto."
+        text: "En el corazón de nuestro proceso está la estrategia\nfinanciera. Con un profundo conocimiento de nuestro\nconsumidor, sabemos cómo nuestro mensaje\ndebe resonar para crear un cambio real\ndentro de un presupuesto."
       }
     },
     clients: {
@@ -94,15 +103,15 @@ export const es = {
     les: {
       infoStudioLes: {
         title: "Mi Casa LES",
-        subtitle: "318 Grand Street, Suite 1G",
-        subtitle2: "Brooklyn, NY 11211",
+        subtitle: "70 Hester Street",
+        subtitle2: "New York, NY 10002",
         text:
           "Este estudio está en el corazón del Lower East Side en\nun edificio que tiene una rica historia, en comunidad y arte\ne incluido en un documental del festival de cine de Tribeca.\nEl plano de planta ofrece 1,800 pies cuadrados de espacio\nabierto convertible y un ciclorama de 20 pies.",
       },
       infoHoodLes: {
-        title: "Flacosburg",
-        subtitle: "318 Grand Street, Suite 1G",
-        subtitle2: "Brooklyn, NY 11211",
+        title: "Mi Casa LES",
+        subtitle: "70 Hester Street",
+        subtitle2: "New York, NY 10002",
         text:
           "El ecléctico Lower East Side es donde los callejones y\nlos edificios de estilo residencial y la noche atraen a multitudes\njóvenes y de moda a los bares, locales de música y\nrestaurantes de moda de la zona.",
       }
@@ -114,5 +123,5 @@ export const es = {
   },
   generals: {
     button: "Siguiente"
-  } 
+  }
 }
