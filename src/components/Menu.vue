@@ -36,7 +36,7 @@
               :class="'right'"
               :alignImportant="'left'"
               ref="paragraph3"
-              :text="'MI-CASA Studios ®\nAll Rights Reserved\n2021'"
+              :text="lang=='en'?'Mi Casa Creative Corporation\nfor all Rights Reserved':'Mi Casa Creative Corporation\ntodos los derechos reservados'"
               :font="'lora'"
             ></Paragraph>
           </div>
