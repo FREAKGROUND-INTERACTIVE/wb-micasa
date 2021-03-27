@@ -38,7 +38,7 @@
           green: newTitle == 'Powered' && !home,
         }"
       >
-        by MI-CASA
+        by MI CASA
       </p>
     </div>
   </div>
