@@ -116,9 +116,9 @@ void main() {
 	// We readjust the mouse coordinates
 	vec2 mouse = u_mouse * -0.5;
 	
-	vec2 circlePos = st + mouse/3.0;
+	vec2 circlePos = st + mouse/2.0;
 	float c = circle(circlePos, u_radio, 3.) * 2.5;
-  float c2 = circle(vec2(0.0,0.0)* -0.5 + st, u_radio/2.0, 3.) * 2.5;
+  float c2 = circle(vec2(0.0,0.0)* -0.5 + st, u_radio/1.5, 3.) * 2.5;
 
 	float offx = v_uv.x + sin(v_uv.y + u_time * .1);
 	float offy = v_uv.y - u_time * 0.1 - cos(u_time * .001) * .01;
