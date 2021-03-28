@@ -145,13 +145,13 @@ export default {
       font-family: $lora;
       text-align: center;
       color: transparent;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 30px;
       @include transform(translateY(-100%));
       @include transition(color 0.5s 0.5s);
 
       &.green {
-        color: $green;
+        color: $light;
       }
     }
   }
