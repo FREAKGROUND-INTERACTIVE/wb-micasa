@@ -87,7 +87,7 @@ export default {
 
         //* load a .OBJ resource from provided URL synchronously
         loader.load(
-          "https://res.cloudinary.com/nancloud/raw/upload/v1613356369/mi-casa/models/marco_bowjih.obj",
+          "https://res.cloudinary.com/micasastudios/raw/upload/v1616971544/WEBPAGE/HOME/MODEL/marco_egh4p8.obj",
           function (object) {
             obj2 = object;
             sceneA.addObj(obj2, true);
@@ -97,7 +97,7 @@ export default {
 
         //* load a .OBJ resource from provided URL synchronously
         loader.load(
-          "https://res.cloudinary.com/nancloud/raw/upload/v1616949652/mi-casa/models/micasalanding_12_hd3omi.obj",
+          "https://res.cloudinary.com/micasastudios/raw/upload/v1616971434/WEBPAGE/HOME/MODEL/micasalanding_12_mv91k5.obj",
           function (object) {
             obj = object;
             sceneA.addObj(obj, false);
@@ -339,14 +339,14 @@ export default {
         };
 
         this.addObj = (obj, marco) => {
-          // claqueta, camara, planta, dj, light, flower, mic
+          // claqueta, camara, DJ, light, plant, mic
           const urls = [
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/1b375f92ac43d1e79ff6e41092664ad6_zo2ufp.jpg",
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/1b375f92ac43d1e79ff6e41092664ad6_zo2ufp.jpg",
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749659/mi-casa/models/TEXTURES/f33d5febcf432cdead3a28141a466109_khvcux.jpg",
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/a44f197958fb1fcc2de6d04d33e2828b_q4molc.jpg",
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0004_yst7ez.jpg",
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0ddf2c1ccf9d361cc2dc89c579a9080d_iq3z8v.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/01SALMON_qsrow2.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/02AQUA_ln8dxe.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/04_ra5nwe.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/03LAVENDER_hlk8yn.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/06_njcvov.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971722/WEBPAGE/HOME/MODEL/TEXTURES/05_t42v97.jpg",
           ];
           if (marco == true) {
             obj.children[0].material = new THREE.MeshPhongMaterial({
@@ -449,13 +449,13 @@ export default {
 
         this.render = (delta) => {
           // this.quadmaterial.uniforms.mixRatio.value = 0.5;
-          this.quadmaterial.uniforms.u_mouse.value.x = that.mouse.x;
-          this.quadmaterial.uniforms.u_mouse.value.y = that.mouse.y; //((that.mouse.y - 0) * (0 - 1)) / (1 - 0) + 1;
+          this.quadmaterial.uniforms.u_mouse.value.x = window.innerWidth > 768? that.mouse.x:0;
+          this.quadmaterial.uniforms.u_mouse.value.y = window.innerWidth > 768? that.mouse.y:0; //((that.mouse.y - 0) * (0 - 1)) / (1 - 0) + 1;
           this.quadmaterial.uniforms.u_time.value += 0.001;
           if( state.inHome && this.quadmaterial.uniforms.u_radio.value != 0.06) {
             gsap.to(this.quadmaterial.uniforms.u_radio, {
               duration: 3,
-              value: 0.06,
+              value: window.innerWidth > 768 ? 0.06: 0.4,
             });
           }
 
