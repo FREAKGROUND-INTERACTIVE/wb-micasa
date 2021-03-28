@@ -21,7 +21,9 @@
           >
             <Button :text="dataComp.enterButton" :mountedAnim="true"></Button>
           </div>
-          <div class="home__text" v-else key="text"><p>{{dataComp.text}}</p></div>
+          <div class="home__text" v-else key="text">
+            <p>{{ dataComp.text }}</p>
+          </div>
         </transition>
       </div>
     </div>
@@ -57,7 +59,7 @@ export default {
     color: function (val) {
       this.setColor = val;
     },
-    data: function(val) {
+    data: function (val) {
       this.dataComp = val.home;
     },
     initPage: function (val) {
@@ -81,7 +83,7 @@ export default {
   methods: {
     initAnim(delay) {
       gsap.to(this.$el, {
-        duration: 2,
+        duration: window.innerWidth > 768 ? 2 : 0,
         opacity: "1",
         delay: delay,
         onComplete: function () {
@@ -94,25 +96,24 @@ export default {
     },
     goTo(url) {
       switch (url) {
-        case 'Agency':
-          this.$router.push({name:'Agency'});
+        case "Agency":
+          this.$router.push({ name: "Agency" });
           break;
-        case 'Agencia':
-          this.$router.push({name:'Agency'});
+        case "Agencia":
+          this.$router.push({ name: "Agency" });
           break;
-        case 'Studio':
-          this.$router.push({name:'Studio'});
+        case "Studio":
+          this.$router.push({ name: "Studio" });
           break;
-        case 'Estudio':
-          this.$router.push({name:'Studio'});
+        case "Estudio":
+          this.$router.push({ name: "Studio" });
           break;
-        case 'Powered':
-          this.$router.push({name:'Powered'});
+        case "Powered":
+          this.$router.push({ name: "Powered" });
           break;
         default:
           break;
       }
-      
     },
     leave(el, done) {
       this.$el.classList.add("white");
@@ -149,6 +150,10 @@ export default {
     ". content content ."
     ". logo logo ."
     ".    .     .     .";
+
+  @include breakpoint(sm) {
+    opacity: 1;
+  }
 
   .home__3d {
     position: fixed;
