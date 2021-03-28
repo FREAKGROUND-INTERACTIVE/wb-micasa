@@ -38,7 +38,7 @@
           green: newTitle == 'Powered' && !home,
         }"
       >
-        by MI CASA
+        Powered by MI CASA Studios
       </p>
     </div>
   </div>
@@ -142,20 +142,13 @@ export default {
     overflow: hidden;
 
     .view-title__quote-text {
+      font-family: $lora;
       text-align: center;
-      color: white;
-      font-weight: 900;
-      font-size: 5vh;
+      color: transparent;
+      font-weight: 600;
+      font-size: 30px;
       @include transform(translateY(-100%));
       @include transition(color 0.5s 0.5s);
-
-      &.red {
-        color: $red;
-      }
-
-      &.blue {
-        color: $cyan;
-      }
 
       &.green {
         color: $green;
