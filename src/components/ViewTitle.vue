@@ -152,6 +152,9 @@ export default {
 
       &.green {
         color: $light;
+        @include breakpoint(sm) {
+          color: transparent;
+        }
       }
     }
   }
