@@ -97,7 +97,7 @@ export default {
 
         //* load a .OBJ resource from provided URL synchronously
         loader.load(
-          "https://res.cloudinary.com/nancloud/raw/upload/v1613749362/mi-casa/models/micasalanding_11_c5s5am.obj",
+          "https://res.cloudinary.com/nancloud/raw/upload/v1616949652/mi-casa/models/micasalanding_12_hd3omi.obj",
           function (object) {
             obj = object;
             sceneA.addObj(obj, false);
