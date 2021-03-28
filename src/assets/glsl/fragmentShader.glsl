@@ -116,8 +116,12 @@ void main() {
 	// We readjust the mouse coordinates
 	vec2 mouse = u_mouse * -0.5;
 	
-	vec2 circlePos = st + mouse/2.0;
-	float c = circle(circlePos, u_radio, 3.) * 2.5;
+	// vec2 circlePos = st + mouse/1.4;
+  vec2 circlePos = st + mouse/2.0;
+
+	// float c = circle(circlePos, u_radio, 3.) * 2.5;
+  float c = circle(circlePos, u_radio*1.5, 3.) * 2.5;
+
   float c2 = circle(vec2(0.0,0.0)* -0.5 + st, u_radio/1.5, 3.) * 2.5;
 
 	float offx = v_uv.x + sin(v_uv.y + u_time * .1);
@@ -128,7 +132,8 @@ void main() {
 	float finalMask = smoothstep(0.4, 0.5, n + pow(c, 2.));
   float staticMask = smoothstep(0.4, 0.5, n + pow(c2, 2.));
 
-  float mask = finalMask + staticMask;
+  //float mask = finalMask+staticMask;
+  float mask = finalMask;
 
 	vec4 image = texture2D(u_image, v_uv);
 	vec4 hover = texture2D(u_imagehover, v_uv);
