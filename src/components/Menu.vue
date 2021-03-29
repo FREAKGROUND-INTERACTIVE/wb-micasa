@@ -53,7 +53,7 @@
             <img
               width="30"
               height="30"
-              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/INSTAGRAM_hq7sc9.svg"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/INSTAGRAM_sw2tfe.svg"
               alt="instagram"
             />
             <p>@micasa.nyc</p>
@@ -67,7 +67,7 @@
             <img
               width="30"
               height="30"
-              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/FACEBOOK_jgq4r8.svg"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/FACEBOOK_axulhe.svg"
               alt="Facebook"
             />
             <p>@micasa.us</p>
@@ -81,7 +81,7 @@
             <img
               width="30"
               height="30"
-              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/TWITTER_c0x4ge.svg"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/TWITTER_eba97s.svg"
               alt="Twitter"
             />
             <p>@MiCasa_Studios</p>
@@ -95,7 +95,7 @@
             <img
               width="30"
               height="30"
-              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/YOUTUBE_gpqdi5.svg"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/YOUTUBE_jcoujz.svg"
               alt="Youtube"
             />
             <p>@Mi Casa Studios</p>
@@ -109,7 +109,7 @@
             <img
               width="30"
               height="30"
-              src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/LINKED_IN_e1a0zp.svg"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/LINKED_IN_o72cjl.svg"
               alt="LinkedIn"
             />
             <p>@micasacreative</p>

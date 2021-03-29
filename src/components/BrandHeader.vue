@@ -6,7 +6,7 @@
           class="brandheader__img"
           width="60"
           height="60"
-          src="https://res.cloudinary.com/tanecujasanda/image/upload/v1613968914/20210215_MICASA/IMG/micasa_SVG_ph6t3v.svg"
+          src="https://res.cloudinary.com/micasastudios/image/upload/v1617047290/WEBPAGE/ICONS/micasa_SVG_wrfidk.svg"
           alt="BrandHeader"
       /></router-link>
     </div>

@@ -5,24 +5,6 @@
         <splide-slide v-for="img in imgs" :key="img.id">
           <img class="carrousel__img" :src="img" />
         </splide-slide>
-        <!-- <splide-slide>
-          <img
-            class="carrousel__img"
-            src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
-          />
-        </splide-slide>
-        <splide-slide>
-          <img
-            class="carrousel__img"
-            src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
-          />
-        </splide-slide>
-        <splide-slide>
-          <img
-            class="carrousel__img"
-            src="https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD3_qljqnw.jpg"
-          />
-        </splide-slide> -->
       </splide>
     </div>
   </transition>

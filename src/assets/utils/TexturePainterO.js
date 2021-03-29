@@ -111,7 +111,7 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 		}, false );
 
 		if ( src ) scope.bg.src = src;
-		else scope.bg.src = "https://res.cloudinary.com/nancloud/image/upload/v1614209552/mi-casa/models/TEXTURES/grayTexture_kemfn2.jpg";
+		else scope.bg.src = "https://res.cloudinary.com/micasastudios/image/upload/v1617046015/WEBPAGE/AGENCY/WHY/grayTexture_cdmcwc.jpg";
 
 		// cursor initialization
 		scope.scene = new THREE.Scene();

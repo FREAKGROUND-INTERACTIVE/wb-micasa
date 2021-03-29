@@ -98,7 +98,7 @@ export default {
         var mesh;
 
         loader.load(
-          "https://res.cloudinary.com/nancloud/raw/upload/v1615570551/mi-casa/models/house_iewzzm.obj",
+          "https://res.cloudinary.com/micasastudios/raw/upload/v1617046519/WEBPAGE/AGENCY/WHY/house_bu7jpk.obj",
           function (object) {
             console.log("obj: ", object.children[0].geometry);
             var geo = new THREE.Geometry().fromBufferGeometry(

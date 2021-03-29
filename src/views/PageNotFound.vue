@@ -3,7 +3,7 @@
     <div class="found">
       <div class="found__img">
         <img
-          src="https://res.cloudinary.com/nancloud/image/upload/v1613934318/mi-casa/images/404_wtbxcw.jpg"
+          src="https://res.cloudinary.com/micasastudios/image/upload/v1617046841/WEBPAGE/ICONS/404_abi5j7.jpg"
           width="1280"
           height="720"
           alt="404 - Page not found"

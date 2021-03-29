@@ -2,7 +2,7 @@
   <div class="loading">
     <div class="loading__gif">
       <img
-        src="https://res.cloudinary.com/nancloud/image/upload/v1613945675/mi-casa/images/loading_dg7yne.gif"
+        src="https://res.cloudinary.com/micasastudios/image/upload/v1617046448/WEBPAGE/ICONS/loading_j4zixi.gif"
         width="150"
         height="150"
         alt="MI-CASA Loading"

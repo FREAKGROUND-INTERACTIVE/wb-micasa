@@ -71,17 +71,17 @@ export default {
 
       //* load a .OBJ resource from provided URL synchronously
       loader.load(
-        "https://res.cloudinary.com/nancloud/raw/upload/v1614127382/mi-casa/models/slider_02_r66dvd.obj",
+        "https://res.cloudinary.com/micasastudios/raw/upload/v1617046610/WEBPAGE/AGENCY/SERVICES/slider_02_vbtspx.obj",
         function (object) {
           obj = object;
           // camera, flower, mic, claqueta, dj, light
           const urls = [
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/1b375f92ac43d1e79ff6e41092664ad6_zo2ufp.jpg", // camera
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0004_yst7ez.jpg", // planta
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0ddf2c1ccf9d361cc2dc89c579a9080d_iq3z8v.jpg", // mic
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/0004_yst7ez.jpg", // claqueta
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749659/mi-casa/models/TEXTURES/f33d5febcf432cdead3a28141a466109_khvcux.jpg", // dj
-            "https://res.cloudinary.com/nancloud/image/upload/v1613749660/mi-casa/models/TEXTURES/a44f197958fb1fcc2de6d04d33e2828b_q4molc.jpg", // light
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/01SALMON_qsrow2.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/02AQUA_ln8dxe.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/04_ra5nwe.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/03LAVENDER_hlk8yn.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/06_njcvov.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1616971722/WEBPAGE/HOME/MODEL/TEXTURES/05_t42v97.jpg",
           ];
           obj.children.forEach((mesh, index) => {
             mesh.geometry.computeBoundingBox();
