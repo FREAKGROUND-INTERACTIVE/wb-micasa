@@ -119,28 +119,35 @@ export default {
 
 .clientList {
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
 
   div {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: $light;
-    width: 170px;
-    height: 85px;
+    width: 234px;
+    height: 138px;
     margin: 0.1rem;
     opacity: 0;
 
     img {
-      width: 75%;
-      height: 75%;
+      width: 80%;
+      height: 80%;
+    }
+  }
+  @include breakpoint(lg) {
+    div {
+      width: 152.1px;
+      height: 89.7px;
+      margin: 0;
     }
   }
   @include breakpoint(sm) {
     grid-template-columns: auto auto auto;
     div {
-      width: 120px;
-      height: 55px;
+      width: 117px;
+      height: 69px;
       margin: 0;
     }
   }
