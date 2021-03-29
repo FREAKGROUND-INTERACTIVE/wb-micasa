@@ -58,6 +58,7 @@ export default {
         perPage: 1,
         speed: 1000,
         drag: true,
+        pagination: false,
       },
     };
   },
