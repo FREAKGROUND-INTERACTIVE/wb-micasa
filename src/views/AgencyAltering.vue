@@ -153,6 +153,9 @@ export default {
   .agency-altering__bread {
     grid-area: breadCrumb;
     position: absolute;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-altering__content {
@@ -199,6 +202,9 @@ export default {
   .agency-altering__brandheader {
     grid-area: logo;
     z-index: 999;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-altering__link {
