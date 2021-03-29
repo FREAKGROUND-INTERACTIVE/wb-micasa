@@ -2,7 +2,7 @@
   <transition @leave="leave" :css="false">
     <div class="powered">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
-      <Img-view-title ref="imgViewTitle"></Img-view-title>
+      <Img-view-title ref="imgViewTitle" :url="'https://res.cloudinary.com/micasastudios/image/upload/v1616974995/WEBPAGE/LOADINGS/LOADING_POWERED_tdpqc6.jpg'"></Img-view-title>
       <div class="powered__bar-container">
         <div class="powered__bar"></div>
       </div>
