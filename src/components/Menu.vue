@@ -140,6 +140,7 @@
       </div>
       <div
         class="menu__button"
+        :class="{white: home}"
         @click="showMenu"
         @mouseenter="inHover"
         @mouseleave="outHover"
@@ -152,7 +153,7 @@
 </template>
 
 <script>
-import { lang, mutations } from "@/state";
+import { state, lang, mutations } from "@/state";
 import gsap from "gsap";
 import Paragraph from "@/components/Paragraph";
 import MenuTitle from "@/components/MenuTitle";
@@ -167,6 +168,9 @@ export default {
   computed: {
     lang() {
       return lang.lg;
+    },
+    home() {
+      return state.inHome;
     }
   },
   data() {
@@ -420,6 +424,12 @@ export default {
     &.close {
       @include transform(rotate(0deg));
       @include transition(all 0.5s);
+    }
+
+    &.white {
+      div {
+        background-color: $light;
+      }
     }
 
     div {
