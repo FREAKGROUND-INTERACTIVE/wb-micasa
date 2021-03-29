@@ -378,10 +378,16 @@ export default {
   .agency-why__bread {
     grid-area: breadCrumb;
     position: absolute;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-why__brandheader {
     grid-area: logo;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-why__paragraph {
