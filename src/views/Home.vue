@@ -19,7 +19,7 @@
             key="btn"
             @click="goTo(color)"
           >
-            <Button :text="dataComp.enterButton" :mountedAnim="true"></Button>
+            <Button :text="dataComp.enterButton" :mountedAnim="true" :white="true"></Button>
           </div>
           <div class="home__text" v-else key="text">
             <p>{{ dataComp.text }}</p>
