@@ -56,10 +56,13 @@ export default {
       imgBrooklyn: {
         studio: [
           "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_1_grdqmx.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_2_eqymfp.jpg",
           "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_3_gi5zeg.jpg",
           "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_4_enlb3a.jpg",
           "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_5_rbscps.jpg",
           "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_6_q5khsb.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616984539/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_7_looemk.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616984539/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_8_ngmw8s.jpg",
         ],
         hood: [
           "https://res.cloudinary.com/micasastudios/image/upload/v1616977066/WEBPAGE/STUDIO/BKLYN/HOOD/BKLYN_HOOD_1_evjcjs.jpg",
@@ -70,9 +73,7 @@ export default {
       },
       imgLes: {
         studio: [
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616984717/WEBPAGE/STUDIO/LES/STUDIO/LES_STUDIO_2_tkw4fs.jpg",
         ],
         hood: [
           "https://res.cloudinary.com/micasastudios/image/upload/v1616978210/WEBPAGE/STUDIO/LES/HOOD/LES_HOOD_1_d0vtne.jpg",
