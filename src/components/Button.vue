@@ -1,6 +1,6 @@
 <template>
   <transition @leave="leave" :css="false">
-    <div class="button">
+    <div class="button" :class="{ white: white }">
       <div class="button__title">
         <template v-for="letter in textData">
           <div
@@ -11,7 +11,9 @@
             {{ letter }}
           </div>
         </template>
-        <div class="button__title-letter x" :class="{ cyan: color == 'cyan' }">+</div>
+        <div class="button__title-letter x" :class="{ cyan: color == 'cyan' }">
+          +
+        </div>
       </div>
       <div class="button__line-container">
         <div class="button__line-bg"></div>
@@ -28,6 +30,10 @@ export default {
   props: {
     text: String,
     color: String,
+    white: {
+      type: Boolean,
+      default: false,
+    },
     isUpdate: {
       type: Boolean,
       default: true,
@@ -50,7 +56,7 @@ export default {
     },
     isUpdate: function (val) {
       this.upd = val;
-    }
+    },
   },
   data() {
     return {
@@ -208,6 +214,18 @@ export default {
       @include transform(translateX(150px));
 
       @include transition(width 1s, transform 2s 0.5s);
+    }
+  }
+
+  &.white {
+    .button__title {
+      color: $light;
+    }
+
+    .button__line-container {
+      .button__line-bg {
+        background-color: $light;
+      }
     }
   }
 }
