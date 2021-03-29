@@ -422,12 +422,11 @@ export default {
     }
   }
 
-  .locations__breadcrumb {
-    grid-area: breadCrumb;
-  }
-
   .locations__brandheader {
     grid-area: logo;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .locations__sites-brooklyn {
