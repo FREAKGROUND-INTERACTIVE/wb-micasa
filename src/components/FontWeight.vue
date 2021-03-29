@@ -56,7 +56,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
-    window.addEventListener("touchmove", this.mouseMovement);
+    window.removeEventListener("touchmove", this.mouseMovement);
   },
   methods: {
     /**
