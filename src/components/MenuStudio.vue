@@ -55,14 +55,17 @@ export default {
       updateBtn: this.btnUpdate,
       imgBrooklyn: {
         studio: [
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_1_grdqmx.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_3_gi5zeg.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_4_enlb3a.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_5_rbscps.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_6_q5khsb.jpg",
         ],
         hood: [
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD4_wbdu4z.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD4_wbdu4z.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD4_wbdu4z.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616977066/WEBPAGE/STUDIO/BKLYN/HOOD/BKLYN_HOOD_1_evjcjs.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616977066/WEBPAGE/STUDIO/BKLYN/HOOD/BKLYN_HOOD_2_qxizuj.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616977067/WEBPAGE/STUDIO/BKLYN/HOOD/BKLYN_HOOD_3_uwxq2d.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616977067/WEBPAGE/STUDIO/BKLYN/HOOD/BKLYN_HOOD_4_rnqm18.jpg",
         ]
       },
       imgLes: {
@@ -72,9 +75,10 @@ export default {
           "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg",
         ],
         hood: [
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD_q9farf.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD_q9farf.jpg",
-          "https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/NEIGHBORHOOD_q9farf.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616978210/WEBPAGE/STUDIO/LES/HOOD/LES_HOOD_1_d0vtne.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616978210/WEBPAGE/STUDIO/LES/HOOD/LES_HOOD_2_fj3n5z.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616978210/WEBPAGE/STUDIO/LES/HOOD/LES_HOOD_3_pp5d8c.jpg",
+          "https://res.cloudinary.com/micasastudios/image/upload/v1616978211/WEBPAGE/STUDIO/LES/HOOD/LES_HOOD_4_hndt7u.jpg",
         ]
       }
     };
