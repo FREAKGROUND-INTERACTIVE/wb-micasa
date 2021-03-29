@@ -116,6 +116,8 @@ export default {
       window.addEventListener("wheel", this.handleScroll);
       window.addEventListener("mousedown", this.hideTitle);
       window.addEventListener("mouseup", this.showTitle);
+      window.addEventListener("touchstart", this.hideTitle);
+      window.addEventListener("touchend", this.showTitle);
     }, 3000);
     //* initAnim function in mounted
     if (this.initPage) {
@@ -156,6 +158,8 @@ export default {
     window.removeEventListener("wheel", this.handleScroll);
     window.removeEventListener("mousedown", this.hideTitle);
     window.removeEventListener("mouseup", this.showTitle);
+    window.removeEventListener("touchstart", this.hideTitle);
+    window.removeEventListener("touchend", this.showTitle);
   },
   methods: {
     /**
