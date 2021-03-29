@@ -85,16 +85,16 @@ export default {
 
 .powered-list {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto;
 
   div {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: $light;
-    width: 150px;
-    height: 150px;
-    margin: 0.7rem;
+    width: 215px;
+    height: 215px;
+    margin: 1.5rem;
     opacity: 0;
     cursor: pointer;
     overflow: hidden;
@@ -110,6 +110,17 @@ export default {
         filter: grayscale(0%);
         @include transform(scale(1));
       }
+    }
+  }
+
+  @include breakpoint(sm) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+
+    div {
+      width: 120px;
+      height: 120px;
+      margin: 0.5rem;
     }
   }
 }
