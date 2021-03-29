@@ -19,7 +19,7 @@
           @mouseleave.native="backLoading(true)"
           :loading="loading.x"
           :align="'left'"
-          :imgUrl="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION3_pdy2cb.jpg'"
+          :imgUrl="'https://res.cloudinary.com/micasastudios/image/upload/v1616976874/WEBPAGE/STUDIO/BKLYN/STUDIO/BKLYNSTDIO_2_eqymfp.jpg'"
           ref="imgBrooklyn"
         ></Img-studio>
       </div>
@@ -79,7 +79,7 @@
           @mouseleave.native="backLoading(false)"
           :loading="loading2.x"
           :align="'right'"
-          :imgUrl="'https://res.cloudinary.com/nancloud/image/upload/v1612836564/mi-casa/images/LOCATION4_kovpmt.jpg'"
+          :imgUrl="'https://res.cloudinary.com/micasastudios/image/upload/v1616977957/WEBPAGE/STUDIO/LES/STUDIO/LES_STUDIO_maqebq.jpg'"
           ref="imgLes"
         ></Img-studio>
       </div>
