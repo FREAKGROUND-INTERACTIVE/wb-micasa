@@ -30,8 +30,9 @@ export default {
     },
   },
   watch: {
-    text: function(val) {
-      this.title = val.split("\n");    }
+    text: function (val) {
+      this.title = val.split("\n");
+    },
   },
   data() {
     return {
@@ -55,6 +56,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
+    window.addEventListener("touchmove", this.mouseMovement);
   },
   methods: {
     /**
@@ -63,10 +65,10 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
-      console.log('Empezo initAnim');
+      console.log("Empezo initAnim");
       //* create timeLine
       let initTl = gsap.timeline({ paused: "true", delay: delay });
-      
+
       this.chars.forEach((element) => {
         initTl.to(
           element,
@@ -75,14 +77,15 @@ export default {
             y: 0,
             ease: "power2.out",
           },
-        "<0.3"
+          "<0.3"
         );
       });
-      
+
       initTl.play();
 
       //* add mouseMove event listener to character elements
-      document.addEventListener("mousemove", this.mouseMovement);
+      window.addEventListener("mousemove", this.mouseMovement);
+      window.addEventListener("touchmove", this.mouseMovement);
     },
 
     /**
@@ -91,9 +94,20 @@ export default {
      * @param e mouse movement event
      */
     mouseMovement(e) {
+      console.log("event: ", e);
       this.chars.forEach((element, index) => {
         setTimeout(() => {
-          this.weightAnimation(element, (e.clientX / window.innerWidth) * 900);
+          if (window.innerWidth > 768) {
+            this.weightAnimation(
+              element,
+              (e.clientX / window.innerWidth) * 900
+            );
+          } else {
+            this.weightAnimation(
+              element,
+              (e.touches[0].clientX / window.innerWidth) * 900
+            );
+          }
         }, 300 * index);
         // this.weightAnimation(
         //   element,
@@ -134,7 +148,7 @@ export default {
       // });
 
       //* create timeLine
-      let initTl = gsap.timeline({ paused: "true"});
+      let initTl = gsap.timeline({ paused: "true" });
 
       this.chars.forEach((element) => {
         initTl.to(
@@ -179,10 +193,10 @@ export default {
 
   @include breakpoint(sm) {
     .font__phrase {
-    .font__char {
-      font-size: 22vw;
+      .font__char {
+        font-size: 22vw;
+      }
     }
-  }
   }
 }
 </style>
