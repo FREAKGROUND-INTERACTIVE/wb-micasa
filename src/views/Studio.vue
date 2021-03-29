@@ -2,7 +2,7 @@
   <transition @leave="leave" :css="false">
     <div class="studio">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
-      <Img-view-title ref="imgViewTitle"></Img-view-title>
+      <Img-view-title ref="imgViewTitle" :url="'https://res.cloudinary.com/micasastudios/image/upload/v1616974995/WEBPAGE/LOADINGS/LOADING_STUDIO_pkubum.jpg'"></Img-view-title>
       <div class="studio__bar-container">
         <div class="studio__bar"></div>
       </div>
