@@ -191,7 +191,6 @@ export default {
       margin-bottom: 4rem;
 
       @include breakpoint(lg) {
-        place-self: center;
         margin-bottom: 1rem;
       }
     }
