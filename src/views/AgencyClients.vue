@@ -169,6 +169,9 @@ export default {
   .agency-clients__bread {
     grid-area: breadCrumb;
     position: absolute;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-clients__container {
@@ -189,6 +192,9 @@ export default {
 
   .agency-clients__brandheader {
     grid-area: logo;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-clients__link {
