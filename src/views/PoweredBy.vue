@@ -60,14 +60,9 @@ export default {
     return {
       dataComp: this.data.powered,
       poweredList: [
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
-        "https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_1_xtxt8w.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_2_eydwi2.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_3_n8brt5.jpg",
       ],
     };
   },
@@ -153,6 +148,9 @@ export default {
 
   .powered-by__brandheader {
     grid-area: logo;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .powered-by__link {
