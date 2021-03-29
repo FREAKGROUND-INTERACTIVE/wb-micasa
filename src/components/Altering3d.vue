@@ -82,8 +82,8 @@ export default {
     function animate() {
       that.animReq = requestAnimationFrame(animate);
       if (that.mouseEvent) {
-        cube.rotation.x = that.mouseEvent.clientY / 720;
-        cube.rotation.y = that.mouseEvent.clientX / 720;
+        cube.rotation.x = window.innerWidth > 768? that.mouseEvent.clientY / 720: that.mouseEvent.touches[0].clientY / 720;
+        cube.rotation.y = window.innerWidth > 768? that.mouseEvent.clientX / 720: that.mouseEvent.touches[0].clientX / 720;
       }
       renderer.render(scene, camera);
     }
