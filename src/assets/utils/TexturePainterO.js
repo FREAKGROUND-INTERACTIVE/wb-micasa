@@ -377,7 +377,7 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 	function updateMouse( evt ) {
 
 		var rect = renderer.domElement.getBoundingClientRect();
-		var array = [ ( evt.clientX - rect.left ) / rect.width, ( evt.clientY - rect.top ) / rect.height ];
+		var array = window.innerWidth > 768 ? [ ( evt.clientX - rect.left ) / rect.width, ( evt.clientY - rect.top ) / rect.height ]:[ ( evt.touches[0].clientX - rect.left ) / rect.width, ( evt.touches[0].clientY - rect.top ) / rect.height ];
 
 		scope.reference.set( ( array[0] * 2 ) - 1, - ( array[1] * 2 ) + 1, 0 );
 
@@ -404,11 +404,11 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 	}
 
 	function onMouseDown( evt ) {
-		console.log("mouse Down");
+		console.log("mouse Down", evt);
 		evt.preventDefault();
 
-		if ( evt.button != 0 ) return;
-
+		if ( evt.button != 0 && window.innerWidth > 768 ) return;
+		console.log("no return");
 		scope.enabled = true;
 
 		onMouseMove(evt);
@@ -429,5 +429,9 @@ THREE.TexturePainter = function ( renderer, camera, mesh, src ) {
 	renderer.domElement.addEventListener( 'mousemove', onMouseMove, false );
 	renderer.domElement.addEventListener( 'mousedown', onMouseDown, false );
 	renderer.domElement.addEventListener( 'mouseup', onMouseUp, false );
+
+	renderer.domElement.addEventListener( 'touchmove', onMouseMove, false );
+	renderer.domElement.addEventListener( 'touchstart', onMouseDown, false );
+	renderer.domElement.addEventListener( 'touchend', onMouseUp, false );
 
 };
