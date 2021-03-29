@@ -62,6 +62,7 @@ export default {
     this.content = this.$el.querySelector(".altering__mask-content");
     this.letters = this.$el.querySelectorAll(".altering__title-letter");
     window.addEventListener("mousemove", this.mouseMovement);
+    window.addEventListener("touchmove", this.mouseMovement);
     //* initAnim function in mounted
     if (this.mountedAnim) {
       this.initAnim(this.mountedDelay);
@@ -69,6 +70,7 @@ export default {
   },
   destroyed() {
     window.removeEventListener("mousemove", this.mouseMovement);
+    window.removeEventListener("touchmove", this.mouseMovement);
   },
   methods: {
     /**
@@ -85,13 +87,13 @@ export default {
       this.mouseEvent = e;
       gsap.to(this.mask, {
         duration: 0.5,
-        x: e.clientX - this.mask.offsetWidth / 2,
+        x: window.innerWidth > 768? e.clientX - this.mask.offsetWidth / 2: e.touches[0].clientX - this.mask.offsetWidth / 2,
         ease: "power2.out",
       });
 
       gsap.to(this.content, {
         duration: 0.5,
-        x: e.clientX * -1 + this.mask.offsetWidth / 2,
+        x: window.innerWidth > 768? e.clientX * -1 + this.mask.offsetWidth / 2: e.touches[0].clientX * -1 + this.mask.offsetWidth / 2,
         ease: "power2.out",
       });
     },
