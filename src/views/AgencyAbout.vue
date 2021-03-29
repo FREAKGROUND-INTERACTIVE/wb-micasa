@@ -161,10 +161,16 @@ export default {
   .agency-about__bread {
     grid-area: breadCrumb;
     position: absolute;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-about__brandheader {
     grid-area: logo;
+    @include breakpoint(sm) {
+      display: none;
+    }
   }
 
   .agency-about__content {
@@ -174,10 +180,10 @@ export default {
       grid-area: 3 / 2 / 4 / 4;
       grid-template-columns: [colFirst] 5% [col2] 1fr [col3] 5% [colEnd];
       grid-template-rows: repeat(3, 1fr);
-      grid-template-areas: 
-      ". content-1  ."
-      ". content-1  ."
-      ". content-2  .";
+      grid-template-areas:
+        ". content-1  ."
+        ". content-1  ."
+        ". content-2  .";
     }
 
     .agency-about__img {
