@@ -80,6 +80,11 @@ body {
 .link {
   grid-area: button;
   justify-self: right;
+
+  @include breakpoint(sm) {
+    grid-area: breadCrumb;
+    justify-self: left;
+  }
 }
 
 .menu-layout {
