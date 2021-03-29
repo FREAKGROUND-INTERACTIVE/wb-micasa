@@ -6,7 +6,7 @@
           class="img-view__img"
           width="660"
           height="360"
-          src="https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/LOCATION_wtkgs5.jpg"
+          :src="url"
           alt="LoremPicsum"
           @load="imgLoaded"
           @error="imgDontLoaded"
@@ -21,6 +21,7 @@ import gsap from "gsap";
 
 export default {
   props: {
+    url: String,
     mountedAnim: {
       type: Boolean,
       default: false,
