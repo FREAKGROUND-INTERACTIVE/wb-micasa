@@ -146,7 +146,7 @@ export default {
               painter.changeColor("rgba(249, 178, 0, 1)");
               break;
             case "green":
-              painter.changeColor("rgba(148, 234, 47, 1)");
+              painter.changeColor("rgba(132, 107, 212, 1)");
               break;
             case "cyan":
               painter.changeColor("rgba(47, 234, 198, 1)");
