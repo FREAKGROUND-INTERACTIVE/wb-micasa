@@ -2,7 +2,7 @@
   <transition @leave="leave" :css="false">
     <div class="agency">
       <View-title-bg ref="viewTitleBg"></View-title-bg>
-      <Img-view-title ref="imgViewTitle" :url="'https://res.cloudinary.com/micasastudios/image/upload/v1616974995/WEBPAGE/LOADINGS/LOADING_AGENCY_ufrxaa.jpg'"></Img-view-title>
+      <Img-view-title ref="imgViewTitle" :url="'https://res.cloudinary.com/micasastudios/image/upload/v1616974995/WEBPAGE/LOADINGS/LOADING_AGENCY_ufrxaa.jpg'" v-show="false"></Img-view-title>
       <div class="agency__bar-container">
         <div class="agency__bar"></div>
       </div>
