@@ -31,7 +31,7 @@
       </h1>
     </div>
 
-    <div class="view-title__quote">
+    <div class="view-title__quote" v-show="false">
       <p
         class="view-title__quote-text"
         :class="{
