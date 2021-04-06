@@ -81,7 +81,7 @@ export default {
             "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/04_ra5nwe.jpg",
             "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/03LAVENDER_hlk8yn.jpg",
             "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/06_njcvov.jpg",
-            "https://res.cloudinary.com/micasastudios/image/upload/v1616971722/WEBPAGE/HOME/MODEL/TEXTURES/05_t42v97.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1617734110/WEBPAGE/HOME/MODEL/TEXTURES/05_mlx9jw.jpg",
           ];
           obj.children.forEach((mesh, index) => {
             mesh.geometry.computeBoundingBox();
