@@ -9,6 +9,7 @@
             :title="dataComp.title"
             :color="'green'"
             :text="''"
+            :font="'mont'"
           ></Paragraph>
         </div>
         <div class="powered-by__logos">
