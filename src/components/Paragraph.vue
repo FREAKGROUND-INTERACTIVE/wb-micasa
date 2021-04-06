@@ -16,7 +16,7 @@
       <div class="paragraph__title-container">
         <h2
           class="paragraph__title"
-          :class="{ cyan: color == 'cyan', green: color == 'green' }"
+          :class="{mont: font == 'mont', cyan: color == 'cyan', green: color == 'green' }"
         >
           {{ titleData }}
         </h2>
@@ -273,6 +273,12 @@ export default {
       }
       &.green {
         color: $green;
+      }
+
+      &.mont {
+        font-family: $mont;
+        font-weight: 900;
+        text-transform: uppercase;
       }
     }
   }
