@@ -172,7 +172,7 @@ export default {
         this.scene.add(new THREE.AmbientLight(0x3a3a3a));
 
         //* Init Light
-        const light = new THREE.SpotLight(0x808080, 1.5);
+        const light = new THREE.PointLight(0x808080, 1.5);
         light.position.set(0, 500, 2000);
         this.scene.add(light);
 
@@ -346,7 +346,7 @@ export default {
             "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/04_ra5nwe.jpg",
             "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/03LAVENDER_hlk8yn.jpg",
             "https://res.cloudinary.com/micasastudios/image/upload/v1616971721/WEBPAGE/HOME/MODEL/TEXTURES/06_njcvov.jpg",
-            "https://res.cloudinary.com/micasastudios/image/upload/v1616971722/WEBPAGE/HOME/MODEL/TEXTURES/05_t42v97.jpg",
+            "https://res.cloudinary.com/micasastudios/image/upload/v1617734110/WEBPAGE/HOME/MODEL/TEXTURES/05_mlx9jw.jpg",
           ];
           if (marco == true) {
             obj.children[0].material = new THREE.MeshPhongMaterial({
@@ -361,6 +361,10 @@ export default {
               mesh.material = sceneID
                 ? new THREE.MeshStandardMaterial({ map: texture })
                 : new THREE.MeshPhongMaterial({ color: 0xffffff });
+              
+              if (mesh.name == "Claqueta_Mesh") {
+                mesh.rotation.y = 0.1;
+              }
             });
 
             this.mesh = obj;
