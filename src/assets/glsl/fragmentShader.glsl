@@ -120,7 +120,7 @@ void main() {
   vec2 circlePos = st + mouse/2.0;
 
 	// float c = circle(circlePos, u_radio, 3.) * 2.5;
-  float c = circle(circlePos, u_radio*1.5, 3.) * 2.5;
+  float c = circle(circlePos, u_radio*2.2, 3.) * 2.5;
 
   float c2 = circle(vec2(0.0,0.0)* -0.5 + st, u_radio/1.5, 3.) * 2.5;
 
