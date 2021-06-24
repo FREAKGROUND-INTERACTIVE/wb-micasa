@@ -4,8 +4,8 @@
       <div class="img-view__img-container">
         <img
           class="img-view__img"
-          src="https://res.cloudinary.com/nancloud/image/upload/v1612836563/mi-casa/images/ARTS1_fpiiaq.jpg"
-          alt="LoremPicsum"
+          src="https://res.cloudinary.com/micasastudios/image/upload/v1624057589/WEBPAGE/AGENCY/ABOUT/about-agency_rq7rh9.jpg"
+          alt="About agency"
           @load="imgLoaded"
           @error="imgDontLoaded"
         />
