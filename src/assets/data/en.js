@@ -24,7 +24,7 @@ export const en = {
       titleTwo: "THE CONSTANT",
       paragraph: {
         title: "Altering the constant",
-        text: "We make bold things with a purpose to create real change\nfor the internet and beyond that. In this technology driven\nworld that seems to move faster than the speed of light,\nonly the right narrative to the right people at the right time\nwill pierce through."
+        text: "We make bold things with a purpose to create real\nchange for the internet and beyond that.\nIn this technology driven world that seems to\nmove faster than the speed of light, only the\nright narrative to the right people at the right\ntime will pierce through."
       }
     },
     services: {
@@ -94,8 +94,8 @@ export const en = {
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
-        subtitle: "318 Grand Street, Suite 1G",
-        subtitle2: "Brooklyn, NY 11211",
+        subtitle: "?",
+        subtitle2: "?",
         text:
           "Williamsburg is a hip neighborhood in Brooklyn\nthat draws the young and the fashionable to its\nchic boutiques, trendy cafes and buzzy restaurants.",
       },
@@ -109,9 +109,9 @@ export const en = {
           "This studio is in the heart of the Lower East Side in a\nbuilding that has a rich history, in community and art and\nonce in a Tribeca film festival documentary. The floor \noffers 1,800 square feet of open convertible space and a\n20 foot cyclorama.",
       },
       infoHoodLes: {
-        title: "Mi Casa LES",
-        subtitle: "70 Hester Street",
-        subtitle2: "New York, NY 10002",
+        title: "Lower East Side",
+        subtitle: "?",
+        subtitle2: "?",
         text:
           "The eclectic Lower East Side is where gritty alleys and\ntenement-style buildings and nighttime draws hip, young\ncrowds to the area's trendy bars, music venues and\nrestaurants.",
       },

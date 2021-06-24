@@ -24,7 +24,7 @@ export const es = {
       titleTwo: "LO CONSTANTE",
       paragraph: {
         title: "Alterando lo Constante",
-        text: "Hacemos cosas valientes con el propósito de crear un\ncambio real para el Internet y más allá. En este mundo\npropulsado por la tecnología que parece moverse más\nrápido que la velocidad de la luz, solo la narrativa correcta\npara las personas correctas en el momento correcto\nse abrirá paso."
+        text: "Hacemos cosas valientes con el propósito de crear\nun cambio real para el Internet y más allá.\nEn este mundo propulsado por la tecnología que\nparece moverse más rápido que la velocidad de la\nluz, solo la narrativa correcta para las personas\ncorrectas en el momento correcto se abrirá paso."
       }
     },
     services: {
@@ -94,8 +94,8 @@ export const es = {
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
-        subtitle: "318 Grand Street, Suite 1G",
-        subtitle2: "Brooklyn, NY 11211",
+        subtitle: "?",
+        subtitle2: "?",
         text:
           "Williamsburg es un barrio de moda en Brooklyn\nque atrae a los jóvenes y a la moda\na sus elegantes boutiques, cafés de moda y restaurantes populares.",
       },
@@ -109,9 +109,9 @@ export const es = {
           "Este estudio está en el corazón del Lower East Side en\nun edificio que tiene una rica historia, en comunidad y arte\ne incluido en un documental del festival de cine de Tribeca.\nEl plano de planta ofrece 1,800 pies cuadrados de espacio\nabierto convertible y un ciclorama de 20 pies.",
       },
       infoHoodLes: {
-        title: "Mi Casa LES",
-        subtitle: "70 Hester Street",
-        subtitle2: "New York, NY 10002",
+        title: "Lower East Side",
+        subtitle: "?",
+        subtitle2: "?",
         text:
           "El ecléctico Lower East Side es donde los callejones y\nlos edificios de estilo residencial y la noche atraen a multitudes\njóvenes y de moda a los bares, locales de música y\nrestaurantes de moda de la zona.",
       }
