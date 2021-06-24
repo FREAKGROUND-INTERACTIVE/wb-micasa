@@ -1,8 +1,13 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="powered-list">
-      <div class="powered-list__logo" v-for="client in list" :key="client.id">
-        <img :src="client" alt="powered-by" />
+      <div
+        class="powered-list__logo"
+        v-for="client in list"
+        :key="client.id"
+        @click="openTab(client.url)"
+      >
+        <img :src="client.img" alt="powered-by" />
       </div>
     </div>
   </transition>
@@ -73,8 +78,11 @@ export default {
       gsap.to(this.$el, {
         duration: 1.5,
         y: 0,
-        onComplete: done
+        onComplete: done,
       });
+    },
+    openTab(url) {
+      window.open(url, "_blank");
     },
   },
 };
@@ -85,15 +93,15 @@ export default {
 
 .powered-list {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
 
   div {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: $light;
-    width: 215px;
-    height: 215px;
+    width: 180px;
+    height: 180px;
     margin: 1.5rem;
     opacity: 0;
     cursor: pointer;
@@ -114,8 +122,8 @@ export default {
   }
 
   @include breakpoint(sm) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
 
     div {
       width: 120px;
