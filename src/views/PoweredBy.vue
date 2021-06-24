@@ -61,9 +61,10 @@ export default {
     return {
       dataComp: this.data.powered,
       poweredList: [
-        "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_1_xtxt8w.jpg",
-        "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_2_eydwi2.jpg",
-        "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_3_n8brt5.jpg",
+        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_1_xtxt8w.jpg", url:"https://www.instagram.com/debatethehype/?hl=en"},
+        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_2_eydwi2.jpg", url:"https://www.instagram.com/halfmoonbk/?hl=en"},
+        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_3_n8brt5.jpg", url:""},
+        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1624070983/WEBPAGE/PWRD%20BY/POWERED_4_pijyh5.jpg", url:"https://www.kapchiy.com/"}
       ],
     };
   },
