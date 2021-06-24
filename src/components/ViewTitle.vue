@@ -87,7 +87,7 @@ export default {
 @import "./../assets/styles/setup";
 
 .view-title {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   pointer-events: none;

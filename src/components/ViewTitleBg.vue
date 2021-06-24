@@ -100,7 +100,7 @@ export default {
 @import "./../assets/styles/setup";
 
 .view-title-bg {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   @include transform(translate(-50%, -50%));
@@ -131,7 +131,7 @@ export default {
   }
 
   @include breakpoint(sm) {
-    top: 46.3%;
+    // top: 46.3%;
     height: 8vh;
     .view-title-bg__up,
     .view-title-bg__down {
