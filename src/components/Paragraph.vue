@@ -22,10 +22,10 @@
         </h2>
       </div>
       <div class="paragraph__subtitle-container" v-if="subtitle">
-        <h3 class="paragraph__subtitle">{{ subtitle }}</h3>
+        <h3 class="paragraph__subtitle">{{ subtitleData=="?"?" ":subtitleData }}</h3>
       </div>
       <div class="paragraph__subtitle-container" v-if="subtitle2">
-        <h3 class="paragraph__subtitle2">{{ subtitle2 }}</h3>
+        <h3 class="paragraph__subtitle2">{{ subtitle2Data=="?"?" ":subtitle2Data }}</h3>
       </div>
       <p class="paragraph__text" :class="{ lora: font == 'lora' }">
         <template v-for="item in splitText">
@@ -69,6 +69,17 @@ export default {
         this.titleData = val;
       }, 1000);
     },
+    subtitle: function (val) {
+      setTimeout(() => {
+        console.log("cambio el subtitle")
+        this.subtitleData = val;
+      }, 1000);
+    },
+    subtitle2: function (val) {
+      setTimeout(() => {
+        this.subtitle2Data = val;
+      }, 1000);
+    },
     text: function (val) {
       this.leave();
       setTimeout(() => {
@@ -82,6 +93,8 @@ export default {
   data() {
     return {
       titleData: this.title,
+      subtitleData: this.subtitle,
+      subtitle2Data: this.subtitle2,
       splitText: this.text.split(/\r?\n/), //* split text in lines
     };
   },
