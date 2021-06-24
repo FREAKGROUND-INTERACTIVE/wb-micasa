@@ -13,7 +13,11 @@
       </div>
 
       <!--* LEFT SIDE -->
-      <div class="locations__sites-brooklyn" v-show="!les" @click="initLocation(true)">
+      <div
+        class="locations__sites-brooklyn"
+        v-show="!les"
+        @click="initLocation(true)"
+      >
         <Img-studio
           @mouseenter.native="initLoading(true)"
           @mouseleave.native="backLoading(true)"
@@ -50,8 +54,16 @@
                 ? dataComp.les.infoHoodLes.title
                 : dataComp.les.infoStudioLes.title
             "
-            :subtitle="dataComp.les.infoStudioLes.subtitle"
-            :subtitle2="dataComp.les.infoStudioLes.subtitle2"
+            :subtitle="
+              hoodLes
+                ? dataComp.les.infoHoodLes.subtitle
+                : dataComp.les.infoStudioLes.subtitle
+            "
+            :subtitle2="
+              hoodLes
+                ? dataComp.les.infoHoodLes.subtitle2
+                : dataComp.les.infoStudioLes.subtitle2
+            "
             :text="
               hoodLes
                 ? dataComp.les.infoHoodLes.text
@@ -61,7 +73,7 @@
             :mountedAnim="true"
           ></Paragraph>
         </div>
-        <div class="locations__sites-les-button">
+        <div class="locations__sites-les-button" v-show="false">
           <Button
             ref="lesButton"
             :mountedAnim="true"
@@ -73,7 +85,11 @@
       </div>
 
       <!--* RIGHT SIDE -->
-      <div class="locations__sites-les" v-show="!brooklyn" @click="initLocation(false)">
+      <div
+        class="locations__sites-les"
+        v-show="!brooklyn"
+        @click="initLocation(false)"
+      >
         <Img-studio
           @mouseenter.native="initLoading(false)"
           @mouseleave.native="backLoading(false)"
@@ -109,8 +125,16 @@
                 ? dataComp.bro.infoHoodBrooklyn.title
                 : dataComp.bro.infoStudioBrooklyn.title
             "
-            :subtitle="dataComp.bro.infoStudioBrooklyn.subtitle"
-            :subtitle2="dataComp.bro.infoStudioBrooklyn.subtitle2"
+            :subtitle="
+              hoodBrooklyn
+                ? dataComp.bro.infoHoodBrooklyn.subtitle
+                : dataComp.bro.infoStudioBrooklyn.subtitle
+            "
+            :subtitle2="
+              hoodBrooklyn
+                ? dataComp.bro.infoHoodBrooklyn.subtitle2
+                : dataComp.bro.infoStudioBrooklyn.subtitle2
+            "
             :text="
               hoodBrooklyn
                 ? dataComp.bro.infoHoodBrooklyn.text
@@ -120,7 +144,7 @@
             :color="'cyan'"
           ></Paragraph>
         </div>
-        <div class="locations__sites-brooklyn-button">
+        <div class="locations__sites-brooklyn-button" v-show="false">
           <Button
             ref="brooklynButton"
             :mountedAnim="true"
@@ -188,15 +212,13 @@ export default {
         title: "Mi Casa Brooklyn",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
-        text:
-          "This bright studio offers a one-of-a-kind experience with west\nfacing floor-to-ceiling/wall-to-wall steel casement windows,\nfifteen feet ceilings, 25 foot cyclorama, and exposed brick interior.\nThe open floor plan offers maximum versatility with over 3,000\n square feet of open convertible space.",
+        text: "This bright studio offers a one-of-a-kind experience with west\nfacing floor-to-ceiling/wall-to-wall steel casement windows,\nfifteen feet ceilings, 25 foot cyclorama, and exposed brick interior.\nThe open floor plan offers maximum versatility with over 3,000\n square feet of open convertible space.",
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
-        text:
-          "Williamsburg is a hip neighborhood in Brooklyn\nthat draws the young and the fashionable to its\nchic boutiques, trendy cafes and buzzy restaurants.",
+        text: "Williamsburg is a hip neighborhood in Brooklyn\nthat draws the young and the fashionable to its\nchic boutiques, trendy cafes and buzzy restaurants.",
       },
       les: false,
       hoodLes: false,
@@ -204,15 +226,13 @@ export default {
         title: "Mi Casa LES",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
-        text:
-          "This studio is in the heart of the Lower East Side in a\nbuilding that has a rich history, in community and art and\nonce in a Tribeca film festival documentary. The floor \noffers 1,800 square feet of open convertible space and a\n20 foot cyclorama.",
+        text: "This studio is in the heart of the Lower East Side in a\nbuilding that has a rich history, in community and art and\nonce in a Tribeca film festival documentary. The floor \noffers 1,800 square feet of open convertible space and a\n20 foot cyclorama.",
       },
       infoHoodLes: {
         title: "Flacosburg",
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
-        text:
-          "The eclectic Lower East Side is where gritty alleys and\ntenement-style buildings and nighttime draws hip, young\ncrowds to the area's trendy bars, music venues and\nrestaurants.",
+        text: "The eclectic Lower East Side is where gritty alleys and\ntenement-style buildings and nighttime draws hip, young\ncrowds to the area's trendy bars, music venues and\nrestaurants.",
       },
       line: null,
       initImg: 0,
@@ -370,6 +390,9 @@ export default {
         window.removeEventListener("wheel", this.handleScroll);
         this.$router.push({ path: "/" });
       }
+      if (e.deltaY > 0 && !this.brooklyn && !this.les) {
+        this.$router.push({ path: "/powered" });
+      }
     },
 
     leave(el, done) {
@@ -470,7 +493,8 @@ export default {
     }
 
     .locations__sites-brooklyn-paragraph {
-      place-self: end center;
+      //place-self: end center; // con boton de book now
+      place-self: center;
     }
 
     .locations__sites-brooklyn-button {
@@ -519,7 +543,8 @@ export default {
     }
 
     .locations__sites-les-paragraph {
-      place-self: end center;
+      // place-self: end center; // con boton book now
+      place-self: center;
     }
 
     .locations__sites-les-button {
