@@ -119,7 +119,8 @@ export const es = {
     buttonN: "El vecindario"
   },
   powered: {
-    title: "Desarrollado por Mi Casa Studios"
+    title: "Desarrollado",
+    subtitle: "por Mi Casa Studios"
   },
   generals: {
     button: "Siguiente"

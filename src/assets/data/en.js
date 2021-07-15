@@ -119,7 +119,8 @@ export const en = {
     buttonN: "Neighborhood"
   },
   powered: {
-    title: "Powered by Mi Casa Studios"
+    title: "Powered",
+    subtitle: "by Mi Casa Studios"
   },
   generals: {
     button: "Next"
