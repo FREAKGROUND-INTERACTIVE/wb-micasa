@@ -3,14 +3,20 @@
     <div class="powered-by">
       <div class="powered-by__container">
         <div class="powered-by__paragraph">
-          <Paragraph
+          <!-- <Paragraph
             ref="paragraph"
             :align="'center'"
             :title="dataComp.title"
             :color="'green'"
             :text="''"
             :font="'mont'"
-          ></Paragraph>
+          ></Paragraph> -->
+          <div class="title powered-by__title" :class="{ es: lang == 'es' }">
+            <p>{{ dataComp.title }}</p>
+          </div>
+          <div class="title powered-by__subtitle">
+            <p>{{ dataComp.subtitle }}</p>
+          </div>
         </div>
         <div class="powered-by__logos">
           <Powered-list ref="poweredList" :list="poweredList"></Powered-list>
@@ -30,15 +36,15 @@
 <script>
 import { mutations } from "./../state";
 import { gsap } from "gsap";
-import Paragraph from "@/components/Paragraph";
+//import Paragraph from "@/components/Paragraph";
 import PoweredList from "@/components/PoweredList";
 import BrandHeader from "@/components/BrandHeader";
+import { lang } from "@/state";
 
 export default {
   components: {
-    Paragraph,
     PoweredList,
-    BrandHeader
+    BrandHeader,
   },
   props: {
     data: Object,
@@ -48,7 +54,7 @@ export default {
     },
   },
   watch: {
-    data: function(val) {
+    data: function (val) {
       this.dataComp = val.powered;
     },
     initPage: function (val) {
@@ -57,14 +63,31 @@ export default {
       }
     },
   },
+  computed: {
+    lang() {
+      return lang.lg;
+    },
+  },
   data() {
     return {
       dataComp: this.data.powered,
       poweredList: [
-        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_1_xtxt8w.jpg", url:"https://www.instagram.com/debatethehype/?hl=en"},
-        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_2_eydwi2.jpg", url:"https://www.instagram.com/halfmoonbk/?hl=en"},
-        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_3_n8brt5.jpg", url:""},
-        {img:"https://res.cloudinary.com/micasastudios/image/upload/v1624070983/WEBPAGE/PWRD%20BY/POWERED_4_pijyh5.jpg", url:"https://www.kapchiy.com/"}
+        {
+          img: "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_1_xtxt8w.jpg",
+          url: "https://www.instagram.com/debatethehype/?hl=en",
+        },
+        {
+          img: "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_2_eydwi2.jpg",
+          url: "https://www.instagram.com/halfmoonbk/?hl=en",
+        },
+        {
+          img: "https://res.cloudinary.com/micasastudios/image/upload/v1617045024/WEBPAGE/PWRD%20BY/POWERED_3_n8brt5.jpg",
+          url: "",
+        },
+        {
+          img: "https://res.cloudinary.com/micasastudios/image/upload/v1624070983/WEBPAGE/PWRD%20BY/POWERED_4_pijyh5.jpg",
+          url: "https://www.kapchiy.com/",
+        },
       ],
     };
   },
@@ -73,7 +96,7 @@ export default {
     setTimeout(() => {
       window.addEventListener("wheel", this.handleScroll);
     }, 3000);
-     //* initAnim function in mounted
+    //* initAnim function in mounted
     if (this.initPage) {
       this.initAnim(1500);
     }
@@ -101,9 +124,17 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
+      const title = gsap.utils.toArray(this.$el.querySelectorAll(".title>p"));
+      const titleLenght = title.length;
       setTimeout(() => {
-        this.$refs.paragraph.initAnim(0);
+        // this.$refs.paragraph.initAnim(0);
         this.$refs.poweredList.initAnim(1);
+        for (let index = 0; index < titleLenght; index++) {
+          gsap.to(title[index], {
+            y: "0",
+            duration: 0.5,
+          });
+        }
       }, delay);
     },
 
@@ -113,9 +144,17 @@ export default {
      * @param done it return the leave behavior end
      */
     leave(el, done) {
-      this.$refs.paragraph.leave();
+      const title = gsap.utils.toArray(this.$el.querySelectorAll(".title>p"));
+      const titleLenght = title.length;
+      // this.$refs.paragraph.leave();
       this.$refs.poweredList.leave();
       this.$refs.BrandHeader.leave();
+      for (let index = 0; index < titleLenght; index++) {
+        gsap.to(title[index], {
+          y: "100%",
+          duration: 0.5,
+        });
+      }
       gsap.to(el, {
         duration: 1.5,
         y: 0,
@@ -141,6 +180,33 @@ export default {
 
     .powered-by__paragraph {
       margin-bottom: 1rem;
+      text-align: center;
+      color: $green;
+      font-family: $mont;
+      font-weight: 900;
+      text-transform: uppercase;
+
+      $size: 28px;
+
+      p {
+        @include transform(translateY(100%));
+      }
+
+      .powered-by__title {
+        position: relative;
+        overflow: hidden;
+        font-size: $size * 2.05;
+        line-height: 1;
+        &.es {
+          font-size: $size * 1.37;
+        }
+      }
+
+      .powered-by__subtitle {
+        position: relative;
+        overflow: hidden;
+        font-size: $size;
+      }
     }
 
     .powered-by__logos {
