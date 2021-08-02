@@ -119,7 +119,7 @@ export default {
 
 .clientList {
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto;
 
   div {
     display: flex;
@@ -149,6 +149,14 @@ export default {
       width: 117px;
       height: 69px;
       margin: 0;
+
+      &:nth-child(19) {
+        display: none;
+      }
+
+      &:nth-child(20) {
+        display: none;
+      }
     }
   }
 }
