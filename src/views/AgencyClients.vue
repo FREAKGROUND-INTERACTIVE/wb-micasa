@@ -92,6 +92,10 @@ export default {
         "https://res.cloudinary.com/micasastudios/image/upload/v1616976094/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-14_slhjja.jpg",
         "https://res.cloudinary.com/micasastudios/image/upload/v1616976094/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-15_q1g3d8.jpg",
         "https://res.cloudinary.com/micasastudios/image/upload/v1616976094/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-16_ejbplm.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1626371024/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-17_zy3xjh.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1626371024/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-18_sjlhuc.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1626371024/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-19_edeyei.jpg",
+        "https://res.cloudinary.com/micasastudios/image/upload/v1626371024/WEBPAGE/AGENCY/CLIENTS/CLIENT_LOGOS_AI-20_uv87mg.jpg"
       ],
       dataComp: this.data.agency.clients
     };
