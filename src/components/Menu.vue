@@ -51,8 +51,8 @@
             class="menu__social-logo"
           >
             <img
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/INSTAGRAM_sw2tfe.svg"
               alt="instagram"
             />
@@ -65,8 +65,8 @@
             class="menu__social-logo"
           >
             <img
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/FACEBOOK_axulhe.svg"
               alt="Facebook"
             />
@@ -79,8 +79,8 @@
             class="menu__social-logo"
           >
             <img
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/TWITTER_eba97s.svg"
               alt="Twitter"
             />
@@ -93,8 +93,8 @@
             class="menu__social-logo"
           >
             <img
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/YOUTUBE_jcoujz.svg"
               alt="Youtube"
             />
@@ -107,10 +107,38 @@
             class="menu__social-logo"
           >
             <img
-              width="30"
-              height="30"
+              width="24"
+              height="24"
               src="https://res.cloudinary.com/micasastudios/image/upload/v1617047427/WEBPAGE/ICONS/LINKED_IN_o72cjl.svg"
               alt="LinkedIn"
+            />
+            <p>@micasacreative</p>
+          </a>
+          <a
+            href="https://www.twitch.tv/micasastudios"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
+          >
+            <img
+              width="24"
+              height="24"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1627927760/WEBPAGE/ICONS/TWITCH_brs6z7.svg"
+              alt="Twitch"
+            />
+            <p>@micasacreative</p>
+          </a>
+          <a
+            href="https://vimeo.com/micasastudios"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="menu__social-logo"
+          >
+            <img
+              width="24"
+              height="24"
+              src="https://res.cloudinary.com/micasastudios/image/upload/v1627927760/WEBPAGE/ICONS/VIMEO_hqc3ka.svg"
+              alt="Vimeo"
             />
             <p>@micasacreative</p>
           </a>
@@ -364,7 +392,7 @@ export default {
       display: flex;
       flex-flow: column nowrap;
       place-self: start;
-      margin: 2rem 0 0 6rem;
+      margin: 1rem 0 0 6rem;
       opacity: 0;
 
       .menu__social-logo {
