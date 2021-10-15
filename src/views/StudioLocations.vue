@@ -421,7 +421,7 @@ export default {
 
   @include breakpoint(sm) {
     grid-template-columns: [colFirst] 4% [col2] 1fr [col3] 4% [colEnd];
-    grid-template-rows: [rowFirst] 0% [row2] 4% [row3] 42% [row4] 42% [row5] 4% [row6] 8% [rowEnd];
+    grid-template-rows: [rowFirst] 0% [row2] calc(2% + 25px) [row3] 42% [row4] 42% [row5] 4% [row6] 8% [rowEnd];
     grid-template-areas:
       ".    .     ."
       ". menu ."
@@ -442,6 +442,7 @@ export default {
       grid-area: 4 / 1 / -4 / 6;
       width: 0vw;
       height: 1px;
+      display: none;
     }
   }
 
@@ -452,6 +453,8 @@ export default {
     }
   }
 
+  $location-size: 70vw;
+
   .locations__sites-brooklyn {
     grid-area: content-1;
     place-self: center;
@@ -459,8 +462,8 @@ export default {
     height: 28vw;
     // background-color: red;
     @include breakpoint(sm) {
-      width: 60vw;
-      height: 60vw;
+      width: $location-size;
+      height: $location-size;
     }
   }
 
@@ -471,8 +474,8 @@ export default {
     height: 28vw;
     // background-color: rgb(99, 0, 0);
     @include breakpoint(sm) {
-      width: 60vw;
-      height: 60vw;
+      width: $location-size;
+      height: $location-size;
     }
   }
 
@@ -490,11 +493,20 @@ export default {
       left: 50%;
       background: $light;
       @include transform(translate(-50%, -50%));
+
+      @include breakpoint(sm) {
+        top: 2%;
+        left: 8%;
+        @include transform(translate(0, 0));
+      }
     }
 
     .locations__sites-brooklyn-paragraph {
       //place-self: end center; // con boton de book now
       place-self: center;
+      @include breakpoint(sm) {
+        place-self: start center;
+      }
     }
 
     .locations__sites-brooklyn-button {
@@ -509,8 +521,8 @@ export default {
     height: 28vw;
     // background-color: green;
     @include breakpoint(sm) {
-      width: 60vw;
-      height: 60vw;
+      width: $location-size;
+      height: $location-size;
     }
   }
 
@@ -521,8 +533,8 @@ export default {
     height: 28vw;
     // background-color: rgb(1, 43, 1);
     @include breakpoint(sm) {
-      width: 60vw;
-      height: 60vw;
+      width: $location-size;
+      height: $location-size;
     }
   }
 
@@ -540,6 +552,12 @@ export default {
       left: 50%;
       background: $light;
       @include transform(translate(-50%, -50%));
+
+      @include breakpoint(sm) {
+        top: 2%;
+        left: 8%;
+        @include transform(translate(0, 0));
+      }
     }
 
     .locations__sites-les-paragraph {
