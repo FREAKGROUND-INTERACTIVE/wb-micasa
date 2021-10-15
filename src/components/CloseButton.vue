@@ -40,8 +40,8 @@ export default {
     initAnim(delay) {
       gsap.to(this.$el, {
         duration: 1,
-        height: window.innerHeight > 768 ? "35px":"30px",
-        margin: "1rem",
+        height: window.innerWidth > 768 ? "35px":"30px",
+        margin: window.innerWidth > 768 ? "1rem":"0rem",
         delay: delay,
       });
       this.lines.forEach((element) => {
