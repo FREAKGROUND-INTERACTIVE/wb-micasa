@@ -197,8 +197,14 @@ export default {
         overflow: hidden;
         font-size: $size * 2.05;
         line-height: 1;
+        @media (max-width: 412px) {
+          font-size: $size * 1.5;
+        }
         &.es {
           font-size: $size * 1.37;
+          @media (max-width: 412px) {
+            font-size: $size;
+          }
         }
       }
 
@@ -206,6 +212,9 @@ export default {
         position: relative;
         overflow: hidden;
         font-size: $size;
+        @media (max-width: 412px) {
+          font-size: $size/1.38;
+        }
       }
     }
 
