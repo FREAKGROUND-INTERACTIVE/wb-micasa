@@ -55,14 +55,14 @@ export default {
      */
     initAnim(delay) {
       gsap.to(this.titleUp, {
-        duration: 2,
+        duration: 1.5,
         y: "-85%",
         opacity: "1",
         ease: "power4.out",
         delay: delay,
       });
       gsap.to(this.titleDown, {
-        duration: 2,
+        duration: 1.5,
         y: "-15%",
         opacity: "1",
         ease: "power4.out",
@@ -124,7 +124,7 @@ export default {
   }
 
   .view-title-bg__up {
-    // @include transform(translateY(-100%));
+    @include transform(translateY(0));
   }
   .view-title-bg__down {
     @include transform(translateY(-100%));
