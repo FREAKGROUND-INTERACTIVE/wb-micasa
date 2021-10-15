@@ -33,7 +33,7 @@
 @mixin breakpoint($class) {
 
     @if $class==xs {
-        @media (max-width: 475px) {
+        @media (max-width: 375px) {
             @content;
         }
     }
