@@ -145,10 +145,11 @@ export default {
     @include transform(translateX(-50%) rotate(0deg));
 
     @include breakpoint(sm) {
+      position: fixed;
       margin-top: 0;
-      top: 44%;
-      left: -10vw;
-      @include transform(translateX(-50%) rotate(270deg));
+      top: 2%;
+      left: 50%;
+      @include transform(translateX(-50%));
     }
   }
 }
