@@ -68,10 +68,10 @@ export default {
         });
       }
 
-      setTimeout(() => {
-        this.title = this.newTitle;
-        this.$el.classList.remove("change");
-      }, 300);
+      // setTimeout(() => {
+      //   this.title = this.newTitle;
+      //   this.$el.classList.remove("change");
+      // }, 300);
     },
   },
   data() {
