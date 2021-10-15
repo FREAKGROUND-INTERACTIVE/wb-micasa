@@ -51,14 +51,13 @@ export default {
           mutations.setTitle("Powered");
         }
         gsap.to(".powered__bar", {
-          duration: 3,
+          duration: 1,
           width: "100%",
-          delay: 0.4,
         });
       }, delay);
       setTimeout(() => {
         this.$router.push({ name: "PoweredBy" });
-      }, 6000);
+      }, 3000);
     },
 
     /**
@@ -75,7 +74,7 @@ export default {
       });
 
       gsap.to(el, {
-        duration: 1.5,
+        duration: 1,
         y: 0,
         onComplete: done,
       });
