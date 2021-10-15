@@ -1,7 +1,7 @@
 <template>
   <transition @leave="leave" :css="false">
     <div class="carrousel">
-      <splide :options="options">
+      <splide :options="options" ref="splide">
         <splide-slide v-for="img in imgs" :key="img.id">
           <img class="carrousel__img" :src="img" />
         </splide-slide>
@@ -33,10 +33,10 @@ export default {
   },
   data() {
     return {
-      container: null,
+      splide: null,
       options: {
         rewind: true,
-        width: window.innerWidth > 768? ((window.innerWidth * 28) / 100):((window.innerWidth * 60) / 100), //! Definir el tamaño respectivo de la imagen
+        width: window.innerWidth > 768? ((window.innerWidth * 28) / 100):((window.innerWidth * 80) / 100), //! Definir el tamaño respectivo de la imagen
         perPage: 1,
         speed: 1000,
         drag: true,
@@ -45,6 +45,8 @@ export default {
     };
   },
   mounted() {
+    this.splide = this.$refs.splide;
+
     //* initAnim function in mounted
     if (this.mountedAnim) {
       this.initAnim(this.mountedDelay);
@@ -57,9 +59,10 @@ export default {
      * @param delay time for timeLine delay
      */
     initAnim(delay) {
+      this.splide.go(0);
       gsap.to(this.$el, {
         duration: 1,
-        height: window.innerWidth > 768? ((window.innerWidth * 28) / 100):((window.innerWidth * 60) / 100),
+        height: window.innerWidth > 768? ((window.innerWidth * 28) / 100):((window.innerWidth * 80) / 100),
         delay: delay,
       });
     },
@@ -93,10 +96,10 @@ export default {
   }
 
   @include breakpoint(sm) {
-    width: 60vw;
+    width: 70vw;
     .carrousel__img {
-      width: 60vw;
-      height: 60vw;
+      width: 70vw;
+      height: 70vw;
     }
   }
 }
