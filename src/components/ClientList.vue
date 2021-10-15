@@ -159,5 +159,20 @@ export default {
       }
     }
   }
+  @include breakpoint(xs) {
+    div {
+      &:nth-child(16) {
+        display: none;
+      }
+
+      &:nth-child(17) {
+        display: none;
+      }
+
+      &:nth-child(18) {
+        display: none;
+      }
+    }
+  }
 }
 </style>
