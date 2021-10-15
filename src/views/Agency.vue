@@ -50,14 +50,13 @@ export default {
           mutations.setTitle(lang.data.titles[0]);
         }
         gsap.to(".agency__bar", {
-          duration: 3,
+          duration: 1,
           width: "100%",
-          delay: 0.4,
         });
       }, delay);
       setTimeout(() => {
         this.$router.push({ name: "AgencyAbout" });
-      }, 5000);
+      }, 3000);
     },
 
     /**
@@ -74,7 +73,7 @@ export default {
       });
 
       gsap.to(el, {
-        duration: 1.5,
+        duration: 1,
         y: 0,
         onComplete: done,
       });
