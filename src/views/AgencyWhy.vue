@@ -369,6 +369,9 @@ export default {
         }
       }
     }
+    @include breakpoint(m) {
+      top: 42%;
+    }
   }
 
   .agency-why__painter {
