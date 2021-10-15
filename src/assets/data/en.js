@@ -24,7 +24,7 @@ export const en = {
       titleTwo: "THE CONSTANT",
       paragraph: {
         title: "Altering the constant",
-        text: "We make bold things with a purpose to create real\nchange for the internet and beyond that.\nIn this technology driven world that seems to\nmove faster than the speed of light, only the\nright narrative to the right people at the right\ntime will pierce through."
+        text: "We make bold things with a purpose to\ncreate real change for the internet and\nbeyond that. In this technology driven world\nthat seems to move faster than the speed\nof light, only the right narrative to the right\npeople at the right time will pierce through."
       }
     },
     services: {
@@ -72,14 +72,14 @@ export const en = {
       title: "WHY US?",
       paragraph: {
         title: "Why us?",
-        text: "At the heart of our process is financial strategy. With a\ndeep understanding of our consumer, we know how\nour message needs to resonate to create real change\nwithin a budget."
+        text: "At the heart of our process is financial\nstrategy. With adeep understanding of our\nconsumer, we know how our message needs\nto resonate to create real change within a\nbudget."
       }
     },
     clients: {
       bread: "Clients",
       paragraph: {
         title: "Our Clients",
-        text: "We are passionate about what we create and attract others like us. Ideal collaborators\nare agents who seek a fresh perspective. Together we disrupt the status quo"
+        text: "We are passionate about what we create\nand attract others like us.\nIdeal collaborators are agents who seek a\nfresh perspective. Together we disrupt the\nstatus quo."
       }
     }
   },
@@ -90,14 +90,14 @@ export const en = {
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "This bright studio offers a one-of-a-kind experience with west\nfacing floor-to-ceiling/wall-to-wall steel casement windows,\nfifteen feet ceilings, 25 foot cyclorama, and exposed brick interior.\nThe open floor plan offers maximum versatility with over 3,000\n square feet of open convertible space.",
+          "Once a ballroom that housed community and\nsocial events, our Brooklyn studio is a\none-of-a-kind 3,000 sq ft loft offering west\nfacing steel casement windows, exposed brick,\nspanning thirteen foot ceilings, modern\nfinishing and a 20 ft wide cyclorama. The open\nfloor plan offers maximum versatility and can\nbe easily converted for your unique experience.",
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
         subtitle: "?",
         subtitle2: "?",
         text:
-          "Williamsburg is a hip neighborhood in Brooklyn\nthat draws the young and the fashionable to its\nchic boutiques, trendy cafes and buzzy restaurants.",
+          "Williamsburg is a hip neighborhood in Brooklyn\nwith bright street art and stunning waterfront\nviews of Manhattan. It's chic boutiques, trendy\ncafes, buzzy restaurants, dance clubs and music\nhalls draw the young and fashionable.",
       },
     },
     les: {
@@ -106,14 +106,14 @@ export const en = {
         subtitle: "70 Hester Street",
         subtitle2: "New York, NY 10002",
         text:
-          "This studio is in the heart of the Lower East Side in a\nbuilding that has a rich history, in community and art and\nonce in a Tribeca film festival documentary. The floor \noffers 1,800 square feet of open convertible space and a\n20 foot cyclorama.",
+          "In the heart of the Lower East Side, our\nManhattan studio is located in a building that\nhas a rich history in community and art, and\nwas once seen in a Tribeca film festival\ndocumentary. Our storefront studio offers a\nlarge convertible canvas for any type of retail or\ngallery experience. Our goal is to continue the\nlegacy of craftsmanship, community, and family\nin effort to maintain historic and cultural roots.",
       },
       infoHoodLes: {
         title: "Lower East Side",
         subtitle: "?",
         subtitle2: "?",
         text:
-          "The eclectic Lower East Side is where gritty alleys and\ntenement-style buildings and nighttime draws hip, young\ncrowds to the area's trendy bars, music venues and\nrestaurants.",
+          "The Lower East Side is one of Manhattan’s most\nculturally rich neighborhoods. It's gritty alleys\nand tenement-style buildings mix with upscale\napartments and cultural institutions, music\nvenues, inventive restaurants, and trendy bars.",
       },
     },
     buttonN: "Neighborhood"

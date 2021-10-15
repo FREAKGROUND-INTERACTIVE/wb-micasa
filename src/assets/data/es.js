@@ -15,7 +15,7 @@ export const es = {
       paragraph: {
         quote: "Acerca de",
         title: "Mi Casa Studios",
-        text: "Aquí en Mi Casa Studios somos más que\nuna agencia. Somos la base de operaciones\nde una comunidad creativa que apoya a\nsus miembros y genera un terreno fértil\npara que crezcan las ideas."
+        text: "Aquí en Mi Casa Studios vamos más allá\nque tu típica agencia. Somos la base de\noperaciones de una comunidad creativa\nque apoya a sus miembros y genera un\nterreno fértil para que toda la\ncomunidad pueda realizar sus ideas."
       }
     },
     altering: {
@@ -24,46 +24,46 @@ export const es = {
       titleTwo: "LO CONSTANTE",
       paragraph: {
         title: "Alterando lo Constante",
-        text: "Hacemos cosas valientes con el propósito de crear\nun cambio real para el Internet y más allá.\nEn este mundo propulsado por la tecnología que\nparece moverse más rápido que la velocidad de la\nluz, solo la narrativa correcta para las personas\ncorrectas en el momento correcto se abrirá paso."
+        text: "Construimos esfuerzos valientes con el\npropósito de movilizar un cambio real en el\nInternet y más allá. En este mundo\nimpulsado por la tecnología que parece\nmoverse más rápido que la velocidad de la\nluz, solo la narrativa correcta para las\npersonas adecuadas en el momento\ncorrecto , perforará mas allá"
       }
     },
     services: {
       bread: "Servicios",
       titleOne: "UNA CASA",
       titleTwo: "MUCHAS HABITACIONES",
-      button: "Vea nuestros servicios",
+      button: "Servicios que ofrecemos",
       list: [
-        'Product Innovation <span>•</span>',
-        'Brand Identity Development <span>•</span>',
-        'Campaign Development <span>•</span>',
-        'Print <span>•</span>',
+        'Innovación de productos <span>•</span>',
+        'Desarrollo de identidad de marca <span>•</span>',
+        'Desarrollo de campañas <span>•</span>',
+        'Impresión <span>•</span>',
         'Digital <span>•</span>',
-        'Email <span>•</span>',
-        'Paid Search <span>•</span>',
+        'Correo electrónico <span>•</span>',
+        'Búsqueda pagada <span>•</span>',
         'SEO <span>•</span>',
-        'Media Planning <span>•</span>',
-        'Buying <span>•</span>',
-        'Content Optimization <span>•</span>',
-        'Data Analysis <span>•</span>',
-        'Websites <span>•</span>',
-        'Landing Pages <span>•</span>',
-        'Microsites <span>•</span>',
-        'Content Strategy & Creation <span>•</span>',
-        'Film Production <span>•</span>',
-        'Photography <span>•</span>',
-        'Editing <span>•</span>',
-        'Coloring <span>•</span>',
-        'Script writing <span>•</span>',
+        'Planificación de medios <span>•</span>',
+        'Compras <span>•</span>',
+        'Optimización de contenido <span>•</span>',
+        'Análisis de datos <span>•</span>',
+        'Sitios web <span>•</span>',
+        'Páginas de destino <span>•</span>',
+        'Micrositios <span>•</span>',
+        'Estrategia y creación de Contenido <span>•</span>',
+        'Producción de películas <span>•</span>',
+        'Fotografía <span>•</span>',
+        'Edición <span>•</span>',
+        'Colorear <span>•</span>',
+        'Redacción de guiones <span>•</span>',
         'Podcasts <span>•</span>',
-        'Live Broadcasting <span>•</span>',
-        'Paid Social <span>•</span>',
-        'Community Management <span>•</span>',
-        'Influencer Engagement <span>•</span>',
-        'Event Design <span>•</span>',
+        'Transmisiones en vivo <span>•</span>',
+        'Redes sociales pagadas <span>•</span>',
+        'Gestión de la comunidad <span>•</span>',
+        'Participación de los influencers <span>•</span>',
+        'Diseño de eventos <span>•</span>',
         'Pop-Ups <span>•</span>',
-        'Space Design <span>•</span>',
-        'Tradeshow Support <span>•</span>',
-        'Whatever it Takes <span>•</span>'
+        'Diseño de espacios <span>•</span>',
+        'Soporte de ferias comerciales <span>•</span>',
+        'Lo que sea necesario <span>•</span>'
       ]
     },
     why: {
@@ -71,15 +71,15 @@ export const es = {
       textPainter: "(Escoje un color para pintar el objeto en el centro)",
       title: "¿POR QUÉ NOSOTROS?",
       paragraph: {
-        title: "¿Por qué nosotros?",
-        text: "En el corazón de nuestro proceso está la estrategia\nfinanciera. Con un profundo conocimiento de nuestro\nconsumidor, sabemos cómo nuestro mensaje\ndebe resonar para crear un cambio real\ndentro de un presupuesto."
+        title: "¿Por qué escoger a Mi Casa Studios?",
+        text: "La estrategia financiera es el centro de\nnuestro proceso. Con un profundo\nconocimiento de nuestro consumidor,\nsabemos cómo nuestro mensaje debe\nresonar para crear un cambio real dentro\nde un presupuesto."
       }
     },
     clients: {
       bread: "Clientes",
       paragraph: {
         title: "Nuestros Clientes",
-        text: "Somos apasionados por lo que creamos y atraemos a otros como nosotros. Los colaboradores ideales\nson agentes que buscan una nueva perspectiva. Juntos romperemos el status quo."
+        text: "Somos apasionados por lo que creamos y\natraemos a otros como nosotros.\nLos colaboradores ideales son agentes que\nbuscan una nueva perspectiva.\nJuntos romperemos el status quo."
       }
     }
   },
@@ -90,14 +90,14 @@ export const es = {
         subtitle: "318 Grand Street, Suite 1G",
         subtitle2: "Brooklyn, NY 11211",
         text:
-          "Este luminoso estudio ofrece una experiencia única\ncon ventanas abatibles de acero del suelo al techo / pared\na pared orientadas al oeste, techos de 15 pies, ciclorama de 25\npies e interior de ladrillo a la vista.\nEl plano de planta abierta ofrece la máxima versatilidad con\nmás de 3,000 pies cuadrados de espacio abierto convertible.",
+          "Antes un salón de baile moderno, nuestro único\nestudio en Brooklyn de 3000 pies cuadrados\nofrece ventanales de acero amplios, ladrillo\nexpuesto, techos de 13 pies de altura, un diseño\nmoderno y una vista panorámica de 20 pies.\nEl espacio abierto ofrece versatilidad y puede\nser convertido en una experiencia única\ncon facilidad.",
       },
       infoHoodBrooklyn: {
         title: "Williamsburg",
         subtitle: "?",
         subtitle2: "?",
         text:
-          "Williamsburg es un barrio de moda en Brooklyn\nque atrae a los jóvenes y a la moda\na sus elegantes boutiques, cafés de moda y restaurantes populares.",
+          "Williamsburg es un barrio de moda en Brooklyn\ncon arte callejero brillante e impresionantes\nvistas frente al río de Manhattan. Sus elegantes\nboutiques, cafés modernos, restaurantes llenos\nde vida animados, discotecas de baile y salas de\nmúsica atraen a los jóvenes de hoy.",
       },
     },
     les: {
@@ -106,14 +106,14 @@ export const es = {
         subtitle: "70 Hester Street",
         subtitle2: "New York, NY 10002",
         text:
-          "Este estudio está en el corazón del Lower East Side en\nun edificio que tiene una rica historia, en comunidad y arte\ne incluido en un documental del festival de cine de Tribeca.\nEl plano de planta ofrece 1,800 pies cuadrados de espacio\nabierto convertible y un ciclorama de 20 pies.",
+          "En el corazón del Lower East Side, nuestro\nestudio de Manhattan está ubicado en un\nedificio que tiene una rica historia en\ncomunidad y arte, y hasta se ha visto en un\ndocumental del festival de cine de Tribeca.\nNuestro studio en el nivel inferior ofrece un\nespacio ideal para  galería / sala de exposición.\nNuestro objetivo es continuar el legado de\nartesanía, comunidad y familia en un esfuerzo\npor mantener las raíces históricas y culturales\nde nuestra comunidad.",
       },
       infoHoodLes: {
         title: "Lower East Side",
         subtitle: "?",
         subtitle2: "?",
         text:
-          "El ecléctico Lower East Side es donde los callejones y\nlos edificios de estilo residencial y la noche atraen a multitudes\njóvenes y de moda a los bares, locales de música y\nrestaurantes de moda de la zona.",
+          "El Lower East Side es uno de los barrios con\nmayor riqueza cultural de Manhattan. Sus\ncallejones arenosos llenos de fuerza y edificios\nde estilo residencial se mezclan con\napartamentos de lujo e instituciones culturales,\nlocales de música, restaurantes creativos y\nbares modernos.",
       }
     },
     buttonN: "El vecindario"
